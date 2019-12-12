@@ -10,3 +10,8 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+
+public/imagenes
+public/videos
+public/audio
+public/modelos_3d
