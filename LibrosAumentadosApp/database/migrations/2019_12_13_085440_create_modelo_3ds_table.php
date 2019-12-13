@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateModelos3dTable extends Migration
+class CreateModelo3dsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateModelos3dTable extends Migration
      */
     public function up()
     {
-        Schema::create('modelos_3d', function (Blueprint $table) {
+        Schema::create('modelo_3ds', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->varchar('titulo');
-            $table->varchar('descripcion');
-            $table->varchar('modelo_3d');
-            $table->int('capitulo_id');
+            $table->string('titulo');
+            $table->string('descripcion');
+            $table->string('modelo_3d');
+            $table->integer('capitulo_id');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateModelos3dTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('modelos_3d');
+        Schema::dropIfExists('modelo_3ds');
     }
 }

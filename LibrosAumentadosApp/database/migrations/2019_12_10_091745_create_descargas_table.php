@@ -15,11 +15,11 @@ class CreateDescargasTable extends Migration
     {
         Schema::create('descargas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->varchar('titulo');
-            $table->varchar('descripcion');
-            $table->varchar('audio');
-            $table->varchar('tipo_archivo');
-            $table->int('capitulo_id');
+            $table->string('titulo');
+            $table->string('descripcion');
+            $table->string('audio');
+            $table->string('tipo_archivo');
+            $table->integer('capitulo_id');
             $table->timestamps();
         });
     }

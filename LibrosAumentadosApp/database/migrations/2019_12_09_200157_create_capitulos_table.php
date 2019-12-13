@@ -15,9 +15,9 @@ class CreateCapitulosTable extends Migration
     {
         Schema::create('capitulos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->int('numero_orden');
-            $table->varchar('titulo');
-            $table->int('capitulo_padre_id');
+            $table->integer('numero_orden');
+            $table->string('titulo');
+            $table->integer('capitulo_padre_id');
             $table->timestamps();
         });
     }

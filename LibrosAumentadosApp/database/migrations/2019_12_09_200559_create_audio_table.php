@@ -15,10 +15,10 @@ class CreateAudioTable extends Migration
     {
         Schema::create('audio', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->varchar('titulo');
-            $table->varchar('descripcion');
-            $table->varchar('audio');
-            $table->int('capitulo_id');
+            $table->string('titulo');
+            $table->string('descripcion');
+            $table->string('audio');
+            $table->integer('capitulo_id');
             $table->timestamps();
         });
     }

@@ -15,10 +15,10 @@ class CreateImagensTable extends Migration
     {
         Schema::create('imagens', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->varchar('titulo');
-            $table->varchar('descripcion');
-            $table->varchar('imagen');
-            $table->int('capitulo_id');
+            $table->string('titulo');
+            $table->string('descripcion');
+            $table->string('imagen');
+            $table->integer('capitulo_id');
             $table->timestamps();
         });
     }
