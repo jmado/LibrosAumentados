@@ -17,7 +17,8 @@ class CreateCapitulosTable extends Migration
             $table->bigIncrements('id');
             $table->integer('numero_orden');
             $table->string('titulo');
-            $table->integer('capitulo_padre_id');
+            $table->integer('capitulo_padre_id')->nullable();;
+            $table->integer('libro_id');
             $table->timestamps();
         });
     }
