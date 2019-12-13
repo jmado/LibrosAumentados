@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+#Rutas Libros
+Route::get("/libro/destroy/{id}", "LibrosController@destroy")->name("libro.delete");
+Route::resource('/libro', 'LibrosController');
