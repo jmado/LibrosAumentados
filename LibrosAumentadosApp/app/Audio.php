@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Audio extends Model
 {
 //Modificación de multiples campos
-protected $fillable=["titulo","descripcion","video",'capitulo_id'];
+protected $fillable=["titulo","descripcion","audio",'capitulo_id'];
 
 //Metodos
 

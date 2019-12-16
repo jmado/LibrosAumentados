@@ -17,7 +17,7 @@ class CreateDescargasTable extends Migration
             $table->bigIncrements('id');
             $table->string('titulo');
             $table->string('descripcion');
-            $table->string('audio');
+            $table->string('archivo');
             $table->string('tipo_archivo');
             $table->integer('capitulo_id');
             $table->timestamps();
