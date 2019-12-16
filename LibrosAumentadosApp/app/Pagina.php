@@ -12,4 +12,11 @@ protected $fillable=["numero_pagina","texto","capitulo_id"];
 //Metodos
 
 //Relaciones
+    /**
+     * Relacion 1:N(inverso) con capitulo
+     */
+    public function capitulo()
+    {
+        return $this->belongsTo('App\Capitulo');
+    }
 }

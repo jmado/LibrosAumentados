@@ -13,5 +13,12 @@ protected $fillable=["titulo","subtitulo","cubierta"];
 //Metodos
 
 //Relaciones
+    /**
+    * Relacion 1:N con capitulos
+    */
+    public function capitulos()
+    {
+        return $this->hasMany('App\Capitulo');
+    }
 
 }
