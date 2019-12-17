@@ -8,7 +8,7 @@ class Libro extends Model
 {
     
 //Modificación de multiples campos
-protected $fillable=["titulo","subtitulo","cubierta"];
+protected $fillable=["titulo","autor","subtitulo","cubierta"];
 
 //Metodos
 
