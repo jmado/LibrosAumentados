@@ -83,10 +83,11 @@ class LibrosController extends Controller
      */
     public function update(Request $r)
     {
-        $lib = new Libro($r->id);
+        $lib = Libro::find($r->id);
 
         $lib->fill($r->all());
         $file = $r->file('cubierta');
+        
         if ($file != null) {
             $lib->cubierta = "/imagenes/".$file->getClientOriginalName(); 
             $r->cubierta->move(base_path('public/imagenes'), $file->getClientOriginalName());
