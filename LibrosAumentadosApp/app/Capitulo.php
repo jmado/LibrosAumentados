@@ -43,4 +43,24 @@ protected $fillable=["numero_orden","titulo","capitulo_padre_id, libro_id"];
     /**
      * Relacion 1:N con multimedia ¿?----------------------------------------EN PROCESO
      */
+    public function imagenes()
+    {
+        return $this->hasMany('App\Imagen');
+    }
+    public function galerias()
+    {
+        return $this->hasMany('App\Galeria');
+    }
+    public function videos()
+    {
+        return $this->hasMany('App\Video');
+    }
+    public function descargas()
+    {
+        return $this->hasMany('App\Descarga');
+    }
+    public function modelos_3d()
+    {
+        return $this->hasMany('App\Modelo_3d');
+    }
 }

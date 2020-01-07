@@ -12,4 +12,17 @@ protected $fillable=["titulo","descripcion","tipo","capitulo_id"];
 //Metodos
 
 //Relaciones
+    /**
+    * Relacion N:N galeria_imagen
+    */
+    public function imagenes()
+    {
+        return $this->belongsToMany('App\Imagen');
+    }
+
+    //Relacion 1:N(inversa) ¿¿-------------------??Dudo que esto sea lo mejor :(
+        public function capitulo()
+        {            
+            return $this->belongsTo('App\Capitulo');
+        }  
 }
