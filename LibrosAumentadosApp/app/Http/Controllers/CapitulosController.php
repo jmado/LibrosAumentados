@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Libro;
+use App\Capitulo;
 
-class LibrosController extends Controller
+class CapitulosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class LibrosController extends Controller
      */
     public function index()
     {
-        $libroList = Libro::all();
-        return view('libro.all', compact('libroList'));
+        $capituloList = Capitulo::all();
+        return view('capitulo.all', compact('capituloList'));
     }
 
     /**
@@ -26,7 +26,7 @@ class LibrosController extends Controller
      */
     public function create()
     {
-        return view('libro.form');
+        return view('capitulo.form');
     }
 
     /**
@@ -37,18 +37,14 @@ class LibrosController extends Controller
      */
     public function store(Request $r)
     {
-        $lib = new Libro($r->all());
-        $file = $r->file('cubierta');
-        if ($file != null) {
-            $lib->cubierta = "/imagenes/".$file->getClientOriginalName();
-            $r->cubierta->move(base_path('public/imagenes'), $file->getClientOriginalName());
-        } else {
-            $lib->cubierta = 'sin-cubierta';
-        }
-
-        $lib->save();
-
-        return redirect()->route('libro.index');
+        $cap = new Capitulo($r->all());
+        $cap->numero_orden = $r->numero_orden;
+        $cap->titulo = $r->titulo;
+        $cap->capitulo_padre_id = $r->capitulo_padre_id;
+        $cap->libro_id = $r->libro_id;
+        
+        $cap->save();
+        return redirect()->route('capitulo.index');
     }
 
     /**
@@ -70,8 +66,8 @@ class LibrosController extends Controller
      */
     public function edit($id)
     {
-        $libro = Libro::find($id);
-        return view('libro.form', ["libro" => $libro] );
+        $capitulo = Capitulo::find($id);
+        return view('capitulo.form');
     }
 
     /**
@@ -81,21 +77,17 @@ class LibrosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $r)
+    public function update(Request $request, $id)
     {
-        $lib = Libro::find($r->id);
+        $cap = Capitulo::find($r->id);
+        $cap->numero_orden = $r->numero_orden;
+        $cap->titulo = $r->titulo;
+        $cap->capitulo_padre_id = $r->capitulo_padre_id;
+        $cap->libro_id = $r->libro_id;
 
-        $lib->fill($r->all());
-        $file = $r->file('cubierta');
-        
-        if ($file != null) {
-            $lib->cubierta = "/imagenes/".$file->getClientOriginalName(); 
-            $r->cubierta->move(base_path('public/imagenes'), $file->getClientOriginalName());
-        }
+        $cap->save();
 
-        $lib->save();
-
-        return redirect()->route('libro.index');
+        return redirect()->route('capitulo.index');
     }
 
     /**
@@ -106,9 +98,9 @@ class LibrosController extends Controller
      */
     public function destroy($id)
     {
-        $lib = Libro::find($id);
-        $lib->delete();
-        
-        return redirect()->route('libro.index');
+        $cap = Capitulo::find($id);
+        $cap->delete();
+
+        return redirect()->route('capitulo.index');
     }
 }
