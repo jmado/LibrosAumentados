@@ -20,7 +20,7 @@ protected $fillable=["numero_orden","titulo","capitulo_padre_id, libro_id"];
         return $this->belongsTo('App\Libro');
     }
     /**
-    * Relacion 0:N con capitulo (capitulo padre)
+    * Relacion 1:N con capitulo (capitulo padre)
     */
     public function capitulo()
     {

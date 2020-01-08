@@ -18,3 +18,11 @@ Route::get('/', function () {
 #Rutas Libros
 Route::get("/libro/destroy/{id}", "LibrosController@destroy")->name("libro.delete");
 Route::resource('/libro', 'LibrosController');
+
+//Rutas Imagenes
+Route::get("/imagen/destroy/{id}", "ImagensController@destroy")->name("imagen.delete");
+Route::resource('/imagen', 'ImagensController');
+
+//Rutas Galerias
+Route::get("/galeria/destroy/{id}", "GaleriasController@destroy")->name("galeria.delete");
+Route::resource('/galeria', 'GaleriasController');
