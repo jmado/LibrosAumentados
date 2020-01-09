@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 use App\Galeria;
+use App\Imagen;
 
 class GaleriasController extends Controller
 {
@@ -47,7 +50,7 @@ class GaleriasController extends Controller
      */
     public function show($id)
     {
-        //
+        $galeria = DB::select('select  galerias.titulo, galerias,descripcion, galeria.tipo, galeria.capitulo_id, imagens.id, imagens.titulo');
     }
 
     /**

@@ -13,6 +13,7 @@
                 <div class="titulo">
                     <p>Titulo: {{$galeria->titulo}}</p>
                 </div>    
+            
                 <div class="descripcion">
                     <p>Descripcion: {{$galeria->descripcion}}</p>
                 </div>

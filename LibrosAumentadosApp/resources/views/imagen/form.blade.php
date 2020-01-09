@@ -2,27 +2,7 @@
 
 @section("content")
     
-    <div class="todas">
-    @foreach ($imagenes as $imagen)
-        <div class="elemento"> 
-            <div class="enlace">
-                <a href="capitulo">Capitulo: {{$imagen->capitulo_id}}</a>
-            </div>
-            <div class="imagen">
-                <p><a href='{{$imagen->imagen}}'><img src="{{$imagen->imagen}}" alt="{{$imagen->titulo}}"></a></p>
-            </div>    
-            <div class="descripcion">
-                <p>{{$imagen->descripcion}}</p>
-            </div>
-        </div>
-    @endforeach
-    </div>
-
-
-
-
-
-
+    
     @isset($imagen)
         <form action="{{ route('imagen.update', ['imagen' => $imagen->id]) }}" method="POST" enctype="multipart/form-data" class="formulario">
         @method("PUT")
@@ -44,4 +24,6 @@
         <br>
         </form>
         <br>
+
+        
 @endsection
