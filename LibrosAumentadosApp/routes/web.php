@@ -19,6 +19,10 @@ Route::get('/', function () {
 Route::get("/libro/destroy/{id}", "LibrosController@destroy")->name("libro.delete");
 Route::resource('/libro', 'LibrosController');
 
+//Rutas Capitulos
+Route::get("/capitulo/destroy/{id}", "CapitulosController@destroy")->name("capitulo.delete");
+Route::resource('/capitulo', 'CapitulosController');
+
 //Rutas Imagenes
 Route::get("/imagen/destroy/{id}", "ImagensController@destroy")->name("imagen.delete");
 Route::resource('/imagen', 'ImagensController');

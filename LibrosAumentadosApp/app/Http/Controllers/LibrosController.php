@@ -81,9 +81,9 @@ class LibrosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $r)
+    public function update(Request $r, $id)
     {
-        $lib = Libro::find($r->id);
+        $lib = Libro::find($id);
 
         $lib->fill($r->all());
         $file = $r->file('cubierta');
