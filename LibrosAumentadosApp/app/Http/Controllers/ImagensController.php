@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Imagen;
 use App\Galeria;
+use App\Capitulo;
 
 class ImagensController extends Controller
 {
@@ -17,8 +18,8 @@ class ImagensController extends Controller
      */
     public function index()
     {
-        $imagenes = Imagen::all();
-        return view('imagen.all', compact('imagenes'));
+        $datos = Imagen::all();
+        return view('imagen.all', compact('datos'));
     }
 
     /**
@@ -43,25 +44,27 @@ class ImagensController extends Controller
      */
     public function store(Request $request)
     {
-        $imagen = new Imagen;
-        $imagen->titulo = $request->titulo;
-        $imagen->descripcion = $request->descripcion;
+        $datos = new Imagen;
+        $datos->titulo = $request->titulo;
+        $datos->descripcion = $request->descripcion;
 
         //Archivo
         $archivo = $request->imagen;
-        $archivoNombre = $archivo->getClientOriginalName();
-        $archivo->move('imagenes', $archivoNombre);
-        $imagen->imagen = "imagenes/".$archivoNombre;
+        $archivo->move('imagenes', $archivo->getClientOriginalName());
+        $datos->imagen = "imagenes/".$archivo->getClientOriginalName();
 
         //Capitulo al que pertenece
-        $imagen->capitulo_id = $request->capitulo_id;
-        /*Galeria a la que puede pertenecer ¿?
-        $imagen_id;
-        DB::insert('insert into galeria_imagen ("galeria_id", "imagen_id") values ("$request->galeria_id", "$imagen_id")');
-        */
+        $datos->capitulo_id = $request->capitulo_id;
 
         //SAVE
-        $imagen->save();
+        $datos->save();
+
+        //Galeria a la que puede pertenecer ¿?
+        $imagen_id = DB::select('select max(id) as "id" from imagens');
+        $id = $imagen_id[0]->id;
+        DB::insert('insert into galeria_imagen (galeria_id, imagen_id) values (?, ?)',[$request->galeria_id, $id]);
+        
+
         return redirect()->route('imagen.index');
     }
 
@@ -73,7 +76,8 @@ class ImagensController extends Controller
      */
     public function show($id)
     {
-        //
+        $datos = Imagen::findOrFail($id);
+        return view('imagen.show', compact('datos'));
     }
 
     /**
@@ -85,7 +89,13 @@ class ImagensController extends Controller
     public function edit($id)
     {
         $datos = Imagen::findOrFail($id);
-        return view('imagen.form');
+        //Listado de capitulos 
+        //$capitulos = DB::select('select capitulos.id, capitulos.titulo from capitulos');
+        $capitulos = DB::table('capitulos')->select('id','titulo')->get();
+        //Listado de galerias 
+        //$galerias = DB::select('select galerias.id, galerias.titulo from galerias');
+        $galerias = DB::table('galerias')->select('id','titulo')->get();
+        return view('imagen.form', compact('datos','capitulos','galerias'));
     }
 
     /**
@@ -97,7 +107,17 @@ class ImagensController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $datos = Imagen::findOrFail($id);
+        $datos->titulo = $request->titulo;
+        $datos->descripcion = $request->descripcion;
+        $datos->capitulo_id = $request->capitulo_id;
+        $archivo = $request->imagen;
+        if($archivo != null){
+            $datos->imagen = "imagenes/" . $archivo->getClientOriginalName();
+            $request->imagen->move(base_path('imagenes'), $archivo->getClientOriginalName());
+        }
+        $datos->save();
+        return redirect()->route('imagen.show', $id);
     }
 
     /**
@@ -108,6 +128,8 @@ class ImagensController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $datos = Imagen::findOrFail($id);
+        $datos->delete();
+        return redirect()->route('imagen.index');
     }
 }
