@@ -4,29 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ URL::asset('css/flexboxgrid.min.css') }}" />
     <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}" />
     
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/865c0f1a91.js" crossorigin="anonymous"></script>
 
     <title>Libros Aumentados</title>
 </head>
 <body>
-    <div class="title">
-        @yield("title")
-    </div>
-{{--
-    <div class="menu">
-        <div class="elemento-menu">
-            <a href="{{route('libro.all')}}">Libros</a>
-            <a href="{{route('imagen.all')}}">Imagenes</a>
-            <a href="{{route('galeria.all')}}">Galerias</a>
-            <a href="{{route('libro.all')}}">Otros</a>
-        </div>
-    </div>
---}}
-    <div class="content">
-        @yield("content")   
-    </div> 
 
+    <div class="container">
+    <!-- Cabecera -->
+    <header class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            {{--@yield("title")--}}
+            <div class="cabecera">
+                <h1>Libros aumentados</h1>
+            </div>
+        </div>
+    </header>
+       
+
+
+
+
+    <!-- Contenido -->
+    <div class="row principal middle-xs around-sm">
+
+        <!-- Menu -->
+        <div class="col-xs-12 col-sm-2">
+            <div class="menu">
+                <ul>
+                    <li>
+                        <a class="elementos" href="#">
+                            <i class="fas fa-home"></i>
+                            <span>Inicio</span></a>
+                    </li>
+                    <li>
+                        <a class="elementos" href="https://flatuicolors.com/palette/ca">
+                            <i class="fas fa-book"></i>    
+                            <span>Libros</span></a>
+                    </li>
+                    <li>
+                         <a class="elementos" href="#">
+                            <i class="fas fa-photo-video"></i>
+                            <span>Multimedia</span></a>
+                    </li>
+                    <li>
+                        <a class="elementos" href="#">
+                            <i class="far fa-arrow-alt-circle-down"></i>
+                            <span>Descargas</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Contenido principal -->
+        <div class="col-xs-12 col-sm-10">
+            <div class="contenido">
+                @yield("content")
+            </div>
+        </div>
+
+    </div>
+
+    
+
+    <!-- Pie de pagina -->
+    <footer class="row">
+        <div class="col-xs-12">
+            <div class="pie">
+                <h2>Pie de pagina</h2>
+            </div>
+        </div>
+    </footer>
+    </div>
 </body>
 </html>

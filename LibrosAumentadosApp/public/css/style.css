@@ -1,0 +1,63 @@
+/* ---------------------Estilo basico--------------------- */
+*{
+    margin: 0;
+    padding: 0;
+    background-color: #8395a7;
+    color: #222f3e;
+}
+/* ---------------------FIN Estilo basico--------------------- */
+
+/* ---------------------MENU--------------------- */
+.menu ul li{
+    list-style: none;
+    height: 39px;
+    padding: 2px;
+    width: 40px;
+}
+.menu ul span{
+    /* Contenedor */
+    width:0;
+    left:38px;
+    padding:0;
+    position:absolute;
+    overflow:hidden;
+    /* Texto */
+    font-family:'Myriad Pro',Arial, Helvetica, sans-serif;
+    font-size:18px;
+    font-weight:bold;
+    letter-spacing:0.6px;
+    white-space:nowrap;
+    line-height:39px;
+    /* CSS3 Transicion: */
+    -webkit-transition: 0.25s; 
+}
+.menu ul a{
+    height:39px;
+    width:38px;
+    display:block;
+    position:relative;
+}
+  /* Estilos general de los hover */
+.menu ul a:hover span{ 
+    width:auto;
+    padding:0 20px;
+    overflow:visible; 
+}
+.menu ul a:hover{
+    text-decoration:none;	
+}
+  /* Elementos */
+.menu ul .elemento {	
+    background-position:0 0;
+}
+.menu ul .elemento:hover {	
+    background-position:0 -39px;
+}
+.menu ul .elementos span{
+    color:#000000;
+}
+/* ---------------------FIN MENU--------------------- */
+
+img{
+    width: 100%;
+}
