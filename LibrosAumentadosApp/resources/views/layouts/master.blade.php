@@ -36,22 +36,22 @@
             <div class="menu">
                 <ul>
                     <li>
-                        <a class="elementos" href="#">
-                            <i class="fas fa-home"></i>
+                        <a class="elementos" href="{{route('libro.index')}}">
+                            <i class="fas fa-caravan"></i>
                             <span>Inicio</span></a>
                     </li>
                     <li>
-                        <a class="elementos" href="https://flatuicolors.com/palette/ca">
+                        <a class="elementos" href="{{route('capitulo.index')}}">
                             <i class="fas fa-book"></i>    
                             <span>Libros</span></a>
                     </li>
                     <li>
-                         <a class="elementos" href="#">
+                         <a class="elementos" href="{{route('imagen.index')}}">
                             <i class="fas fa-photo-video"></i>
                             <span>Multimedia</span></a>
                     </li>
                     <li>
-                        <a class="elementos" href="#">
+                        <a class="elementos" href="{{route('galeria.index')}}">
                             <i class="far fa-arrow-alt-circle-down"></i>
                             <span>Descargas</span></a>
                     </li>

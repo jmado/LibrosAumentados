@@ -38,7 +38,6 @@
         Imagen:
         <input type="file" name="imagen"><br>
             <img src="{{$datos->imagen ?? ''}}" class="cubierta-mini"><br>
-
         <input type="submit">
         <br>
         </form>

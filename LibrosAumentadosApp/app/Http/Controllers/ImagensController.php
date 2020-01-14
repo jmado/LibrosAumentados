@@ -47,24 +47,18 @@ class ImagensController extends Controller
         $datos = new Imagen;
         $datos->titulo = $request->titulo;
         $datos->descripcion = $request->descripcion;
-
         //Archivo
         $archivo = $request->imagen;
         $archivo->move('imagenes', $archivo->getClientOriginalName());
         $datos->imagen = "imagenes/".$archivo->getClientOriginalName();
-
         //Capitulo al que pertenece
         $datos->capitulo_id = $request->capitulo_id;
-
         //SAVE
         $datos->save();
-
         //Galeria a la que puede pertenecer ¿?
         $imagen_id = DB::select('select max(id) as "id" from imagens');
         $id = $imagen_id[0]->id;
         DB::insert('insert into galeria_imagen (galeria_id, imagen_id) values (?, ?)',[$request->galeria_id, $id]);
-        
-
         return redirect()->route('imagen.index');
     }
 
@@ -112,9 +106,11 @@ class ImagensController extends Controller
         $datos->descripcion = $request->descripcion;
         $datos->capitulo_id = $request->capitulo_id;
         $archivo = $request->imagen;
+        
         if($archivo != null){
+        //if(exif_imagetype($archivo)){
+            $archivo->move('imagenes', $archivo->getClientOriginalName());
             $datos->imagen = "imagenes/" . $archivo->getClientOriginalName();
-            $request->imagen->move(base_path('imagenes'), $archivo->getClientOriginalName());
         }
         $datos->save();
         return redirect()->route('imagen.show', $id);
