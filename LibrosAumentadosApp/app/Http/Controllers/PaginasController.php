@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Pagina;
 use App\Capitulo;
 use App\Libro;
 
-class CapitulosController extends Controller
+class PaginasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,14 +16,14 @@ class CapitulosController extends Controller
      */
     public function index()
     {
-        $capituloList = Capitulo::all();
-        return view('capitulo.all', compact('capituloList'));
+        $paginaList = Pagina::all();
+        return view('pagina.all', compact('paginaList'));
     }
 
-    public function mostrarCapitulosLibro($id_book)
+    public function mostrarPaginaCapitulo($id_capitulo)
     {
-        $capituloList = Capitulo::where('libro_id', '=', $id_book)->get();
-        return view('capitulo.all', compact('capituloList'));
+        $paginaList = Pagina::where('capitulo_id', '=', $id_capitulo)->get();
+        return view('pagina.all', compact('paginaList'));
     }
 
     /**
@@ -33,7 +33,7 @@ class CapitulosController extends Controller
      */
     public function create()
     {
-        return view('capitulo.form');
+        return view('pagina.form');
     }
 
     /**
@@ -44,14 +44,13 @@ class CapitulosController extends Controller
      */
     public function store(Request $r)
     {
-        $cap = new Capitulo($r->all());
-        $cap->numero_orden = $r->numero_orden;
-        $cap->titulo = $r->titulo;
-        $cap->capitulo_padre_id = $r->capitulo_padre_id;
-        $cap->libro_id = $r->libro_id;
-        
-        $cap->save();
-        return redirect()->route('capitulo.index');
+        $pag = new Pagina($r->all());
+        $pag->numero_pagina = $r->numero_pagina;
+        $pag->texto = $r->texto;
+        $pag->capitulo_id = $r->capitulo_id;
+
+        $pag->save();
+        return redirect()->route('pagina.index');
     }
 
     /**
@@ -62,7 +61,7 @@ class CapitulosController extends Controller
      */
     public function show($id)
     {
-        return view('capitulo.all');
+        return view('pagina.all');
     }
 
     /**
@@ -73,8 +72,8 @@ class CapitulosController extends Controller
      */
     public function edit($id)
     {
-        $capitulo = Capitulo::find($id);
-        return view('capitulo.form', compact('capitulo'));
+        $pagina = Pagina::find($id);
+        return view('pagina.form', compact('pagina'));
     }
 
     /**
@@ -86,15 +85,14 @@ class CapitulosController extends Controller
      */
     public function update(Request $r, $id)
     {
-        $cap = Capitulo::find($id);
-        $cap->numero_orden = $r->numero_orden;
-        $cap->titulo = $r->titulo;
-        $cap->capitulo_padre_id = $r->capitulo_padre_id;
-        $cap->libro_id = $r->libro_id;
+        $pag = Pagina::find($id);
+        $pag->numero_pagina = $r->numero_pagina;
+        $pag->texto = $r->texto;
+        $pag->capitulo_id = $r->capitulo_id;
 
-        $cap->save();
+        $pag->save();
 
-        return redirect()->route('capitulo.mostrarCapitulosLibro', $cap->libro_id);
+        return redirect()->route('capitulo.mostrarCapitulosLibro', $pag->capitulo_id);
     }
 
     /**
@@ -105,8 +103,8 @@ class CapitulosController extends Controller
      */
     public function destroy($id)
     {
-        $cap = Capitulo::find($id);
-        $cap->delete();
+        $pag = Pagina::find($id);
+        $pag->delete();
 
         return redirect()->route('capitulo.index');
     }
