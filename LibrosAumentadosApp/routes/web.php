@@ -42,4 +42,4 @@ Route::get("/galeria/destroy/{id}", "GaleriasController@destroy")->name("galeria
 Route::resource('/galeria', 'GaleriasController');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'LibrosController@index')->name('home');

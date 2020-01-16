@@ -1,27 +1,32 @@
 @extends("../layouts.master")
 
 @section("content")
-<a href="{{route('libro.create') }}">Nueva</a><br>
     <div class="box">
-        @foreach ($paginaList as $pagina)
+    <a href="{{route('libro.create') }}" class="badge badge-primary">Nueva</a><br>
 
+        @foreach ($paginaList as $pagina)
+            <br>
             <div class="row">
-                <div class="col">
+                <div class="col-md-1"></div>
+                <div class="col-md-6">
                     <p>Página {{$pagina->numero_pagina}}</p>
                     <p>{{$pagina->texto}}</p>
-                    
+                </div>
+                <div class="col-md-3">  
                     <form action="{{route('pagina.edit', $pagina->id)}}" method="POST">
                         @csrf
                         @method("GET")
                         <input type="submit" value="Editar">
                     </form>
+                </div>
+                <div class="col-md-2">
                     <form action="{{route('pagina.destroy', $pagina->id)}}" method="POST">
                         @csrf
                         @method("DELETE")
                         <input type="submit" value="Borrar">
                     </form>
                 </div>
-            </div>
-            
+            </div> 
         @endforeach
     </div>
+@endsection
