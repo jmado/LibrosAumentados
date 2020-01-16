@@ -20,6 +20,8 @@
                 margin: 0;
             }
 
+            
+
             .full-height {
                 height: 100vh;
             }
@@ -34,11 +36,7 @@
                 position: relative;
             }
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+            
 
             .content {
                 text-align: center;
@@ -65,12 +63,13 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+            
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}">Login</a><br>
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
@@ -95,6 +94,6 @@
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
             </div>
-        </div>
+        
     </body>
 </html>
