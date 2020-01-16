@@ -5,6 +5,9 @@
     background-color: #8395a7;
     color: #222f3e;
 }
+a:link, a:visited, a:active, a:hover , a{
+    text-decoration:none;
+}
 /* ---------------------FIN Estilo basico--------------------- */
 
 /* ---------------------MENU--------------------- */
@@ -58,6 +61,35 @@
 }
 /* ---------------------FIN MENU--------------------- */
 
-img{
-    width: 100%;
+
+.btn{
+    height: auto;
+    width: 50%;
+    text-align: center;
 }
+.btn_ver, .btn_modificar, .btn_borrar{
+    display:block;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #1883ba;
+    border-radius: 6px;
+    border: 2px solid #ffffff;
+}
+.btn_ver:hover{
+    color: #1883ba;
+    background-color: #ffffff;
+}
+.btn_modificar:hover{
+    color: #1883ba;
+    background-color: #ffffff;
+}
+.btn_borrar:hover{
+    color: #1883ba;
+    background-color: #ffffff;
+}
+
+
+
+/*  Galerias */
+
+img{width: 100%;}

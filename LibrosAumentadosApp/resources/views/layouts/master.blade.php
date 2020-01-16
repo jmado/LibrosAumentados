@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,32 +23,41 @@
             {{--@yield("title")--}}
             <!-- Menu -->
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand" href="#">Logo</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
               
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Inicio<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Link</a>
+                      <a class="nav-link" href="{{route('libro.index')}}">Libros</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{route('capitulo.index')}}">Capitulos</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Paginas</a>
                     </li>
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
+                        Multimedia
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="{{route('imagen.index')}}">Imagenes</a>
+                        <a class="dropdown-item" href="{{route('galeria.index')}}">Galerias</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#">Video</a>
+                        <a class="dropdown-item" href="#">Audio</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Elementos 3D</a>
                       </div>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Otros</a>
                     </li>
                   </ul>
                   <form class="form-inline my-2 my-lg-0">

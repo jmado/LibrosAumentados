@@ -17,7 +17,7 @@ protected $fillable=["titulo","descripcion","tipo","capitulo_id"];
     */
     public function imagenes()
     {
-        return $this->belongsToMany('App\Imagen');
+        return $this->belongsToMany('App\Imagen', 'galeria_imagen', 'galeria_id','imagen_id');
     }
 
     //Relacion 1:N(inversa) ¿¿-------------------??Dudo que esto sea lo mejor :(

@@ -12,31 +12,31 @@ class ImagensTableSeeder extends Seeder
     public function run()
     {
         DB::table('imagens')->insert([
-            'titulo' => Str::random(8),
+            'titulo' => "titulo",
             'descripcion' => Str::random(8),
             'imagen' => Str::random(8).'.jpg',
             'capitulo_id' => 1,
         ]);
         DB::table('imagens')->insert([
-            'titulo' => Str::random(8),
+            'titulo' => "titulo",
             'descripcion' => Str::random(8),
             'imagen' => Str::random(8).'.jpg',
             'capitulo_id' => 2,
         ]);
         DB::table('imagens')->insert([
-            'titulo' => Str::random(8),
+            'titulo' => "titulo",
             'descripcion' => Str::random(8),
             'imagen' => Str::random(8).'.jpg',
             'capitulo_id' => 3,
         ]);
         DB::table('imagens')->insert([
-            'titulo' => Str::random(8),
+            'titulo' => "titulo",
             'descripcion' => Str::random(8),
             'imagen' => Str::random(8).'.jpg',
             'capitulo_id' => 4,
         ]);
         DB::table('imagens')->insert([
-            'titulo' => Str::random(8),
+            'titulo' => "titulo",
             'descripcion' => Str::random(8),
             'imagen' => Str::random(8).'.jpg',
             'capitulo_id' => 5,

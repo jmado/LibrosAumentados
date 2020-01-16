@@ -9,6 +9,8 @@ use App\Imagen;
 use App\Galeria;
 use App\Capitulo;
 
+use App\Galeria_imagen;
+
 class ImagensController extends Controller
 {
     /**
@@ -48,17 +50,23 @@ class ImagensController extends Controller
         $datos->titulo = $request->titulo;
         $datos->descripcion = $request->descripcion;
         //Archivo
-        $archivo = $request->imagen;
+        $archivo = $request->file;
         $archivo->move('imagenes', $archivo->getClientOriginalName());
         $datos->imagen = "imagenes/".$archivo->getClientOriginalName();
         //Capitulo al que pertenece
         $datos->capitulo_id = $request->capitulo_id;
-        //SAVE
+        //Guardo
         $datos->save();
+
         //Galeria a la que puede pertenecer ¿?
-        $imagen_id = DB::select('select max(id) as "id" from imagens');
-        $id = $imagen_id[0]->id;
-        DB::insert('insert into galeria_imagen (galeria_id, imagen_id) values (?, ?)',[$request->galeria_id, $id]);
+        $id = DB::select('select max(id) as "id" from imagens');
+        $imagen_id = $id[0]->id;
+        $galeria_id = $request->galeria_id;
+        $galeria = new Galeria_imagen;
+        $galeria->galeria_id = $galeria_id;
+        $galeria->imagen_id = $imagen_id;
+        $galeria->save();
+
         return redirect()->route('imagen.index');
     }
 
@@ -83,11 +91,10 @@ class ImagensController extends Controller
     public function edit($id)
     {
         $datos = Imagen::findOrFail($id);
+      
         //Listado de capitulos 
-        //$capitulos = DB::select('select capitulos.id, capitulos.titulo from capitulos');
         $capitulos = DB::table('capitulos')->select('id','titulo')->get();
-        //Listado de galerias 
-        //$galerias = DB::select('select galerias.id, galerias.titulo from galerias');
+        //Listado de galerias  
         $galerias = DB::table('galerias')->select('id','titulo')->get();
         return view('imagen.form', compact('datos','capitulos','galerias'));
     }
@@ -104,15 +111,23 @@ class ImagensController extends Controller
         $datos = Imagen::findOrFail($id);
         $datos->titulo = $request->titulo;
         $datos->descripcion = $request->descripcion;
+        //Capitulo al que pertenece
         $datos->capitulo_id = $request->capitulo_id;
-        $archivo = $request->imagen;
-        
+        $archivo = $request->file;
+       //Imagen
         if($archivo != null){
-        //if(exif_imagetype($archivo)){
             $archivo->move('imagenes', $archivo->getClientOriginalName());
             $datos->imagen = "imagenes/" . $archivo->getClientOriginalName();
         }
+        //Guardo la imagen con sus datos
         $datos->save();
+
+        //Enlazo la posible galeria relacionada con la imagen
+        $imagen_id = $datos->id;
+        $galeria_id = $request->galeria_id;
+
+        //Sincronizo los campos relacionados entre galerias e imagenes de forma automatica Laravel te quiero
+        $datos->galerias()->sync($galeria_id);
         return redirect()->route('imagen.show', $id);
     }
 
@@ -125,6 +140,7 @@ class ImagensController extends Controller
     public function destroy($id)
     {
         $datos = Imagen::findOrFail($id);
+        unlink($datos->imagen);
         $datos->delete();
         return redirect()->route('imagen.index');
     }

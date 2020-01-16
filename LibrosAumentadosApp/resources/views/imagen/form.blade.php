@@ -16,18 +16,31 @@
         Capitulo:
         <select name="capitulo_id" required>
             @foreach ($capitulos as $capitulo)
-                @isset($datos->capitulo_id)
-                    <option value={{$capitulo->id}}>{{$capitulo->titulo}}</option>     
-                @else    
+                @isset($datos)
+                    @if($datos->capitulo_id == $capitulo->id)
+                        <option value={{$capitulo->id}} selected>{{$capitulo->titulo}}</option>    
+                    @else   
+                        <option value={{$capitulo->id}}>{{$capitulo->titulo}}</option> 
+                    @endif
+                @else   
                     <option value={{$capitulo->id}}>{{$capitulo->titulo}}</option> 
-                @endisset   
+                @endisset
+
             @endforeach
         </select>
         <br>
         Galeria:
-        <select name="galeria_id">
+        <select name="galeria_id[]" multiple>
             @foreach ($galerias as $galeria)
-                <option value={{$galeria->id}}>{{$galeria->titulo}}</option>    
+                @isset($datos)
+                    @if($datos->galerias()->get()->contains($galeria->id))
+                        <option value={{$galeria->id}} selected>{{$galeria->titulo}}</option>   
+                    @else
+                        <option value={{$galeria->id}}>{{$galeria->titulo}}</option>
+                    @endif
+                @else
+                    <option value={{$galeria->id}}>{{$galeria->titulo}}</option>
+                @endif 
             @endforeach
         </select>
         <br>
@@ -36,8 +49,8 @@
         Descripcion:
         <input type="text" name="descripcion" value="{{$datos->descripcion ?? ''}}"><br>
         Imagen:
-        <input type="file" name="imagen"><br>
-            <img src="{{$datos->imagen ?? ''}}" class="cubierta-mini"><br>
+        <input type="file" name="file"><br>
+        <img src="../{{$datos->imagen}}" class="cubierta-mini"><br>
         <input type="submit">
         <br>
         </form>
