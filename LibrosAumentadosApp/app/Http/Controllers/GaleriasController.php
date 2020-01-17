@@ -47,22 +47,24 @@ class GaleriasController extends Controller
     public function store(Request $request)
     {
         //Creo una galeria
-        $datos = new Galeria;
-        $datos->titulo = $request->titulo;
-        $datos->descripcion = $request->descripcion;
-        //Archivo
-        
+        $datos_galeria = new Galeria;
 
-        //Capitulo al que pertenece
-        
+        $datos_galeria->titulo = $request->titulo;
+        $datos_galeria->descripcion = $request->descripcion;
+        $datos_galeria->tipo = $request->tipo;
+        $capitulo = $request->capitulo_id;
+        $datos_galeria->capitulo_id = $capitulo;
+        //Guardo galeria
+        $datos_galeria->save();
 
-        //Guardo
-        $datos->save();
-
-        //Imagenes que tiene
-        
-
+        //Id de la galeria
+        $id = DB::select('select max(id) as "id" from galerias');
+        $galeria_id = $id[0]->id;
+        //Array con todas las id de imagenes
+        $imagenes_id = $request->imagenes_id;
+        $datos_galeria->imagenes()->sync($imagenes_id);
         return redirect()->route('galeria.index');
+
     }
 
     /**
@@ -74,7 +76,6 @@ class GaleriasController extends Controller
     public function show($id)
     {
         //Datos de la galeria
-        //$galeria = DB::table('galerias')->where('id',$id)->get();
         $galeria = DB::select('select * from galerias where id=:id',['id'=>$id]);
         //Imagenes
         $imagenes=DB::select('select imagens.id, imagens.titulo, imagens.imagen 
@@ -92,7 +93,11 @@ class GaleriasController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+        $galeria = Galeria::findOrFail($id);
+        $imagenes = Imagen::all();
+        $capitulos = Capitulo::all();
+        return view('galeria.form', compact('galeria', 'imagenes', 'capitulos'));
     }
 
     /**
@@ -104,7 +109,7 @@ class GaleriasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
@@ -115,6 +120,8 @@ class GaleriasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $datos = Galeria::findOrFail($id);
+        $datos->delete();
+        return redirect()->route('galeria.index');
     }
 }
