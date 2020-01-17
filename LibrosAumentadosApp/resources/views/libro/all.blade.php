@@ -13,6 +13,7 @@
             <div class="col"> 
                 <p>Titulo: {{$libro->titulo}}</p>
                 <p>Subtitulo: {{$libro->subtitulo}}</p>
+                <p>Autor: {{$libro->autor}}</p>
                 <form action = "{{route('libro.edit', $libro->id)}}" method="POST">
                     @csrf
                     @method("GET")

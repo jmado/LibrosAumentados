@@ -83,7 +83,6 @@ a:link, a:visited, a:active, a:hover , a{
     color: #1883ba;
     background-color: #ffffff;
 }
-<<<<<<< HEAD
 .btn_borrar:hover{
     color: #1883ba;
     background-color: #ffffff;
@@ -94,7 +93,6 @@ a:link, a:visited, a:active, a:hover , a{
 /*  Galerias */
 
 img{width: 100%;}
-=======
 
 
 /* ---------------------FORMULARIO DE REGISTRO--------------------- */
@@ -329,4 +327,3 @@ img{width: 100%;}
     width:60%;
   }
   /*---------------------FIN MENU---------------------*/
->>>>>>> master

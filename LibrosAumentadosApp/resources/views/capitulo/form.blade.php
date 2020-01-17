@@ -1,8 +1,7 @@
 @extends("../layouts.master")
 
 @section("content")
-    <div class="box">
-        
+    <div class="box">        
             @isset($capitulo)
                 <form action="{{ route('capitulo.update', ['capitulo' => $capitulo->id]) }}" method="POST" enctype="multipart/form-data" class="formulario">
                 @method("PUT")
@@ -11,7 +10,6 @@
             @endisset
                 @csrf
                 <div class="row">
-                    <!--<div class="col-md-3"></div>-->
                     <div class="col-md-6">
                         <br>
                         Numero de capítulo: <br>

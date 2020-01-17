@@ -3,7 +3,6 @@
 @section("content")
     <div class="box">    
     <a href="{{ route('libro.create') }}" class="badge badge-primary">Nuevo</a><br>
-
         @foreach ($capituloList as $capitulo)
             <br>
             <div class="row">
