@@ -76,7 +76,7 @@
 
 
     <!-- Contenido -->
-    <div class="row principal middle-xs around-sm">
+    <main class="row principal middle-xs around-sm">
 
         <!-- Contenido principal -->
         <div class="col-xs-12 col-sm-10">
@@ -85,7 +85,7 @@
             </div>
         </div>
 
-    </div>
+    </main>
 
     
 
