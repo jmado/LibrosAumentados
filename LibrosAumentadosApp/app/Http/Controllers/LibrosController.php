@@ -24,6 +24,18 @@ class LibrosController extends Controller
         return view('libro.all', compact('libroList'));
     }
 
+
+    public function welcome()
+    {
+        
+        $libroList = Libro::all();
+        //$libroList = DB::select('select libros.id, libros.titulo, libros.subtitulo, libros.cubierta, capitulos.id as capitulo
+                             //   from libros
+                             //   inner join capitulos on libros.id=capitulos.libro_id');
+        return view('welcome', compact('libroList'));
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *

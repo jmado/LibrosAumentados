@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get("/", "LibrosController@welcome")->name("welcome");
 
 Route::get('/admin', function () {
     return view('auth/login');

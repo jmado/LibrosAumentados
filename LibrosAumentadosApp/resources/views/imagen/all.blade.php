@@ -1,50 +1,56 @@
 @extends("layouts.master")
 
-
-
 @section("content")
-<div class="box">
-    <p>
-        <a href="{{ route('imagen.create') }}">Nueva Imagen</a>
-    </p>
-    <div class="all">
-        @foreach ($datos as $imagen)
 
-            <div class="row"> 
 
-                <div class="col-xs-12 col-sm-6">
-                    <div class="elemento_principal">
+
+
+<section class="text-center">
+    <div class="container">
+        <h1>Imagenes</h1>
+        <p>
+          <a href="{{ route('imagen.create') }}" class="btn btn-primary btn-lg" role="button">Nueva Imagen</a>
+        </p>
+      </div>
+</section>
+
+<div class="elementos">
+    <div class="container">
+        <div class="row">
+
+
+            @foreach ($datos as $imagen)   
+            <div class="col-md-4">
+                <div class="elemento mb-4">
+                    <div class="elemento-header">
                         <a href="{{route('imagen.show', $imagen->id)}}">
                             <img src="{{$imagen->imagen}}" alt="{{$imagen->titulo}}">
                         </a> 
-                    </div> 
-                    <div class="descripcion">
-                        <p>
-                            <a href="{{route('capitulo.index')}}">Capitulo: {{$imagen->capitulo_id}}</a>
-                        </p>
-                        <p>
-                            Descripcion: {{$imagen->descripcion}}
-                        </p>
-                    </div> 
-                </div>
+                    </div>
+                    <div class="elemento-body">
+                        <h2>{{$imagen->titulo}}</h2>
+                        <p><a href="{{route('capitulo.index')}}">Capitulo: {{$imagen->capitulo_id}}</a></p>
+                        <p>Descripcion: {{$imagen->descripcion}} </p>
 
-                <div class="col-xs-12 col-sm-6">
-                    <div class="btn">
-                        <a href="{{route('imagen.show', $imagen->id)}}" class="btn_ver">Ver</a>
-                    </div>
-                    <div class="btn">
-                        <a href="{{route('imagen.edit', $imagen->id)}}" class="btn_modificar">Modificar</a>
-                    </div>
-                    <div class="btn">
-                        <a href="{{route('imagen.delete', $imagen->id)}}" class="btn_borrar">Borrar</a>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a href="{{route('imagen.show', $imagen->id)}}" class="btn btn-sm btn-outline-primary" role="button">Ver</a>
+                                <a href="{{route('imagen.edit', $imagen->id)}}" class="btn btn-sm btn-outline-info" role="button">Modificar</a>
+                                <a href="{{route('imagen.delete', $imagen->id)}}" class="btn btn-sm btn-outline-danger" role="button">Borrar</a>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
+            </div>  
+            @endforeach
 
-            </div>
 
-            <br><br><br><br>
-        @endforeach
         </div>
+    </div>    
+</div> 
 
-</div>
+
+
+
 @endsection

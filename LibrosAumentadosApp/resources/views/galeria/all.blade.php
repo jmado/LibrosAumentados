@@ -1,50 +1,57 @@
 @extends("layouts.master")
 
 @section("content")
-<div class="box">
-    <p>
-        <a href="{{ route('galeria.create') }}">Nueva Galeria</a>
-    </p>
-    <div class="todas">
-        @foreach ($galerias as $galeria)
 
-            <div class="row">
 
-                <div class="col-xs-12 col-sm-6  "> 
-                    <div class="elemento_principal">
-                            <a href="{{route('galeria.show', $galeria->id)}}">Titulo: {{$galeria->titulo}}</a>  
+
+
+<section class="text-center">
+    <div class="container">
+        <h1>Galerias</h1>
+        <p>
+          <a href="{{ route('galeria.create') }}" class="btn btn-primary btn-lg" role="button">Nueva Galeria</a>
+        </p>
+      </div>
+</section>
+
+<div class="elementos">
+    <div class="container">
+        <div class="row">
+
+
+            @foreach ($galerias as $galeria)   
+            <div class="col-md-4">
+                <div class="elemento mb-4">
+                    <div class="elemento-header">
+                        <a href="{{route('galeria.show', $galeria->id)}}">
+                            {{--<img src="{{$galeria->imagen}}" alt="{{$galeria->titulo}}">--}}
+                        </a> 
                     </div>
-                    <div class="descripcion">
-                        <p>
-                            <a href="{{route('capitulo.index')}}">Capitulo: {{$galeria->capitulo_id}}</a>
-                        </p>
-                        <p>
-                            Descripcion: {{$galeria->descripcion}}
-                        </p>
-                        <p>
-                            Tipo: {{$galeria->tipo}}
-                        </p>
+                    <div class="elemento-body">
+                        <h3>{{$galeria->titulo}}</h3>
+                        <p><a href="{{route('capitulo.index')}}" class="btn btn-sm btn-primary" role="button">Capitulo: {{$galeria->capitulo_id}}</a></p>
+                        <p>Descripcion: {{$galeria->descripcion}} </p>
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a href="{{route('galeria.show', $galeria->id)}}" class="btn btn-sm btn-primary" role="button">Ver</a>
+                                <a href="{{route('galeria.edit', $galeria->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
+                                <a href="{{route('galeria.delete', $galeria->id)}}" class="btn btn-sm btn-danger" role="button">Borrar</a>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
+            </div>  
+            @endforeach
 
-                <div class="col-xs-12 col-sm-6">
-                    <div class="btn">
-                        <a href="{{route('galeria.show', $galeria->id)}}" class="btn_ver">Ver</a>
-                    </div>
-                    <div class="btn">
-                        <a href="{{route('galeria.edit', $galeria->id)}}" class="btn_modificar">Modificar</a>
-                    </div>
-                    <div class="btn">
-                        <a href="{{route('galeria.delete', $galeria->id)}}" class="btn_borrar">Borrar</a>
-                    </div>
-                </div>
 
-            </div>
-            
+        </div>
+    </div>    
+</div> 
 
-            <br><br><br><br>
-        @endforeach
-    </div>
 
-</div>
+
+
 @endsection
+
