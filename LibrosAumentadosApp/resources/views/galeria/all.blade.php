@@ -1,7 +1,5 @@
 @extends("layouts.master")
 
-
-
 @section("content")
 <div class="box">
     <p>
@@ -12,7 +10,7 @@
 
             <div class="row">
 
-                <div class="col-xs-12 col-sm-6"> 
+                <div class="col-xs-12 col-sm-6  "> 
                     <div class="elemento_principal">
                             <a href="{{route('galeria.show', $galeria->id)}}">Titulo: {{$galeria->titulo}}</a>  
                     </div>

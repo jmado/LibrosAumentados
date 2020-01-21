@@ -43,3 +43,8 @@ Route::resource('/galeria', 'GaleriasController');
 Auth::routes();
 
 Route::get('/home', 'LibrosController@index')->name('home');
+
+//Route::group(['middleware' => 'web'], function () {
+//    Route::auth();    
+//    Route::get('/home', 'LibrosController@index')->name('home'); 
+//});

@@ -2,7 +2,7 @@
 
 @section("content")
     <div class="box">
-    <a href="{{route('libro.create') }}" class="badge badge-primary">Nueva</a><br>
+    <a href="{{route('pagina.create') }}" class="badge badge-primary">Nueva</a><br>
 
         @foreach ($paginaList as $pagina)
             <br>

@@ -41,7 +41,7 @@
                       <a class="nav-link" href="{{route('capitulo.index')}}">Capitulos</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Paginas</a>
+                      <a class="nav-link" href="{{route('pagina.index')}}">Paginas</a>
                     </li>
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
