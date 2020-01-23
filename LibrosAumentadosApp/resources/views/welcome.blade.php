@@ -4,7 +4,7 @@
 <section class="text-center">
     <div class="container">
         <h1>Bienvenido a LibrosAumentados</h1>
-        <p class="lead text-muted">Descripción del proyecto / página web que estas visitando.</p>
+        <p>Descripción del proyecto / página web que estas visitando.</p>
         <p>
           <a href="#" class="btn btn-primary my-2">I.E.S CELIA VIÑAS</a>
           <a href="#" class="btn btn-secondary my-2">Otros</a>

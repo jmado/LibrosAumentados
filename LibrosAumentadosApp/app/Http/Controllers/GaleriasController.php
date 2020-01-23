@@ -93,7 +93,6 @@ class GaleriasController extends Controller
      */
     public function edit($id)
     {
-        
         $galeria = Galeria::findOrFail($id);
         $imagenes = Imagen::all();
         $capitulos = Capitulo::all();
@@ -109,7 +108,24 @@ class GaleriasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        //Campos de galeria
+        $datos_galeria = Galeria::findOrFail($id);
+        $datos_galeria->titulo = $request->titulo;
+        $datos_galeria->descripcion = $request->descripcion;
+        $datos_galeria->capitulo_id = $request->capitulo_id;
+        $datos_galeria->tipo = $request->tipo;
+
+        //Guardo la informacion de la galeria
+        $datos_galeria->save();
+
+        //Actualizo las imagenes relacionadas con la galeria
+        $imagenes_id = $request->imagenes_id;
+        $galeria_id = $request->galeria_id;
+
+        //Sincronizo los campos relacionados entre galerias e imagenes de forma automatica Laravel te quiero
+        $datos_galeria->imagenes()->sync($imagenes_id);
+        return redirect()->route('galeria.show', $id);
+
     }
 
     /**

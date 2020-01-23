@@ -14,14 +14,15 @@
       </div>
 </section>
 
+
 <div class="elementos">
     <div class="container">
         <div class="row">
 
 
             @foreach ($galerias as $galeria)   
-            <div class="col-md-4">
-                <div class="elemento mb-4">
+            <div class="col-md-6">
+                <div class="elemento mb-6">
                     <div class="elemento-header">
                         <a href="{{route('galeria.show', $galeria->id)}}">
                             {{--<img src="{{$galeria->imagen}}" alt="{{$galeria->titulo}}">--}}
