@@ -40,8 +40,9 @@ Route::resource('/imagen', 'ImagensController');
 Route::get("/galeria/destroy/{id}", "GaleriasController@destroy")->name("galeria.delete");
 Route::resource('/galeria', 'GaleriasController');
 Auth::routes();
+Route::get("/logout", "Auth\LoginController@logout")->name("logout");
 
-Route::get('/home', 'LibrosController@index')->name('home');
+Route::get('/home', 'LibrosController@welcome')->name('home');
 
 //Route::group(['middleware' => 'web'], function () {
 //    Route::auth();    

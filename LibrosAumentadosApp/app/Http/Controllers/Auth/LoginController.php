@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
+use App\Libro;
+use App\Capitulo;
+use App\User;
+use App\Http\Controllers\LibrosController;
 
 class LoginController extends Controller
 {
@@ -27,6 +33,8 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/libro';
 
+    protected $redirectAfterLogout = 'auth/login'; 
+
     /**
      * Create a new controller instance.
      *
@@ -36,4 +44,20 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+/*
+    public function login(Request $r)
+    {
+        $email = $r->email;
+        $passwordEncriptada = password_hash($r->login, PASSWORD_DEFAULT);
+        $userOk = User::checkLogin($email, $r->login);
+        if ($userOk) {
+            $libroList = Libro::all();
+            return view('libro.all', compact('libroList'));
+        } else {
+            $data['mensajeError'] = "Nombre de usuario o contraseña incorrectos";
+            return view('auth.login', $data);
+        }
+
+    }
+    */
 }

@@ -44,6 +44,14 @@
                 <li>
                   <a class="text-white" href="{{route('galeria.index')}}">Galerias</a>
                 </li>
+                <li>
+                  @auth
+                  <a class="text-white" href="{{route('logout')}}">Cerrar sesión</a>
+                  @endauth
+                  @guest
+                  <a class="text-white" href="{{route('login')}}">Login</a>
+                  @endguest
+                </li>
               </ul>  
             </div>
           </div>

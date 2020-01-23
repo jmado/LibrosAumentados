@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use DB;
 
 class User extends Authenticatable
 {
@@ -36,4 +37,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function checkLogin($email, $password) {
+        //$result = DB::raw("SELECT * FROM users WHERE email ='$email' and password = '$passwordEncriptada'");
+        $result = DB::table('users')->select('password')->where([
+            ['email', '=', $email]
+        ])->get();
+        if ($result->isEmpty()) return false;
+        if (password_verify($password, $result[0]->password))
+            return true;
+        else
+            return false;
+    }
 }
