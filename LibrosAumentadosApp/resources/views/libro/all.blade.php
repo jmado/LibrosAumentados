@@ -28,7 +28,7 @@
 
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <a href="{{route('libro.show', $libro->id)}}" class="btn btn-sm btn-primary" role="button">Ver</a>
+                                <a href='{{route('capitulo.mostrarCapitulosLibro', ['id_book'=>$libro->id])}}' class="btn btn-sm btn-info" role="button">Ver</a>
                                 <a href="{{route('libro.edit', $libro->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
                                 <a href="{{route('libro.delete', $libro->id)}}" class="btn btn-sm btn-danger" role="button">Borrar</a>
                             </div>

@@ -39,6 +39,7 @@ Route::resource('/imagen', 'ImagensController');
 //Rutas Galerias
 Route::get("/galeria/destroy/{id}", "GaleriasController@destroy")->name("galeria.delete");
 Route::resource('/galeria', 'GaleriasController');
+
 Auth::routes();
 Route::get("/logout", "Auth\LoginController@logout")->name("logout");
 

@@ -4,13 +4,16 @@
 
 @section("content")
 
+<section class="text-center">
+  <div class="container">
+      <p>
+        <a href="{{ route('imagen.index') }}" class="btn btn-primary " role="button">Imagenes</a>
+      </p>
+    </div>
+</section>
 
 
-
-
-
-<div class="container">
-    <a href="{{ route('imagen.index') }}" class="btn btn-primary " role="button">Imagenes</a>
+<div class="container"> 
     <div class="imagen">
         <p>
             <a href="../{{$datos->imagen}}"><img src="../{{$datos->imagen}}" alt="{{$datos->titulo}}"></a>
