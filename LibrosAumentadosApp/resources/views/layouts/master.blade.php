@@ -57,6 +57,14 @@
                 <li>
                   <a href="#">Modelos 3D</a>
                 </li>
+                <li>
+                  @auth
+                  <a class="text-white" href="{{route('logout')}}">Cerrar sesión</a>
+                  @endauth
+                  @guest
+                  <a class="text-white" href="{{route('login')}}">Login</a>
+                  @endguest
+                </li>
               </ul>  
             </div>
           </div>
