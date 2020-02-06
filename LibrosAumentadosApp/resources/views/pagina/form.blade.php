@@ -14,7 +14,8 @@
             <div class="col-md-6">
                 <br>
                 Texto: <br>
-                <input type="text" name="texto" value="{{$pagina->texto ?? ''}}"><br>
+                {{--<input type="text" name="texto" value="{{$pagina->texto ?? ''}}"><br>--}}
+                <textarea name="texto"  cols="30" rows="10">{{$pagina->texto ?? ''}}</textarea>
             </div>
         </div>
         <div class="row">
@@ -28,9 +29,10 @@
             <div class="col-md-6">
                 <br>
                 Id del Capitulo: <br>
-                <input type="text" name="capitulo_id" value="{{$pagina->capitulo_id ?? ''}}"><br>
+                <input type="text" name="capitulo_id" value="{{$pagina->capitulo_id ?? ''}}" required><br>
             </div>
         </div>
+        
         <br><input type="submit" value="Editar">
         </form>
         

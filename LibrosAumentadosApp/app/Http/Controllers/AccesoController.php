@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Pagina;
-use App\Capitulo;
-use App\Libro;
+use Illuminate\Support\Facades\DB;
+use App\User;
 
-class PaginasController extends Controller
+class AccesoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,14 +15,7 @@ class PaginasController extends Controller
      */
     public function index()
     {
-        $paginaList = Pagina::all();
-        return view('pagina.all', compact('paginaList'));
-    }
-
-    public function mostrarPaginaCapitulo($id_capitulo)
-    {
-        $paginaList = Pagina::where('capitulo_id', '=', $id_capitulo)->get();
-        return view('pagina.all', compact('paginaList'));
+        
     }
 
     /**
@@ -33,7 +25,7 @@ class PaginasController extends Controller
      */
     public function create()
     {
-        return view('pagina.form');
+        //
     }
 
     /**
@@ -42,16 +34,9 @@ class PaginasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $r)
+    public function store(Request $request)
     {
-       
-        
-        $pag = new Pagina($r->all());
-
-        $pag->save();
-        $pag->capitulo()->associate($r->capitulo_id);
-        return redirect()->route('pagina.index');
-        
+        //
     }
 
     /**
@@ -62,7 +47,7 @@ class PaginasController extends Controller
      */
     public function show($id)
     {
-        return view('pagina.all');
+        //
     }
 
     /**
@@ -73,8 +58,7 @@ class PaginasController extends Controller
      */
     public function edit($id)
     {
-        $pagina = Pagina::find($id);
-        return view('pagina.form', compact('pagina'));
+        //
     }
 
     /**
@@ -84,19 +68,9 @@ class PaginasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $r, $id)
+    public function update(Request $request, $id)
     {
-        
-        $pag = Pagina::find($id);
-        $pag->numero_pagina = $r->numero_pagina;
-        $pag->texto = $r->texto;
-        $pag->capitulo_id = $r->capitulo_id;
-
-        $pag->save();
-
-        return redirect()->route('capitulo.mostrarCapitulosLibro', $pag->capitulo_id);
-        
-        
+        //
     }
 
     /**
@@ -107,9 +81,6 @@ class PaginasController extends Controller
      */
     public function destroy($id)
     {
-        $pag = Pagina::find($id);
-        $pag->delete();
-
-        return redirect()->route('capitulo.index');
+        //
     }
 }

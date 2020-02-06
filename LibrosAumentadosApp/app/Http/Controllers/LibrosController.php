@@ -6,9 +6,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Libro;
 use App\Capitulo;
+use App\Pagina;
 
 class LibrosController extends Controller
 {
+
+    private $palabra;
+    public $capitulo;
+    public $pagina;
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +21,6 @@ class LibrosController extends Controller
      */
     public function index()
     {
-        
         $libroList = Libro::all();
         //$libroList = DB::select('select libros.id, libros.titulo, libros.subtitulo, libros.cubierta, capitulos.id as capitulo
                              //   from libros
@@ -34,8 +38,7 @@ class LibrosController extends Controller
                              //   inner join capitulos on libros.id=capitulos.libro_id');
         return view('welcome', compact('libroList'));
     }
-
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -131,4 +134,57 @@ class LibrosController extends Controller
         
         return redirect()->route('libro.index');
     }
+
+
+
+
+     /*--------------------------------------------------------
+    private $palabras;
+    funcion -> mandarte a validacion de libro id
+    public function usuario($id_libro){
+        //data = obtener palabras
+
+        return view('accesoUsu', compact('data'));
+    }
+
+    public function validacion($id, $r){
+        if
+            auth
+            return 
+        else
+            return 
+    }
+    -------------------------------------------------------- */
+    
+    public function usuario($id_libro)
+    {       
+        $mensaje = "Dame la ".$palabra."ª palabra de la pagina ".$pagina." del capitulo ".$capitulo;
+        
+    }
+
+    public function loginVisitante($id_libro) {
+        $idCapitulo = 7;
+        $capitulos = Libro::getCapitulos($id_libro);
+        $numCapitulo = rand(0, $capitulos->count()-1);
+        $capitulo = $capitulos->get($numCapitulo);
+
+
+        $paginas = Libro::getPaginas($capitulo->id);
+        $numPagina = rand(0, $paginas->count()-1);
+        $contenidoPagina = $paginas->get($numPagina);
+        
+
+        $parrafos = explode("\n", $paginas);
+        $numParrafo = rand(0, count($parrafos)-1);
+        $contenidoParrafo = $parrafos[$numParrafo];
+        
+        $palabras = explode(" ", $contenidoParrafo);
+        $numPalabra = rand(1,5);
+        $palabraElegida = $palabras[$numPalabra];
+        echo "He elegido el capitulo $idCapitulo, la página $numPagina, el párrafo $numParrafo y la palabra $numPalabra<br>";
+        echo "La palabra secreta elegida ha sido: $palabraElegida";
+
+    }
+
+
 }

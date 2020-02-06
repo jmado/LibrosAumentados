@@ -33,7 +33,7 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/libro';
 
-    protected $redirectAfterLogout = 'auth/login'; 
+    protected $redirectAfterLogout = '/libro'; 
 
     /**
      * Create a new controller instance.

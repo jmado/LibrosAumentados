@@ -12,7 +12,7 @@
                         @csrf
 
                         @isset($mensajeError)
-                        <span style="color:red">
+                        <span style="color:red" class="col-md-4 ">
                             <strong>{{ $mensajeError }}</strong>
                         </span>
                         @endisset

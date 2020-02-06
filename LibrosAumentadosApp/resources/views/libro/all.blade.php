@@ -11,7 +11,7 @@
             <div class="col-md-4">
                 <div class="elemento mb-4">
                     <div class="elemento-header">
-                        <p><a href='{{route('capitulo.mostrarCapitulosLibro', ['id_book'=>$libro->id])}}'><img src='{{$libro->cubierta}}' class="cubierta"></a></p>
+                        <p><a href='{{route('capitulo.mostrarCapitulosLibro', ['id_book'=>$libro->id])}}'><img src='{{$libro->cubierta}}' class="cubierta"></a></a>
                     </div>
                     <div class="elemento-body">
                         <h3>Titulo: {{$libro->titulo}}</h3>

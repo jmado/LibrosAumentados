@@ -22,7 +22,8 @@
                         <p>Página {{$pagina->numero_pagina}}</p>
                     </div>
                     <div class="elemento-body">
-                        <p>{{$pagina->texto}}</p>
+                        {{--<p>{{$pagina->texto}}</p>--}}
+                        <textarea name="" id="" cols="50" rows="50" disabled>{{$pagina->texto}}</textarea>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                                 {{--

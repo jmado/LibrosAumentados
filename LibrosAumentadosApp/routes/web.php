@@ -21,6 +21,7 @@ Route::get('/admin', function () {
 #Rutas Libros
 Route::get("/libro/destroy/{id}", "LibrosController@destroy")->name("libro.delete");
 Route::resource('/libro', 'LibrosController');
+Route::get("/libro/loginVisitante/{id}", "LibrosController@loginVisitante")->name("libro.login");
 
 #Rutas Capitulos
 Route::get("/capitulo/destroy/{id}", "CapitulosController@destroy")->name("capitulo.delete");
@@ -40,6 +41,8 @@ Route::resource('/imagen', 'ImagensController');
 Route::get("/galeria/destroy/{id}", "GaleriasController@destroy")->name("galeria.delete");
 Route::resource('/galeria', 'GaleriasController');
 
+
+//Rutas Login Administrador
 Auth::routes();
 Route::get("/logout", "Auth\LoginController@logout")->name("logout");
 
@@ -49,3 +52,5 @@ Route::get('/home', 'LibrosController@welcome')->name('home');
 //    Route::auth();    
 //    Route::get('/home', 'LibrosController@index')->name('home'); 
 //});
+
+
