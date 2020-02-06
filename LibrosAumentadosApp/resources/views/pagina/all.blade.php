@@ -22,8 +22,9 @@
                     <tr>
                         <th>Capitulo</th>
                         <th>Página</th>
-                        <th>Texto</th>
-                        <th></th>  
+                        <th>Texto</th>  
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,13 +33,24 @@
                         <td>
                             {{$pagina->capitulo_id}}
                         </td>
-                        <td>{{$pagina->numero_pagina}}</td>
-                        <td>{{$pagina->texto}}</td>
                         <td>
-                            <a href="{{route('pagina.edit', $pagina->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
+                            {{$pagina->numero_pagina}}
+                        </td>
+                        <td>
+                            <details>
+                                <summary>Texto de la página {{$pagina->numero_pagina}}</summary>
+                                <p>
+                                {{$pagina->texto}}
+                                </p>
+                            </details>
+                        </td>
+                        <td>
+                            <a href="{{route('pagina.edit', $pagina->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>   
+                        </td>
+                        <td>
                             <a href="{{route('pagina.delete', $pagina->id)}}" class="btn btn-sm btn-danger" role="button">Borrar</a>
                         </td>
-                    </tr>    
+                    </tr>  
                     @endforeach
                 </tbody>
         </div>
