@@ -10,39 +10,40 @@
       </div>
 </section>
 
-<div class="elementos">
-    <div class="container">
-        <div class="row">
 
 
-            @foreach ($paginaList as $pagina)  
-            <div class="col-md-4">
-                <div class="elemento mb-4">
-                    <div class="elemento-header">
-                        <p>Página {{$pagina->numero_pagina}}</p>
-                    </div>
-                    <div class="elemento-body">
-                        {{--<p>{{$pagina->texto}}</p>--}}
-                        <textarea name="" id="" cols="50" rows="50" disabled>{{$pagina->texto}}</textarea>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                {{--
-                                    <a href="{{route('pagina.show', $pagina->id)}}" class="btn btn-sm btn-primary" role="button">Ver</a>
-                                --}}
-                                <a href="{{route('pagina.edit', $pagina->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
-                                <a href="{{route('pagina.delete', $pagina->id)}}" class="btn btn-sm btn-danger" role="button">Borrar</a>
-                            </div>
-                        </div>
 
-                    </div>
-                </div>
-            </div>  
-            @endforeach
-
-
+<div class="elementos container">
+    <div class="row">
+        <h2>Lista</h2>
+        <div class="table-responsive">
+             <table class="table table-striped table-sm">
+                <thead>
+                    <tr>
+                        <th>Capitulo</th>
+                        <th>Página</th>
+                        <th>Texto</th>
+                        <th></th>  
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($paginaList as $pagina)
+                    <tr>
+                        <td>
+                            {{$pagina->capitulo_id}}
+                        </td>
+                        <td>{{$pagina->numero_pagina}}</td>
+                        <td>{{$pagina->texto}}</td>
+                        <td>
+                            <a href="{{route('pagina.edit', $pagina->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
+                            <a href="{{route('pagina.delete', $pagina->id)}}" class="btn btn-sm btn-danger" role="button">Borrar</a>
+                        </td>
+                    </tr>    
+                    @endforeach
+                </tbody>
         </div>
-    </div>    
-</div> 
+</div>
+
 
 
 @endsection
