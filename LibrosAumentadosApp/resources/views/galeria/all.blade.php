@@ -15,42 +15,38 @@
 </section>
 
 
-<div class="elementos">
-    <div class="container">
-        <div class="row">
 
-
-            @foreach ($galerias as $galeria)   
-            <div class="col-md-6">
-                <div class="elemento mb-6">
-                    <div class="elemento-header">
-                        <a href="{{route('galeria.show', $galeria->id)}}">
-                            {{--<img src="{{$galeria->imagen}}" alt="{{$galeria->titulo}}">--}}
-                        </a> 
-                    </div>
-                    <div class="elemento-body">
-                        <h3>{{$galeria->titulo}}</h3>
-                        <p><a href="{{route('capitulo.index')}}" class="btn btn-sm btn-primary" role="button">Capitulo: {{$galeria->capitulo_id}}</a></p>
-                        <p>Descripcion: {{$galeria->descripcion}} </p>
-
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <a href="{{route('galeria.show', $galeria->id)}}" class="btn btn-sm btn-primary" role="button">Ver</a>
-                                <a href="{{route('galeria.edit', $galeria->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
-                                <a href="{{route('galeria.delete', $galeria->id)}}" class="btn btn-sm btn-danger" role="button">Borrar</a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>  
-            @endforeach
-
-
+<div class="elementos container">
+    <div class="row">
+        <h2>Lista</h2>
+        <div class="table-responsive">
+             <table class="table table-striped table-sm">
+                <thead>
+                    <tr>
+                        <th>Capitulo</th>
+                        <th>Titulo</th>
+                        <th>Descripcion</th>
+                        <th></th>  
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($galerias as $galeria)
+                    <tr>
+                        <td>
+                            <a href="{{route('capitulo.index')}}" class="btn btn-sm btn-primary" role="button">{{$galeria->capitulo_id}}</a>
+                        </td>
+                        <td>{{$galeria->titulo}}</td>
+                        <td>{{$galeria->descripcion}}</td> 
+                        <td>
+                            <a href="{{route('galeria.show', $galeria->id)}}" class="btn btn-sm btn-primary" role="button">Ver</a>
+                            <a href="{{route('galeria.edit', $galeria->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
+                            <a href="{{route('galeria.delete', $galeria->id)}}" class="btn btn-sm btn-danger" role="button">Borrar</a>
+                        </td>
+                    </tr>    
+                    @endforeach
+                </tbody>
         </div>
-    </div>    
-</div> 
-
+</div>    
 
 
 

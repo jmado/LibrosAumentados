@@ -2,6 +2,7 @@
 
 @section("content")
 <div class="box">
+    
     @isset($pagina)
         <form action="{{ route('pagina.update', ['pagina' => $pagina->id]) }}" method="POST" enctype="multipart/form-data" class="formulario">
         @method("PUT")
@@ -32,5 +33,7 @@
         </div>
         <br><input type="submit" value="Editar">
         </form>
+        
+
 </div>
 @endsection

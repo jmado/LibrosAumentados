@@ -73,14 +73,30 @@
                     @endisset
                 @endforeach
             </select>
+ {{--
+            <div class="row" id="galeria-formulario">
+                @foreach ($imagenes as $imagen)
+                        @if($galeria->imagenes()->get()->contains($imagen->id))
+                            <div class="imagen" style="background-image: url(/{{$imagen->imagen}})"></div>
+                        @endif
+                @endforeach
+                <div class="anyadir-imagen"> Añadir + </div>
 
+            </div>
+    <script>
+        var btnAnyadir = document.getElementsByClassName("anyadir-imagen");
+        btnAnyadir.onclick = function funcionAnyadir(){
+
+        }
+    </script>
+            
             {{-- 
             <div class="custom-file">
                 <input type="file" name="file" class="custom-file-input" id="fichero" lang="es">
                 <label class="custom-file-label" for="fichero">Seleccionar Imagen</label>
             </div>
             --}}
-
+            --}}
             <input type="submit" value="Enviar" class="btn btn-primary " role="button">
 
             </form>

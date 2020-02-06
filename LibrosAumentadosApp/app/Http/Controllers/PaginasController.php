@@ -44,6 +44,8 @@ class PaginasController extends Controller
      */
     public function store(Request $r)
     {
+       
+        
         $pag = new Pagina($r->all());
         $pag->numero_pagina = $r->numero_pagina;
         $pag->texto = $r->texto;
@@ -51,6 +53,7 @@ class PaginasController extends Controller
 
         $pag->save();
         return redirect()->route('pagina.index');
+        
     }
 
     /**
@@ -85,6 +88,7 @@ class PaginasController extends Controller
      */
     public function update(Request $r, $id)
     {
+        
         $pag = Pagina::find($id);
         $pag->numero_pagina = $r->numero_pagina;
         $pag->texto = $r->texto;
@@ -93,6 +97,8 @@ class PaginasController extends Controller
         $pag->save();
 
         return redirect()->route('capitulo.mostrarCapitulosLibro', $pag->capitulo_id);
+        
+        
     }
 
     /**

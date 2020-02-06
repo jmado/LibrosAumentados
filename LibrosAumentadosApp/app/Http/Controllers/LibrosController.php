@@ -54,6 +54,8 @@ class LibrosController extends Controller
      */
     public function store(Request $r)
     {
+       
+        
         $lib = new Libro($r->all());
         $file = $r->file('cubierta');
         if ($file != null) {
@@ -66,6 +68,7 @@ class LibrosController extends Controller
         $lib->save();
 
         return redirect()->route('libro.index');
+        
     }
 
     /**

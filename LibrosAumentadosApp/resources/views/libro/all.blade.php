@@ -1,17 +1,9 @@
 @extends("layouts.master")
 
 @section("content")
-<section class="text-center">
-    <div class="container">
-        <h1>Libros</h1>
-        <p>
-          <a href="{{ route('libro.create') }}" class="btn btn-primary btn-lg" role="button">Nuevo Libro</a>
-        </p>
-      </div>
-</section>
 
-<div class="elementos">
-    <div class="container">
+
+    <div class="elementos container">
         <div class="row">
 
 
@@ -23,7 +15,7 @@
                     </div>
                     <div class="elemento-body">
                         <h3>Titulo: {{$libro->titulo}}</h3>
-                        <h4>Subtitulo: {{$libro->subtitulo}}</h4>
+                        <h5>Subtitulo: {{$libro->subtitulo}}</h5>
                         <p>Autor: {{$libro->autor}}</p>
 
                         <div class="d-flex justify-content-between align-items-center">

@@ -18,6 +18,7 @@
 
 <div class="container">
     <div class="form">
+        
         @isset($libro)
             <form action="{{ route('libro.update', ['libro' => $libro->id]) }}" method="POST" enctype="multipart/form-data" class="formulario">
         @method("PUT")
@@ -47,6 +48,8 @@
                 <input type="submit" value="Enviar" class="btn btn-primary " role="button">
 
             </form>
+            
+            
     </div>    
 </div>
 
