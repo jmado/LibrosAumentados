@@ -33,7 +33,7 @@
             </div>
                 
             <div class="form-group">
-                <label for="title">Capitulos:</label>    
+                <label for="title">Titulo:</label>    
                 <input id="title" type="text" class="form-control" name="titulo" value="{{$capitulo->titulo ?? ''}}" required>
             </div>
             

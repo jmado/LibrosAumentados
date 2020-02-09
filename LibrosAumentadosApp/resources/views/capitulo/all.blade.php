@@ -13,7 +13,7 @@
 
 
 
-<div class="elementos container">
+<section class="elementos container">
     <div class="row">
         <h2>Lista</h2>
         <div class="table-responsive">

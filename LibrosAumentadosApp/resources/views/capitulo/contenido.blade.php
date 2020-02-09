@@ -18,7 +18,7 @@
 </section>
 
 
-<div class="container">
+<div class="elementos container">
     
     <div class="cards">
         <div class="card">

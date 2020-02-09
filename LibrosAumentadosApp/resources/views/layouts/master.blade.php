@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     
+    <!-- CSS -->
     <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}" />
+    <!-- JavaScript -->
     <script src="{{ URL::asset('js/main.js')}}"></script>
 
 
@@ -18,57 +20,48 @@
 
     <title>Libros Aumentados</title>
     <!-- Import the component -->
-<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"></script>
-<script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"></script>
+    <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+
 </head>
 <body>
 
-<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">  
+ 
     <!-- Cabecera -->
-<header class="masthead mb-auto bg-dark">
-    <div class="collapse" id="navbarHeader">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-8 col-md-7 py-4">
-              <h4 class="text-white">Menu</h4>
-              <ul class="list-unstyled">
-                <li>
-                  <a href="{{route('libro.index')}}">Libros</a>
-                </li>
-              </ul>  
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="navbar navbar-dark bg-dark shadow-sm">
-        <div class="container d-flex justify-content-between">
-          <a href="#" class="navbar-brand d-flex align-items-center"> 
-            <strong>Logo</strong>
-          </a>
-          <nav class="navbar navbar-dark">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon icon-black"></span>
-            </button>
-          </nav>
-          
-        </div>
-      </div>
-</header>
+<div class="header">
+  <h2 class="logo">LibrosAumentados</h2>
+  <input type="checkbox" id="chk">
+  <label for="chk" class="show-menu-btn">
+    <i class="fas fa-ellipsis-h"></i>
+  </label>
+
+  <ul class="menu">
+    <a href="{{route('libro.index')}}">Home</a>
+    <a href="{{route('libro.index')}}">Libros</a>
+    <a href="#">Sobre nosotros</a>
+    <a href="#">Contacto</a>
+    <label for="chk" class="hide-menu-btn">
+      <i class="fas fa-times"></i>
+    </label>
+  </ul>
+</div>
+
+
        
 
 
 
 
     <!-- Contenido -->
-    <main role="main">
+    <div role="main" class="content">
         <!-- Contenido principal -->
         @yield("content")
-    </main>
+    </div>
 
     
 
   
-</div>
+
 
     
     <!-- <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script> -->
