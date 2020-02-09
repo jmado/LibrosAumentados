@@ -7,7 +7,7 @@
 
 <section class="text-center">
     <div class="container">    
-        <button class="btn btn-primary " role="button" onclick="goBack()">Atras</button>
+        <button class="btn btn-primary btn-block" role="button" onclick="goBack()">Atras</button>
         <script>
             function goBack() {
                 window.history.back();
@@ -62,11 +62,11 @@
             <br>
             <label for="title">Titulo:</label>
             <br>
-            <input id="title" type="text" name="titulo" value="{{$datos->titulo ?? ''}}" required>
+            <input id="title" type="text" name="titulo" class="form-control" value="{{$datos->titulo ?? ''}}" required>
             <br>
             <label for="info">Descripción:</label>
             <br>
-            <input id="info" type="text" name="descripcion" value="{{$datos->descripcion ?? ''}}">
+            <input id="info" type="text" name="descripcion" class="form-control" value="{{$datos->descripcion ?? ''}}">
             <br>
             <div class="custom-file">
                 <input type="file" name="file" class="custom-file-input" id="fichero" lang="es">
@@ -75,7 +75,7 @@
             <br>
             
 
-            <input type="submit" value="Enviar" class="btn btn-primary " role="button">
+            <input type="submit" value="Enviar" class="btn btn-primary btn-block" role="button">
 
             </form>
 

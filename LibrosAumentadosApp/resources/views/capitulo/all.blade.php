@@ -29,7 +29,7 @@
                     @foreach ($capituloList as $capitulo)
                     <tr>
                         <td>
-                            <a href="{{route('pagina.mostrarPaginaCapitulo', ['id_capitulo'=>$capitulo->id])}}">Capitulo {{$capitulo->numero_orden}}: {{$capitulo->titulo}}</a>
+                            <a href="{{route('capitulo.contenido', ['id'=>$capitulo->id])}}">Capitulo {{$capitulo->numero_orden}}: {{$capitulo->titulo}}</a>
                         </td>
                         <td>{{$capitulo->titulo}}</td>
                         <td>

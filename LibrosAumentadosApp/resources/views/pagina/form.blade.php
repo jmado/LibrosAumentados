@@ -1,8 +1,21 @@
 @extends("../layouts.master")
 
 @section("content")
-<div class="box">
-    
+
+<section class="text-center">
+    <div class="container">    
+        <button class="btn btn-primary btn-block" role="button" onclick="goBack()">Atras</button>
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
+        
+    </div>
+</section>
+
+
+<div class="container">
     @isset($pagina)
         <form action="{{ route('pagina.update', ['pagina' => $pagina->id]) }}" method="POST" enctype="multipart/form-data" class="formulario">
         @method("PUT")
@@ -10,32 +23,30 @@
         <form action="{{ route('pagina.store') }}" method="POST" enctype="multipart/form-data" class="formulario">
     @endisset
         @csrf
-        <div class="row">
-            <div class="col-md-6">
-                <br>
-                Texto: <br>
-                {{--<input type="text" name="texto" value="{{$pagina->texto ?? ''}}"><br>--}}
-                <textarea name="texto"  cols="30" rows="10">{{$pagina->texto ?? ''}}</textarea>
-            </div>
+
+        <div class="form-group">
+            <label for="texto">Texto: </label>
+            <textarea name="texto"  class="form-control" id="texto">{{$pagina->texto ?? ''}}</textarea>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <br>
-                Numero de pagina: <br>
-                <input type="text" name="numero_pagina" value="{{$pagina->numero_pagina ?? ''}}"><br>
-            </div>
+
+        <div class="form-group">
+            <label for="n_pagina">Numero de pagina:</label>
+            <input type="text" name="numero_pagina" class="form-control" id="n_pagina" value="{{$pagina->numero_pagina ?? ''}}">
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <br>
-                Id del Capitulo: <br>
-                <input type="text" name="capitulo_id" value="{{$pagina->capitulo_id ?? ''}}" required><br>
-            </div>
+
+        <div class="form-group">
+            <label for="capitulo">ID del Capitulo:</label>
+            <input type="text" name="capitulo_id" class="form-control" id="capitulo" value="{{$pagina->capitulo_id ?? ''}}" required>
         </div>
         
-        <br><input type="submit" value="Editar">
-        </form>
+        
+        <input type="submit" class="btn btn-primary btn-block" role="button" value="Editar">
+        
+    </form>
         
 
+
 </div>
+    
+    
 @endsection

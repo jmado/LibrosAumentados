@@ -14,9 +14,9 @@ class PaginasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $paginaList = Pagina::all();
+        $paginaList = Pagina::where('capitulo_id', '=', $id)->get();
         return view('pagina.all', compact('paginaList'));
     }
 
@@ -50,7 +50,7 @@ class PaginasController extends Controller
 
         $pag->save();
         $pag->capitulo()->associate($r->capitulo_id);
-        return redirect()->route('pagina.index');
+        return redirect()->route('pagina.all', $r->capitulo_id);
         
     }
 
@@ -94,7 +94,7 @@ class PaginasController extends Controller
 
         $pag->save();
 
-        return redirect()->route('capitulo.mostrarCapitulosLibro', $pag->capitulo_id);
+        return redirect()->route('capitulo.all', $pag->capitulo_id);
         
         
     }
@@ -108,8 +108,9 @@ class PaginasController extends Controller
     public function destroy($id)
     {
         $pag = Pagina::find($id);
+        $id_capitulo = $pag->capitulo_id;
         $pag->delete();
 
-        return redirect()->route('capitulo.index');
+        return redirect()->route('capitulo.all', $id_capitulo);
     }
 }

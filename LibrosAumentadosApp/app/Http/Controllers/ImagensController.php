@@ -18,10 +18,11 @@ class ImagensController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $datos = Imagen::all();
-        return view('imagen.all', compact('datos'));
+        
+        $datos = DB::select('select * from imagens where capitulo_id=:id',['id'=>$id]);
+        return view('imagen.all', compact('datos', 'id'));
     }
 
     /**
@@ -62,12 +63,10 @@ class ImagensController extends Controller
         $id = DB::select('select max(id) as "id" from imagens');
         $imagen_id = $id[0]->id;
         $galeria_id = $request->galeria_id;
-        $galeria = new Galeria_imagen;
-        $galeria->galeria_id = $galeria_id;
-        $galeria->imagen_id = $imagen_id;
-        $galeria->save();
-
-        return redirect()->route('imagen.index');
+        $datos->galerias()->sync($galeria_id);
+        
+        $id = $request->capitulo_id;
+        return redirect()->route('imagen.all', $id);
     }
 
     /**
@@ -140,8 +139,9 @@ class ImagensController extends Controller
     public function destroy($id)
     {
         $datos = Imagen::findOrFail($id);
+        $id_capitulo = $datos->capitulo_id;
         unlink($datos->imagen);
         $datos->delete();
-        return redirect()->route('imagen.index');
+        return redirect()->route('imagen.all', $id_capitulo);
     }
 }

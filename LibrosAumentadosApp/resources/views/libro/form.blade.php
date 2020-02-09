@@ -5,7 +5,7 @@
 
 <section class="text-center">
     <div class="container">    
-        <button class="btn btn-primary " role="button" onclick="goBack()">Atras</button>
+        <button class="btn btn-primary btn-block" role="button" onclick="goBack()">Atras</button>
         <script>
             function goBack() {
                 window.history.back();
@@ -17,40 +17,45 @@
 
 
 <div class="container">
-    <div class="form">
-        
         @isset($libro)
-            <form action="{{ route('libro.update', ['libro' => $libro->id]) }}" method="POST" enctype="multipart/form-data" class="formulario">
+        <form action="{{ route('libro.update', ['libro' => $libro->id]) }}" method="POST" enctype="multipart/form-data" class="formulario">
         @method("PUT")
         @else
-            <form action="{{ route('libro.store') }}" method="POST" enctype="multipart/form-data" class="formulario">
+        <form action="{{ route('libro.store') }}" method="POST" enctype="multipart/form-data" class="formulario">
         @endisset
             @csrf
-                <br>
+
+            <div class="form-group">
                 <label for="title">Titulo:</label>
-                <br>
-                <input id="title" type="text" name="titulo" value="{{$libro->titulo ?? ''}}" required>
-                <br>
-                <label for="author">Autor:</label>
-                <br>
-                <input id="author" type="text" name="autor" value="{{$libro->autor ?? ''}}" required>
-                <br>
+                <input id="title" type="text" class="form-control" name="titulo" value="{{$libro->titulo ?? ''}}" required>
+            </div>
+                
+            <div class="form-group">
+                <label for="author">Autor:</label>  
+                <input id="author" type="text" class="form-control" name="autor" value="{{$libro->autor ?? ''}}" required>
+            </div>  
+            
+            <div class="form-group">
                 <label for="sub">Subtitulo:</label>
-                <br>
-                <input id="sub" type="text" name="subtitulo" value="{{$libro->subtitulo ?? ''}}">
-                <br>
-                <div class="custom-file">
-                    <input type="file" name="cubierta" class="custom-file-input" id="fichero" lang="es">
+                <input id="sub" type="text" class="form-control" name="subtitulo" value="{{$libro->subtitulo ?? ''}}">
+            </div>  
+
+            <div class="custom-file">
+                    <input type="file" class="form-control" name="cubierta" class="custom-file-input" id="fichero" lang="es">
                     <label class="custom-file-label" for="fichero">Seleccionar Imagen</label>
-                </div>
+            </div>  
+
+            <div class="form-group">
                 <img src="{{$libro->portada ?? ''}}" class="cubierta-mini">
+            </div>  
+                
+                
+            <input type="submit" value="Enviar" class="btn btn-primary btn-block" role="button">
 
-                <input type="submit" value="Enviar" class="btn btn-primary " role="button">
-
-            </form>
+        </form>
             
             
-    </div>    
+        
 </div>
 
 @endsection

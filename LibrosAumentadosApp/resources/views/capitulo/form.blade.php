@@ -7,7 +7,7 @@
 
 <section class="text-center">
     <div class="container">    
-        <button class="btn btn-primary " role="button" onclick="goBack()">Atras</button>
+        <button class="btn btn-primary btn-block" role="button" onclick="goBack()">Atras</button>
         <script>
             function goBack() {
                 window.history.back();
@@ -19,36 +19,38 @@
 
 
 <div class="container">
-    <div class="form">
+    
         @isset($capitulo)
-            <form action="{{ route('capitulo.update', ['capitulo' => $capitulo->id]) }}" method="POST" enctype="multipart/form-data" class="formulario">
+        <form action="{{ route('capitulo.update', ['capitulo' => $capitulo->id]) }}" method="POST" enctype="multipart/form-data" class="formulario">
             @method("PUT")
         @else
-            <form action="{{ route('capitulo.store') }}" method="POST" enctype="multipart/form-data" class="formulario">
+        <form action="{{ route('capitulo.store') }}" method="POST" enctype="multipart/form-data" class="formulario">
         @endisset
             @csrf
-                <br>
+            <div class="form-group">
                 <label for="capitulo">Capitulos:</label>
-                <br>
-                <input id="capitulo" type="text" name="numero_orden" value="{{$capitulo->numero_orden ?? ''}}" required>
-                <br>
-                <label for="title">Capitulos:</label>
-                <br>
-                <input id="title" type="text" name="titulo" value="{{$capitulo->titulo ?? ''}}" required>
-                <br>
+                <input id="capitulo" type="text" class="form-control" name="numero_orden" value="{{$capitulo->numero_orden ?? ''}}" required>
+            </div>
+                
+            <div class="form-group">
+                <label for="title">Capitulos:</label>    
+                <input id="title" type="text" class="form-control" name="titulo" value="{{$capitulo->titulo ?? ''}}" required>
+            </div>
+            
+            <div class="form-group">
                 <label for="cap">Capitulo padre:</label>
-                <br>
-                <input id="cap" type="text" name="capitulo_padre" value="{{$capitulo->capitulo_padre_id ?? ''}}">
-                <br>
+                <input id="cap" type="text" class="form-control" name="capitulo_padre" value="{{$capitulo->capitulo_padre_id ?? ''}}">
+            </div>
+
+            <div class="form-group">
                 <label for="libro">Libro id:</label>
-                <br>
-                <input id="libro" type="text" name="libro_id" value="{{$capitulo->libro_id ?? ''}}" required>
-                <br>
+                <input id="libro" type="text" class="form-control" name="libro_id" value="{{$capitulo->libro_id ?? ''}}" required>
+            </div>
 
-                <input type="submit" value="Enviar" class="btn btn-primary " role="button">
+            <input type="submit" value="Enviar" class="btn btn-primary btn-block" role="button">
 
-            </form>
-    </div>    
+        </form>
+      
 </div>
 
 @endsection

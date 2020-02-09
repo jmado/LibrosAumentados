@@ -18,9 +18,9 @@ class GaleriasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $galerias = Galeria::all();
+        $galerias = DB::select('select * from galerias where capitulo_id=:id',['id'=>$id]);
         return view('galeria.all', compact('galerias'));
     }
 
@@ -63,7 +63,7 @@ class GaleriasController extends Controller
         //Array con todas las id de imagenes
         $imagenes_id = $request->imagenes_id;
         $datos_galeria->imagenes()->sync($imagenes_id);
-        return redirect()->route('galeria.index');
+        return redirect()->route('galeria.all', $request->capitulo_id);
 
     }
 
@@ -137,7 +137,8 @@ class GaleriasController extends Controller
     public function destroy($id)
     {
         $datos = Galeria::findOrFail($id);
+        $id_capitulo = $datos->capitulo_id;
         $datos->delete();
-        return redirect()->route('galeria.index');
+        return redirect()->route('galeria.all', $id_capitulo);
     }
 }

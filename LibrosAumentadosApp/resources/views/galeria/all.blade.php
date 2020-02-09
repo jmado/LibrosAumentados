@@ -33,7 +33,7 @@
                     @foreach ($galerias as $galeria)
                     <tr>
                         <td>
-                            <a href="{{route('capitulo.index')}}" class="btn btn-sm btn-primary" role="button">{{$galeria->capitulo_id}}</a>
+                            <a href="{{route('capitulo.all', $galeria->capitulo_id)}}" class="btn btn-sm btn-primary" role="button">{{$galeria->capitulo_id}}</a>
                         </td>
                         <td>{{$galeria->titulo}}</td>
                         <td>{{$galeria->descripcion}}</td> 

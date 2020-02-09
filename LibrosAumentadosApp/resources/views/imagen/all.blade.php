@@ -7,6 +7,7 @@
 
 <section class="text-center">
     <div class="container">
+        <a href="{{ route('capitulo.all', $id) }}">Capitulo</a>
         <h1>Imagenes</h1>
         <p>
           <a href="{{ route('imagen.create') }}" class="btn btn-primary btn-lg" role="button">Nueva Imagen</a>

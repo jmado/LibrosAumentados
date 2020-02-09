@@ -14,9 +14,9 @@ class CapitulosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $capituloList = Capitulo::all();
+        $capituloList = Capitulo::where('libro_id', '=', $id)->get();
         return view('capitulo.all', compact('capituloList'));
     }
 
@@ -51,7 +51,7 @@ class CapitulosController extends Controller
         $cap->libro_id = $r->libro_id;
         
         $cap->save();
-        return redirect()->route('capitulo.index');
+        return redirect()->route('capitulo.all', $r->libro_id);
     }
 
     /**
@@ -106,8 +106,29 @@ class CapitulosController extends Controller
     public function destroy($id)
     {
         $cap = Capitulo::find($id);
+        $id_libro = $cap->libro_id;
         $cap->delete();
 
-        return redirect()->route('capitulo.index');
+        return redirect()->route('capitulo.all', $id_libro);
+    }
+
+
+    /*
+    *   Mostrar todo los tipos de contenido de los capitulos
+    *
+    */
+    public function contenido($id){
+        /*
+        $paginas;
+        $imagenes;
+        $galerias;
+        $videos;
+        $audio;
+        $modelos3d;
+        $archivos;
+        */
+        //return redirect()->route('capitulo.contenido', $id);
+        return view('capitulo.contenido', compact('id'));
+
     }
 }

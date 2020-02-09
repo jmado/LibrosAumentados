@@ -9,7 +9,7 @@
     <div class="container">
         <h1>Galerias</h1>
         <p>
-          <a href="{{route('galeria.index')}}" class="btn btn-primary btn-lg" role="button">Ver Galerías</a>
+          <a href="{{route('galeria.all', $galeria[0]->capitulo_id)}}" class="btn btn-primary btn-lg" role="button">Ver Galerías</a>
         </p>
       </div>
 </section>

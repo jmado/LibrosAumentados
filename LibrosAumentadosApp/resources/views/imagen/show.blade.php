@@ -7,7 +7,7 @@
 <section class="text-center">
   <div class="container">
       <p>
-        <a href="{{ route('imagen.index') }}" class="btn btn-primary " role="button">Imagenes</a>
+        <a href="{{ route('imagen.all', $datos->capitulo_id) }}" class="btn btn-primary " role="button">Imagenes</a>
       </p>
     </div>
 </section>

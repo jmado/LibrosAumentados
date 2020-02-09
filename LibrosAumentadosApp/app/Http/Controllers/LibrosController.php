@@ -28,7 +28,7 @@ class LibrosController extends Controller
         return view('libro.all', compact('libroList'));
     }
 
-
+/*
     public function welcome()
     {
         
@@ -38,6 +38,7 @@ class LibrosController extends Controller
                              //   inner join capitulos on libros.id=capitulos.libro_id');
         return view('welcome', compact('libroList'));
     }
+    */
     
     /**
      * Show the form for creating a new resource.

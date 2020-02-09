@@ -17,7 +17,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <title>Libros Aumentados</title>
-    
+    <!-- Import the component -->
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"></script>
+<script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
 </head>
 <body>
 
@@ -31,39 +33,7 @@
               <h4 class="text-white">Menu</h4>
               <ul class="list-unstyled">
                 <li>
-                  <a href="{{route('welcome')}}">Inicio</a>
-                </li>
-                <li>
                   <a href="{{route('libro.index')}}">Libros</a>
-                </li>
-                <li>
-                  <a href="{{route('capitulo.index')}}">Capitulos</a>
-                </li>
-                <li>
-                  <a href="{{route('pagina.index')}}">Paginas</a>
-                </li>
-                <li>
-                  <a href="{{route('imagen.index')}}">Imagenes</a>
-                </li>
-                <li>
-                  <a href="{{route('galeria.index')}}">Galerias</a>
-                </li>
-                <li>
-                  <a href="#">Videos</a>
-                </li>
-                <li>
-                  <a href="#">Audios</a>
-                </li>
-                <li>
-                  <a href="#">Modelos 3D</a>
-                </li>
-                <li>
-                  @auth
-                  <a class="text-white" href="{{route('logout')}}">Cerrar sesión</a>
-                  @endauth
-                  @guest
-                  <a class="text-white" href="{{route('login')}}">Login</a>
-                  @endguest
                 </li>
               </ul>  
             </div>

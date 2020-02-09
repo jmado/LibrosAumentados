@@ -12,7 +12,7 @@
 */
 
 
-Route::get("/", "LibrosController@welcome")->name("welcome");
+Route::get("/", "LibrosController@index")->name("home");
 
 Route::get('/admin', function () {
     return view('auth/login');
@@ -24,22 +24,30 @@ Route::resource('/libro', 'LibrosController');
 Route::get("/libro/loginVisitante/{id}", "LibrosController@loginVisitante")->name("libro.login");
 
 #Rutas Capitulos
+Route::get("/capitulo/index/{id}", "CapitulosController@index")->name("capitulo.all");
 Route::get("/capitulo/destroy/{id}", "CapitulosController@destroy")->name("capitulo.delete");
-Route::get("/capitulo/mostrar/{id_book}", "CapitulosController@mostrarCapitulosLibro")->name("capitulo.mostrarCapitulosLibro");
+Route::get("/capitulo/contenido/{id}", "CapitulosController@contenido")->name("capitulo.contenido");
+//Route::get("/capitulo/mostrar/{id_book}", "CapitulosController@mostrarCapitulosLibro")->name("capitulo.mostrarCapitulosLibro");
+//Route::get("/capitulo/contenido/{id}", "CapitulosController@contenido")->name("capitulo.contenido");
 Route::resource('/capitulo', 'CapitulosController');
 
 #Rutas Páginas
+Route::get("/pagina/index/{id}", "PaginasController@index")->name("pagina.all");
 Route::get("/pagina/destroy/{id}", "PaginasController@destroy")->name("pagina.delete");
-Route::get("/pagina/mostrar/{id_capitulo}", "PaginasController@mostrarPaginaCapitulo")->name("pagina.mostrarPaginaCapitulo");
+//Route::get("/pagina/mostrar/{id_capitulo}", "PaginasController@mostrarPaginaCapitulo")->name("pagina.mostrarPaginaCapitulo");
 Route::resource('/pagina', 'PaginasController');
 
 //Rutas Imagenes
+Route::get("/imagen/index/{id}", "ImagensController@index")->name("imagen.all");
 Route::get("/imagen/destroy/{id}", "ImagensController@destroy")->name("imagen.delete");
 Route::resource('/imagen', 'ImagensController');
 
 //Rutas Galerias
+Route::get("/galeria/index/{id}", "GaleriasController@index")->name("galeria.all");
 Route::get("/galeria/destroy/{id}", "GaleriasController@destroy")->name("galeria.delete");
 Route::resource('/galeria', 'GaleriasController');
+
+
 
 
 //Rutas Login Administrador
