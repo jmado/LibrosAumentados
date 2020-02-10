@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 use App\Libro;
 use App\Capitulo;
 use App\Pagina;
@@ -21,7 +22,7 @@ class LibrosController extends Controller
      */
     public function index()
     {
-        $libroList = Libro::all();
+        $libroList = DB::table('libros')->simplePaginate(3);
         //$libroList = DB::select('select libros.id, libros.titulo, libros.subtitulo, libros.cubierta, capitulos.id as capitulo
                              //   from libros
                              //   inner join capitulos on libros.id=capitulos.libro_id');

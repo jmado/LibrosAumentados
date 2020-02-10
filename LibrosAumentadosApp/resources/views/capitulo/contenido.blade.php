@@ -6,14 +6,18 @@
 
 
 <section class="text-center">
-    <div class="container">    
+    <div class="container"> 
+        <p>
+            <a href="{{route('capitulo.all', $id_libro)}}" class="btn btn-primary btn-lg" role="button">Ver Capitulos</a>
+        </p>
+    {{--    
         <button class="btn btn-primary btn-block" role="button" onclick="goBack()">Atras</button>
         <script>
             function goBack() {
                 window.history.back();
             }
-        </script>
-        
+        </script>  
+    --}} 
     </div>
 </section>
 

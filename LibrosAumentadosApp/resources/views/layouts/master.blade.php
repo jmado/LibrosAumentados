@@ -26,9 +26,10 @@
 </head>
 <body>
 
- 
+<div class="cover-container d-flex h-100 p-3 mx-auto flex-column"> 
+
     <!-- Cabecera -->
-<div class="header">
+<header class="header">
   <h2 class="logo">LibrosAumentados</h2>
   <input type="checkbox" id="chk">
   <label for="chk" class="show-menu-btn">
@@ -44,7 +45,7 @@
       <i class="fas fa-times"></i>
     </label>
   </ul>
-</div>
+</header>
 
 
        
@@ -53,14 +54,14 @@
 
 
     <!-- Contenido -->
-    <div role="main" class="content">
+    <main role="main" class="content">
         <!-- Contenido principal -->
         @yield("content")
-    </div>
+    </main>
 
     
 
-  
+</div>
 
 
     

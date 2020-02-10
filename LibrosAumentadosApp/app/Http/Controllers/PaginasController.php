@@ -16,8 +16,8 @@ class PaginasController extends Controller
      */
     public function index($id)
     {
-        $paginaList = Pagina::where('capitulo_id', '=', $id)->get();
-        return view('pagina.all', compact('paginaList'));
+        $paginaList = Pagina::where('capitulo_id', '=', $id)->simplePaginate(3);
+        return view('pagina.all', compact('paginaList', 'id'));
     }
 
     public function mostrarPaginaCapitulo($id_capitulo)

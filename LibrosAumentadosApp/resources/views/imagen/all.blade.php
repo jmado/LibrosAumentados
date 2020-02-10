@@ -17,9 +17,10 @@
 
 <div class="elementos">
     <div class="container">
+    {{ $datos->links() }}
         <div class="row">
 
-
+        
             @foreach ($datos as $imagen)   
             <div class="col-md-4">
                 <div class="elemento mb-4">
@@ -45,7 +46,7 @@
                 </div>
             </div>  
             @endforeach
-
+            
 
         </div>
     </div>    

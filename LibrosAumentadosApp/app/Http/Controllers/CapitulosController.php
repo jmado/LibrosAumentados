@@ -16,8 +16,8 @@ class CapitulosController extends Controller
      */
     public function index($id)
     {
-        $capituloList = Capitulo::where('libro_id', '=', $id)->get();
-        return view('capitulo.all', compact('capituloList'));
+        $capituloList = Capitulo::where('libro_id', '=', $id)->simplePaginate(3);
+        return view('capitulo.all', compact('capituloList', 'id'));
     }
 
     public function mostrarCapitulosLibro($id_book)
@@ -118,6 +118,8 @@ class CapitulosController extends Controller
     *
     */
     public function contenido($id){
+        $cap = Capitulo::find($id);
+        $id_libro = $cap->libro_id;
         /*
         $paginas;
         $imagenes;
@@ -128,7 +130,7 @@ class CapitulosController extends Controller
         $archivos;
         */
         //return redirect()->route('capitulo.contenido', $id);
-        return view('capitulo.contenido', compact('id'));
+        return view('capitulo.contenido', compact('id', 'id_libro'));
 
     }
 }

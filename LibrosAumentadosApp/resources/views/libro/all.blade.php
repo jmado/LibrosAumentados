@@ -6,12 +6,13 @@
     <div class="container">
         <h1>Libros</h1>
         <p>
-          <a href="{{ route('libro.create') }}" class="btn btn-primary btn-lg" role="button">Nueva Libro</a>
+          <a href="{{ route('libro.create') }}" class="btn btn-primary btn-lg" role="button">Nuevo Libro</a>
         </p>
-      </div>
+    </div>
 </section>
 
     <div class="elementos container">
+    {{ $libroList->links() }}
         <div class="row">
 
 
@@ -44,8 +45,11 @@
 
 
         </div>
+       
     </div>    
-</div> 
+
+
+
 
 
 @endsection

@@ -20,8 +20,9 @@ class GaleriasController extends Controller
      */
     public function index($id)
     {
-        $galerias = DB::select('select * from galerias where capitulo_id=:id',['id'=>$id]);
-        return view('galeria.all', compact('galerias'));
+        //$galerias = DB::select('select * from galerias where capitulo_id=:id',['id'=>$id])->simplePaginate(3);
+        $galerias = Galeria::where('capitulo_id', '=', $id)->simplePaginate(3);
+        return view('galeria.all', compact('galerias', 'id'));
     }
 
     /**

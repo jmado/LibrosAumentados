@@ -5,6 +5,9 @@
     <div class="container">
         <h1>Capitulos</h1>
         <p>
+          <a href="{{ route('libro.index') }}" class="btn btn-primary btn-lg" role="button">Ver Libros</a>
+        </p>
+        <p>
           <a href="{{ route('capitulo.create') }}" class="btn btn-primary btn-lg" role="button">Nuevo Capitulo</a>
         </p>
       </div>
@@ -14,6 +17,7 @@
 
 
 <section class="elementos container">
+    {{ $capituloList->links() }}
     <div class="row">
         <h2>Lista</h2>
         <div class="table-responsive">

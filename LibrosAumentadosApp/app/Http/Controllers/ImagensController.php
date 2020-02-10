@@ -21,7 +21,8 @@ class ImagensController extends Controller
     public function index($id)
     {
         
-        $datos = DB::select('select * from imagens where capitulo_id=:id',['id'=>$id]);
+        //$datos = DB::select('select * from imagens where capitulo_id=:id',['id'=>$id])->simplePaginate(3);
+        $datos = Imagen::where('capitulo_id', '=', $id)->simplePaginate(3);
         return view('imagen.all', compact('datos', 'id'));
     }
 

@@ -7,6 +7,7 @@
 
 <section class="text-center">
     <div class="container">
+        <a href="{{ route('capitulo.all', $id) }}">Capitulo</a>
         <h1>Galerias</h1>
         <p>
           <a href="{{ route('galeria.create') }}" class="btn btn-primary btn-lg" role="button">Nueva Galeria</a>
@@ -30,6 +31,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                {{ $galerias->links() }}
                     @foreach ($galerias as $galeria)
                     <tr>
                         <td>
@@ -44,6 +46,7 @@
                         </td>
                     </tr>    
                     @endforeach
+                    
                 </tbody>
         </div>
 </div>    
