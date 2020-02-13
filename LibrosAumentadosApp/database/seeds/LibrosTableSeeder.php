@@ -13,16 +13,16 @@ class LibrosTableSeeder extends Seeder
     {
         
         DB::table('libros')->insert([
-            'titulo' => 'Animales fantásticos',
-            'subtitulo' => Str::random(8).'.com',
+            'titulo' => 'Juego de tronos',
+            'subtitulo' => 'Cancion de hielo y fuego',
             'cubierta' => Str::random(8).'.jpg',
-            'autor' => 'pepe',
+            'autor' => 'George R.R. Martin',
         ]);
         DB::table('libros')->insert([
-            'titulo' => 'Señor de los anillos',
-            'subtitulo' => Str::random(8).'.com',
+            'titulo' => 'Choque de reyes',
+            'subtitulo' => 'Cancio de hielo y fuego',
             'cubierta' => Str::random(8).'.jpg',
-            'autor' => 'adri',
+            'autor' => 'George R.R. Martin',
         ]);
         DB::table('libros')->insert([
             'titulo' => 'Rapidos y furiosos',

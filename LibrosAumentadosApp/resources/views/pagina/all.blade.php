@@ -41,7 +41,7 @@
                             <details>
                                 <summary>Texto de la página {{$pagina->numero_pagina}}</summary>
                                 <p>
-                                {{$pagina->texto}}
+                                {!!html_entity_decode($pagina->texto)!!}
                                 </p>
                             </details>
                         </td>

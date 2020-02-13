@@ -23,23 +23,9 @@ class LibrosController extends Controller
     public function index()
     {
         $libroList = DB::table('libros')->simplePaginate(3);
-        //$libroList = DB::select('select libros.id, libros.titulo, libros.subtitulo, libros.cubierta, capitulos.id as capitulo
-                             //   from libros
-                             //   inner join capitulos on libros.id=capitulos.libro_id');
         return view('libro.all', compact('libroList'));
     }
 
-/*
-    public function welcome()
-    {
-        
-        $libroList = Libro::all();
-        //$libroList = DB::select('select libros.id, libros.titulo, libros.subtitulo, libros.cubierta, capitulos.id as capitulo
-                             //   from libros
-                             //   inner join capitulos on libros.id=capitulos.libro_id');
-        return view('welcome', compact('libroList'));
-    }
-    */
     
     /**
      * Show the form for creating a new resource.
@@ -137,26 +123,6 @@ class LibrosController extends Controller
         return redirect()->route('libro.index');
     }
 
-
-
-
-     /*--------------------------------------------------------
-    private $palabras;
-    funcion -> mandarte a validacion de libro id
-    public function usuario($id_libro){
-        //data = obtener palabras
-
-        return view('accesoUsu', compact('data'));
-    }
-
-    public function validacion($id, $r){
-        if
-            auth
-            return 
-        else
-            return 
-    }
-    -------------------------------------------------------- */
     
     public function usuario($id_libro)
     {       
@@ -165,7 +131,6 @@ class LibrosController extends Controller
     }
 
     public function loginVisitante($id_libro) {
-        $idCapitulo = 7;
         $capitulos = Libro::getCapitulos($id_libro);
         $numCapitulo = rand(0, $capitulos->count()-1);
         $capitulo = $capitulos->get($numCapitulo);
@@ -173,18 +138,40 @@ class LibrosController extends Controller
 
         $paginas = Libro::getPaginas($capitulo->id);
         $numPagina = rand(0, $paginas->count()-1);
-        $contenidoPagina = $paginas->get($numPagina);
-        
+        $contenidoPagina = $paginas->get($numPagina)->texto;
 
-        $parrafos = explode("\n", $paginas);
+        $parrafos = explode("<br>", $contenidoPagina);
         $numParrafo = rand(0, count($parrafos)-1);
         $contenidoParrafo = $parrafos[$numParrafo];
-        
-        $palabras = explode(" ", $contenidoParrafo);
-        $numPalabra = rand(1,5);
+
+        $parafo_limpio = $this->limpiarParrafo($contenidoParrafo);
+
+        $palabras = explode(" ", $parafo_limpio);
+        $numPalabra = rand(0, 4);
         $palabraElegida = $palabras[$numPalabra];
-        echo "He elegido el capitulo $idCapitulo, la página $numPagina, el párrafo $numParrafo y la palabra $numPalabra<br>";
-        echo "La palabra secreta elegida ha sido: $palabraElegida";
+        
+        echo $contenidoPagina;
+        echo $numPalabra."<br>";
+        echo "He elegido el capitulo ID = ".$capitulo->id."<br><br>Página: $numPagina<br><br>Párrafo $numParrafo ($contenidoParrafo)<br><br>Palabra $numPalabra ($palabraElegida)<br>";
+        echo $palabraElegida;
+
+    }
+
+    private function limpiarParrafo($contenidoParrafo)
+    {
+        $pos1 = strpos($contenidoParrafo, "<");
+        $pos2 = strpos($contenidoParrafo, ">");
+       
+        while($pos1 !== false)
+        {
+            str_replace(">", $contenidoParrafo, "> ");
+            $texto_borrar = substr($contenidoParrafo, $pos1, ($pos2-$pos1)+1);         
+            $contenidoParrafo = str_replace($texto_borrar, " ", $contenidoParrafo);            
+            $pos1 = strpos($contenidoParrafo, "<");
+            $pos2 = strpos($contenidoParrafo, ">");
+        }   
+
+        return $contenidoParrafo;
 
     }
 

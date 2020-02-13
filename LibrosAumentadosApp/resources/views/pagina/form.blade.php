@@ -17,16 +17,34 @@
 
 <div class="container">
     @isset($pagina)
-        <form action="{{ route('pagina.update', ['pagina' => $pagina->id]) }}" method="POST" enctype="multipart/form-data" class="formulario">
+        <form id="formulario" action="{{ route('pagina.update', ['pagina' => $pagina->id]) }}" method="POST" enctype="multipart/form-data" class="formulario">
         @method("PUT")
     @else
-        <form action="{{ route('pagina.store') }}" method="POST" enctype="multipart/form-data" class="formulario">
+        <form id="formulario" action="{{ route('pagina.store') }}" method="POST" enctype="multipart/form-data" class="formulario">
     @endisset
         @csrf
 
         <div class="form-group">
             <label for="texto">Texto: </label>
-            <textarea name="texto"  class="form-control" id="texto">{{$pagina->texto ?? ''}}</textarea>
+            <textarea name="texto"  class="form-control" id="texto" hidden>{{$pagina->texto ?? ''}}</textarea>
+            {{-- Editor de texto online --}}
+            <div id="editor" style="border: 1px solid black"></div>
+            <div id="markup"></div>
+            <script src="https://unpkg.com/pell"></script>
+            <script>
+                const pell = window.pell;
+                const editor = document.getElementById("editor");
+                //const markup = document.getElementById("markup");
+                const markup = document.getElementById("texto");
+
+                pell.init({
+                element: editor,
+                onChange: (html) => {
+                    markup.innerHTML = "<br>";
+                    markup.innerText += html;
+                }
+                })
+            </script>
         </div>
 
         <div class="form-group">
@@ -41,7 +59,15 @@
         
         
         <input type="submit" class="btn btn-primary btn-block" role="button" value="Editar">
-        
+        {{--
+        <script>
+            function enviar(){
+                var markup = document.getElementById("markup").innerText;
+                document.getElementById("texto").value = markup;
+                document.getElementById("formulario").submit();
+            }
+        </script>
+        --}}
     </form>
         
 
