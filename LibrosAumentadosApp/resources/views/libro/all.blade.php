@@ -21,7 +21,9 @@
                 <div class="elemento mb-4">
                     <div class="elemento-header">
                     <p>
-                        <a href="{{route('capitulo.all', ['id'=>$libro->id])}}"><img src='{{$libro->cubierta}}' class="cubierta"></a>
+                        <a href="/libro/loginVisitante/{{$libro->id}}"><img src='{{$libro->cubierta}}' class="cubierta"></a>
+
+                       {{--<a href="{{route('libro.login', ['id_libro'=>$libro->id])}}"><img src='{{$libro->cubierta}}' class="cubierta"></a>--}}
                     </p>
                     
                     </div>
@@ -32,7 +34,7 @@
 
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <a href='{{route('capitulo.all', ['id'=>$libro->id])}}' class="btn btn-sm btn-info" role="button">Ver</a>
+                            {{--     <a href='{{route('libro.loginVisitante', ['id_libro'=>$libro->id])}}' class="btn btn-sm btn-info" role="button">Ver</a>--}}
                                 <a href="{{route('libro.edit', $libro->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
                                 <a href="{{route('libro.delete', $libro->id)}}" class="btn btn-sm btn-danger" role="button">Borrar</a>
                             </div>

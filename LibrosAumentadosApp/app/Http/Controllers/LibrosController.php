@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Session;
 
 use App\Libro;
 use App\Capitulo;
@@ -15,6 +16,7 @@ class LibrosController extends Controller
     private $palabra;
     public $capitulo;
     public $pagina;
+    public $numParrafo;
     /**
      * Display a listing of the resource.
      *
@@ -135,45 +137,71 @@ class LibrosController extends Controller
         $numCapitulo = rand(0, $capitulos->count()-1);
         $capitulo = $capitulos->get($numCapitulo);
 
-
         $paginas = Libro::getPaginas($capitulo->id);
         $numPagina = rand(0, $paginas->count()-1);
         $contenidoPagina = $paginas->get($numPagina)->texto;
 
+        $contenidoParrafo = $this->comprobarParrafo($contenidoPagina);
+
+        $parrafo_limpio = $this->limpiarParrafo($contenidoParrafo);
+
+        $palabras = explode(" ", $parrafo_limpio);
+        $numPalabra = rand(0, 4);
+        Session::put('palabraElegida', $palabras[$numPalabra]);
+        $palabraElegida = Session::get('palabraElegida');
+
+        echo "$palabraElegida";
+        $textoUsuario = "He elegido el capitulo: ".$capitulo->id." Página: ".($numPagina + 1)." Palabra: ".($numPalabra + 1)."";
+
+        return view('libro.logUsu', compact("textoUsuario", "id_libro"));
+    }
+    
+    private function elegirParrafo($contenidoPagina)
+    {
         $parrafos = explode("<br>", $contenidoPagina);
         $numParrafo = rand(0, count($parrafos)-1);
         $contenidoParrafo = $parrafos[$numParrafo];
 
-        $parafo_limpio = $this->limpiarParrafo($contenidoParrafo);
+        return $contenidoParrafo;
+    }
 
-        $palabras = explode(" ", $parafo_limpio);
-        $numPalabra = rand(0, 4);
-        $palabraElegida = $palabras[$numPalabra];
-        
-        echo $contenidoPagina;
-        echo $numPalabra."<br>";
-        echo "He elegido el capitulo ID = ".$capitulo->id."<br><br>Página: $numPagina<br><br>Párrafo $numParrafo ($contenidoParrafo)<br><br>Palabra $numPalabra ($palabraElegida)<br>";
-        echo $palabraElegida;
-
+    private function comprobarParrafo($contenidoParrafo)
+    {
+        $longitud_parrafo = str_word_count($contenidoParrafo, 1);
+        if(count($longitud_parrafo) < 5)
+        {
+            $this->elegirParrafo($contenidoParrafo);
+            comprobarParrafo($contenidoParrafo);
+            return $contenidoParrafo;
+        }
+        return $contenidoParrafo;
     }
 
     private function limpiarParrafo($contenidoParrafo)
     {
-        $pos1 = strpos($contenidoParrafo, "<");
-        $pos2 = strpos($contenidoParrafo, ">");
-       
-        while($pos1 !== false)
-        {
-            str_replace(">", $contenidoParrafo, "> ");
-            $texto_borrar = substr($contenidoParrafo, $pos1, ($pos2-$pos1)+1);         
-            $contenidoParrafo = str_replace($texto_borrar, " ", $contenidoParrafo);            
-            $pos1 = strpos($contenidoParrafo, "<");
-            $pos2 = strpos($contenidoParrafo, ">");
-        }   
+        $texto_limpio = strip_tags($contenidoParrafo);   
 
-        return $contenidoParrafo;
+        return $texto_limpio;
 
     }
 
+    public function comprobarPalabra(Request $r)
+    {
+        $palabraElegida = Session::get('palabraElegida');
+        Session::forget('palabraElegida');
+
+        if (strcasecmp($r->palabra, $palabraElegida) == 0)
+        {
+            $capituloList = Capitulo::where('libro_id', '=', $r->id_libro)->simplePaginate(3);
+
+            return view('capitulo.all', compact('capituloList'));
+        }else
+        {
+            $libroList = DB::table('libros')->simplePaginate(3);
+            return view('libro.all', compact('libroList'));
+        }
+
+        
+    }
 
 }

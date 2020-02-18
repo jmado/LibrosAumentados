@@ -20,8 +20,10 @@ Route::get('/admin', function () {
 
 #Rutas Libros
 Route::get("/libro/destroy/{id}", "LibrosController@destroy")->name("libro.delete");
+Route::get("/libro/loginVisitante/{id}", "LibrosController@loginVisitante")->name("libro.loginVisitante");
+Route::get("/libro/comprobarPalabra", "LibrosController@comprobarPalabra")->name("libro.comprobarPalabra");
 Route::resource('/libro', 'LibrosController');
-Route::get("/libro/loginVisitante/{id}", "LibrosController@loginVisitante")->name("libro.login");
+//Route::get("/libro/loginVisitante/{id}", "LibrosController@loginVisitante")->name("libro.login");
 
 #Rutas Capitulos
 Route::get("/capitulo/index/{id}", "CapitulosController@index")->name("capitulo.all");
