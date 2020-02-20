@@ -10,7 +10,10 @@
         <a href="{{ route('capitulo.all', $id) }}">Capitulo</a>
         <h1>Imagenes</h1>
         <p>
-          <a href="{{ route('imagen.create') }}" class="btn btn-primary btn-lg" role="button">Nueva Imagen</a>
+            @auth
+                <a href="{{ route('imagen.create') }}" class="btn btn-primary btn-lg" role="button">Nueva Imagen</a>      
+            @endauth
+          
         </p>
       </div>
 </section>
@@ -37,8 +40,10 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                                 <a href="{{route('imagen.show', $imagen->id)}}" class="btn btn-sm btn-outline-primary" role="button">Ver</a>
-                                <a href="{{route('imagen.edit', $imagen->id)}}" class="btn btn-sm btn-outline-info" role="button">Modificar</a>
-                                <a href="{{route('imagen.delete', $imagen->id)}}" class="btn btn-sm btn-outline-danger" role="button">Borrar</a>
+                                @auth           
+                                    <a href="{{route('imagen.edit', $imagen->id)}}" class="btn btn-sm btn-outline-info" role="button">Modificar</a>
+                                    <a href="{{route('imagen.delete', $imagen->id)}}" class="btn btn-sm btn-outline-danger" role="button">Borrar</a>
+                                @endauth
                             </div>
                         </div>
 

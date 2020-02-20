@@ -10,7 +10,9 @@
         <a href="{{ route('capitulo.all', $id) }}">Capitulo</a>
         <h1>Galerias</h1>
         <p>
-          <a href="{{ route('galeria.create') }}" class="btn btn-primary btn-lg" role="button">Nueva Galeria</a>
+            @auth
+                <a href="{{ route('galeria.create') }}" class="btn btn-primary btn-lg" role="button">Nueva Galeria</a>
+            @endauth
         </p>
       </div>
 </section>
@@ -41,8 +43,10 @@
                         <td>{{$galeria->descripcion}}</td> 
                         <td>
                             <a href="{{route('galeria.show', $galeria->id)}}" class="btn btn-sm btn-primary" role="button">Ver</a>
-                            <a href="{{route('galeria.edit', $galeria->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
-                            <a href="{{route('galeria.delete', $galeria->id)}}" class="btn btn-sm btn-danger" role="button">Borrar</a>
+                            @auth
+                                <a href="{{route('galeria.edit', $galeria->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
+                                <a href="{{route('galeria.delete', $galeria->id)}}" class="btn btn-sm btn-danger" role="button">Borrar</a>
+                            @endauth
                         </td>
                     </tr>    
                     @endforeach

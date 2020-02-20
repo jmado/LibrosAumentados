@@ -6,7 +6,9 @@
     <div class="container">
         <h1>Libros</h1>
         <p>
-          <a href="{{ route('libro.create') }}" class="btn btn-primary btn-lg" role="button">Nuevo Libro</a>
+            @auth
+                <a href="{{ route('libro.create') }}" class="btn btn-primary btn-lg" role="button">Nuevo Libro</a>      
+            @endauth
         </p>
     </div>
 </section>
@@ -21,7 +23,13 @@
                 <div class="elemento mb-4">
                     <div class="elemento-header">
                     <p>
-                        <a href="/libro/loginVisitante/{{$libro->id}}"><img src='{{$libro->cubierta}}' class="cubierta"></a>
+                        @if (Auth::check())
+                            <a href="{{ route('capitulo.all', $libro->id) }}"><img src='{{$libro->cubierta}}' class="cubierta"></a> 
+                        @else
+                            <a href="/libro/loginVisitante/{{$libro->id}}"><img src='{{$libro->cubierta}}' class="cubierta"></a>
+                        @endif
+
+
 
                        {{--<a href="{{route('libro.login', ['id_libro'=>$libro->id])}}"><img src='{{$libro->cubierta}}' class="cubierta"></a>--}}
                     </p>
@@ -35,8 +43,10 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                             {{--     <a href='{{route('libro.loginVisitante', ['id_libro'=>$libro->id])}}' class="btn btn-sm btn-info" role="button">Ver</a>--}}
+                            @auth
                                 <a href="{{route('libro.edit', $libro->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
                                 <a href="{{route('libro.delete', $libro->id)}}" class="btn btn-sm btn-danger" role="button">Borrar</a>
+                            @endauth
                             </div>
                         </div>
 

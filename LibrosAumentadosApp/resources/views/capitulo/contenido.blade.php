@@ -25,19 +25,20 @@
 <div class="elementos container">
     
     <div class="cards">
-        <div class="card">
-            
-            <div class="card-title">
-                <a href="{{ route('pagina.all', $id) }}" class="toggle-info btn">
-                    <span class="left"></span>
-                    <span class="right"></span>
-                    1
-                
-               
-                Paginas
-                </a>
-            </div>         
-        </div> 
+        @auth
+            <div class="card">
+                <div class="card-title">
+                    <a href="{{ route('pagina.all', $id) }}" class="toggle-info btn">
+                        <span class="left"></span>
+                        <span class="right"></span>
+                        1
+                    </a>
+                    <h2>
+                    Paginas
+                    </h2>
+                </div>         
+            </div> 
+        @endauth
     </div> 
 
     <div class="cards">
