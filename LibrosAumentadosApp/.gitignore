@@ -12,6 +12,6 @@ npm-debug.log
 yarn-error.log
 
 public/imagenes
-public/videos
-public/audio
-public/modelos_3d
+public/audios
+public/modelos3d
+public/descargas

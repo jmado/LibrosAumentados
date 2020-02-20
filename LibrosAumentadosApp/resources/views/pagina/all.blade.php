@@ -4,7 +4,7 @@
 <section class="text-center">
     <div class="container">
         <a href="{{ route('capitulo.all', $id) }}">Capitulo</a>
-        <h1>Libros</h1>
+        <h1>Páginas</h1>
         <p>
           <a href="{{ route('pagina.create') }}" class="btn btn-primary btn-lg" role="button">Nueva Pagina</a>
         </p>

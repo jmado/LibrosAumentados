@@ -19,7 +19,7 @@
 
 
 <section class="elementos container">
-    {{ $capituloList->links() }}
+    {{ $capituloList ?? ''->links() }}
     <div class="row">
         <h2>Lista</h2>
         <div class="table-responsive">
@@ -32,7 +32,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($capituloList as $capitulo)
+                    @foreach ($capituloList ?? '' as $capitulo)
                     <tr>
                         <td>
                             <a href="{{route('capitulo.contenido', ['id'=>$capitulo->id])}}">Capitulo {{$capitulo->numero_orden}}: {{$capitulo->titulo}}</a>

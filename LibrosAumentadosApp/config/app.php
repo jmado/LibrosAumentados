@@ -175,6 +175,13 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+
+
+        /*
+        * Proveedor de Vimeo para mi aplicación
+        */
+        //Vimeo\Laravel\VimeoServiceProvider::class,
+
     ],
 
     /*
@@ -226,6 +233,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        //'Vimeo' => Vimeo\Laravel\Facades\Vimeo::class
     ],
 
 ];

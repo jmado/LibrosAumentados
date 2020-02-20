@@ -15,21 +15,21 @@ class DescargasTableSeeder extends Seeder
             'titulo' => Str::random(8),
             'descripcion' => Str::random(8),
             'archivo' => Str::random(8),
-            'tipo_archivo' => Str::random(8),
+            'tipo_archivo' => 'txt',
             'capitulo_id' => 1,
         ]);
         DB::table('descargas')->insert([
             'titulo' => Str::random(8),
             'descripcion' => Str::random(8),
             'archivo' => Str::random(8),
-            'tipo_archivo' => Str::random(8),
+            'tipo_archivo' => 'pdf',
             'capitulo_id' => 2,
         ]);
         DB::table('descargas')->insert([
             'titulo' => Str::random(8),
             'descripcion' => Str::random(8),
             'archivo' => Str::random(8),
-            'tipo_archivo' => Str::random(8),
+            'tipo_archivo' => 'pdf',
             'capitulo_id' => 3,
         ]);   
     }

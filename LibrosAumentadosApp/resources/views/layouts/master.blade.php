@@ -5,9 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+<<<<<<< Updated upstream
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+=======
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/style3d.css') }}" />
+    <script src="{{ URL::asset('js/three.min.js') }}"></script>
+    <script src="{{ URL::asset('js/GLTFLoader.js') }}"></script>
+    <script src="{{ URL::asset('js/OrbitControls.js') }}"></script>
+
+    
+>>>>>>> Stashed changes
     <!-- CSS -->
     <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}" />
     <!-- JavaScript -->
@@ -20,6 +29,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+	<!--<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/bootstrap.min.css') }}" />-->
+	
     <title>Libros Aumentados</title>
     <!-- Import the component -->
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"></script>

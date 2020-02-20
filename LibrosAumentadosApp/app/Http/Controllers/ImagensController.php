@@ -113,6 +113,7 @@ class ImagensController extends Controller
         $datos->descripcion = $request->descripcion;
         //Capitulo al que pertenece
         $datos->capitulo_id = $request->capitulo_id;
+
         $archivo = $request->file;
        //Imagen
         if($archivo != null){

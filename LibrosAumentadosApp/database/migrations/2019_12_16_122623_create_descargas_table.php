@@ -18,7 +18,8 @@ class CreateDescargasTable extends Migration
             $table->string('titulo');
             $table->string('descripcion');
             $table->string('archivo');
-            $table->string('tipo_archivo');
+            
+            $table->enum('tipo_archivo', ['pdf', 'txt']);
             $table->integer('capitulo_id');
             $table->timestamps();
         });

@@ -13,11 +13,11 @@ class CreateAudioTable extends Migration
      */
     public function up()
     {
-        Schema::create('audios', function (Blueprint $table) {
+        Schema::create('audio', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('titulo');
             $table->string('descripcion');
-            $table->string('audio');
+            $table->string('archivo');
             $table->integer('capitulo_id');
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ class CreateAudioTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('audios');
+        Schema::dropIfExists('audio');
     }
 }

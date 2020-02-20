@@ -6,21 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Audio extends Model
 {
-//Modificación de multiples campos
-protected $fillable=["titulo","descripcion","audio",'capitulo_id'];
+    //Modificación de multiples campos
+    protected $fillable=["titulo","descripcion","archivo",'capitulo_id'];
 
-//Metodos
+    //Metodos
 
-//Relaciones
-
-
+    //Relaciones
 
 
 
 
 
 
-//Relacion 1:N(inversa) ¿¿-------------------??Dudo que esto sea lo mejor :(
+
+
+    //Relacion 1:N(inversa) ¿¿-------------------??Dudo que esto sea lo mejor :(
     public function capitulo()
     {            
         return $this->belongsTo('App\Capitulo');
