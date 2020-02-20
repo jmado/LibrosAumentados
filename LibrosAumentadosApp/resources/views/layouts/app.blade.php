@@ -1,4 +1,4 @@
-<!doctype html>
+ <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -19,8 +19,10 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
-    <div id="app">
+<body> 
+{{--@extends("../layouts.master")
+@section('content')--}}   
+<div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -76,5 +78,6 @@
             @yield('content')
         </main>
     </div>
+{{--@endsection--}}    
 </body>
 </html>

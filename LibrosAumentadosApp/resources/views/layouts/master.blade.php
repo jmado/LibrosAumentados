@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
     <!-- CSS -->
     <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}" />
     <!-- JavaScript -->
@@ -43,6 +45,12 @@
     <a href="{{route('libro.index')}}">Libros</a>
     <a href="#">Sobre nosotros</a>
     <a href="#">Contacto</a>
+    
+    
+    @auth
+      <a href="{{route('logout')}}">Log out</a>    
+    @endauth
+
     <label for="chk" class="hide-menu-btn">
       <i class="fas fa-times"></i>
     </label>

@@ -8,7 +8,9 @@
           <a href="{{ route('libro.index') }}" class="btn btn-primary btn-lg" role="button">Ver Libros</a>
         </p>
         <p>
-          <a href="{{ route('capitulo.create') }}" class="btn btn-primary btn-lg" role="button">Nuevo Capitulo</a>
+            @auth
+                <a href="{{ route('capitulo.create') }}" class="btn btn-primary btn-lg" role="button">Nuevo Capitulo</a>
+            @endauth
         </p>
       </div>
 </section>
@@ -37,8 +39,10 @@
                         </td>
                         <td>{{$capitulo->titulo}}</td>
                         <td>
-                            <a href="{{route('capitulo.edit', $capitulo->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
-                            <a href="{{route('capitulo.delete', $capitulo->id)}}" class="btn btn-sm btn-danger" role="button">Borrar</a>
+                            @auth
+                                <a href="{{route('capitulo.edit', $capitulo->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
+                                <a href="{{route('capitulo.delete', $capitulo->id)}}" class="btn btn-sm btn-danger" role="button">Borrar</a>
+                            @endauth
                         </td>
                     </tr>    
                     @endforeach

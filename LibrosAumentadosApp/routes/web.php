@@ -14,10 +14,10 @@
 
 Route::get("/", "LibrosController@index")->name("home");
 
-Route::get('/admin', function () {
+/*Route::get('/admin', function () {
     //return view('auth/login');
     return view('home');
-});
+});*/
 
 #Rutas Libros
 Route::get("/libro/destroy/{id}", "LibrosController@destroy")->name("libro.delete");
@@ -69,6 +69,8 @@ Route::get('/home', 'LibrosController@welcome')->name('home');*/
 Auth::routes();
 
 Route::get('/home', 'LibrosController@index')->name('home');
+
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 /*Auth::routes();
 

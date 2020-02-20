@@ -11,6 +11,8 @@ use App\Capitulo;
 use App\User;
 use App\Http\Controllers\LibrosController;
 
+use Auth;
+
 class LoginController extends Controller
 {
     /*
@@ -44,6 +46,11 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    /*public function logout(Request $request) {
+        Auth::logout();
+        return redirect('/libro');
+      }*/
 /*
     public function login(Request $r)
     {
