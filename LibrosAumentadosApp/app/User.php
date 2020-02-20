@@ -38,7 +38,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public static function checkLogin($email, $password) {
+    /*public static function checkLogin($email, $password) {
         //$result = DB::raw("SELECT * FROM users WHERE email ='$email' and password = '$passwordEncriptada'");
         $result = DB::table('users')->select('password')->where([
             ['email', '=', $email]
@@ -48,5 +48,5 @@ class User extends Authenticatable
             return true;
         else
             return false;
-    }
+    }*/
 }

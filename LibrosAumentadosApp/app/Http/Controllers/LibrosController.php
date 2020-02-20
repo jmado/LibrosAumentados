@@ -193,10 +193,13 @@ class LibrosController extends Controller
         if (strcasecmp($r->palabra, $palabraElegida) == 0)
         {
             $capituloList = Capitulo::where('libro_id', '=', $r->id_libro)->simplePaginate(3);
-
+            //Session::put('dentro', $r->id_libro);
+            //$dentro = Session::get('dentro');
             return view('capitulo.all', compact('capituloList'));
         }else
         {
+            Session::put('dentro', 'false');
+            //$dentro = Session::get('dentro');
             $libroList = DB::table('libros')->simplePaginate(3);
             return view('libro.all', compact('libroList'));
         }

@@ -15,7 +15,8 @@
 Route::get("/", "LibrosController@index")->name("home");
 
 Route::get('/admin', function () {
-    return view('auth/login');
+    //return view('auth/login');
+    return view('home');
 });
 
 #Rutas Libros
@@ -53,10 +54,10 @@ Route::resource('/galeria', 'GaleriasController');
 
 
 //Rutas Login Administrador
-Auth::routes();
+/*Auth::routes();
 Route::get("/logout", "Auth\LoginController@logout")->name("logout");
 
-Route::get('/home', 'LibrosController@welcome')->name('home');
+Route::get('/home', 'LibrosController@welcome')->name('home');*/
 
 //Route::group(['middleware' => 'web'], function () {
 //    Route::auth();    
@@ -64,3 +65,15 @@ Route::get('/home', 'LibrosController@welcome')->name('home');
 //});
 
 
+
+Auth::routes();
+
+Route::get('/home', 'LibrosController@index')->name('home');
+
+/*Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');*/
