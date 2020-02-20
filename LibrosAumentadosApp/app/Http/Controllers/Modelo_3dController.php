@@ -71,7 +71,7 @@ class Modelo_3dController extends Controller
             $elZip->move('modelos3d/'.$request->titulo, $elZip->getClientOriginalName());
             exec("unzip ".$elZip->getClientOriginalName());
 
-            $modelo->modelo_3d = 'public/modelos3d/' . $request->titulo;
+            $modelo->modelo_3d =$request->titulo;
             $modelo->save();
         } else {
             echo 'directorio fallo';
@@ -134,7 +134,7 @@ class Modelo_3dController extends Controller
                 $zip->extractTo('public/modelos3d/' . $request->titulo);
                 $zip->close();
 
-                $modelo->modelo_3d = 'public/modelos3d/' . $request->titulo;
+                $modelo->modelo_3d = $request->titulo;
 
                 $modelo->save();
             } else {

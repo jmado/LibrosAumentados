@@ -102,11 +102,11 @@ class DescargasController extends Controller
 
         $capitulo_id = $request->capitulo_id;
 
-        //Audio
+        //Descargas
         $archivo = $request->file;
         if($archivo != null){
             $archivo->move('descargas', $archivo->getClientOriginalName());
-            $datos->imagen = "descargas/" . $archivo->getClientOriginalName();
+            $datos->archivo = "descargas/" . $archivo->getClientOriginalName();
         }
         //Guardo la imagen con sus datos
         $datos->save();
