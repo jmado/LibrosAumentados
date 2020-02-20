@@ -107,8 +107,10 @@
         <div class="row">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                    <a href="{{route('galeria.edit', $galeria[0]->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
-                    <a href="{{route('galeria.delete', $galeria[0]->id)}}" class="btn btn-sm btn-danger" role="button">Borrar</a>
+                    @auth
+                        <a href="{{route('galeria.edit', $galeria[0]->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
+                        <a href="{{route('galeria.delete', $galeria[0]->id)}}" class="btn btn-sm btn-danger" role="button">Borrar</a>
+                    @endauth
                 </div>
             </div>
         </div>
