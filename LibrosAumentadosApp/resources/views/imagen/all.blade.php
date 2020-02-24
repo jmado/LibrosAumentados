@@ -29,7 +29,7 @@
                 <div class="elemento mb-4">
                     <div class="elemento-header">
                         <a href="{{route('imagen.show', $imagen->id)}}">
-                            <img src="{{$imagen->imagen}}" alt="{{$imagen->titulo}}">
+                            <img src="../../{{$imagen->imagen}}" alt="{{$imagen->titulo}}">
                         </a> 
                     </div>
                     <div class="elemento-body">
