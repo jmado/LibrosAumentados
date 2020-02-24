@@ -19,15 +19,15 @@ Route::get('/prueba', function () {
 });
 
 
-/*Route::get('/admin', function () {
-    //return view('auth/login');
-    return view('home');
-});*/
+Route::get('/', function () {
+    
+    return view('welcome');
+});
 
 #Rutas Libros
-Route::get("/libro/destroy/{id}", "LibrosController@destroy")->name("libro.delete");
-Route::get("/libro/loginVisitante/{id}", "LibrosController@loginVisitante")->name("libro.loginVisitante");
-Route::get("/libro/comprobarPalabra", "LibrosController@comprobarPalabra")->name("libro.comprobarPalabra");
+//Route::get("/libro/destroy/{id}", "LibrosController@destroy")->name("libro.delete");
+//Route::get("/libro/loginVisitante/{id}", "LibrosController@loginVisitante")->name("libro.loginVisitante");
+//Route::get("/libro/comprobarPalabra", "LibrosController@comprobarPalabra")->name("libro.comprobarPalabra");
 Route::resource('/libro', 'LibrosController');
 //Route::get("/libro/loginVisitante/{id}", "LibrosController@loginVisitante")->name("libro.login");
 
@@ -64,7 +64,7 @@ Route::resource('/video', 'VideosController');
 
 //Rutas Audios
 Route::get("/audio/index/{id}", "AudiosController@index")->name("audio.all");
-Route::get("/audio/destroy/{id}", "AudiosController@destroy")->name("audio.delete");
+Route::patch("/audio/destroy/{id}", "AudiosController@destroy")->name("audio.delete");
 Route::resource('/audio', 'AudiosController');
 
 //Rutas Descargas (Otros Archivos)

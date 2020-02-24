@@ -95,9 +95,9 @@ class GaleriasController extends Controller
     public function edit($id)
     {
         $galeria = Galeria::findOrFail($id);
-        $imagenes = Imagen::all();
-        $capitulos = Capitulo::all();
-        return view('galeria.form', compact('galeria', 'imagenes', 'capitulos'));
+        $capitulo_id = $galeria->capitulo_id;
+        $imagenes = Imagen::where('capitulo_id', '=', $capitulo_id);
+        return view('galeria.form', compact('galeria', 'imagenes', 'capitulo_id'));
     }
 
     /**
@@ -116,6 +116,7 @@ class GaleriasController extends Controller
         $datos_galeria->capitulo_id = $request->capitulo_id;
         $datos_galeria->tipo = $request->tipo;
 
+        
         //Guardo la informacion de la galeria
         $datos_galeria->save();
 

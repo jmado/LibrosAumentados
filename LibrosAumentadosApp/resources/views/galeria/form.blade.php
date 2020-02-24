@@ -29,20 +29,7 @@
         @csrf
 
             <div class="form-group">
-                <label for="capitulo">Capitulos:</label>
-                <select name="capitulo_id" class="form-control" id="capitulo" required>
-                    @foreach ($capitulos as $capitulo)
-                    @isset($datos)
-                        @if($datos->capitulo_id == $capitulo->id)
-                            <option value={{$capitulo->id}} selected>{{$capitulo->titulo}}</option>    
-                        @else   
-                            <option value={{$capitulo->id}}>{{$capitulo->titulo}}</option> 
-                        @endif
-                    @else   
-                        <option value={{$capitulo->id}}>{{$capitulo->titulo}}</option> 
-                    @endisset
-                    @endforeach
-                </select>
+                <input type="text" name="capitulo_id" value="{{$capitulo_id}}" hidden>
             </div>
             
             <div class="form-group">
@@ -52,7 +39,7 @@
             
             <div class="form-group">
                 <label for="info">Descripción:</label>
-                <input id="info" type="text" name="descripcion" class="form-control" value="{{$datos->descripcion ?? ''}}" required>
+                <input id="info" type="text" name="descripcion" class="form-control" value="{{$galeria->descripcion ?? ''}}" required>
             </div>
             
             <div class="form-group">
