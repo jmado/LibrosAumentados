@@ -132,7 +132,10 @@ class LibrosController extends Controller
         
     }
 
-    public function loginVisitante(Request $r, $id_libro) {
+    public function loginVisitante($id_libro) {
+        $libro = DB::table('libros')->select('titulo')->where('id', '=', $id_libro)->first();
+        $libro = $libro->titulo;
+
         // Primero elegimos un capítulo al azar del libro actual
         $capitulos = Libro::getCapitulos($id_libro);
         $numCapitulo = rand(0, $capitulos->count()-1);
@@ -164,8 +167,7 @@ class LibrosController extends Controller
         Session::put('palabraElegida', $palabras[$numPalabra]);
         $palabraElegida = Session::get('palabraElegida');
         echo "$palabraElegida";
-        //$textoLibro = $r->titulo;
-        $textoUsuario = "Del libro ".$libro->titulo." he elegido el capitulo: ".$capitulo->id." Página: ".($numPagina + 1)." Palabra: ".($numPalabra + 1)."";
+        $textoUsuario = "Del libro $libro he elegido el capitulo: ".$capitulo->id." Página: ".($numPagina + 1)." Palabra: ".($numPalabra + 1)."";
 
         return view('libro.logUsu', compact("textoUsuario", "id_libro"));
     }

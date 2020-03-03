@@ -230,3 +230,15 @@ a:link, a:visited, a:active, a:hover , a{
 ---------------------FIN GaleriaNormal ---------------------               
 */
         
+.selectLogin{
+  align-items: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+.rowLogin{
+  width: 30%;
+  
+}
