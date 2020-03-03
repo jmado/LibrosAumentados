@@ -82,14 +82,16 @@
             @if($galeria[0]->tipo == "normal")    
                 @foreach ($imagenes as $imagen)
                     @if($loop->first)
-                        <div class="active" style="background-image: url(/{{$imagen->imagen}})"></div>
+                        <div class="galeria-img active" style="background-image: url(/{{$imagen->imagen}})"></div>
                     @else
-                    <div style="background-image: url(/{{$imagen->imagen}})"></div>
+                    <div class="galeria-img" style="background-image: url(/{{$imagen->imagen}})"></div>
                     @endif
                 @endforeach
             @else
                 <div>
-                    <input type="range" id="rango" value="0" oninput="transparencia()">
+                @foreach ($imagenes as $imagen)
+                    <input type="range" class="rango" value="50" oninput="transparencia()">
+                @endforeach
                 </div>   
             @endif    
             </div>

@@ -1,10 +1,12 @@
 
 // ---------------Visualizacion de galerias----------------------
 function transparencia(){
-    var rango = document.getElementById("rango").value;
-    var valor = rango / 100;
-    galeria[0].style["opacity"] = 100 - valor;
-    galeria[1].style["opacity"] = valor;
+    var imagenes = document.getElementsByClassName('galeria-img'); 
+    var rangos = document.getElementsByClassName('rango'); 
+    
+    for(var i=0; i<imagenes.length; i++){
+        imagenes[i].style["opacity"] = rangos[i].value/100;
+    }
 }
 
 var galeria = document.getElementsByClassName("galeria-img");

@@ -29,7 +29,7 @@
         @csrf
 
             <div class="form-group">
-                <input type="text" name="capitulo_id" value="{{$capitulo_id}}" hidden>
+                <input type="text" name="capitulo_id" value="{{$capitulos}}" hidden>
             </div>
             
             <div class="form-group">
