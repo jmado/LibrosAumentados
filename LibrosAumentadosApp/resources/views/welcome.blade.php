@@ -66,7 +66,7 @@
     <!-- The video -->
     <div class="content">
         <video autoplay muted loop id="myVideo">
-            <source src="{{ URL::asset('videos/video2.mp4') }}" type="video/mp4">
+            <source src="{{ URL::asset('complementos/videos/bg.mp4') }}" type="video/mp4">
         </video>
     
 

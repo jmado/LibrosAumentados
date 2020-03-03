@@ -25,16 +25,47 @@
                     <tr>
                         <th>Capitulo</th>
                         <th>Titulo</th>
-                        <th></th>  
+                        <th></th> 
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th> 
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($capituloList ?? '' as $capitulo)
                     <tr>
                         <td>
-                            <a href="{{route('capitulo.contenido', ['id'=>$capitulo->id])}}">Capitulo {{$capitulo->numero_orden}}: {{$capitulo->titulo}}</a>
+                            {{$capitulo->numero_orden}}: {{$capitulo->titulo}}
                         </td>
-                        <td>{{$capitulo->titulo}}</td>
+                        <td>
+                            {{$capitulo->titulo}}
+                        </td>
+
+                        <th><a href="{{ route('imagen.all', $capitulo->id) }}">
+                            <img src="{{ URL::asset('complementos/iconos/imagen.png') }}" alt="">
+                        </a></th> 
+                        <th><a href="{{ route('galeria.all', $capitulo->id) }}">
+                            <img src="{{ URL::asset('complementos/iconos/imagen.png') }}" alt="">
+                        </a></th>
+                        <th><a href="{{ route('audio.all', $capitulo->id) }}">
+                            <img src="{{ URL::asset('complementos/iconos/galeria.png') }}" alt="">
+                        </a></th>
+                        <th><a href="{{ route('video.all', $capitulo->id) }}">
+                            <img src="{{ URL::asset('complementos/iconos/video.png') }}" alt="">
+                        </a></th>
+                        <th><a href="{{ route('modelo.all', $capitulo->id) }}">
+                            <img src="{{ URL::asset('complementos/iconos/modelo.png') }}" alt="">
+                        </a></th>
+                        <th><a href="{{ route('descarga.all', $capitulo->id) }}">
+                            <img src="{{ URL::asset('complementos/iconos/descargas.png') }}" alt="">
+                        </a></th>
+                        <th><a href="{{ route('pagina.all', $capitulo->id) }}">
+                            <img src="{{ URL::asset('complementos/iconos/pagina.png') }}" alt="">
+                        </a></th>
+
                         <td>
                             @auth
                                 <a href="{{route('capitulo.edit', $capitulo->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
