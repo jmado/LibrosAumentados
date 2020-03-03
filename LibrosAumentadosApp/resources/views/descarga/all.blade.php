@@ -40,8 +40,10 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                                 <a href="{{route('descarga.show', $dato->id)}}" class="btn btn-sm btn-outline-primary" role="button">Ver</a>
-                                <a href="{{route('descarga.edit', $dato->id)}}" class="btn btn-sm btn-outline-info" role="button">Modificar</a>
-                                <a href="{{route('descarga.delete', $dato->id)}}" class="btn btn-sm btn-outline-danger" role="button">Borrar</a>
+                                @auth
+                                    <a href="{{route('descarga.edit', $dato->id)}}" class="btn btn-sm btn-outline-info" role="button">Modificar</a>
+                                    <a href="{{route('descarga.delete', $dato->id)}}" class="btn btn-sm btn-outline-danger" role="button">Borrar</a>
+                                @endauth
                             </div>
                         </div>
 

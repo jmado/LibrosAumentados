@@ -38,8 +38,10 @@
                         <td>{{$modelo->titulo}}</td>
                         <td>
                             <a href="{{route('modelo.show', $modelo->id)}}" class="btn btn-sm btn-info" role="button">Ver</a>
-                            <a href="{{route('modelo.edit', $modelo->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
-                            <a href="{{route('modelo.delete', $modelo->id)}}" class="btn btn-sm btn-danger" role="button">Borrar</a>
+                            @auth
+                                <a href="{{route('modelo.edit', $modelo->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
+                                <a href="{{route('modelo.delete', $modelo->id)}}" class="btn btn-sm btn-danger" role="button">Borrar</a>
+                            @endauth
                         </td>
                     </tr>    
                     @endforeach

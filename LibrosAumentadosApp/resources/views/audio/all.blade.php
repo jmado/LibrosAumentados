@@ -39,8 +39,10 @@
 
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <a href="{{route('audio.edit', $audio->id)}}" class="btn btn-sm btn-outline-info" role="button">Modificar</a>
-                                <a href="{{route('audio.delete', $audio->id)}}" class="btn btn-sm btn-outline-danger" role="button">Borrar</a>
+                                @auth
+                                    <a href="{{route('audio.edit', $audio->id)}}" class="btn btn-sm btn-outline-info" role="button">Modificar</a>
+                                    <a href="{{route('audio.delete', $audio->id)}}" class="btn btn-sm btn-outline-danger" role="button">Borrar</a>
+                                @endauth
                             </div>
                         </div>
 

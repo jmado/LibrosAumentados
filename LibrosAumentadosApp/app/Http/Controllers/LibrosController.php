@@ -132,26 +132,40 @@ class LibrosController extends Controller
         
     }
 
-    public function loginVisitante($id_libro) {
+    public function loginVisitante(Request $r, $id_libro) {
+        // Primero elegimos un capítulo al azar del libro actual
         $capitulos = Libro::getCapitulos($id_libro);
         $numCapitulo = rand(0, $capitulos->count()-1);
         $capitulo = $capitulos->get($numCapitulo);
 
+        // Después, elegimos una página al azar del capítulo seleccionado
         $paginas = Libro::getPaginas($capitulo->id);
         $numPagina = rand(0, $paginas->count()-1);
         $contenidoPagina = $paginas->get($numPagina)->texto;
 
-        $contenidoParrafo = $this->comprobarParrafo($contenidoPagina);
+        // Ahora vamos a elegir un párrafo al azar de esa página.
+        // No todos los párrafos valen, solo los que tengan más de 5 palabras.
+        $parrafoOk = false;
+        $contenidoParrafo = "";
+        while (!$parrafoOk) {
+            // Elegimos un párrafo al azar
+            $contenidoParrafo = $this->elegirParrafo($contenidoPagina);
+            // Comprobamos que el párrafo es válido
+            $parrafoOk = $this->comprobarParrafo($contenidoParrafo);
+        }
 
+        // Limpiamos el código HTML del párrafo y todos los signos de puntuación
         $parrafo_limpio = $this->limpiarParrafo($contenidoParrafo);
 
+        // Extraemos todas las palabras del párrafo en un array
         $palabras = explode(" ", $parrafo_limpio);
+        // Elegimos una palabra al azar y la almacenamos en una variable de sesión
         $numPalabra = rand(0, 4);
         Session::put('palabraElegida', $palabras[$numPalabra]);
         $palabraElegida = Session::get('palabraElegida');
-
         echo "$palabraElegida";
-        $textoUsuario = "He elegido el capitulo: ".$capitulo->id." Página: ".($numPagina + 1)." Palabra: ".($numPalabra + 1)."";
+        //$textoLibro = $r->titulo;
+        $textoUsuario = "Del libro ".$libro->titulo." he elegido el capitulo: ".$capitulo->id." Página: ".($numPagina + 1)." Palabra: ".($numPalabra + 1)."";
 
         return view('libro.logUsu', compact("textoUsuario", "id_libro"));
     }
@@ -160,7 +174,10 @@ class LibrosController extends Controller
     {
         $parrafos = explode("<br>", $contenidoPagina);
         $numParrafo = rand(0, count($parrafos)-1);
+
         $contenidoParrafo = $parrafos[$numParrafo];
+
+        echo "Párrafo elegido: $numParrafo <br>"; //Hay que sumar 1 ".($numParrafo + 1)." ???
 
         return $contenidoParrafo;
     }
@@ -168,21 +185,51 @@ class LibrosController extends Controller
     private function comprobarParrafo($contenidoParrafo)
     {
         $longitud_parrafo = str_word_count($contenidoParrafo, 1);
-        if(count($longitud_parrafo) < 5)
-        {
-            $this->elegirParrafo($contenidoParrafo);
-            comprobarParrafo($contenidoParrafo);
-            return $contenidoParrafo;
+        if(count($longitud_parrafo) < 5) {
+            return false;
+        } else {
+            return true;
         }
-        return $contenidoParrafo;
     }
 
     private function limpiarParrafo($contenidoParrafo)
     {
-        $texto_limpio = strip_tags($contenidoParrafo);   
+        
+        //Limpiar el texto de etiquetas HTML
+        $texto_limpio = strip_tags($contenidoParrafo);
 
-        return $texto_limpio;
+        //Limpiar el texto de signos de puntuación
+        $texto_limpio = str_replace(".", "", $texto_limpio);
+        $texto_limpio = str_replace("-", "", $texto_limpio);
+        $texto_limpio = str_replace("—", "", $texto_limpio);
+        $texto_limpio = str_replace("?", "", $texto_limpio);
+        $texto_limpio = str_replace("¿", "", $texto_limpio);
+        $texto_limpio = str_replace("!", "", $texto_limpio);
+        $texto_limpio = str_replace("¡", "", $texto_limpio);
+        $texto_limpio = str_replace(".", "", $texto_limpio);
+        $texto_limpio = str_replace(":", "", $texto_limpio);
+        $texto_limpio = str_replace(";", "", $texto_limpio);
+        $texto_limpio = str_replace("[", "", $texto_limpio);
+        $texto_limpio = str_replace("]", "", $texto_limpio);
+        $texto_limpio = str_replace("{", "", $texto_limpio);
+        $texto_limpio = str_replace("}", "", $texto_limpio);    
+        $texto_limpio = str_replace("(", "", $texto_limpio);
+        $texto_limpio = str_replace(")", "", $texto_limpio);
+        $texto_limpio = str_replace("\"", "", $texto_limpio);
+        $texto_limpio = str_replace("\'", "", $texto_limpio);
+        $texto_limpio = str_replace("|", "", $texto_limpio);
+        $texto_limpio = str_replace("/", "", $texto_limpio);
+        $texto_limpio = str_replace("*", "", $texto_limpio);
+        $texto_limpio = str_replace("+", "", $texto_limpio);
+        $texto_limpio = str_replace("á", "a", $texto_limpio);
+        $texto_limpio = str_replace("é", "e", $texto_limpio);
+        $texto_limpio = str_replace("í", "i", $texto_limpio);
+        $texto_limpio = str_replace("ó", "o", $texto_limpio);
+        $texto_limpio = str_replace("ú", "u", $texto_limpio);
 
+        /*return $nuevo_texto;*/
+        
+         return $texto_limpio;
     }
 
     public function comprobarPalabra(Request $r)
