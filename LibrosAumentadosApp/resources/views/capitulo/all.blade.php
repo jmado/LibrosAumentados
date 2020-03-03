@@ -15,13 +15,10 @@
       </div>
 </section>
 
-
-
-
 <section class="elementos container">
     {{ $capituloList ?? ''->links() }}
     <div class="row">
-        <h2>Lista</h2>
+    <h2>Lista de capitulos de {{$capituloList}}</h2>
         <div class="table-responsive">
              <table class="table table-striped table-sm">
                 <thead>

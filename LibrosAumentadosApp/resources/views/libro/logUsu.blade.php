@@ -17,7 +17,6 @@
     <form class="form-signin" action="/libro/comprobarPalabra" method="GET">
         @csrf
         <input type="hidden" name="id_libro" value="{{$id_libro}}">
-        {{-- <img class="mb-4" src="" alt="" width="72" height="72"> --}}
         <h1 class="h3 mb-3 font-weight-normal">{{$textoUsuario}}</h1>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="text" name="palabra" id="palabraTexto" class="form-control" placeholder="Palabra" required="" autofocus=""><br>

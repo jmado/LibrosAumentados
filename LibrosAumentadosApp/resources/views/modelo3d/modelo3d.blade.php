@@ -74,8 +74,10 @@
     </script>
   </div>
   <div class="row">
-    <a href="" class="borrar">Borrar</a>
-    <a href="" class="modificar">Modificar</a>
+    @auth
+      <a href="" class="borrar">Borrar</a>
+      <a href="" class="modificar">Modificar</a>
+    @endauth
   </div>
 
 </div>
