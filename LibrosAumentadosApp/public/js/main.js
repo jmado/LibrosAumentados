@@ -4,9 +4,18 @@ function transparencia(){
     var imagenes = document.getElementsByClassName('galeria-img'); 
     var rangos = document.getElementsByClassName('rango'); 
     
-    for(var i=0; i<imagenes.length; i++){
-        imagenes[i].style["opacity"] = rangos[i].value/100;
+    if(imagenes.length>2){
+        for(var i=0; i<imagenes.length; i++){
+            imagenes[i].style["opacity"] = rangos[i].value/100;
+        }
     }
+    else{
+        var rango = rangos[0];
+        var valor = rango / 100;
+        imagenes[0].style["opacity"] = 100 - valor;
+        imagenes[1].style["opacity"] = valor;
+    }
+    
 }
 
 var galeria = document.getElementsByClassName("galeria-img");

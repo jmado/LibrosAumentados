@@ -42,25 +42,7 @@
         </div>
         <div class="row">
 
-            {{-- 
-            <div class="col-sm-12 galeria">         
-                @foreach ($imagenes as $imagen)
-                    <img src="/{{$imagen->imagen}}" class="transparencia-img">
-                @endforeach   
-            </div>  
-            <div class="col-sm-12">
-                @if($galeria[0]->tipo == "normal")
-                    <div class="galeria-btn">
-                        <button id="atras" >Atras</button>
-                        <button id="adelante">Adelante</button>
-                    </div>
-                @else
-                    <div class="galeria-btn">
-                        <input type="range" id="rango" value="0" min="0.0" max="1.0" onchange="transparencia()">
-                    </div>
-                @endif
-            </div> 
-            --}}
+            
             <!--Galeria-->
             <div id="mygallery" class="col-sm-12 gallery">
             <div class="images">

@@ -12,15 +12,11 @@
 */
 
 
-//Route::get("/", "LibrosController@index")->name("home");
 
-Route::get('/prueba', function () {
-    return view('modelo3d/prueba');
-});
+
 
 
 Route::get('/', function () {
-    
     return view('welcome');
 });
 
@@ -74,29 +70,9 @@ Route::resource('/descarga', 'DescargasController');
 
 
 
-//Rutas Login Administrador
-/*Auth::routes();
-Route::get("/logout", "Auth\LoginController@logout")->name("logout");
-
-Route::get('/home', 'LibrosController@welcome')->name('home');*/
-
-//Route::group(['middleware' => 'web'], function () {
-//    Route::auth();    
-//    Route::get('/home', 'LibrosController@index')->name('home'); 
-//});
-
-
-
 Auth::routes();
 
 Route::get('/home', 'LibrosController@index')->name('home');
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-/*Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');*/

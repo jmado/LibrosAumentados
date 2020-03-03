@@ -72,9 +72,6 @@
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a href="#" class="navbar-brand">LibrosAumentados</a>
-            <ul class="navbar-nav ml-auto">
-                Login
-            </ul>
         </nav>
 
         <!-- Optional: some overlay text to describe the video -->
