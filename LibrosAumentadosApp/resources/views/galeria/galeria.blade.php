@@ -71,9 +71,13 @@
                 @endforeach
             @else
                 <div>
-                @foreach ($imagenes as $imagen)
+                @if($imagenes.count()>2)
+                    @foreach ($imagenes as $imagen)
+                        <input type="range" class="rango" value="50" oninput="transparencia()">
+                    @endforeach
+                @else
                     <input type="range" class="rango" value="50" oninput="transparencia()">
-                @endforeach
+                @endif
                 </div>   
             @endif    
             </div>

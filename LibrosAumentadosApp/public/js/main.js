@@ -10,7 +10,7 @@ function transparencia(){
         }
     }
     else{
-        var rango = rangos[0];
+        var rango = rangos[0].value;
         var valor = rango / 100;
         imagenes[0].style["opacity"] = 100 - valor;
         imagenes[1].style["opacity"] = valor;
