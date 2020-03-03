@@ -71,7 +71,7 @@
                 @endforeach
             @else
                 <div>
-                @if($imagenes.count()>2)
+                @if(count($imagenes)>2)
                     @foreach ($imagenes as $imagen)
                         <input type="range" class="rango" value="50" oninput="transparencia()">
                     @endforeach
