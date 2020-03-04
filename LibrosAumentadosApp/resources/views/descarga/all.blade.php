@@ -7,7 +7,7 @@
 
 <section class="text-center">
     <div class="container">
-        <a href="{{ route('capitulo.all', $capitulo_id) }}">Capitulo</a>
+        <a href="{{ route('capitulo.all', $libro_id) }}">Capitulo</a>
         <h1>Descargas</h1>
         <p>
           <a href="{{ route('descarga.create') }}" class="btn btn-primary btn-lg" role="button">Nuevo archivo</a>
@@ -42,7 +42,37 @@
                                 <a href="{{route('descarga.show', $dato->id)}}" class="btn btn-sm btn-outline-primary" role="button">Ver</a>
                                 @auth
                                     <a href="{{route('descarga.edit', $dato->id)}}" class="btn btn-sm btn-outline-info" role="button">Modificar</a>
-                                    <a href="{{route('descarga.delete', $dato->id)}}" class="btn btn-sm btn-outline-danger" role="button">Borrar</a>
+                                    
+                                    
+                                    <a onclick="borrar()" class="btn btn-sm btn-outline-danger" role="button">Borrar</a>
+
+                                    <script>
+                                    function borrar(){
+                                        swal({
+                                            title: "¿Seguro de que borrar este elemento?",
+                                            text: "Una vez eliminado, ¡no podrá recuperar este elemento!",
+                                            icon: "warning",
+                                            buttons: true,
+                                            dangerMode: true,
+                                            })
+                                            .then((willDelete) => {
+                                            if (willDelete) {
+                                                swal("Poof! Ha sido borrado!", {
+                                                icon: "success",
+                                                });
+
+                                            location.href='{{route('descarga.delete', $dato->id)}}'; 
+                                            
+                                            } else {
+                                                swal("¡Su elemento está a salvo!");
+                                            }
+                                        }); 
+                                           
+                                    }
+                                       
+                                    </script>
+
+
                                 @endauth
                             </div>
                         </div>

@@ -7,11 +7,11 @@
 
 <section class="text-center">
     <div class="container">
-        <a href="{{ route('capitulo.all', $id) }}">Capitulo</a>
+        <a href="{{ route('capitulo.all', $libro_id) }}">Capitulo</a>
         <h1>Galerias</h1>
         <p>
             @auth
-                <a href="{{ route('galeria.create') }}" class="btn btn-primary btn-lg" role="button">Nueva Galeria</a>
+                <a href="{{ route('galeria.create', $galerias[0]->capitulo_id) }}" class="btn btn-primary btn-lg" role="button">Nueva Galeria</a>
             @endauth
         </p>
       </div>
@@ -45,7 +45,37 @@
                             <a href="{{route('galeria.show', $galeria->id)}}" class="btn btn-sm btn-primary" role="button">Ver</a>
                             @auth
                                 <a href="{{route('galeria.edit', $galeria->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
-                                <a href="{{route('galeria.delete', $galeria->id)}}" class="btn btn-sm btn-danger" role="button">Borrar</a>
+
+
+                                <a href="#" onclick="borrar()" class="btn btn-sm btn-outline-danger" role="button">Borrar</a>
+
+                                    <script>
+                                    function borrar(){
+                                        swal({
+                                            title: "¿Seguro de que borrar este elemento?",
+                                            text: "Una vez eliminado, ¡no podrá recuperar este elemento!",
+                                            icon: "warning",
+                                            buttons: true,
+                                            dangerMode: true,
+                                            })
+                                            .then((willDelete) => {
+                                            if (willDelete) {
+                                                swal("Poof! Ha sido borrado!", {
+                                                icon: "success",
+                                                });
+
+                                            location.href='{{route('galeria.delete', $galeria->id)}}'; 
+                                            
+                                            } else {
+                                                swal("¡Su elemento está a salvo!");
+                                            }
+                                        }); 
+                                           
+                                    }
+                                       
+                                    </script>
+
+
                             @endauth
                         </td>
                     </tr>    

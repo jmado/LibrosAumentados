@@ -41,7 +41,37 @@
                             <div class="btn-group">
                                 @auth
                                     <a href="{{route('audio.edit', $audio->id)}}" class="btn btn-sm btn-outline-info" role="button">Modificar</a>
-                                    <a href="{{route('audio.delete', $audio->id)}}" class="btn btn-sm btn-outline-danger" role="button">Borrar</a>
+
+
+                                    <a onclick="borrar()" class="btn btn-sm btn-outline-danger" role="button">Borrar</a>
+
+                                    <script>
+                                    function borrar(){
+                                        swal({
+                                            title: "¿Seguro de que borrar este elemento?",
+                                            text: "Una vez eliminado, ¡no podrá recuperar este elemento!",
+                                            icon: "warning",
+                                            buttons: true,
+                                            dangerMode: true,
+                                            })
+                                            .then((willDelete) => {
+                                            if (willDelete) {
+                                                swal("Poof! Ha sido borrado!", {
+                                                icon: "success",
+                                                });
+
+                                            location.href='{{route('audio.delete', $audio->id)}}'; 
+                                            
+                                            } else {
+                                                swal("¡Su elemento está a salvo!");
+                                            }
+                                        }); 
+                                           
+                                    }
+                                       
+                                    </script>
+
+
                                 @endauth
                             </div>
                         </div>

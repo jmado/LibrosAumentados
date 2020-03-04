@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Session;
 
 use App\Descarga;
 use App\Capitulo;
@@ -17,8 +18,17 @@ class DescargasController extends Controller
      */
     public function index($capitulo_id)
     {
+        $libro_id = $consulta = DB::select("select libro_id from capitulos where id=:id", ['id'=>$capitulo_id]);
+        $libro_id = $libro_id[0]->libro_id;
+
+        //Variables de sesion para imagenes
+        Session::put('libro_id', $libro_id);
+        Session::put('capitulo_id', $capitulo_id);
+
+
         $datos = Descarga::where('capitulo_id', '=', $capitulo_id)->simplePaginate(4);
-        return view('descarga.all', compact('datos', 'capitulo_id'));
+
+        return view('descarga.all', compact('datos', 'libro_id'));
     }
 
     /**
@@ -28,7 +38,8 @@ class DescargasController extends Controller
      */
     public function create()
     {
-        $capitulos = DB::select('select id, titulo from capitulos');
+
+        $capitulos = Session::get('capitulo_id');
         return view('descarga.form', compact('capitulos'));
     }
 
@@ -52,8 +63,9 @@ class DescargasController extends Controller
         //Lo guardo en la base de datos
         $datos->archivo ="descargas/" .$archivo->getClientOriginalName();
 
-        $datos->capitulo_id = $request->capitulo_id;
-        $id = $request->capitulo_id;
+        $id = Session::get('capitulo_id');
+        $datos->capitulo_id = $id;
+        
         $datos->save();
         
         return redirect()->route('descarga.all', $id);
@@ -81,7 +93,7 @@ class DescargasController extends Controller
     {
         $datos = Descarga::findOrFail($id);
         //Capitulos
-        $capitulos = DB::table('capitulos')->select('id','titulo')->get();
+        $capitulos = Session::get('capitulo_id');
         return view('descarga.form', compact('datos','capitulos'));
     }
 
@@ -97,10 +109,13 @@ class DescargasController extends Controller
         $datos = Descarga::findOrFail($id);
         $datos->titulo = $request->titulo;
         $datos->descripcion = $request->descripcion;
-        $datos->capitulo_id = $request->capitulo_id;
+
+        $capitulo_id = Session::get('capitulo_id');
+        $datos->capitulo_id = $capitulo_id;
+
         $datos->tipo_archivo = $request->tipo_archivo;
 
-        $capitulo_id = $request->capitulo_id;
+        
 
         //Descargas
         $archivo = $request->file;

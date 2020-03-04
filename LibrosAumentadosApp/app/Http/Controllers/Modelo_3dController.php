@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Session;
 
 use App\Modelo_3d;
 use App\Capitulo;
@@ -17,6 +18,14 @@ class Modelo_3dController extends Controller
      */
     public function index($id)
     {
+        $libro_id = $consulta = DB::select("select libro_id from capitulos where id=:id", ['id'=>$id]);
+        $libro_id = $libro_id[0]->libro_id;
+
+        //Variables de sesion para imagenes
+        Session::put('libro_id', $libro_id);
+        Session::put('capitulo_id', $id);
+
+
         $modelos = Modelo_3d::where('capitulo_id', '=', $id)->simplePaginate(6);
         return view('modelo3d.all', compact('modelos', 'id'));
     }
@@ -28,7 +37,8 @@ class Modelo_3dController extends Controller
      */
     public function create()
     {
-        return view('modelo3d.form');
+        $capitulo_id = Session::get('capitulo_id');
+        return view('modelo3d.form', compact('capitulo_id'));
     }
 
     /**
@@ -43,7 +53,8 @@ class Modelo_3dController extends Controller
         $modelo = new Modelo_3d;
 
         $modelo->descripcion = $request->descripcion;
-        $modelo->capitulo_id = $request->capitulo_id;
+        $capitulo_id = Session::get('capitulo_id');
+        $modelo->capitulo_id = $capitulo_id;
 
         //Obtengo el titulo y creo una carpeta
         if (mkdir('modelos3d/'.$request->titulo)) {
@@ -77,7 +88,7 @@ class Modelo_3dController extends Controller
             echo 'directorio fallo';
         }
         $id = $request->capitulo_id;
-        return redirect()->route('modelo.all', $id);
+        return redirect()->route('modelo.all', $capitulo_id);
          
     }
 
@@ -101,8 +112,9 @@ class Modelo_3dController extends Controller
      */
     public function edit($id)
     {
+        $capitulo_id = Session::get('capitulo_id');
         $modelo = Modelo_3d::findOrFail($id);
-        return view('modelo3d.form', compact('modelo'));
+        return view('modelo3d.form', compact('modelo', 'capitulo_id'));
     }
 
     /**
@@ -117,7 +129,9 @@ class Modelo_3dController extends Controller
         $modelo = Modelo_3d::findOrFail($id);
 
         $modelo->descripcion = $request->descripcion;
-        //$modelo->capitulo_id = $request->capitulo_id;
+
+        $capitulo_id = Session::get('capitulo_id');
+        $modelo->capitulo_id = $capitulo_id;
 
         //Obtengo el titulo y creo una carpeta
         
@@ -131,7 +145,8 @@ class Modelo_3dController extends Controller
             $zip = new ZipArchive;
             if ($zip->open($archivo) == true) {
                 echo 'descomprimir true';
-                $zip->extractTo('public/modelos3d/' . $request->titulo);
+                $archivo->move('imagenes', $archivo->getClientOriginalName());
+                $zip->extractTo('public/modelos3d/' . $archivo);
                 $zip->close();
 
                 $modelo->modelo_3d = $request->titulo;
@@ -144,6 +159,7 @@ class Modelo_3dController extends Controller
             echo 'directorio fallo';
         }
 
+        return redirect()->route('imagen.all', $capitulo_id);
     }
 
 
@@ -160,12 +176,12 @@ class Modelo_3dController extends Controller
     public function destroy($id)
     {
         $modelo = Modelo_3d::findOrFail($id);
-        $id_capitulo = $modelo->capitulo_id;
+        $capitulo_id = $modelo->capitulo_id;
         
-        Modelo_3dController::rrmdir($modelo->modelo_3d);
+        //Modelo_3dController::rrmdir($modelo->modelo_3d);
         $modelo->delete();
 
-        return redirect()->route('modelo.all', $id_capitulo);
+        return redirect()->route('modelo.all', $capitulo_id);
     }
 
 

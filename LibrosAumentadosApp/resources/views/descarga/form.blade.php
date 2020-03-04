@@ -29,56 +29,68 @@
         @endisset
             @csrf
             
-            <label for="capitulo">Capitulos:</label>
-            <select name="capitulo_id" class="form-control" id="capitulo" required>
-                @foreach ($capitulos as $capitulo)
-                    @isset($datos)
-                        @if($datos->capitulo_id == $capitulo->id)
-                            <option value={{$capitulo->id}} selected>{{$capitulo->titulo}}</option>    
-                        @else   
-                            <option value={{$capitulo->id}}>{{$capitulo->titulo}}</option> 
-                        @endif
-                    @else   
-                        <option value={{$capitulo->id}}>{{$capitulo->titulo}}</option> 
-                    @endisset
-                @endforeach
-            </select>
 
-            <label for="tipo">Tipo de archivo:</label>
-            <select name="tipo_archivo" class="form-control" id="tipo" required>
-                    @isset($datos)
-                        @if($datos->tipo_archivo == 'pdf')
-                            <option value='pdf' selected>PDF</option>
-                            <option value='txt' >TXT</option>     
-                        @else   
-                            <option value='txt' selected>TXT</option>
-                            <option value='pdf' >PDF</option>
-                        @endif
-                    @else   
-                        <option value='txt' >TXT</option>
-                        <option value='pdf' >PDF</option> 
-                    @endisset
-            </select>
 
-            <br>
-            <label for="title">Titulo:</label>
-            <br>
-            <input id="title" type="text" name="titulo" class="form-control" value="{{$datos->titulo ?? ''}}" required>
-            <br>
-            <label for="info">Descripción:</label>
-            <br>
-            <input id="info" type="text" name="descripcion" class="form-control" value="{{$datos->descripcion ?? ''}}">
-            <br>
-            <div class="custom-file">
-                <input type="file" name="file" class="custom-file-input" id="fichero" lang="es">
-                <label class="custom-file-label" for="fichero">Seleccionar Archivo</label>
+
+            <div class="form-group">
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Capitulo</strong></li>
+                    <li class="list-group-item">{{$capitulos}}</li>
+                </ul>
             </div>
-            <br>
+
+            <div class="form-group">
+                <label for="tipo">Tipo de archivo:</label>
+                <select name="tipo_archivo" class="form-control" id="tipo" required>
+                        @isset($datos)
+                            @if($datos->tipo_archivo == 'pdf')
+                                <option value='pdf' selected>PDF</option>
+                                <option value='txt' >TXT</option>     
+                            @else   
+                                <option value='txt' selected>TXT</option>
+                                <option value='pdf' >PDF</option>
+                            @endif
+                        @else   
+                            <option value='txt' >TXT</option>
+                            <option value='pdf' >PDF</option> 
+                        @endisset
+                </select>
+            </div>
             
 
-            <input type="submit" value="Enviar" class="btn btn-primary btn-block" role="button">
+            
 
-            </form>
+            <div class="form-group">
+            
+            </div>
+
+
+            <div class="form-group">
+                <label for="title">Titulo:</label>
+                <input id="title" type="text" name="titulo" class="form-control" value="{{$datos->titulo ?? ''}}" required>
+            </div>
+
+
+            <div class="form-group">
+                <label for="info">Descripción:</label>
+                <input id="info" type="text" name="descripcion" class="form-control" value="{{$datos->descripcion ?? ''}}">
+            </div>
+
+
+            <div class="form-group">
+                <div class="custom-file">
+                    <input type="file" name="file" class="custom-file-input" id="fichero" lang="es">
+                    <label class="custom-file-label" for="fichero">Seleccionar Archivo</label>
+                </div>
+            </div>
+            
+            
+            <div class="form-group">
+                <input type="submit" value="Enviar" class="btn btn-primary btn-block" role="button">
+            </div>
+            
+            
+        </form>
 
     </div>    
 </div>

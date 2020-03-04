@@ -29,8 +29,12 @@
         @csrf
 
             <div class="form-group">
-                <input type="text" name="capitulo_id" value="{{$capitulos}}" hidden>
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Capitulo</strong></li>
+                    <li class="list-group-item">{{$capitulo_id}}</li>
+                </ul>
             </div>
+
             
             <div class="form-group">
                 <label for="title">Titulo:</label>

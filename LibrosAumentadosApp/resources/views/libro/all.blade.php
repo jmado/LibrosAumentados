@@ -45,7 +45,37 @@
                             {{--     <a href='{{route('libro.loginVisitante', ['id_libro'=>$libro->id])}}' class="btn btn-sm btn-info" role="button">Ver</a>--}}
                             @auth
                                 <a href="{{route('libro.edit', $libro->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
-                                <a href="{{route('libro.delete', $libro->id)}}" class="btn btn-sm btn-danger" role="button">Borrar</a>
+
+
+                                <a onclick="borrar()" class="btn btn-sm btn-outline-danger" role="button">Borrar</a>
+
+                                    <script>
+                                    function borrar(){
+                                        swal({
+                                            title: "¿Seguro de que borrar este elemento?",
+                                            text: "Una vez eliminado, ¡no podrá recuperar este elemento!",
+                                            icon: "warning",
+                                            buttons: true,
+                                            dangerMode: true,
+                                            })
+                                            .then((willDelete) => {
+                                            if (willDelete) {
+                                                swal("Poof! Ha sido borrado!", {
+                                                icon: "success",
+                                                });
+                                                
+                                            location.href='{{route('libro.delete', $libro->id)}}'; 
+
+                                            } else {
+                                                swal("¡Su elemento está a salvo!");
+                                            }
+                                        }); 
+                                           
+                                    }
+                                       
+                                    </script>
+
+
                             @endauth
                             </div>
                         </div>

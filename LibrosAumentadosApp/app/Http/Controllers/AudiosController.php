@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Session;
 
 use App\Audio;
 use App\Capitulo;
@@ -17,7 +18,16 @@ class AudiosController extends Controller
      */
     public function index($capitulo_id)
     {
+
+        $libro_id = $consulta = DB::select("select libro_id from capitulos where id=:id", ['id'=>$capitulo_id]);
+        $libro_id = $libro_id[0]->libro_id;
+
+        //Variables de sesion para imagenes
+        Session::put('libro_id', $libro_id);
+        Session::put('capitulo_id', $capitulo_id);
+
         $datos = Audio::where('capitulo_id', '=', $capitulo_id)->simplePaginate(4);
+
         return view('audio.all', compact('datos', 'capitulo_id'));
     }
 
@@ -28,8 +38,8 @@ class AudiosController extends Controller
      */
     public function create()
     {
-        $capitulos = DB::select('select id, titulo from capitulos');
-        return view('audio.form', compact('capitulos'));
+        $capitulo_id = Session::get('capitulo_id');
+        return view('audio.form', compact('capitulo_id'));
     }
 
     /**
@@ -51,8 +61,9 @@ class AudiosController extends Controller
         //Lo guardo en la base de datos
         $datos->archivo ="audios/" .$archivo->getClientOriginalName();
 
-        $datos->capitulo_id = $request->capitulo_id;
-        $id = $request->capitulo_id;
+        $id = Session::get('capitulo_id');
+        $datos->capitulo_id = $id;
+        
         $datos->save();
         
         return redirect()->route('audio.all', $id);
@@ -79,8 +90,8 @@ class AudiosController extends Controller
     {
         $datos = Audio::findOrFail($id);
         //Capitulos
-        $capitulos = DB::table('capitulos')->select('id','titulo')->get();
-        return view('audio.form', compact('datos','capitulos'));
+        $capitulo_id = Session::get('capitulo_id');
+        return view('audio.form', compact('datos','capitulo_id'));
     }
 
     /**
@@ -95,9 +106,10 @@ class AudiosController extends Controller
         $datos = Audio::findOrFail($id);
         $datos->titulo = $request->titulo;
         $datos->descripcion = $request->descripcion;
-        $datos->capitulo_id = $request->capitulo_id;
+        $capitulo_id = Session::get('capitulo_id');
+        $datos->capitulo_id = $capitulo_id;
 
-        $capitulo_id = $request->capitulo_id;
+        
 
         //Audio
         $archivo = $request->file;

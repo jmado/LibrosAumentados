@@ -14,9 +14,10 @@ class CapitulosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index($libro_id)
     {
-        $capituloList = Capitulo::where('libro_id', '=', $id)->simplePaginate(3);
+        $capituloList = Capitulo::where('libro_id', '=', $libro_id)->simplePaginate(3);
+        $id = $libro_id;
         return view('capitulo.all', compact('capituloList', 'id'));
     }
 

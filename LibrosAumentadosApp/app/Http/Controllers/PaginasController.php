@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Session;
+
 use App\Pagina;
 use App\Capitulo;
 use App\Libro;
@@ -16,6 +19,13 @@ class PaginasController extends Controller
      */
     public function index($id)
     {
+        $libro_id = $consulta = DB::select("select libro_id from capitulos where id=:id", ['id'=>$id]);
+        $libro_id = $libro_id[0]->libro_id;
+
+        //Variables de sesion para imagenes
+        Session::put('libro_id', $libro_id);
+        Session::put('capitulo_id', $id);
+
         $paginaList = Pagina::where('capitulo_id', '=', $id)->simplePaginate(3);
         return view('pagina.all', compact('paginaList', 'id'));
     }
@@ -33,7 +43,8 @@ class PaginasController extends Controller
      */
     public function create()
     {
-        return view('pagina.form');
+        $capitulo_id = Session::get('capitulo_id');
+        return view('pagina.form', compact('capitulo_id'));
     }
 
     /**
@@ -45,12 +56,19 @@ class PaginasController extends Controller
     public function store(Request $r)
     {
        
-        
-        $pag = new Pagina($r->all());
+        $pagina = new Pagina;
+        $capitulo_id = Session::get('capitulo_id');
+        $pagina->capitulo_id = $capitulo_id;
+        $pagina->numero_pagina = $r->numero_pagina;
+        $pagina->texto = $r->texto;
 
-        $pag->save();
-        $pag->capitulo()->associate($r->capitulo_id);
-        return redirect()->route('pagina.all', $r->capitulo_id);
+        //$pag = new Pagina($r->all());
+
+        $pagina->save();
+        //$pag->capitulo()->associate($r->capitulo_id);
+        $pagina->capitulo()->associate(Session::get('capitulo_id'));
+
+        return redirect()->route('pagina.all', $capitulo_id);
         
     }
 
@@ -73,8 +91,9 @@ class PaginasController extends Controller
      */
     public function edit($id)
     {
+        $capitulo_id = Session::get('capitulo_id');
         $pagina = Pagina::find($id);
-        return view('pagina.form', compact('pagina'));
+        return view('pagina.form', compact('pagina', 'capitulo_id'));
     }
 
     /**
@@ -90,12 +109,14 @@ class PaginasController extends Controller
         $pag = Pagina::find($id);
         $pag->numero_pagina = $r->numero_pagina;
         $pag->texto = $r->texto;
-        $pag->capitulo_id = $r->capitulo_id;
+
+        $capitulo_id = Session::get('capitulo_id');
+        $pag->capitulo_id = $capitulo_id;
 
         $pag->save();
 
         //return redirect()->route('capitulo.all', $pag->capitulo_id);
-        return redirect()->route('pagina.all', $r->capitulo_id);
+        return redirect()->route('pagina.all', $capitulo_id);
         
         
     }

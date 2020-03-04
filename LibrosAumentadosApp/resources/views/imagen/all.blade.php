@@ -7,7 +7,7 @@
 
 <section class="text-center">
     <div class="container">
-        <a href="{{ route('capitulo.all', $id) }}">Capitulo</a>
+        <a href="{{ route('capitulo.all', $libro_id) }}">Capitulo</a>
         <h1>Imagenes</h1>
         <p>
             @auth
@@ -28,7 +28,7 @@
             <div class="col-md-4">
                 <div class="elemento mb-4">
                     <div class="elemento-header">
-                        <a href="{{route('imagen.show', $imagen->id)}}">
+                        <a href="../../{{$imagen->imagen}}">
                             <img src="../../{{$imagen->imagen}}" alt="{{$imagen->titulo}}">
                         </a> 
                     </div>
@@ -39,10 +39,38 @@
 
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <a href="{{route('imagen.show', $imagen->id)}}" class="btn btn-sm btn-outline-primary" role="button">Ver</a>
                                 @auth           
                                     <a href="{{route('imagen.edit', $imagen->id)}}" class="btn btn-sm btn-outline-info" role="button">Modificar</a>
-                                    <a href="{{route('imagen.delete', $imagen->id)}}" class="btn btn-sm btn-outline-danger" role="button">Borrar</a>
+
+
+
+                                    <a onclick="borrar()" class="btn btn-sm btn-outline-danger" role="button">Borrar</a>
+
+                                    <script>
+                                    function borrar(){
+                                        swal({
+                                            title: "¿Seguro de que borrar este elemento?",
+                                            text: "Una vez eliminado, ¡no podrá recuperar este elemento!",
+                                            icon: "warning",
+                                            buttons: true,
+                                            dangerMode: true,
+                                            })
+                                            .then((willDelete) => {
+                                            if (willDelete) {
+                                                swal("Poof! Ha sido borrado!", {
+                                                icon: "success",
+                                                });
+                                                
+                                            location.href='{{route('imagen.delete', $imagen->id)}}'; 
+
+                                            } else {
+                                                swal("¡Su elemento está a salvo!");
+                                            }
+                                        }); 
+                                           
+                                    }
+                                       
+                                    </script>
                                 @endauth
                             </div>
                         </div>

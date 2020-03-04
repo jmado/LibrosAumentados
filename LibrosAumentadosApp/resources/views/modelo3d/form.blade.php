@@ -27,20 +27,35 @@
         @endisset
             @csrf
             
-            <label for="capitulo">Capitulos:</label>
-            <input type="text" name="capitulo_id" class="form-control" id="capitulo" value="{{$modelo->capitulo_id ?? ''}}">
-           
-            <label for="title">Titulo:</label>
-            <input id="title" type="text" name="titulo" class="form-control" value="{{$modelo->titulo ?? ''}}" required>
-           
-            <label for="info">Descripción:</label>
-            <input id="info" type="text" name="descripcion" class="form-control" value="{{$modelo->descripcion ?? ''}}">
-           
-            <div class="custom-file">
-                <input type="file" name="file" class="custom-file-input" id="fichero" lang="es">
-                <label class="custom-file-label" for="fichero">Seleccionar Archivo .ZIP</label>
+            <div class="form-group">
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Capitulo</strong></li>
+                    <li class="list-group-item">{{$capitulo_id}}</li>
+                </ul>
             </div>
-            <br>
+           
+            <div class="form-group">
+                <label for="title">Titulo:</label>
+                <input id="title" type="text" name="titulo" class="form-control" value="{{$modelo->titulo ?? ''}}" required>
+            </div>
+            
+           
+
+            <div class="form-group">
+                <label for="info">Descripción:</label>
+                <input id="info" type="text" name="descripcion" class="form-control" value="{{$modelo->descripcion ?? ''}}">
+            </div>
+            
+           
+
+            <div class="form-group">
+                <div class="custom-file">
+                    <input type="file" name="file" class="custom-file-input" id="fichero" lang="es">
+                    <label class="custom-file-label" for="fichero">Seleccionar Archivo .ZIP</label>
+                </div>
+            </div>
+            
+            
             
 
             <input type="submit" value="Enviar" class="btn btn-primary btn-block" role="button">

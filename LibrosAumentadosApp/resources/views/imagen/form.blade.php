@@ -29,35 +29,28 @@
         @endisset
             @csrf
             
-            <label for="capitulo">Capitulos:</label>
-            <select name="capitulo_id" class="form-control" id="capitulo" required>
-                @foreach ($capitulos as $capitulo)
-                    @isset($datos)
-                        @if($datos->capitulo_id == $capitulo->id)
-                            <option value={{$capitulo->id}} selected>{{$capitulo->titulo}}</option>    
-                        @else   
-                            <option value={{$capitulo->id}}>{{$capitulo->titulo}}</option> 
-                        @endif
-                    @else   
-                        <option value={{$capitulo->id}}>{{$capitulo->titulo}}</option> 
-                    @endisset
-                @endforeach
-            </select>
 
-            <label for="galeria">Galerias:</label>
-            <select id="galerias" name="galeria_id[]" class="form-control" id="galerias" multiple>
-                @foreach ($galerias as $galeria)
-                    @isset($datos)
-                        @if($datos->galerias()->get()->contains($galeria->id))
-                            <option value={{$galeria->id}} selected>{{$galeria->titulo}}</option>   
-                        @else
-                            <option value={{$galeria->id}}>{{$galeria->titulo}}</option>
-                        @endif
-                    @else
-                        <option value={{$galeria->id}}>{{$galeria->titulo}}</option>
-                    @endif 
-                @endforeach
-            </select>
+            <div class="form-group">
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Capitulo</strong></li>
+                    <li class="list-group-item">{{$capitulo_id}}</li>
+                </ul>
+            </div>
+
+
+            @if($galerias)
+            <div class="form-group">
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Galerias en las que aparece</strong></li>
+                        @foreach ($galerias as $galeria)  
+                            <li class="list-group-item">{{$galeria->titulo}}</li>
+                        @endforeach
+                </ul>
+            </div>
+            
+            @endif
+
+            
 
             <br>
             <label for="title">Titulo:</label>

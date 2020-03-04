@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Session;
 
 use App\Video;
 use App\Capitulo;
@@ -18,6 +18,13 @@ class VideosController extends Controller
      */
     public function index($capitulo_id)
     {
+        $libro_id = $consulta = DB::select("select libro_id from capitulos where id=:id", ['id'=>$capitulo_id]);
+        $libro_id = $libro_id[0]->libro_id;
+
+        //Variables de sesion para imagenes
+        Session::put('libro_id', $libro_id);
+        Session::put('capitulo_id', $capitulo_id);
+
         $datos = Video::where('capitulo_id', '=', $capitulo_id)->simplePaginate(3);
         return view('video.all', compact('datos', 'capitulo_id'));
     }
@@ -29,7 +36,8 @@ class VideosController extends Controller
      */
     public function create()
     {
-        $capitulos = DB::select('select id, titulo from capitulos');
+
+        $capitulos = Session::get('capitulo_id');
         return view('video.form', compact('capitulos'));
     }
 
@@ -45,8 +53,9 @@ class VideosController extends Controller
         $datos->titulo = $request->titulo;
         $datos->descripcion = $request->descripcion;
         $datos->video = $request->video;
-        $datos->capitulo_id = $request->capitulo_id;
-        $id = $request->capitulo_id;
+        $id =Session::get('capitulo_id');
+        $datos->capitulo_id = $id;
+        
         $datos->save();
         
         return redirect()->route('video.all', $id);
@@ -77,7 +86,7 @@ class VideosController extends Controller
     {
         $datos = Video::findOrFail($id);
         //Listado de capitulos 
-        $capitulos = DB::table('capitulos')->select('id','titulo')->get();
+        $capitulos = Session::get('capitulo_id');
         return view('video.form', compact('datos', 'capitulos'));
     }
 
@@ -93,7 +102,7 @@ class VideosController extends Controller
         $datos = Video::findOrFail($id);
         $datos->titulo = $request->titulo;
         $datos->descripcion = $request->descripcion;
-        $datos->capitulo_id = $request->capitulo_id;
+        $datos->capitulo_id = Session::get('capitulo_id');
         $datos->video = $request->video;
         $datos->save();
         return redirect()->route('video.show', $id);
@@ -108,7 +117,7 @@ class VideosController extends Controller
     public function destroy($id)
     {
         $datos = Video::findOrFail($id);
-        $capitulo_id = $datos->capitulo_id;
+        $capitulo_id = Session::get('capitulo_id');
         $datos->delete();
         return redirect()->route('video.all', $capitulo_id);
     }

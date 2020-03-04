@@ -23,20 +23,12 @@
         @endisset
             @csrf
             <div class="form-group">
-                <label for="capitulo">Capitulos:</label>
-                <select name="capitulo_id" class="form-control" id="capitulo" required>
-                    @foreach ($capitulos as $capitulo)
-                        @isset($datos)
-                            @if($datos->capitulo_id == $capitulo->id)
-                                <option value={{$capitulo->id}} selected>{{$capitulo->titulo}}</option>    
-                            @else   
-                                <option value={{$capitulo->id}}>{{$capitulo->titulo}}</option> 
-                            @endif
-                        @else   
-                            <option value={{$capitulo->id}}>{{$capitulo->titulo}}</option> 
-                        @endisset
-                    @endforeach
-                </select>
+            <div class="form-group">
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Capitulo</strong></li>
+                    <li class="list-group-item">{{$capitulos}}</li>
+                </ul>
+            </div>
             </div>
             
 

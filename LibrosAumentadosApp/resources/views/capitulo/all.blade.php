@@ -43,15 +43,16 @@
                         <td>
                             {{$capitulo->titulo}}
                         </td>
-
+                    </tr>
+                    <tr>
                         <th><a href="{{ route('imagen.all', $capitulo->id) }}">
                             <img src="{{ URL::asset('complementos/iconos/imagen.png') }}" alt="">
                         </a></th> 
                         <th><a href="{{ route('galeria.all', $capitulo->id) }}">
-                            <img src="{{ URL::asset('complementos/iconos/imagen.png') }}" alt="">
+                            <img src="{{ URL::asset('complementos/iconos/galeria.png') }}" alt="">
                         </a></th>
                         <th><a href="{{ route('audio.all', $capitulo->id) }}">
-                            <img src="{{ URL::asset('complementos/iconos/galeria.png') }}" alt="">
+                            <img src="{{ URL::asset('complementos/iconos/audio.png') }}" alt="">
                         </a></th>
                         <th><a href="{{ route('video.all', $capitulo->id) }}">
                             <img src="{{ URL::asset('complementos/iconos/video.png') }}" alt="">

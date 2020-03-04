@@ -24,6 +24,9 @@ class LibrosController extends Controller
      */
     public function index()
     {
+
+        
+
         $libroList = DB::table('libros')->simplePaginate(3);
         return view('libro.all', compact('libroList'));
     }

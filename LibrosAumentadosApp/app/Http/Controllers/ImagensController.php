@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Session;
 
 use App\Imagen;
 use App\Galeria;
@@ -13,6 +14,9 @@ use App\Galeria_imagen;
 
 class ImagensController extends Controller
 {
+
+    
+
     /**
      * Display a listing of the resource.
      *
@@ -20,10 +24,18 @@ class ImagensController extends Controller
      */
     public function index($id)
     {
-        
-        //$datos = DB::select('select * from imagens where capitulo_id=:id',['id'=>$id])->simplePaginate(3);
+        //Consulta todas las imagenes de ese capitulo
         $datos = Imagen::where('capitulo_id', '=', $id)->simplePaginate(3);
-        return view('imagen.all', compact('datos', 'id'));
+        
+        $libro_id = $consulta = DB::select("select libro_id from capitulos where id=:id", ['id'=>$id]);
+        $libro_id = $libro_id[0]->libro_id;
+
+        //Variables de sesion para imagenes
+        Session::put('libro_id', $libro_id);
+        Session::put('capitulo_id', $id);
+        
+
+        return view('imagen.all', compact('datos', 'libro_id'));
     }
 
     /**
@@ -33,11 +45,13 @@ class ImagensController extends Controller
      */
     public function create()
     {
-        //Listado de capitulos existentes
-        $capitulos = DB::select('select id, titulo from capitulos');
+        //Capitulo
+        $capitulo_id = Session::get('capitulo_id');
+
         //Listado de galerias existentes
-        $galerias = DB::select('select id, titulo from galerias');
-        return view('imagen.form', compact('capitulos','galerias'));
+        $galerias = DB::select('select id, titulo from galerias where capitulo_id=:id',['id'=>$capitulo_id]);
+
+        return view('imagen.form', compact('capitulo_id','galerias'));
     }
 
     /**
@@ -56,17 +70,13 @@ class ImagensController extends Controller
         $archivo->move('imagenes', $archivo->getClientOriginalName());
         $datos->imagen = "imagenes/".$archivo->getClientOriginalName();
         //Capitulo al que pertenece
-        $datos->capitulo_id = $request->capitulo_id;
+        $id = Session::get('capitulo_id');
+        $datos->capitulo_id = $id;
         //Guardo
         $datos->save();
 
-        //Galeria a la que puede pertenecer ¿?
-        $id = DB::select('select max(id) as "id" from imagens');
-        $imagen_id = $id[0]->id;
-        $galeria_id = $request->galeria_id;
-        $datos->galerias()->sync($galeria_id);
         
-        $id = $request->capitulo_id;
+        
         return redirect()->route('imagen.all', $id);
     }
 
@@ -79,7 +89,7 @@ class ImagensController extends Controller
     public function show($id)
     {
         $datos = Imagen::findOrFail($id);
-        return view('imagen.show', compact('datos'));
+        return view('imagen.all', compact('datos'));
     }
 
     /**
@@ -93,10 +103,10 @@ class ImagensController extends Controller
         $datos = Imagen::findOrFail($id);
       
         //Listado de capitulos 
-        $capitulos = DB::table('capitulos')->select('id','titulo')->get();
+        $capitulo_id = Session::get('capitulo_id');
         //Listado de galerias  
-        $galerias = DB::table('galerias')->select('id','titulo')->get();
-        return view('imagen.form', compact('datos','capitulos','galerias'));
+        $galerias = DB::table('galerias')->select('id','titulo')->where('capitulo_id', '=', $capitulo_id)->get();
+        return view('imagen.form', compact('datos','capitulo_id','galerias'));
     }
 
     /**
@@ -112,7 +122,7 @@ class ImagensController extends Controller
         $datos->titulo = $request->titulo;
         $datos->descripcion = $request->descripcion;
         //Capitulo al que pertenece
-        $datos->capitulo_id = $request->capitulo_id;
+        $datos->capitulo_id = Session::get('capitulo_id');
 
         $archivo = $request->file;
        //Imagen
@@ -123,13 +133,10 @@ class ImagensController extends Controller
         //Guardo la imagen con sus datos
         $datos->save();
 
-        //Enlazo la posible galeria relacionada con la imagen
-        $imagen_id = $datos->id;
-        $galeria_id = $request->galeria_id;
+       
+        $id = Session::get('libro_id');
 
-        //Sincronizo los campos relacionados entre galerias e imagenes de forma automatica Laravel te quiero
-        $datos->galerias()->sync($galeria_id);
-        return redirect()->route('imagen.show', $id);
+        return redirect()->route('imagen.all', $id);
     }
 
     /**
@@ -142,8 +149,22 @@ class ImagensController extends Controller
     {
         $datos = Imagen::findOrFail($id);
         $id_capitulo = $datos->capitulo_id;
-        unlink($datos->imagen);
+        
+
+
+        /*Borrar fichero
+        $consulta = DB::select("select count(imagen_id) as cantidad from galeria_imagen where imagen_id=:id", ['id'=>$id]);
+        $consulta = $consulta[0]->cantidad;
+        echo($consulta);
+        if($consulta == 0) {
+            unlink($datos->imagen);
+        }
+        */
+        
         $datos->delete();
-        return redirect()->route('imagen.all', $id_capitulo);
+
+        $id = DB::select('select libro_id  from capitulos where id=:id', ['id'=>$id_capitulo]);
+        $id = $id[0]->libro_id;
+        return redirect()->route('imagen.all', $id);
     }
 }

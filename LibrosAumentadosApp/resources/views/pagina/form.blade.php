@@ -53,21 +53,17 @@
         </div>
 
         <div class="form-group">
-            <label for="capitulo">ID del Capitulo:</label>
-            <input type="text" name="capitulo_id" class="form-control" id="capitulo" value="{{$pagina->capitulo_id ?? ''}}" required>
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Capitulo</strong></li>
+                <li class="list-group-item">{{$capitulo_id}}</li>
+            </ul>
         </div>
         
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary btn-block" role="button" value="Editar">
+        </div>
         
-        <input type="submit" class="btn btn-primary btn-block" role="button" value="Editar">
-        {{--
-        <script>
-            function enviar(){
-                var markup = document.getElementById("markup").innerText;
-                document.getElementById("texto").value = markup;
-                document.getElementById("formulario").submit();
-            }
-        </script>
-        --}}
+       
     </form>
         
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Session;
 
 use App\Imagen;
 use App\Galeria;
@@ -20,9 +21,17 @@ class GaleriasController extends Controller
      */
     public function index($id)
     {
-        //$galerias = DB::select('select * from galerias where capitulo_id=:id',['id'=>$id])->simplePaginate(3);
         $galerias = Galeria::where('capitulo_id', '=', $id)->simplePaginate(3);
-        return view('galeria.all', compact('galerias', 'id'));
+
+
+        $libro_id = $consulta = DB::select("select libro_id from capitulos where id=:id", ['id'=>$id]);
+        $libro_id = $libro_id[0]->libro_id;
+
+        //Variables de sesion para imagenes
+        Session::put('libro_id', $libro_id);
+        Session::put('capitulo_id', $id);
+
+        return view('galeria.all', compact('galerias', 'libro_id'));
     }
 
     /**
@@ -32,11 +41,16 @@ class GaleriasController extends Controller
      */
     public function create()
     {
-        //Listado de capitulos existentes
-        $capitulos = DB::select('select id, titulo from capitulos');
+        //Capitulo
+        $capitulo_id = Session::get('capitulo_id');
+
+        //Listado de imagenes
+        $galerias = DB::select('select id, titulo from galerias where capitulo_id=:id',['id'=>$capitulo_id]);
+
         //Listado de galerias existentes
-        $imagenes = DB::select('select id, imagen from imagens');
-        return view('galeria.form', compact('capitulos','imagenes'));
+        $imagenes = DB::table('imagens')->select('id', 'imagen')->where('capitulo_id', '=', $capitulo_id)->get();
+
+        return view('galeria.form', compact('capitulo_id','imagenes'));
     }
 
     /**
@@ -53,7 +67,7 @@ class GaleriasController extends Controller
         $datos_galeria->titulo = $request->titulo;
         $datos_galeria->descripcion = $request->descripcion;
         $datos_galeria->tipo = $request->tipo;
-        $capitulo = $request->capitulo_id;
+        $capitulo = Session::get('capitulo_id');
         $datos_galeria->capitulo_id = $capitulo;
         //Guardo galeria
         $datos_galeria->save();
@@ -64,7 +78,8 @@ class GaleriasController extends Controller
         //Array con todas las id de imagenes
         $imagenes_id = $request->imagenes_id;
         $datos_galeria->imagenes()->sync($imagenes_id);
-        return redirect()->route('galeria.all', $request->capitulo_id);
+
+        return redirect()->route('galeria.all', $capitulo);
 
     }
 

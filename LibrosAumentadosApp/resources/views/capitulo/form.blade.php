@@ -29,7 +29,7 @@
             @csrf
             <div class="form-group">
                 <label for="capitulo">Capitulos:</label>
-                <input id="capitulo" type="text" class="form-control" name="numero_orden" value="{{$capitulo->numero_orden ?? ''}}" required>
+                <input id="capitulo" type="text" class="form-control" name="numero_orden" value="{{$capitulo->numero_orden ?? ''}}" required>    
             </div>
                 
             <div class="form-group">

@@ -60,7 +60,7 @@ Route::resource('/video', 'VideosController');
 
 //Rutas Audios
 Route::get("/audio/index/{id}", "AudiosController@index")->name("audio.all");
-Route::patch("/audio/destroy/{id}", "AudiosController@destroy")->name("audio.delete");
+Route::get("/audio/destroy/{id}", "AudiosController@destroy")->name("audio.delete");
 Route::resource('/audio', 'AudiosController');
 
 //Rutas Descargas (Otros Archivos)
