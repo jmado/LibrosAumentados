@@ -16,7 +16,7 @@
 
 <div class="elementos">
     <div class="container">
-    {{ $datos->links() }}
+    {{-- $datos->links() --}}
         <div class="row">
 
         

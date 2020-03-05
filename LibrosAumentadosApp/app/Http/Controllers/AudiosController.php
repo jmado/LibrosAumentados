@@ -26,7 +26,8 @@ class AudiosController extends Controller
         Session::put('libro_id', $libro_id);
         Session::put('capitulo_id', $capitulo_id);
 
-        $datos = Audio::where('capitulo_id', '=', $capitulo_id)->simplePaginate(4);
+        //$datos = Audio::where('capitulo_id', '=', $capitulo_id)->simplePaginate(4);
+        $datos = Audio::where('capitulo_id', '=', $capitulo_id);
 
         return view('audio.all', compact('datos', 'capitulo_id'));
     }
