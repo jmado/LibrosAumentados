@@ -42,10 +42,6 @@
                 <input id="cap" type="text" class="form-control" name="capitulo_padre" value="{{$capitulo->capitulo_padre_id ?? ''}}">
             </div>
 
-            <div class="form-group">
-                <label for="libro">Libro id:</label>
-                <input id="libro" type="text" class="form-control" name="libro_id" value="{{$capitulo->libro_id ?? ''}}" required>
-            </div>
 
             <input type="submit" value="Enviar" class="btn btn-primary btn-block" role="button">
 

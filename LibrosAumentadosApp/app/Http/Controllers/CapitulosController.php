@@ -49,7 +49,7 @@ class CapitulosController extends Controller
         $cap->numero_orden = $r->numero_orden;
         $cap->titulo = $r->titulo;
         $cap->capitulo_padre_id = $r->capitulo_padre_id;
-        $cap->libro_id = $r->libro_id;
+        $cap->libro_id = Session::get('libro_id');
         
         $cap->save();
         return redirect()->route('capitulo.all', $r->libro_id);
@@ -91,7 +91,7 @@ class CapitulosController extends Controller
         $cap->numero_orden = $r->numero_orden;
         $cap->titulo = $r->titulo;
         $cap->capitulo_padre_id = $r->capitulo_padre_id;
-        $cap->libro_id = $r->libro_id;
+        $cap->libro_id = Session::get('libro_id');
 
         $cap->save();
 
