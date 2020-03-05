@@ -26,7 +26,7 @@
 
         <div class="form-group">
             <label for="texto">Texto: </label>
-           <textarea name="texto"  class="form-control" id="texto" ></textarea>
+           <textarea name="texto"  class="form-control" id="texto" hidden></textarea>
             <div id="editor" style="border: 1px solid black"></div>
             {{-- Editor de texto online --}}
             <div id="markup"></div>

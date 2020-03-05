@@ -26,8 +26,11 @@ class PaginasController extends Controller
         Session::put('libro_id', $libro_id);
         Session::put('capitulo_id', $id);
 
+        $numero_orden = DB::select("select numero_orden, id from capitulos where id=:id", ['id'=>$id]);
+
         $paginaList = Pagina::where('capitulo_id', '=', $id)->simplePaginate(3);
-        return view('pagina.all', compact('paginaList', 'id'));
+
+        return view('pagina.all', compact('paginaList', 'id', 'numero_orden'));
     }
 
     public function mostrarPaginaCapitulo($id_capitulo)

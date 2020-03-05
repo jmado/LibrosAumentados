@@ -16,12 +16,13 @@
 
 <div class="elementos container">
     <div class="row">
-        <h2>Lista</h2>
+        <h2>Capitulo: {{$numero_orden[0]->numero_orden}} Lista de páginas</h2>
         <div class="table-responsive">
              <table class="table table-striped table-sm">
                 <thead>
                     <tr>
-                        <th>Capitulo</th>
+                  
+                        
                         <th>Página</th>
                         <th>Texto</th>  
                         <th></th>
@@ -31,9 +32,6 @@
                 <tbody>
                     @foreach ($paginaList as $pagina)
                     <tr>
-                        <td>
-                            {{$pagina->capitulo_id}}
-                        </td>
                         <td>
                             {{$pagina->numero_pagina}}
                         </td>
