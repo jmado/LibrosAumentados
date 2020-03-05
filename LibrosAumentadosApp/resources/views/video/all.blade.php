@@ -7,7 +7,7 @@
 
 <section class="text-center">
     <div class="container">
-        <a href="{{ route('capitulo.all', $capitulo_id) }}">Capitulo</a>
+        <a href="{{ route('capitulo.all', $libro_id) }}">Capitulo</a>
         <h1>Videos</h1>
         <p>
           <a href="{{ route('video.create') }}" class="btn btn-primary btn-lg" role="button">Nuevo Video</a>

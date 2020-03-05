@@ -26,7 +26,7 @@ class VideosController extends Controller
         Session::put('capitulo_id', $capitulo_id);
 
         $datos = Video::where('capitulo_id', '=', $capitulo_id)->simplePaginate(3);
-        return view('video.all', compact('datos', 'capitulo_id'));
+        return view('video.all', compact('datos', 'libro_id'));
     }
 
     /**

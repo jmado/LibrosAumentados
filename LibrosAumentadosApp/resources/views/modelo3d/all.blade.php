@@ -3,7 +3,7 @@
 @section("content")
 <section class="text-center">
     <div class="container">
-    <a href="{{ route('capitulo.all', $id) }}">Capitulo</a>
+    <a href="{{ route('capitulo.all', $libro_id) }}">Capitulo</a>
         <h1>Modelos</h1>
         
         <p>

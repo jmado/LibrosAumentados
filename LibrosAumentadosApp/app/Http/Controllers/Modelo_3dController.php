@@ -27,7 +27,7 @@ class Modelo_3dController extends Controller
 
 
         $modelos = Modelo_3d::where('capitulo_id', '=', $id)->simplePaginate(6);
-        return view('modelo3d.all', compact('modelos', 'id'));
+        return view('modelo3d.all', compact('modelos', 'libro_id'));
     }
 
     /**

@@ -29,7 +29,9 @@ class AudiosController extends Controller
         //$datos = Audio::where('capitulo_id', '=', $capitulo_id)->simplePaginate(4);
         $datos = Audio::where('capitulo_id', '=', $capitulo_id);
 
-        return view('audio.all', compact('datos', 'capitulo_id'));
+        
+
+        return view('audio.all', compact('datos', 'libro_id'));
     }
 
     /**
