@@ -31,7 +31,9 @@ class GaleriasController extends Controller
         Session::put('libro_id', $libro_id);
         Session::put('capitulo_id', $id);
 
-        return view('galeria.all', compact('galerias', 'libro_id'));
+        $capitulo = $id;
+
+        return view('galeria.all', compact('galerias', 'libro_id', 'capitulo'));
     }
 
     /**
