@@ -28,7 +28,7 @@
         @endisset
             @csrf
             <div class="form-group">
-                <label for="capitulo">Capitulos:</label>
+                <label for="capitulo">Numero de capitulo:</label>
                 <input id="capitulo" type="text" class="form-control" name="numero_orden" value="{{$capitulo->numero_orden ?? ''}}" required>    
             </div>
                 
@@ -37,10 +37,6 @@
                 <input id="title" type="text" class="form-control" name="titulo" value="{{$capitulo->titulo ?? ''}}" required>
             </div>
             
-            <div class="form-group">
-                <label for="cap">Capitulo padre:</label>
-                <input id="cap" type="text" class="form-control" name="capitulo_padre" value="{{$capitulo->capitulo_padre_id ?? ''}}">
-            </div>
 
 
             <input type="submit" value="Enviar" class="btn btn-primary btn-block" role="button">

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Session;
+
 use App\Capitulo;
 use App\Libro;
 
@@ -16,17 +18,18 @@ class CapitulosController extends Controller
      */
     public function index($libro_id)
     {
-        $capituloList = Capitulo::where('libro_id', '=', $libro_id)->simplePaginate(3);
+        $capituloList = Capitulo::where('libro_id', '=', $libro_id)->orderBy('numero_orden')->simplePaginate(3);
         $id = $libro_id;
         return view('capitulo.all', compact('capituloList', 'id'));
     }
 
+    /*
     public function mostrarCapitulosLibro($id_book)
     {
         $capituloList = Capitulo::where('libro_id', '=', $id_book)->get();
         return view('capitulo.all', compact('capituloList'));
     }
-
+*/
     /**
      * Show the form for creating a new resource.
      *
@@ -48,11 +51,15 @@ class CapitulosController extends Controller
         $cap = new Capitulo($r->all());
         $cap->numero_orden = $r->numero_orden;
         $cap->titulo = $r->titulo;
-        $cap->capitulo_padre_id = $r->capitulo_padre_id;
-        $cap->libro_id = Session::get('libro_id');
+
+
+        $cap->capitulo_padre_id = ($r->numero_orden == 1)? '0' : ($r->numero_orden-1);
+
+        $libro_id = Session::get('libro_id');;
+        $cap->libro_id = $libro_id;
         
         $cap->save();
-        return redirect()->route('capitulo.all', $r->libro_id);
+        return redirect()->route('capitulo.all', $libro_id);
     }
 
     /**
@@ -90,12 +97,14 @@ class CapitulosController extends Controller
         $cap = Capitulo::find($id);
         $cap->numero_orden = $r->numero_orden;
         $cap->titulo = $r->titulo;
-        $cap->capitulo_padre_id = $r->capitulo_padre_id;
-        $cap->libro_id = Session::get('libro_id');
+        $cap->capitulo_padre_id = ($r->numero_orden == 1)? '0' : ($r->numero_orden-1);
+
+        $libro_id = Session::get('libro_id');
+        $cap->libro_id = $libro_id;
 
         $cap->save();
 
-        return redirect()->route('capitulo.mostrarCapitulosLibro', $cap->libro_id);
+        return redirect()->route('capitulo.all', $libro_id);
     }
 
     /**
