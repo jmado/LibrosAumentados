@@ -29,8 +29,6 @@
                             <a href="/libro/loginVisitante/{{$libro->id}}"><img src='{{$libro->cubierta}}' class="cubierta"></a>
                         @endif
 
-
-
                        {{--<a href="{{route('libro.login', ['id_libro'=>$libro->id])}}"><img src='{{$libro->cubierta}}' class="cubierta"></a>--}}
                     </p>
                     

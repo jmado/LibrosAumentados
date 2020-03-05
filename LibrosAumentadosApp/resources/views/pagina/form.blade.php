@@ -26,9 +26,9 @@
 
         <div class="form-group">
             <label for="texto">Texto: </label>
-            <textarea name="texto"  class="form-control" id="texto" hidden>{{$pagina->texto ?? ''}}</textarea>
-            {{-- Editor de texto online --}}
+            <!--<textarea name="texto"  class="form-control" id="texto" ></textarea>-->
             <div id="editor" style="border: 1px solid black"></div>
+            {{-- Editor de texto online --}}
             <div id="markup"></div>
             <script src="https://unpkg.com/pell"></script>
             <script>
@@ -43,7 +43,8 @@
                     markup.innerHTML = "<br>";
                     markup.innerText += html;
                 }
-                })
+                });
+                editor.content.innerHTML = '{!!$pagina->texto ?? ''!!}'
             </script>
         </div>
 

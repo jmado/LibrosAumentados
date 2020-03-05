@@ -63,9 +63,11 @@
                         <th><a href="{{ route('descarga.all', $capitulo->id) }}">
                             <img src="{{ URL::asset('complementos/iconos/descargas.png') }}" alt="">
                         </a></th>
-                        <th><a href="{{ route('pagina.all', $capitulo->id) }}">
-                            <img src="{{ URL::asset('complementos/iconos/pagina.png') }}" alt="">
-                        </a></th>
+                        @auth
+                            <th><a href="{{ route('pagina.all', $capitulo->id) }}">
+                                <img src="{{ URL::asset('complementos/iconos/pagina.png') }}" alt="">
+                            </a></th>
+                        @endauth
 
                         <td>
                             @auth
