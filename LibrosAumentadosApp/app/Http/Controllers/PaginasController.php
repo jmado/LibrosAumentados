@@ -43,8 +43,7 @@ class PaginasController extends Controller
      */
     public function create()
     {
-        $capitulo_id = Session::get('capitulo_id');
-        return view('pagina.form', compact('capitulo_id'));
+        return view('pagina.form');
     }
 
     /**
@@ -91,9 +90,9 @@ class PaginasController extends Controller
      */
     public function edit($id)
     {
-        $capitulo_id = Session::get('capitulo_id');
+        
         $pagina = Pagina::find($id);
-        return view('pagina.form', compact('pagina', 'capitulo_id'));
+        return view('pagina.form', compact('pagina'));
     }
 
     /**

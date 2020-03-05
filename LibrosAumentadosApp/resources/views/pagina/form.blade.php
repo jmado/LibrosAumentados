@@ -26,7 +26,7 @@
 
         <div class="form-group">
             <label for="texto">Texto: </label>
-            <!--<textarea name="texto"  class="form-control" id="texto" ></textarea>-->
+           <textarea name="texto"  class="form-control" id="texto" ></textarea>
             <div id="editor" style="border: 1px solid black"></div>
             {{-- Editor de texto online --}}
             <div id="markup"></div>
@@ -53,12 +53,6 @@
             <input type="text" name="numero_pagina" class="form-control" id="n_pagina" value="{{$pagina->numero_pagina ?? ''}}">
         </div>
 
-        <div class="form-group">
-            <ul class="list-group">
-                <li class="list-group-item"><strong>Capitulo</strong></li>
-                <li class="list-group-item">{{$capitulo_id}}</li>
-            </ul>
-        </div>
         
         <div class="form-group">
             <input type="submit" class="btn btn-primary btn-block" role="button" value="Editar">
