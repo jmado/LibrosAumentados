@@ -35,7 +35,6 @@
                     <p>Titulo: {{$galeria[0]->titulo}}</p>
                     <p>Descripción: {{$galeria[0]->descripcion}}</p>
                     <p>Tipo de galería: {{$galeria[0]->tipo}}</p>
-                    <p>Capitulo: {{$galeria[0]->capitulo_id}}</p>
 
                 </div>
             </div>
