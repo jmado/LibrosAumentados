@@ -31,9 +31,6 @@
                     </div>
                     <div class="elemento-body">
                         <h2>{{$dato->titulo}}</h2>
-                        <p>
-                            <a href="{{route('capitulo.index')}}">Capitulo: {{$dato->capitulo_id}}</a>
-                        </p>
                         <p>Descripcion: {{$dato->descripcion}} </p>
                         <p>Tipo de archivo: {{$dato->tipo_archivo}} </p>
 

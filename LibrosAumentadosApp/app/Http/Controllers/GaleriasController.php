@@ -33,7 +33,9 @@ class GaleriasController extends Controller
 
         $capitulo = $id;
 
-        return view('galeria.all', compact('galerias', 'libro_id', 'capitulo'));
+        $numero_orden = DB::select("select numero_orden, id from capitulos where id=:id", ['id'=>$id]);
+
+        return view('galeria.all', compact('galerias', 'libro_id', 'capitulo', 'numero_orden'));
     }
 
     /**

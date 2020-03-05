@@ -21,24 +21,21 @@
 
 <div class="elementos container">
     <div class="row">
-        <h2>Lista</h2>
+        <h2>Capitulo {{$numero_orden[0]->numero_orden}} Lista de galerias</h2>
         <div class="table-responsive">
              <table class="table table-striped table-sm">
                 <thead>
                     <tr>
-                        <th>Capitulo</th>
+                        
                         <th>Titulo</th>
                         <th>Descripcion</th>
-                        <th></th>  
+                         
                     </tr>
                 </thead>
                 <tbody>
                 {{ $galerias->links() }}
                     @foreach ($galerias as $galeria)
                     <tr>
-                        <td>
-                            <a href="{{route('capitulo.all', $galeria->capitulo_id)}}" class="btn btn-sm btn-primary" role="button">{{$galeria->capitulo_id}}</a>
-                        </td>
                         <td>{{$galeria->titulo}}</td>
                         <td>{{$galeria->descripcion}}</td> 
                         <td>

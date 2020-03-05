@@ -19,7 +19,6 @@
     </div> 
     <div>
       <h1>{{$datos->titulo}}</h1>
-      <a href="capitulo">Capitulo: {{$datos->capitulo_id}}</a>
       <p class="lead">Descripcion: {{$datos->descripcion}}</p>
     </div>
   </div>

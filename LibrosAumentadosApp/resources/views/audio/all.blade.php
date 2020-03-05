@@ -34,7 +34,7 @@
                     </div>
                     <div class="elemento-body">
                         <h2>{{$audio->titulo}}</h2>
-                        <p><a href="{{route('capitulo.index')}}">Capitulo: {{$audio->capitulo_id}}</a></p>
+                        
                         <p>Descripcion: {{$audio->descripcion}} </p>
 
                         <div class="d-flex justify-content-between align-items-center">
