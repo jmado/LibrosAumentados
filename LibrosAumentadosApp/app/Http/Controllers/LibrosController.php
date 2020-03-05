@@ -136,6 +136,7 @@ class LibrosController extends Controller
     }
 
     public function loginVisitante($id_libro) {
+
         $libro = DB::table('libros')->select('titulo')->where('id', '=', $id_libro)->first();
         $libro = $libro->titulo;
 
@@ -258,5 +259,7 @@ class LibrosController extends Controller
 
         
     }
+
+    
 
 }
