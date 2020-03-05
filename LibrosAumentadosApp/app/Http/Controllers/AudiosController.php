@@ -27,7 +27,9 @@ class AudiosController extends Controller
         Session::put('capitulo_id', $capitulo_id);
 
         //$datos = Audio::where('capitulo_id', '=', $capitulo_id)->simplePaginate(4);
-        $datos = Audio::where('capitulo_id', '=', $capitulo_id);
+        //$datos = Audio::where('capitulo_id', '=', $capitulo_id);
+        $datos = DB::select('Select * from audio where capitulo_id=:id', ['id'=>$capitulo_id]);
+        
 
         
 
