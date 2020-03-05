@@ -32,12 +32,7 @@
 
 
 
-            <div class="form-group">
-                <ul class="list-group">
-                    <li class="list-group-item"><strong>Capitulo</strong></li>
-                    <li class="list-group-item">{{$capitulos}}</li>
-                </ul>
-            </div>
+            
 
             <div class="form-group">
                 <label for="tipo">Tipo de archivo:</label>

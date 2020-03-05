@@ -30,12 +30,7 @@
             @csrf
             
 
-            <div class="form-group">
-                <ul class="list-group">
-                    <li class="list-group-item"><strong>Capitulo</strong></li>
-                    <li class="list-group-item">{{$capitulo_id}}</li>
-                </ul>
-            </div>
+            
 
 
             @if($galerias)
