@@ -11,7 +11,7 @@
         <h1>Galerias</h1>
         <p>
             @auth
-                <a href="{{ route('galeria.create', $galerias[0]->capitulo_id) }}" class="btn btn-primary btn-lg" role="button">Nueva Galeria</a>
+                <a href="{{ route('galeria.create', $capitulo) }}" class="btn btn-primary btn-lg" role="button">Nueva Galeria</a>
             @endauth
         </p>
       </div>

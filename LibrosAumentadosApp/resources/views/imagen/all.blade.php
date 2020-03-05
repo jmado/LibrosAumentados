@@ -34,7 +34,7 @@
                     </div>
                     <div class="elemento-body">
                         <h2>{{$imagen->titulo}}</h2>
-                        <p><a href="{{route('capitulo.index')}}">Capitulo: {{$imagen->capitulo_id}}</a></p>
+                        {{--<p><a href="{{route('capitulo.index')}}">Capitulo: {{$imagen->capitulo_id}}</a></p>--}}
                         <p>Descripcion: {{$imagen->descripcion}} </p>
 
                         <div class="d-flex justify-content-between align-items-center">
