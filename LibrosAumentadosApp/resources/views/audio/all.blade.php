@@ -6,7 +6,7 @@
 
 <section class="text-center">
     <div class="container">
-        <a href="{{ route('capitulo.all', $datos[0]->capitulo_id) }}">Capitulo</a>
+        <a href="{{ route('capitulo.all', $capitulo_id) }}">Capitulo</a>
         <h1>Audios</h1>
         <p>
           <a href="{{ route('audio.create') }}" class="btn btn-primary btn-lg" role="button">Nuevo Audio</a>
