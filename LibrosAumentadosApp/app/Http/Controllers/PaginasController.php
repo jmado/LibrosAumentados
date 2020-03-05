@@ -30,6 +30,7 @@ class PaginasController extends Controller
 
         $paginaList = Pagina::where('capitulo_id', '=', $id)->simplePaginate(3);
 
+        $id = $libro_id;
         return view('pagina.all', compact('paginaList', 'id', 'numero_orden'));
     }
 
