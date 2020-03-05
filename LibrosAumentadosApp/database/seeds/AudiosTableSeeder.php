@@ -4,13 +4,19 @@ use Illuminate\Database\Seeder;
 
 class AudiosTableSeeder extends Seeder
 {
+
     /**
-     * Run the database seeds.
+     * Auto generated seed file
      *
      * @return void
      */
     public function run()
     {
-       
+        
+
+        \DB::table('audios')->delete();
+        
+        
+        
     }
 }
