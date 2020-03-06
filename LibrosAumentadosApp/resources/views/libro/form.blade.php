@@ -45,9 +45,7 @@
                     <label class="custom-file-label" for="fichero">Seleccionar Imagen</label>
             </div>  
 
-            <div class="form-group">
-                <img src="{{$libro->portada ?? ''}}" class="cubierta-mini">
-            </div>  
+             
                 
                 
             <input type="submit" value="Enviar" class="btn btn-primary btn-block" role="button">
