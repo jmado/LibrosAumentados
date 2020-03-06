@@ -7,8 +7,16 @@
 
 <section class="text-center">
     <div class="container">
-        <a href="{{ route('capitulo.all', $libro_id) }}">Capitulo</a>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">LibrosAumentadosApp</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('libro.index') }}">Libros</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('capitulo.all', $libro_id) }}">Capitulos</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Galerias</li>
+            </ol>
+        </nav>
         <h1>Galerias</h1>
+
         <p>
             @auth
                 <a href="{{ route('galeria.create', $capitulo) }}" class="btn btn-primary btn-lg" role="button">Nueva Galeria</a>

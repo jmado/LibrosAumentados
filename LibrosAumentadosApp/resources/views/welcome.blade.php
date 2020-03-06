@@ -7,10 +7,6 @@
 
     
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}">
-
-    <script src="{{ URL::asset('js/appWelcome.js') }}"></script>
-   
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     
     <style>
         nav{
@@ -103,9 +99,5 @@
 			  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
               crossorigin="anonymous">
     </script>
-
-    
-    <script src="app.js"></script>
-
 </body>
 </html>

@@ -3,10 +3,16 @@
 @section("content")
 <section class="text-center">
     <div class="container">
+        
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item text-primary"><a href="/">LibrosAumentadosApp</a></li>
+                <li class="breadcrumb-item text-primary"><a href="{{ route('libro.index') }}">Libros</a></li>
+                <li class="breadcrumb-item active text-secondary" aria-current="page">Capitulos</li>
+            </ol>
+        </nav>
+
         <h1>Capitulos</h1>
-        <p>
-          <a href="{{ route('libro.index') }}" class="btn btn-primary btn-lg" role="button">Ver Libros</a>
-        </p>
         <p>
             @auth
                 <a href="{{ route('capitulo.create') }}" class="btn btn-primary btn-lg" role="button">Nuevo Capitulo</a>
@@ -18,7 +24,7 @@
 <section class="elementos container">
     {{ $capituloList->links() }}
     <div class="row">
-    <h2>Lista de capitulos de {{$capituloList}}</h2>
+    <h2>Lista de capitulos {{$capituloList}}</h2>
         <div class="table-responsive">
              <table class="table table-striped table-sm">
                 <thead>
