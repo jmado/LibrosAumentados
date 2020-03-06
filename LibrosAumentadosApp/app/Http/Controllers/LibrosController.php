@@ -171,8 +171,9 @@ class LibrosController extends Controller
         Session::put('palabraElegida', $palabras[$numPalabra]);
         $palabraElegida = Session::get('palabraElegida');
         echo "$palabraElegida";
-        $textoUsuario = "Del libro $libro he elegido el capitulo: ".$capitulo->id." Página: ".($numPagina + 1)." Palabra: ".($numPalabra + 1)."";
+        $textoUsuario = "Del libro $libro he elegido el Capítulo: ".$capitulo->numero_orden." Página: ".($numPagina + 1)." Párrafo: ".Session::get('parrafo_numero')." Palabra: ".($numPalabra + 1)."";
 
+        
         return view('libro.logUsu', compact("textoUsuario", "id_libro"));
     }
     
@@ -180,7 +181,7 @@ class LibrosController extends Controller
     {
         $parrafos = explode("<br>", $contenidoPagina);
         $numParrafo = rand(0, count($parrafos)-1);
-
+        Session::put('parrafo_numero', $numParrafo);
         $contenidoParrafo = $parrafos[$numParrafo];
 
         echo "Párrafo elegido: $numParrafo <br>"; //Hay que sumar 1 ".($numParrafo + 1)." ???
