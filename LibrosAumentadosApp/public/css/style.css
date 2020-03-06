@@ -242,3 +242,16 @@ a:link, a:visited, a:active, a:hover , a{
   width: 30%;
   
 }
+
+/* Estilos tablas */
+tr.capitulos th{
+  width: 10%;
+}
+th.btn{
+  width: 20%;
+}
+th.texto{
+  width: 70%;
+}
+
+

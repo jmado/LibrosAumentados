@@ -42,7 +42,7 @@
                         <td>
                             {{$pagina->numero_pagina}}
                         </td>
-                        <td>
+                        <td class="texto">
                             <details>
                                 <summary>Texto de la página {{$pagina->numero_pagina}}</summary>
                                 <p>

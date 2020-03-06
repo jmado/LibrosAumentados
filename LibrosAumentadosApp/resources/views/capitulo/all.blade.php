@@ -50,7 +50,7 @@
                             {{$capitulo->titulo}}
                         </td>
                     </tr>
-                    <tr>
+                    <tr class="capitulos">
                         <th><a href="{{ route('imagen.all', $capitulo->id) }}">
                             <img src="{{ URL::asset('complementos/iconos/imagen.png') }}" alt="">
                         </a></th> 
@@ -75,7 +75,7 @@
                             </a></th>
                         @endauth
 
-                        <td>
+                        <td class="btn">
                             @auth
                                 <a href="{{route('capitulo.edit', $capitulo->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
                                 
