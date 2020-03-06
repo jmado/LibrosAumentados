@@ -29,8 +29,7 @@
         <div class="table-responsive">
              <table class="table table-striped table-sm">
                 <thead>
-                    <tr>
-                        <th>Capitulo</th>
+                    <tr>   
                         <th>Titulo</th>
                         <th>Descripcion</th>
                         <th></th>
@@ -39,9 +38,6 @@
                 <tbody>
                     @foreach ($modelos as $modelo)
                     <tr>
-                        <td>
-                            <a href="{{route('capitulo.contenido', ['id'=>$modelo->capitulo_id])}}">Capitulo {{$modelo->capitulo_id}}</a>
-                        </td>
                         <td>{{$modelo->titulo}}</td>
                         <td>
                             <a href="{{route('modelo.show', $modelo->id)}}" class="btn btn-sm btn-info" role="button">Ver</a>
