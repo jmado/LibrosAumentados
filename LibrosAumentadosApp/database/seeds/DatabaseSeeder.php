@@ -25,5 +25,6 @@ class DatabaseSeeder extends Seeder
         $this->call(Modelo_3dsTableSeeder::class);
         $this->call(AudiosTableSeeder::class);
         $this->call(GaleriaImagenTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
     }
 }
