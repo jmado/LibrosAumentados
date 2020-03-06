@@ -22,7 +22,7 @@
 </section>
 
 <section class="elementos container">
-    {{ $capituloList->links() }}
+    
     <div class="row">
     <h2>Lista de capitulos {{$capituloList}}</h2>
         <div class="table-responsive">
