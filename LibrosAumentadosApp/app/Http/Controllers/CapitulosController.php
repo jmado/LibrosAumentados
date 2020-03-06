@@ -58,6 +58,8 @@ class CapitulosController extends Controller
         $libro_id = Session::get('libro_id');;
         $cap->libro_id = $libro_id;
         
+        dd($libro_id);
+
         $cap->save();
         return redirect()->route('capitulo.all', $libro_id);
     }
