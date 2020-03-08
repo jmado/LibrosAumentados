@@ -34,9 +34,9 @@
                     <div class="elemento-header">
                         
                         <audio controls>
-                            <source src="../../{{$audio->archivo}}" type="audio/mp3">
-                            <source src="../../{{$audio->archivo}}" type="audio/ogg">
-                            <source src="../../{{$audio->archivo}}" type="audio/mpeg">
+                            <source src='{{ URL::asset("$audio->archivo") }}' type="audio/mp3">
+                            <source src='{{ URL::asset("$audio->archivo") }}' type="audio/ogg">
+                            <source src='{{ URL::asset("$audio->archivo") }}' type="audio/mpeg">
                         </audio>
                          
                     </div>

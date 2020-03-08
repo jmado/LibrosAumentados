@@ -16,7 +16,7 @@
 <div class="container ">
     <div class="form">
         @isset($datos)
-            <form action="/video/{{$datos->id}}" method="POST" enctype='multipart/form-data'>
+            <form action="{{ route('video.update', $datos->id)}}" method="POST" enctype='multipart/form-data'>
             @method("PUT")
         @else
             <form action="{{ route('video.store') }}" method="POST" enctype="multipart/form-data">
