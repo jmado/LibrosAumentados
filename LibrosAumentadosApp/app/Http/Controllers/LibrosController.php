@@ -114,6 +114,9 @@ class LibrosController extends Controller
         return redirect()->route('libro.index');
     }
 
+
+
+
     /**
      * Remove the specified resource from storage.
      *
@@ -127,6 +130,25 @@ class LibrosController extends Controller
         
         return redirect()->route('libro.index');
     }
+
+    /**
+     * Comprueba si el libro tiene contenido
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteConfirm($id){
+        $capitulos = DB::select('select id from capitulos where libro_id=:id',['id'=>$id]);
+        
+        if(count($capitulos) == 0){
+            return redirect()->route('libro.delete', $id);
+        }
+        else{
+            return redirect()->route('libro.index');
+        }
+    }
+
+
 
     
     public function usuario($id_libro)
@@ -259,6 +281,8 @@ class LibrosController extends Controller
 
         
     }
+
+    
 
     
 

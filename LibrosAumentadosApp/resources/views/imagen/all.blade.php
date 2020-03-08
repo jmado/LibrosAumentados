@@ -69,7 +69,7 @@
                                                 icon: "success",
                                                 });
                                                 
-                                            location.href='{{route('imagen.delete', $imagen->id)}}'; 
+                                            location.href='{{route('imagen.deleteConfirm', $imagen->id)}}'; 
 
                                             } else {
                                                 swal("¡Su elemento está a salvo!");

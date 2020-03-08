@@ -49,6 +49,7 @@
 
                                     <script>
                                     function borrar(){
+                                        
                                         swal({
                                             title: "¿Seguro de que borrar este elemento?",
                                             text: "Una vez eliminado, ¡no podrá recuperar este elemento!",
@@ -58,16 +59,20 @@
                                             })
                                             .then((willDelete) => {
                                             if (willDelete) {
-                                                swal("Poof! Ha sido borrado!", {
-                                                icon: "success",
+                                                swal("El elemento se borrara si no tiene contenido, de lo contratio revisa su contenido antes de realizar esta acción!", {
                                                 });
                                                 
-                                            location.href='{{route('libro.delete', $libro->id)}}'; 
+                                            location.href='{{route('libro.deleteConfirm', $libro->id)}}'; 
 
                                             } else {
                                                 swal("¡Su elemento está a salvo!");
                                             }
                                         }); 
+                                        
+
+                                       
+                                        
+                                       
                                            
                                     }
                                        

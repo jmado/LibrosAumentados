@@ -21,8 +21,7 @@
       </div>
 </section>
 
-<section class="elementos container">
-    
+<div class="elementos container">
     <div class="row">
     <h2>Lista de capitulos {{$capituloList}}</h2>
         <div class="table-responsive">
@@ -96,7 +95,7 @@
                                                 icon: "success",
                                                 });
                                                 
-                                            location.href='{{route('capitulo.delete', $capitulo->id)}}'; 
+                                            location.href='{{route('capitulo.deleteConfirm', $capitulo->id)}}'; 
 
                                             } else {
                                                 swal("¡Su elemento está a salvo!");
