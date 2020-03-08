@@ -62,7 +62,8 @@
                                                 icon: "success",
                                                 });
 
-                                            location.href='{{route('modelo.delete', $modelo->id)}}'; 
+                                            location.href="{{route('modelo.delete', $modelo->id)}}"; 
+                                            //location.href = "modelo/destroy/" + id;
                                             
                                             } else {
                                                 swal("¡Su elemento está a salvo!");

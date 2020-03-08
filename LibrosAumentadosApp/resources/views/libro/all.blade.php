@@ -45,10 +45,10 @@
                                 <a href="{{route('libro.edit', $libro->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
 
 
-                                <a onclick="borrar()" class="btn btn-sm btn-outline-danger" role="button">Borrar</a>
+                                <a onclick="borrar({{$libro->id}})" class="btn btn-sm btn-outline-danger" role="button">Borrar</a>
 
                                     <script>
-                                    function borrar(){
+                                    function borrar(id){
                                         
                                         swal({
                                             title: "¿Seguro de que borrar este elemento?",
@@ -62,8 +62,8 @@
                                                 swal("El elemento se borrara si no tiene contenido, de lo contratio revisa su contenido antes de realizar esta acción!", {
                                                 });
                                                 
-                                            location.href='{{route('libro.deleteConfirm', $libro->id)}}'; 
-
+                                            //location.href="{{route('libro.deleteConfirm', $libro->id)}}"; 
+                                                location.href = "libro/deleteConfirm/" + id;
                                             } else {
                                                 swal("¡Su elemento está a salvo!");
                                             }

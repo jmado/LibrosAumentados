@@ -68,8 +68,8 @@
                                                 icon: "success",
                                                 });
 
-                                            location.href='{{route('audio.delete', $audio->id)}}'; 
-                                            
+                                            location.href="{{route('audio.delete', $audio->id)}}"; 
+                                            //location.href = "audio/destroy/" + id; 
                                             } else {
                                                 swal("¡Su elemento está a salvo!");
                                             }

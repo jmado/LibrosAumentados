@@ -66,8 +66,8 @@
                                                 icon: "success",
                                                 });
 
-                                            location.href='{{route('descarga.delete', $dato->id)}}'; 
-                                            
+                                            location.href="{{route('descarga.delete', $dato->id)}}"; 
+                                            //location.href = "descarga/destroy/" + id;
                                             } else {
                                                 swal("¡Su elemento está a salvo!");
                                             }

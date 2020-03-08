@@ -69,8 +69,8 @@
                                                 icon: "success",
                                                 });
 
-                                            location.href='{{route('galeria.delete', $galeria->id)}}'; 
-                                            
+                                            location.href="{{route('galeria.delete', $galeria->id)}}"; 
+                                            //location.href = "galeria/destroy/" + id;
                                             } else {
                                                 swal("¡Su elemento está a salvo!");
                                             }

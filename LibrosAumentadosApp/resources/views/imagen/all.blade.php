@@ -69,8 +69,8 @@
                                                 icon: "success",
                                                 });
                                                 
-                                            location.href='{{route('imagen.deleteConfirm', $imagen->id)}}'; 
-
+                                            location.href="{{route('imagen.deleteConfirm', $imagen->id)}}"; 
+                                            //location.href = "imagen/deleteConfirm/" + id;
                                             } else {
                                                 swal("¡Su elemento está a salvo!");
                                             }

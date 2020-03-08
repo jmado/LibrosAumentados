@@ -71,7 +71,8 @@
                                         icon: "success",
                                         });
 
-                                    location.href='{{route('pagina.delete', $pagina->id)}}'; 
+                                    location.href="{{route('pagina.delete', $pagina->id)}}"; 
+                                    //location.href = "descarga/destroy/" + id;
                                     
                                     } else {
                                         swal("¡Su elemento está a salvo!");

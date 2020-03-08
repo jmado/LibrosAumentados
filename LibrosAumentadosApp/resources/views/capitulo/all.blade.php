@@ -95,8 +95,8 @@
                                                 icon: "success",
                                                 });
                                                 
-                                            location.href='{{route('capitulo.deleteConfirm', $capitulo->id)}}'; 
-
+                                            location.href="{{route('capitulo.deleteConfirm', $capitulo->id)}}"; 
+                                            //location.href = "capitulo/deleteConfirm/" + id;
                                             } else {
                                                 swal("¡Su elemento está a salvo!");
                                             }
