@@ -52,31 +52,43 @@
                                     <a href="{{route('audio.edit', $audio->id)}}" class="btn btn-sm btn-outline-info" role="button">Modificar</a>
 
 
-                                    <a onclick="borrar()" class="btn btn-sm btn-outline-danger" role="button">Borrar</a>
+                                    <a identificador="{{$audio->id}}" class="b{{$audio->id}} btn btn-sm btn-outline-danger" role="button">Borrar</a>
 
                                     <script>
-                                    function borrar(){
-                                        swal({
-                                            title: "¿Seguro de que borrar este elemento?",
-                                            text: "Una vez eliminado, ¡no podrá recuperar este elemento!",
-                                            icon: "warning",
-                                            buttons: true,
-                                            dangerMode: true,
-                                            })
-                                            .then((willDelete) => {
-                                            if (willDelete) {
-                                                swal("Poof! Ha sido borrado!", {
-                                                icon: "success",
-                                                });
+                                    
 
-                                            location.href="{{route('audio.delete', $audio->id)}}"; 
-                                            //location.href = "audio/destroy/" + id; 
-                                            } else {
-                                                swal("¡Su elemento está a salvo!");
-                                            }
-                                        }); 
-                                           
-                                    }
+
+                                    $(document).ready(function(){ 
+                                        var borrar = $(".b{{$audio->id}}").click(function(){
+                                            var id = {{$audio->id}};
+                                            var direccion = "{{route('audio.delete', 0)}}";
+                                            direccion = direccion.replace("0", id);
+
+                                            swal({
+                                                title: "¿Seguro de que borrar este elemento?",
+                                                text: "Una vez eliminado, ¡no podrá recuperar este elemento!",
+                                                icon: "warning",
+                                                buttons: true,
+                                                dangerMode: true,
+                                                })
+                                                .then((willDelete) => {
+                                                if (willDelete) {
+                                                    swal("Poof! Ha sido borrado!", {
+                                                    icon: "success",
+                                                    });
+
+                                                location.href=direccion; 
+                                                
+                                                } else {
+                                                    swal("¡Su elemento está a salvo!");
+                                                }
+                                            }); 
+
+                                        });
+                                    });
+
+
+                                    
                                        
                                     </script>
 

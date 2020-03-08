@@ -1,3 +1,4 @@
+ 
 
 // ---------------Visualizacion de galerias----------------------
 function transparencia(){
