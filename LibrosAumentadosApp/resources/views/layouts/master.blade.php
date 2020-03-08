@@ -58,7 +58,7 @@
 
     <!-- Cabecera -->
 <header class="header bg-primary">
-    <a href="/">
+    <a href="{{route('libro.index')}}">
       <h2 class="logo text-light">LibrosAumentados</h2>
     </a>
     <input type="checkbox" id="chk">
@@ -67,7 +67,7 @@
     </label>
 
     <ul class="menu">
-      <a href="/">Home</a>
+      {{--<a href="/">Home</a>--}}
       <a href="{{route('libro.index')}}">Libros</a>
         {{-- 
           <a href="#">Sobre nosotros</a>

@@ -8,17 +8,18 @@
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">LibrosAumentadosApp</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('libro.index') }}">Libros</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('capitulo.all', $libro_id) }}">Capitulos</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Audios</li>
+                <li class="breadcrumb-item text-primary"><a href="{{ route('libro.index') }}">LibrosAumentadosApp</a></li>
+                <li class="breadcrumb-item text-primary"><a href="{{ route('libro.index') }}">Libros</a></li>
+                <li class="breadcrumb-item text-primary"><a href="{{ route('capitulo.all', $libro_id) }}">Capitulos</a></li>
+                <li class="breadcrumb-item active text-secondary" aria-current="page">Audios</li>
             </ol>
         </nav>
         <h1>Audios</h1>
-        
+        @auth
         <p>
           <a href="{{ route('audio.create') }}" class="btn btn-primary btn-lg" role="button">Nuevo Audio</a>
         </p>
+        @endauth
       </div>
 </section>
 

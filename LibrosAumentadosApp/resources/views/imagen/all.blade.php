@@ -9,10 +9,10 @@
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">LibrosAumentadosApp</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('libro.index') }}">Libros</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('capitulo.all', $libro_id) }}">Capitulos</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Imagenes</li>
+                <li class="breadcrumb-item text-primary"><a href="{{ route('libro.index') }}">LibrosAumentadosApp</a></li>
+                <li class="breadcrumb-item text-primary"><a href="{{ route('libro.index') }}">Libros</a></li>
+                <li class="breadcrumb-item text-primary"><a href="{{ route('capitulo.all', $libro_id) }}">Capitulos</a></li>
+                <li class="breadcrumb-item active text-secondary" aria-current="page">Imagenes</li>
             </ol>
         </nav>
         <h1>Imagenes</h1>
