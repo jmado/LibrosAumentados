@@ -65,7 +65,7 @@ class Modelo_3dController extends Controller
 
         //Obtengo el archivo y creo una carpeta
         $elZip = $request->file;
-        $felesystem = new Filesystem();
+        $filesystem = new Filesystem();
         try{
             $filesystem->mkdir('modelos3d/'.$request->titulo);
             $elZip->move('modelos3d/'.$request->titulo, $elZip->getClientOriginalName());
@@ -107,7 +107,7 @@ class Modelo_3dController extends Controller
             echo 'directorio fallo';
         }
         */
-        
+
         $id = $request->capitulo_id;
         return redirect()->route('modelo.all', $capitulo_id);
          
