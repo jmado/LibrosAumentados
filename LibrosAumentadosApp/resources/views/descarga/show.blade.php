@@ -15,7 +15,7 @@
 
 <div class="container"> 
     <div class="archivo">
-      <iframe src="../../{{$datos->archivo}}" height="400" width="100%"></iframe>
+      <iframe src='{{ URL::asset("$datos->archivo") }}' height="400" width="100%"></iframe>
     </div> 
     <div>
       <h1>{{$datos->titulo}}</h1>

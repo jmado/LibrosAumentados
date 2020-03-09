@@ -37,7 +37,11 @@
     <!-- SweetAllert -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-
+    <script
+			  src="https://code.jquery.com/jquery-3.4.1.min.js"
+			  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous">
+    </script>
     
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/style3d.css') }}" />
@@ -58,7 +62,7 @@
 
     <!-- Cabecera -->
 <header class="header bg-primary">
-    <a href="/">
+    <a href="{{route('libro.index')}}">
       <h2 class="logo text-light">LibrosAumentados</h2>
     </a>
     <input type="checkbox" id="chk">
@@ -67,7 +71,7 @@
     </label>
 
     <ul class="menu">
-      <a href="/">Home</a>
+      {{--<a href="/">Home</a>--}}
       <a href="{{route('libro.index')}}">Libros</a>
         {{-- 
           <a href="#">Sobre nosotros</a>

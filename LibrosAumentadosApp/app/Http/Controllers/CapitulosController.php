@@ -20,6 +20,10 @@ class CapitulosController extends Controller
     {
         $capituloList = Capitulo::where('libro_id', '=', $libro_id)->orderBy('numero_orden')->simplePaginate(3);
         $id = $libro_id;
+
+        //Variables de sesion para imagenes
+        Session::put('libro_id', $libro_id);
+
         return view('capitulo.all', compact('capituloList', 'id'));
     }
 
@@ -58,6 +62,8 @@ class CapitulosController extends Controller
         $libro_id = Session::get('libro_id');;
         $cap->libro_id = $libro_id;
         
+       
+
         $cap->save();
         return redirect()->route('capitulo.all', $libro_id);
     }
@@ -121,6 +127,39 @@ class CapitulosController extends Controller
 
         return redirect()->route('capitulo.all', $id_libro);
     }
+
+     /**
+     * Comprueba si el libro tiene contenido
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteConfirm($id){
+        $contador = 0;
+        $contenido = DB::select('select id from imagens where capitulo_id=:id',['id'=>$id]);
+        $contador += count($contenido);
+        $contenido = DB::select('select id from galerias where capitulo_id=:id',['id'=>$id]);
+        $contador += count($contenido);
+        $contenido = DB::select('select id from audio where capitulo_id=:id',['id'=>$id]);
+        $contador += count($contenido);
+        $contenido = DB::select('select id from videos where capitulo_id=:id',['id'=>$id]);
+        $contador += count($contenido);
+        $contenido = DB::select('select id from modelo_3ds where capitulo_id=:id',['id'=>$id]);
+        $contador += count($contenido);
+        $contenido = DB::select('select id from descargas where capitulo_id=:id',['id'=>$id]);
+        $contador += count($contenido);
+        
+        if($contador == 0){
+            return redirect()->route('capitulo.delete', $id);
+        }
+        else{
+            $id = Session::get('libro_id');
+            return redirect()->route('capitulo.all', $id);
+           
+        }
+    }
+
+
 
 
     /*

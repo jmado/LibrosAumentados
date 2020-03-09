@@ -49,9 +49,9 @@ class ImagensController extends Controller
         $capitulo_id = Session::get('capitulo_id');
 
         //Listado de galerias existentes
-        $galerias = DB::select('select id, titulo from galerias where capitulo_id=:id',['id'=>$capitulo_id]);
+        //$galerias = DB::select('select id, titulo from galerias where capitulo_id=:id',['id'=>$capitulo_id]);
 
-        return view('imagen.form', compact('capitulo_id','galerias'));
+        return view('imagen.form', compact('capitulo_id'));
     }
 
     /**
@@ -163,8 +163,28 @@ class ImagensController extends Controller
         
         $datos->delete();
 
-        $id = DB::select('select libro_id  from capitulos where id=:id', ['id'=>$id_capitulo]);
-        $id = $id[0]->libro_id;
+        
+        $id = Session::get('capitulo_id');
         return redirect()->route('imagen.all', $id);
+    }
+
+
+    /**
+     * Comprueba si el libro tiene contenido
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteConfirm($id){
+        $galerias = DB::select('select id from galeria_imagen where imagen_id=:id',['id'=>$id]);
+        
+        if(count($galerias) == 0){
+            return redirect()->route('imagen.delete', $id);
+        }
+        else{
+            $id = Session::get('capitulo_id');
+            return redirect()->route('imagen.all', $id);
+           
+        }
     }
 }

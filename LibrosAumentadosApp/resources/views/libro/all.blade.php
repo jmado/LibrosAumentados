@@ -24,6 +24,7 @@
                     <div class="elemento-header">
                     <p>
                         @if (Auth::check())
+<<<<<<< HEAD
                             <a href="{{ route('capitulo.all', $libro->id) }}"><img src='{{ URL::asset("$libro->cubierta")}}' class="cubierta"></a> 
                         @else
                             <a href="/libro/loginVisitante/{{$libro->id}}"><img src='{{ URL::asset("$libro->cubierta")}}' class="cubierta"></a>
@@ -31,6 +32,14 @@
 
                        {{--<a href="{{route('libro.login', ['id_libro'=>$libro->id])}}"><img src='{{$libro->cubierta}}' class="cubierta"></a>--}}
 
+=======
+                            <a href="{{ route('capitulo.all', $libro->id) }}"><img src='{{ URL::asset("$libro->cubierta") }}' class="cubierta"></a> 
+                        @else
+                            <a href="/libro/loginVisitante/{{$libro->id}}"><img src='{{ URL::asset("$libro->cubierta") }}' class="cubierta"></a>
+                        @endif
+
+                       {{--<a href="{{route('libro.login', ['id_libro'=>$libro->id])}}"><img src='{{ URL::asset("$libro->cubierta") }}' class="cubierta"></a>--}}
+>>>>>>> master
                     </p>
                     
                     </div>
@@ -46,31 +55,45 @@
                                 <a href="{{route('libro.edit', $libro->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
 
 
-                                <a onclick="borrar()" class="btn btn-sm btn-outline-danger" role="button">Borrar</a>
+                                <a  class="b{{$libro->id}} btn btn-sm btn-outline-danger" role="button">Borrar</a>
 
                                     <script>
-                                    function borrar(){
-                                        swal({
-                                            title: "¿Seguro de que borrar este elemento?",
-                                            text: "Una vez eliminado, ¡no podrá recuperar este elemento!",
-                                            icon: "warning",
-                                            buttons: true,
-                                            dangerMode: true,
-                                            })
-                                            .then((willDelete) => {
-                                            if (willDelete) {
-                                                swal("Poof! Ha sido borrado!", {
-                                                icon: "success",
-                                                });
-                                                
-                                            location.href='{{route('libro.delete', $libro->id)}}'; 
+                                    $(document).ready(function(){ 
+                                        var borrar = $(".b{{$libro->id}}").click(function(){
+                                            var id = {{$libro->id}};
+                                            var direccion = "{{route('libro.deleteConfirm', 0)}}";
+                                            direccion = direccion.replace("0", id);
 
-                                            } else {
-                                                swal("¡Su elemento está a salvo!");
-                                            }
-                                        }); 
+                                            swal({
+                                                title: "¿Seguro de que borrar este elemento?",
+                                                text: "Una vez eliminado, ¡no podrá recuperar este elemento!",
+                                                icon: "warning",
+                                                buttons: true,
+                                                dangerMode: true,
+                                                })
+                                                .then((willDelete) => {
+                                                if (willDelete) {
+                                                    swal("El elemento se borrar si no tiene contenido", {
+                                                    icon: "success",
+                                                    });
+
+                                                location.href=direccion; 
+                                                
+                                                } else {
+                                                    swal("¡Su elemento está a salvo!");
+                                                }
+                                            }); 
+
+                                        });
+                                    });
+
+                                        
+
+                                       
+                                        
+                                       
                                            
-                                    }
+                                    
                                        
                                     </script>
 

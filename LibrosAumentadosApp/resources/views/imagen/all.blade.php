@@ -9,10 +9,10 @@
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">LibrosAumentadosApp</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('libro.index') }}">Libros</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('capitulo.all', $libro_id) }}">Capitulos</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Imagenes</li>
+                <li class="breadcrumb-item text-primary"><a href="{{ route('libro.index') }}">LibrosAumentadosApp</a></li>
+                <li class="breadcrumb-item text-primary"><a href="{{ route('libro.index') }}">Libros</a></li>
+                <li class="breadcrumb-item text-primary"><a href="{{ route('capitulo.all', $libro_id) }}">Capitulos</a></li>
+                <li class="breadcrumb-item active text-secondary" aria-current="page">Imagenes</li>
             </ol>
         </nav>
         <h1>Imagenes</h1>
@@ -52,31 +52,37 @@
 
 
 
-                                    <a onclick="borrar()" class="btn btn-sm btn-outline-danger" role="button">Borrar</a>
+                                    <a class="b{{$imagen->id}} btn btn-sm btn-outline-danger" role="button">Borrar</a>
 
                                     <script>
-                                    function borrar(){
-                                        swal({
-                                            title: "¿Seguro de que borrar este elemento?",
-                                            text: "Una vez eliminado, ¡no podrá recuperar este elemento!",
-                                            icon: "warning",
-                                            buttons: true,
-                                            dangerMode: true,
-                                            })
-                                            .then((willDelete) => {
-                                            if (willDelete) {
-                                                swal("Poof! Ha sido borrado!", {
-                                                icon: "success",
-                                                });
-                                                
-                                            location.href='{{route('imagen.delete', $imagen->id)}}'; 
+                                    $(document).ready(function(){ 
+                                        var borrar = $(".b{{$imagen->id}}").click(function(){
+                                            var id = {{$imagen->id}};
+                                            var direccion = "{{route('imagen.deleteConfirm', 0)}}";
+                                            direccion = direccion.replace("0", id);
 
-                                            } else {
-                                                swal("¡Su elemento está a salvo!");
-                                            }
-                                        }); 
-                                           
-                                    }
+                                            swal({
+                                                title: "¿Seguro de que borrar este elemento?",
+                                                text: "Una vez eliminado, ¡no podrá recuperar este elemento!",
+                                                icon: "warning",
+                                                buttons: true,
+                                                dangerMode: true,
+                                                })
+                                                .then((willDelete) => {
+                                                if (willDelete) {
+                                                    swal("El elemento se borrar si no tiene contenido", {
+                                                    icon: "success",
+                                                    });
+
+                                                location.href=direccion; 
+                                                
+                                                } else {
+                                                    swal("¡Su elemento está a salvo!");
+                                                }
+                                            }); 
+
+                                        });
+                                    });
                                        
                                     </script>
                                 @endauth

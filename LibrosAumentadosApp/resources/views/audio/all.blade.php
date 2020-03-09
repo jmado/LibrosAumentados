@@ -8,17 +8,18 @@
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">LibrosAumentadosApp</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('libro.index') }}">Libros</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('capitulo.all', $libro_id) }}">Capitulos</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Audios</li>
+                <li class="breadcrumb-item text-primary"><a href="{{ route('libro.index') }}">LibrosAumentadosApp</a></li>
+                <li class="breadcrumb-item text-primary"><a href="{{ route('libro.index') }}">Libros</a></li>
+                <li class="breadcrumb-item text-primary"><a href="{{ route('capitulo.all', $libro_id) }}">Capitulos</a></li>
+                <li class="breadcrumb-item active text-secondary" aria-current="page">Audios</li>
             </ol>
         </nav>
         <h1>Audios</h1>
-        
+        @auth
         <p>
           <a href="{{ route('audio.create') }}" class="btn btn-primary btn-lg" role="button">Nuevo Audio</a>
         </p>
+        @endauth
       </div>
 </section>
 
@@ -34,9 +35,9 @@
                     <div class="elemento-header">
                         
                         <audio controls>
-                            <source src="../../{{$audio->archivo}}" type="audio/mp3">
-                            <source src="../../{{$audio->archivo}}" type="audio/ogg">
-                            <source src="../../{{$audio->archivo}}" type="audio/mpeg">
+                            <source src='{{ URL::asset("$audio->archivo") }}' type="audio/mp3">
+                            <source src='{{ URL::asset("$audio->archivo") }}' type="audio/ogg">
+                            <source src='{{ URL::asset("$audio->archivo") }}' type="audio/mpeg">
                         </audio>
                          
                     </div>
@@ -51,31 +52,43 @@
                                     <a href="{{route('audio.edit', $audio->id)}}" class="btn btn-sm btn-outline-info" role="button">Modificar</a>
 
 
-                                    <a onclick="borrar()" class="btn btn-sm btn-outline-danger" role="button">Borrar</a>
+                                    <a class="b{{$audio->id}} btn btn-sm btn-outline-danger" role="button">Borrar</a>
 
                                     <script>
-                                    function borrar(){
-                                        swal({
-                                            title: "¿Seguro de que borrar este elemento?",
-                                            text: "Una vez eliminado, ¡no podrá recuperar este elemento!",
-                                            icon: "warning",
-                                            buttons: true,
-                                            dangerMode: true,
-                                            })
-                                            .then((willDelete) => {
-                                            if (willDelete) {
-                                                swal("Poof! Ha sido borrado!", {
-                                                icon: "success",
-                                                });
+                                    
 
-                                            location.href='{{route('audio.delete', $audio->id)}}'; 
-                                            
-                                            } else {
-                                                swal("¡Su elemento está a salvo!");
-                                            }
-                                        }); 
-                                           
-                                    }
+
+                                    $(document).ready(function(){ 
+                                        var borrar = $(".b{{$audio->id}}").click(function(){
+                                            var id = {{$audio->id}};
+                                            var direccion = "{{route('audio.delete', 0)}}";
+                                            direccion = direccion.replace("0", id);
+
+                                            swal({
+                                                title: "¿Seguro de que borrar este elemento?",
+                                                text: "Una vez eliminado, ¡no podrá recuperar este elemento!",
+                                                icon: "warning",
+                                                buttons: true,
+                                                dangerMode: true,
+                                                })
+                                                .then((willDelete) => {
+                                                if (willDelete) {
+                                                    swal("El elemento se borrar si no tiene contenido", {
+                                                    icon: "success",
+                                                    });
+
+                                                location.href=direccion; 
+                                                
+                                                } else {
+                                                    swal("¡Su elemento está a salvo!");
+                                                }
+                                            }); 
+
+                                        });
+                                    });
+
+
+                                    
                                        
                                     </script>
 

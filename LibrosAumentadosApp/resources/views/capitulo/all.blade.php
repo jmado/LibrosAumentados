@@ -6,7 +6,7 @@
         
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item text-primary"><a href="/">LibrosAumentadosApp</a></li>
+                <li class="breadcrumb-item text-primary"><a href="{{ route('libro.index') }}">LibrosAumentadosApp</a></li>
                 <li class="breadcrumb-item text-primary"><a href="{{ route('libro.index') }}">Libros</a></li>
                 <li class="breadcrumb-item active text-secondary" aria-current="page">Capitulos</li>
             </ol>
@@ -21,8 +21,7 @@
       </div>
 </section>
 
-<section class="elementos container">
-    {{ $capituloList->links() }}
+<div class="elementos container">
     <div class="row">
     <h2>Lista de capitulos {{$capituloList}}</h2>
         <div class="table-responsive">
@@ -79,31 +78,37 @@
                             @auth
                                 <a href="{{route('capitulo.edit', $capitulo->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
                                 
-                                <a onclick="borrar()" class="btn btn-sm btn-outline-danger" role="button">Borrar</a>
+                                <a class="b{{$capitulo->id}} btn btn-sm btn-outline-danger" role="button">Borrar</a>
 
                                     <script>
-                                    function borrar(){
-                                        swal({
-                                            title: "¿Seguro de que borrar este elemento?",
-                                            text: "Una vez eliminado, ¡no podrá recuperar este elemento!",
-                                            icon: "warning",
-                                            buttons: true,
-                                            dangerMode: true,
-                                            })
-                                            .then((willDelete) => {
-                                            if (willDelete) {
-                                                swal("Poof! Ha sido borrado!", {
-                                                icon: "success",
-                                                });
-                                                
-                                            location.href='{{route('capitulo.delete', $capitulo->id)}}'; 
+                                    $(document).ready(function(){ 
+                                        var borrar = $(".b{{$capitulo->id}}").click(function(){
+                                            var id = {{$capitulo->id}};
+                                            var direccion = "{{route('capitulo.deleteConfirm', 0)}}";
+                                            direccion = direccion.replace("0", id);
 
-                                            } else {
-                                                swal("¡Su elemento está a salvo!");
-                                            }
-                                        }); 
-                                           
-                                    }
+                                            swal({
+                                                title: "¿Seguro de que borrar este elemento?",
+                                                text: "Una vez eliminado, ¡no podrá recuperar este elemento!",
+                                                icon: "warning",
+                                                buttons: true,
+                                                dangerMode: true,
+                                                })
+                                                .then((willDelete) => {
+                                                if (willDelete) {
+                                                    swal("El elemento se borrar si no tiene contenido", {
+                                                    icon: "success",
+                                                    });
+
+                                                location.href=direccion; 
+                                                
+                                                } else {
+                                                    swal("¡Su elemento está a salvo!");
+                                                }
+                                            }); 
+
+                                        });
+                                    });
                                        
                                     </script>
 
