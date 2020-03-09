@@ -2,6 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
+
+use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
+use Symfony\Component\Filesystem\Filesystem;
+
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Session;
@@ -51,12 +58,24 @@ class Modelo_3dController extends Controller
     {
         //Creo un nuevo modelo
         $modelo = new Modelo_3d;
-
+        $modelo->titulo = $request->titulo;
         $modelo->descripcion = $request->descripcion;
         $capitulo_id = Session::get('capitulo_id');
         $modelo->capitulo_id = $capitulo_id;
 
-        //Obtengo el titulo y creo una carpeta
+        //Obtengo el archivo y creo una carpeta
+        $elZip = $request->file;
+        $felesystem = new Filesystem();
+        try{
+            $filesystem->mkdir('modelos3d/'.$request->titulo);
+            $elZip->move('modelos3d/'.$request->titulo, $elZip->getClientOriginalName());
+            exec("unzip ".$elZip->getClientOriginalName());
+        }catch(IOExceptionInterface $exception){
+            dd("No funciona. Nada nuevo bajo el sol");
+        }
+        $modelo->save();
+
+        /*
         if (mkdir('modelos3d/'.$request->titulo)) {
             echo 'directorio true';
             
@@ -76,7 +95,7 @@ class Modelo_3dController extends Controller
                                                                     } else {
                                                                         echo 'descomprimir fallo';
                                                                     }
-                                                                    */
+                                                                    
                                                                     
             $elZip = $request->file;
             $elZip->move('modelos3d/'.$request->titulo, $elZip->getClientOriginalName());
@@ -87,6 +106,8 @@ class Modelo_3dController extends Controller
         } else {
             echo 'directorio fallo';
         }
+        */
+        
         $id = $request->capitulo_id;
         return redirect()->route('modelo.all', $capitulo_id);
          
