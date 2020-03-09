@@ -52,31 +52,36 @@
 
 
 
-                                    <a onclick="borrar()" class="btn btn-sm btn-outline-danger" role="button">Borrar</a>
+                                    <a class="b{{$imagen->id}} btn btn-sm btn-outline-danger" role="button">Borrar</a>
 
                                     <script>
-                                    function borrar(){
-                                        swal({
-                                            title: "¿Seguro de que borrar este elemento?",
-                                            text: "Una vez eliminado, ¡no podrá recuperar este elemento!",
-                                            icon: "warning",
-                                            buttons: true,
-                                            dangerMode: true,
-                                            })
-                                            .then((willDelete) => {
-                                            if (willDelete) {
-                                                swal("Poof! Ha sido borrado!", {
-                                                icon: "success",
-                                                });
+                                    $(document).ready(function(){ 
+                                        var borrar = $(".b{{$imagen->id}}").click(function(){
+                                            var id = {{$imagen->id}};
+                                            var direccion = "{{route('imagen.deleteConfirm', 0)}}";
+                                            direccion = direccion.replace("0", id);
+
+                                            swal({
+                                                title: "¿Seguro de que borrar este elemento?",
+                                                text: "Una vez eliminado, ¡no podrá recuperar este elemento!",
+                                                icon: "warning",
+                                                buttons: true,
+                                                dangerMode: true,
+                                                })
+                                                .then((willDelete) => {
+                                                if (willDelete) {
+                                                    swal("El elemento se borrar si no tiene contenido",
+                                                    });
+
+                                                location.href=direccion; 
                                                 
-                                            location.href="{{route('imagen.deleteConfirm', $imagen->id)}}"; 
-                                            //location.href = "imagen/deleteConfirm/" + id;
-                                            } else {
-                                                swal("¡Su elemento está a salvo!");
-                                            }
-                                        }); 
-                                           
-                                    }
+                                                } else {
+                                                    swal("¡Su elemento está a salvo!");
+                                                }
+                                            }); 
+
+                                        });
+                                    });
                                        
                                     </script>
                                 @endauth

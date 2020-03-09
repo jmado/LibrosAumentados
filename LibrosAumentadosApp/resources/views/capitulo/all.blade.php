@@ -78,31 +78,36 @@
                             @auth
                                 <a href="{{route('capitulo.edit', $capitulo->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
                                 
-                                <a onclick="borrar()" class="btn btn-sm btn-outline-danger" role="button">Borrar</a>
+                                <a class="b{{$capitulo->id}} btn btn-sm btn-outline-danger" role="button">Borrar</a>
 
                                     <script>
-                                    function borrar(){
-                                        swal({
-                                            title: "¿Seguro de que borrar este elemento?",
-                                            text: "Una vez eliminado, ¡no podrá recuperar este elemento!",
-                                            icon: "warning",
-                                            buttons: true,
-                                            dangerMode: true,
-                                            })
-                                            .then((willDelete) => {
-                                            if (willDelete) {
-                                                swal("Poof! Ha sido borrado!", {
-                                                icon: "success",
-                                                });
+                                    $(document).ready(function(){ 
+                                        var borrar = $(".b{{$capitulo->id}}").click(function(){
+                                            var id = {{$capitulo->id}};
+                                            var direccion = "{{route('capitulo.deleteConfirm', 0)}}";
+                                            direccion = direccion.replace("0", id);
+
+                                            swal({
+                                                title: "¿Seguro de que borrar este elemento?",
+                                                text: "Una vez eliminado, ¡no podrá recuperar este elemento!",
+                                                icon: "warning",
+                                                buttons: true,
+                                                dangerMode: true,
+                                                })
+                                                .then((willDelete) => {
+                                                if (willDelete) {
+                                                    swal("El elemento se borrar si no tiene contenido",
+                                                    });
+
+                                                location.href=direccion; 
                                                 
-                                            location.href="{{route('capitulo.deleteConfirm', $capitulo->id)}}"; 
-                                            //location.href = "capitulo/deleteConfirm/" + id;
-                                            } else {
-                                                swal("¡Su elemento está a salvo!");
-                                            }
-                                        }); 
-                                           
-                                    }
+                                                } else {
+                                                    swal("¡Su elemento está a salvo!");
+                                                }
+                                            }); 
+
+                                        });
+                                    });
                                        
                                     </script>
 

@@ -50,31 +50,36 @@
                                     <a href="{{route('descarga.edit', $dato->id)}}" class="btn btn-sm btn-outline-info" role="button">Modificar</a>
                                     
                                     
-                                    <a onclick="borrar()" class="btn btn-sm btn-outline-danger" role="button">Borrar</a>
+                                    <a class="b{{$descarga->id}} btn btn-sm btn-outline-danger" role="button">Borrar</a>
 
                                     <script>
-                                    function borrar(){
-                                        swal({
-                                            title: "¿Seguro de que borrar este elemento?",
-                                            text: "Una vez eliminado, ¡no podrá recuperar este elemento!",
-                                            icon: "warning",
-                                            buttons: true,
-                                            dangerMode: true,
-                                            })
-                                            .then((willDelete) => {
-                                            if (willDelete) {
-                                                swal("Poof! Ha sido borrado!", {
-                                                icon: "success",
-                                                });
+                                    $(document).ready(function(){ 
+                                        var borrar = $(".b{{$descarga->id}}").click(function(){
+                                            var id = {{$descarga->id}};
+                                            var direccion = "{{route('descarga.delete', 0)}}";
+                                            direccion = direccion.replace("0", id);
 
-                                            location.href="{{route('descarga.delete', $dato->id)}}"; 
-                                            //location.href = "descarga/destroy/" + id;
-                                            } else {
-                                                swal("¡Su elemento está a salvo!");
-                                            }
-                                        }); 
-                                           
-                                    }
+                                            swal({
+                                                title: "¿Seguro de que borrar este elemento?",
+                                                text: "Una vez eliminado, ¡no podrá recuperar este elemento!",
+                                                icon: "warning",
+                                                buttons: true,
+                                                dangerMode: true,
+                                                })
+                                                .then((willDelete) => {
+                                                if (willDelete) {
+                                                    swal("El elemento se borrar si no tiene contenido",
+                                                    });
+
+                                                location.href=direccion; 
+                                                
+                                                } else {
+                                                    swal("¡Su elemento está a salvo!");
+                                                }
+                                            }); 
+
+                                        });
+                                    });
                                        
                                     </script>
 

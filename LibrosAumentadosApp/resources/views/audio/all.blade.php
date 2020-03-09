@@ -52,7 +52,7 @@
                                     <a href="{{route('audio.edit', $audio->id)}}" class="btn btn-sm btn-outline-info" role="button">Modificar</a>
 
 
-                                    <a identificador="{{$audio->id}}" class="b{{$audio->id}} btn btn-sm btn-outline-danger" role="button">Borrar</a>
+                                    <a class="b{{$audio->id}} btn btn-sm btn-outline-danger" role="button">Borrar</a>
 
                                     <script>
                                     
@@ -73,7 +73,7 @@
                                                 })
                                                 .then((willDelete) => {
                                                 if (willDelete) {
-                                                    swal("Poof! Ha sido borrado!", {
+                                                    swal("El elemento se borrar si no tiene contenido", {
                                                     icon: "success",
                                                     });
 
