@@ -64,7 +64,8 @@
                                                 })
                                                 .then((willDelete) => {
                                                 if (willDelete) {
-                                                    swal("El elemento se borrar si no tiene contenido",
+                                                    swal("El elemento se borrar si no tiene contenido", {
+                                                    icon: "success",
                                                     });
 
                                                 location.href=direccion; 
