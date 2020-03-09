@@ -99,7 +99,9 @@ class GaleriasController extends Controller
         $galeria = DB::select('select * from galerias where id=:id',['id'=>$id]);
         //Imagenes
         $imagenes=DB::select('select imagens.id, imagens.titulo, imagens.imagen 
-                            from imagens where capitulo_id=:id', ['id'=>Session::get('capitulo_id')]);
+        from imagens 
+        inner join galeria_imagen on imagens.id=galeria_imagen.imagen_id 
+        where galeria_imagen.galeria_id=:id', ['id'=>$id]);
         return view('galeria.galeria', compact('galeria','imagenes'));
     }
 
