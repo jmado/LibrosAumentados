@@ -22,7 +22,7 @@
                     @foreach ($imagenes as $imagen)
                     <div class="col-sm-2 imagen_galeria">
                         <div class="img" >
-                            <img src="../../{{$imagen->imagen}}">
+                            <img src="../../../{{$imagen->imagen}}">
                         </div>
                     </div>   
                     @endforeach
