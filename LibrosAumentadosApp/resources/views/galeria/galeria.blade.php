@@ -22,7 +22,7 @@
                     @foreach ($imagenes as $imagen)
                     <div class="col-sm-2 imagen_galeria">
                         <div class="img" >
-                            <img src="{{ URL::asset('$imagen->imagen') }}">
+                            <img src="../../{{$imagen->imagen}}">
                         </div>
                     </div>   
                     @endforeach
@@ -47,9 +47,9 @@
             <div class="images">
                 @foreach ($imagenes as $imagen)
                     @if($loop->first)
-                        <div class="active galeria-img" style="background-image: url({{ URL::asset('$imagen->imagen') }})"></div>
+                        <div class="active galeria-img" style="background-image: url('../../{{$imagen->imagen}}')"></div>
                     @else
-                    <div class="galeria-img" style="background-image: url({{ URL::asset('$imagen->imagen') }})"></div>
+                    <div class="galeria-img" style="background-image: url('../../{{$imagen->imagen}}')"></div>
                     @endif
                 @endforeach
             <!-- Fin galeria-->
@@ -63,9 +63,9 @@
             @if($galeria[0]->tipo == "normal")    
                 @foreach ($imagenes as $imagen)
                     @if($loop->first)
-                        <div class="galeria-img active" style="background-image: url({{ URL::asset('$imagen->imagen') }})"></div>
+                        <div class="galeria-img active" style="background-image: url('../../{{$imagen->imagen}}')"></div>
                     @else
-                    <div class="galeria-img" style="background-image: url({{ URL::asset('$imagen->imagen') }})"></div>
+                    <div class="galeria-img" style="background-image: url('../../{{$imagen->imagen}}')"></div>
                     @endif
                 @endforeach
             @else

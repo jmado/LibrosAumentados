@@ -50,11 +50,11 @@
                                     <a href="{{route('descarga.edit', $dato->id)}}" class="btn btn-sm btn-outline-info" role="button">Modificar</a>
                                     
                                     
-                                    <a class="b{{$descarga->id}} btn btn-sm btn-outline-danger" role="button">Borrar</a>
+                                    <a class="b{{$datos->id}} btn btn-sm btn-outline-danger" role="button">Borrar</a>
 
                                     <script>
                                     $(document).ready(function(){ 
-                                        var borrar = $(".b{{$descarga->id}}").click(function(){
+                                        var borrar = $(".b{{$datos->id}}").click(function(){
                                             var id = {{$descarga->id}};
                                             var direccion = "{{route('descarga.delete', 0)}}";
                                             direccion = direccion.replace("0", id);
