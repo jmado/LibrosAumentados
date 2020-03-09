@@ -67,9 +67,13 @@ class Modelo_3dController extends Controller
         $elZip = $request->file;
         $filesystem = new Filesystem();
         try{
-            $filesystem->mkdir('modelos3d/'.$request->titulo);
-            $elZip->move('modelos3d/'.$request->titulo, $elZip->getClientOriginalName());
-            exec("unzip ".$elZip->getClientOriginalName());
+            $ruta = 'modelos3d/'.$request->titulo;
+            $filesystem->mkdir($ruta);
+            $modelo->modelo_3d = $ruta;
+
+            $elZip->move('modelos3d/'.$request->titulo, $elZip->getClientOriginalName()); 
+            exec("unzip ".$elZip->getClientOriginalName());//esto no funciona
+
         }catch(IOExceptionInterface $exception){
             dd("No funciona. Nada nuevo bajo el sol");
         }
