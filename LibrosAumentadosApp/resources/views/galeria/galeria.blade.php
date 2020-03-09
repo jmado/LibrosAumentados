@@ -19,16 +19,6 @@
     <div class="container">
         <div class="row">
                     
-                    @foreach ($imagenes as $imagen)
-                    <div class="col-sm-2 imagen_galeria">
-                        <div class="img" >
-                            <img src="../{{$imagen->imagen}}">
-                            <script>
-                                console.log(location.href);
-                            </script>
-                        </div>
-                    </div>   
-                    @endforeach
                 
         </div>
         <div class="row">
