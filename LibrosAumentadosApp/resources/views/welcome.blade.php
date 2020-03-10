@@ -6,7 +6,7 @@
     <title>Document</title>
 
     
-    <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/bootstrap2.min.css') }}">
     
     <style>
         nav{
