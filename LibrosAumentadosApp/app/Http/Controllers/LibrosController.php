@@ -24,9 +24,6 @@ class LibrosController extends Controller
      */
     public function index()
     {
-
-        
-
         $libroList = DB::table('libros')->simplePaginate(3);
         return view('libro.all', compact('libroList'));
     }
@@ -114,9 +111,6 @@ class LibrosController extends Controller
         return redirect()->route('libro.index');
     }
 
-
-
-
     /**
      * Remove the specified resource from storage.
      *
@@ -148,9 +142,6 @@ class LibrosController extends Controller
         }
     }
 
-
-
-    
     public function usuario($id_libro)
     {       
         $mensaje = "Dame la ".$palabra."ª palabra de la pagina ".$pagina." del capitulo ".$capitulo;
@@ -168,16 +159,10 @@ class LibrosController extends Controller
         $capitulo = $capitulos->get($numCapitulo);
 
         // Después, elegimos una página al azar del capítulo seleccionado
-        //$paginas = Libro::getPaginas($capitulo->id);
         $paginas = DB::select("select * from paginas where capitulo_id=:id",['id'=>$capitulo->id]);
-        //dd($paginas);
-        //$numPagina = rand(0, $paginas->count()-1);
+
         $numPagina = rand(0, count($paginas)-1);
-        $contenidoPagina = $paginas[$numPagina]->texto;
-        //dd($contenidoPagina);
-        //$contenidoPagina = $contenidoPaginaget[$numPagina];
-        //dd($contenidoPagina);
-        
+        $contenidoPagina = $paginas[$numPagina]->texto;        
 
         // Ahora vamos a elegir un párrafo al azar de esa página.
         // No todos los párrafos valen, solo los que tengan más de 5 palabras.
@@ -289,9 +274,5 @@ class LibrosController extends Controller
 
         
     }
-
-    
-
-    
 
 }

@@ -17,7 +17,7 @@
 
 
     <div class="container text-center selectLogin">
-        <form class="form-signin" action="/libro/comprobarPalabra" method="GET">
+        <form class="form-signin" action="{{ url('/libro/comprobarPalabra')}}" method="GET">
             @csrf
             <input type="hidden" name="id_libro" value="{{$id_libro}}">
             <h1 class="h3 mb-3 font-weight-normal">{{$textoUsuario}}</h1>
