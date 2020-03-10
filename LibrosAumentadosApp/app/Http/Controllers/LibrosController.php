@@ -160,8 +160,12 @@ class LibrosController extends Controller
 
         // Después, elegimos una página al azar del capítulo seleccionado
         $paginas = DB::select("select * from paginas where capitulo_id=:id",['id'=>$capitulo->id]);
+        $numero_pagina = DB::select("select numero_pagina from paginas where capitulo_id=:id",['id'=>$capitulo->id]);
+        
 
         $numPagina = rand(0, count($paginas)-1);
+        $numero_pagina = $numero_pagina[$numPagina]->numero_pagina;
+        //dd($numero_pagina);
         $contenidoPagina = $paginas[$numPagina]->texto;        
 
         // Ahora vamos a elegir un párrafo al azar de esa página.
@@ -186,7 +190,7 @@ class LibrosController extends Controller
         $palabraElegida = Session::get('palabraElegida');
         echo "$palabraElegida";
         // $textoUsuario = "Del libro $libro he elegido el Capítulo: ".$capitulo->numero_orden." Página: ".($numPagina + 1)." Párrafo: ".Session::get('parrafo_numero')." Palabra: ".($numPalabra + 1)."";
-        $textoUsuario = "Del libro $libro he elegido el Capítulo: ".$capitulo->numero_orden." Página: ".($paginas->numero_pagina)." Párrafo: ".Session::get('parrafo_numero')." Palabra: ".($numPalabra + 1)."";
+        $textoUsuario = "Del libro $libro he elegido el Capítulo: ".$capitulo->numero_orden." Página: ".$numero_pagina." Párrafo: ".Session::get('parrafo_numero')." Palabra: ".($numPalabra + 1)."";
 
 
         
