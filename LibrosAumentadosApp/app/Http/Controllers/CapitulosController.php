@@ -23,8 +23,8 @@ class CapitulosController extends Controller
 
         //Variables de sesion para imagenes
         Session::put('libro_id', $libro_id);
-
-        return view('capitulo.all', compact('capituloList', 'id'));
+        $libro = Libro::find($libro_id);
+        return view('capitulo.all', compact('libro','capituloList', 'id'));
     }
 
     /*
