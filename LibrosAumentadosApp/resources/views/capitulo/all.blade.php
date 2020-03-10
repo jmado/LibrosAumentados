@@ -32,6 +32,7 @@
             </div>
         </div>
     </div>
+    @auth
     <div class="row mt-5 mb-5">
         <div class="col">
             <a href="{{ route('capitulo.create') }}" class="btn btn-primary btn-lg" role="button">
@@ -39,6 +40,7 @@
             </a>
         </div>
     </div>
+    @endauth
 
     @foreach ($capituloList as $capitulo)
     <div class="row border rounded p-2">

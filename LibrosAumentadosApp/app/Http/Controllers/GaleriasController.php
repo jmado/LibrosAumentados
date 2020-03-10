@@ -9,6 +9,7 @@ use Session;
 use App\Imagen;
 use App\Galeria;
 use App\Capitulo;
+use App\Libro;
 
 use App\Galeria_imagen;
 
@@ -32,7 +33,6 @@ class GaleriasController extends Controller
         Session::put('capitulo_id', $id);
 
         $capitulo = $id;
-
         $numero_orden = DB::select("select numero_orden, id from capitulos where id=:id", ['id'=>$id]);
 
         /*Imagenes de galerias
@@ -40,7 +40,8 @@ class GaleriasController extends Controller
         from imagens inner join galeria_imagen on imagens.id=galeria_imagen.imagen_id 
         where galeria_imagen.galeria_id=:id order by ', ['id'=>$id]);
 */
-        return view('galeria.all', compact('galerias', 'libro_id', 'capitulo', 'numero_orden'));
+        $libro = Libro::findOrFail($libro_id);
+        return view('galeria.all', compact('libro', 'galerias', 'libro_id', 'capitulo', 'numero_orden'));
     }
 
     /**
