@@ -11,7 +11,7 @@
                 <li class="breadcrumb-item text-primary"><a href="{{ route('libro.index') }}">LibrosAumentadosApp</a></li>
                 <li class="breadcrumb-item text-primary"><a href="{{ route('libro.index') }}">Libros</a></li>
                 <li class="breadcrumb-item text-primary"><a href="{{ route('capitulo.all', $libro_id) }}">Capitulos</a></li>
-                <li class="breadcrumb-item active text-secondary" aria-current="page">Audios</li>
+                <li class="breadcrumb-item active " aria-current="page">Audios</li>
             </ol>
         </nav>
         
@@ -40,6 +40,7 @@
                     <i class="fas fa-plus"></i> Añadir audio
                 </a>
             </div>
+        </div>
     </div>
 </div>
 

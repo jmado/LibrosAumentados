@@ -4,7 +4,7 @@
 
 
 
-
+<div class="container p-5">
 <section class="text-center">
     <div class="container">    
         <button class="btn btn-primary btn-block" role="button" onclick="goBack()">Atras</button>
@@ -89,6 +89,8 @@
 
     </div>    
 </div>
+</div>
+
 
 @endsection
 

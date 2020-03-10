@@ -8,6 +8,7 @@ use Session;
 
 use App\Descarga;
 use App\Capitulo;
+use App\Libro;
 
 class DescargasController extends Controller
 {
@@ -28,7 +29,8 @@ class DescargasController extends Controller
 
         $datos = Descarga::where('capitulo_id', '=', $capitulo_id)->simplePaginate(4);
 
-        return view('descarga.all', compact('datos', 'libro_id'));
+        $libro = Libro::findOrFail($libro_id);
+        return view('descarga.all', compact('libro','datos', 'libro_id'));
     }
 
     /**

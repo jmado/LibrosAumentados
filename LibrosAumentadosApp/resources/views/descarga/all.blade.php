@@ -12,17 +12,38 @@
                 <li class="breadcrumb-item text-primary"><a href="{{ route('libro.index') }}">LibrosAumentadosApp</a></li>
                 <li class="breadcrumb-item text-primary"><a href="{{ route('libro.index') }}">Libros</a></li>
                 <li class="breadcrumb-item text-primary"><a href="{{ route('capitulo.all', $libro_id) }}">Capitulos</a></li>
-                <li class="breadcrumb-item active text-secondary" aria-current="page">Descargas</li>
+                <li class="breadcrumb-item active " aria-current="page">Descargas</li>
             </ol>
         </nav>
         <h1>Descargas</h1>
-        @auth
-        <p>
-          <a href="{{ route('descarga.create') }}" class="btn btn-primary btn-lg" role="button">Nuevo archivo</a>
-        </p>
-        @endauth
-      </div>
+        
 </section>
+
+<div class="container">
+    <div class="row mt-5 mb-5">
+        <div class="col-3">
+            <img src="{{ url($libro->cubierta) }}" alt="Cubierta del libro: {{$libro->titulo}}">
+        </div>
+        <div class="col-9">
+            <div class="row">
+                {{$libro->titulo}}
+            </div>
+            <div class="row">
+                {{$libro->subtitulo}}
+            </div>
+            <div class="row">
+                {{$libro->autor}}
+            </div>
+        </div>
+        <div class="row mt-5 mb-5 text-center">
+            <div class="col">
+                <a href="{{ route('descarga.create') }}" class="btn btn-primary btn-lg" role="button">
+                    <i class="fas fa-plus"></i> Añadir archivo
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="elementos">
     <div class="container">
@@ -31,7 +52,7 @@
 
         
             @foreach ($datos as $dato)   
-            <div class="col-md-4">
+            <div class="col-md-6 pb-5">
                 <div class="elemento mb-4">
                     <div class="elemento-header">
                         <a href="{{route('descarga.show', $dato->id)}}">
