@@ -13,6 +13,7 @@
         "laravel/framework": "^6.2",
         "laravel/tinker": "^1.0",
         "orangehill/iseed": "^2.6",
+        "symfony/filesystem": "^5.0",
         "vimeo/laravel": "^5.4"
     },
     "require-dev": {
