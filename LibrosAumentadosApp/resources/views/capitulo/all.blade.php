@@ -13,80 +13,84 @@
         </nav>
 
         <h1>Capitulos</h1>
-        <p>
-            @auth
-                <a href="{{ route('capitulo.create') }}" class="btn btn-primary btn-lg" role="button">Nuevo Capitulo</a>
-            @endauth
-        </p>
+        
       </div>
 </section>
 
-<div class="elementos container">
+<div class="container elementos">
     <div class="row">
-    <h2>Lista de capitulos {{$capituloList}}</h2>
-        <div class="table-responsive">
-             <table class="table table-striped table-sm">
-                <thead>
-                    <tr>
-                        <th>Capitulo</th>
-                        <th>Titulo</th>
-                        <th></th> 
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th> 
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($capituloList ?? '' as $capitulo)
-                    <tr>
-                        <td>
-                            {{$capitulo->numero_orden}}
-                        </td>
-                        <td colspan="7">
-                            {{$capitulo->titulo}}
-                        </td>
-                    </tr>
-                    <tr class="capitulos">
-                        <th><a href="{{ route('imagen.all', $capitulo->id) }}">
-                            <img src="{{ URL::asset('complementos/iconos/imagen.png') }}" alt="">
-                        </a></th> 
-                        <th><a href="{{ route('galeria.all', $capitulo->id) }}">
-                            <img src="{{ URL::asset('complementos/iconos/galeria.png') }}" alt="">
-                        </a></th>
-                        <th><a href="{{ route('audio.all', $capitulo->id) }}">
-                            <img src="{{ URL::asset('complementos/iconos/audio.png') }}" alt="">
-                        </a></th>
-                        <th><a href="{{ route('video.all', $capitulo->id) }}">
-                            <img src="{{ URL::asset('complementos/iconos/video.png') }}" alt="">
-                        </a></th>
-                        <th><a href="{{ route('modelo.all', $capitulo->id) }}">
-                            <img src="{{ URL::asset('complementos/iconos/modelo.png') }}" alt="">
-                        </a></th>
-                        <th><a href="{{ route('descarga.all', $capitulo->id) }}">
-                            <img src="{{ URL::asset('complementos/iconos/descargas.png') }}" alt="">
-                        </a></th>
-                        @auth
-                            <th><a href="{{ route('pagina.all', $capitulo->id) }}">
-                                <img src="{{ URL::asset('complementos/iconos/pagina.png') }}" alt="">
-                            </a></th>
-                        @endauth
+        <div class="col">
+            <h2>Lista de capitulos {{$capituloList}}</h2>
+        </div>
+        <div class="col">
+            @auth
+            <p><a href="{{ route('capitulo.create') }}" class="btn btn-primary btn-lg" role="button">Nuevo Capitulo</a></p>
+            @endauth
+        </div>
+    </div>
 
-                        <td class="btn">
-                            @auth
-                                <a href="{{route('capitulo.edit', $capitulo->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
-                                
-                                <a class="b{{$capitulo->id}} btn btn-sm btn-outline-danger" role="button">Borrar</a>
+    <div class="row">
+        @foreach ($capituloList ?? '' as $capitulo)
+        <div class="col-md-6">
+            <div class="elemento-header">
+            <p>Nº {{$capitulo->numero_orden}} - {{$capitulo->titulo}}</p>
+                
+                
+            </div>
+            <div class="elemento-body">
+                <div class="row">
+                    <div class="col-2">
+                        <a href="{{ route('imagen.all', $capitulo->id) }}">
+                            <i class="far fa-image"></i>
+                        </a> 
+                    </div>
+                    <div class="col-2">
+                        <a href="{{ route('galeria.all', $capitulo->id) }}">
+                            <i class="far fa-images"></i>
+                        </a>
+                    </div>
+                    <div class="col-2">
+                        <a href="{{ route('audio.all', $capitulo->id) }}">
+                            <i class="fas fa-volume-up"></i>
+                        </a>
+                    </div>
+                    <div class="col-2">
+                        <a href="{{ route('video.all', $capitulo->id) }}">
+                            <i class="fas fa-video"></i>
+                        </a>
+                    </div>
+                    <div class="col-2">
+                        <a href="{{ route('modelo.all', $capitulo->id) }}">
+                            <i class="fas fa-cube"></i>
+                        </a>
+                    </div>
+                    <div class="col-2">
+                        <a href="{{ route('descarga.all', $capitulo->id) }}">
+                            <i class="fas fa-file-download"></i>
+                        </a>
+                    </div>
+                    @auth
+                    <div class="col">
+                        <a href="{{ route('pagina.all', $capitulo->id) }}">
+                            <i class="far fa-file-alt"></i>
+                        </a>
+                    </div>
+                    @endauth
+                </div>
 
-                                    <script>
+            @auth
+                <div class="row">
+                    <div class="col-6">
+                        <a href="{{route('capitulo.edit', $capitulo->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
+                    </div>
+                    <div class="col-6">
+                        <a class="b{{$capitulo->id}} btn btn-sm btn-outline-danger" role="button">Borrar</a>
+                        <script>
                                     $(document).ready(function(){ 
                                         var borrar = $(".b{{$capitulo->id}}").click(function(){
                                             var id = {{$capitulo->id}};
                                             var direccion = "{{route('capitulo.deleteConfirm', 0)}}";
                                             direccion = direccion.replace("0", id);
-
                                             swal({
                                                 title: "¿Seguro de que borrar este elemento?",
                                                 text: "Una vez eliminado, ¡no podrá recuperar este elemento!",
@@ -99,29 +103,28 @@
                                                     swal("El elemento se borrar si no tiene contenido", {
                                                     icon: "success",
                                                     });
-
                                                 location.href=direccion; 
-                                                
                                                 } else {
                                                     swal("¡Su elemento está a salvo!");
                                                 }
                                             }); 
 
                                         });
-                                    });
-                                       
-                                    </script>
+                                    });   
+                        </script>
+                    </div>               
+                </div>
+            @endauth
 
-                            @endauth
-                        </td>
-                    </tr>    
-                    @endforeach
-                </tbody>
+            </div>
         </div>
-</div>    
-
-
+        @endforeach
+    </div>
+</div>
 
 @endsection
+
+
+    
 
 

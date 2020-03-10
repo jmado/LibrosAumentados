@@ -10,22 +10,27 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <!-- Bootstrap CSS 2-->
+    {{-- 
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}">
+    --}}
+    <link rel="stylesheet" href="{{ URL::asset('css/bootstrap2.min.css') }}">
+    <!-- jQuery -->
+    <script
+			  src="https://code.jquery.com/jquery-3.4.1.min.js"
+			  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous">
+    </script>
     
-    <!-- three js - Modelos3d -->
-    <script src="{{ URL::asset('js/three.min.js') }}"></script>
-    <script src="{{ URL::asset('js/GLTFLoader.js') }}"></script>
-    <script src="{{ URL::asset('js/OrbitControls.js') }}"></script>
-
     
+    <!-- Iconos -->
+    <script src="https://kit.fontawesome.com/df8e722098.js" crossorigin="anonymous"></script>
     
-
-
-    <!--<script src="https://kit.fontawesome.com/865c0f1a91.js" crossorigin="anonymous"></script>-->
-
 
     
 
-	  <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/bootstrap.min.css') }}" />
+	  
 	
     
     <!-- Import the component -->
@@ -37,11 +42,7 @@
     <!-- SweetAllert -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    <script
-			  src="https://code.jquery.com/jquery-3.4.1.min.js"
-			  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-        crossorigin="anonymous">
-    </script>
+   
     
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/style3d.css') }}" />
@@ -49,7 +50,7 @@
     <!-- JavaScript -->
     <script src="{{ URL::asset('js/main.js')}}"></script>
 
-    <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}">
+    
 </head>
 <body>
 

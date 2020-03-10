@@ -35,6 +35,11 @@ class GaleriasController extends Controller
 
         $numero_orden = DB::select("select numero_orden, id from capitulos where id=:id", ['id'=>$id]);
 
+        /*Imagenes de galerias
+        $imagenes=DB::select('select imagens.imagen 
+        from imagens inner join galeria_imagen on imagens.id=galeria_imagen.imagen_id 
+        where galeria_imagen.galeria_id=:id order by ', ['id'=>$id]);
+*/
         return view('galeria.all', compact('galerias', 'libro_id', 'capitulo', 'numero_orden'));
     }
 
