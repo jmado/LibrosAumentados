@@ -185,7 +185,9 @@ class LibrosController extends Controller
         Session::put('palabraElegida', $palabras[$numPalabra]);
         $palabraElegida = Session::get('palabraElegida');
         echo "$palabraElegida";
-        $textoUsuario = "Del libro $libro he elegido el Capítulo: ".$capitulo->numero_orden." Página: ".($numPagina + 1)." Párrafo: ".Session::get('parrafo_numero')." Palabra: ".($numPalabra + 1)."";
+        // $textoUsuario = "Del libro $libro he elegido el Capítulo: ".$capitulo->numero_orden." Página: ".($numPagina + 1)." Párrafo: ".Session::get('parrafo_numero')." Palabra: ".($numPalabra + 1)."";
+        $textoUsuario = "Del libro $libro he elegido el Capítulo: ".$capitulo->numero_orden." Página: ".($pagina->numero_pagina)." Párrafo: ".Session::get('parrafo_numero')." Palabra: ".($numPalabra + 1)."";
+
 
         
         return view('libro.logUsu', compact("textoUsuario", "id_libro"));
@@ -220,6 +222,7 @@ class LibrosController extends Controller
         $texto_limpio = strip_tags($contenidoParrafo);
 
         //Limpiar el texto de signos de puntuación
+        $texto_limpio = str_replace(",", "", $texto_limpio);
         $texto_limpio = str_replace(".", "", $texto_limpio);
         $texto_limpio = str_replace("-", "", $texto_limpio);
         $texto_limpio = str_replace("—", "", $texto_limpio);
@@ -227,7 +230,6 @@ class LibrosController extends Controller
         $texto_limpio = str_replace("¿", "", $texto_limpio);
         $texto_limpio = str_replace("!", "", $texto_limpio);
         $texto_limpio = str_replace("¡", "", $texto_limpio);
-        $texto_limpio = str_replace(".", "", $texto_limpio);
         $texto_limpio = str_replace(":", "", $texto_limpio);
         $texto_limpio = str_replace(";", "", $texto_limpio);
         $texto_limpio = str_replace("[", "", $texto_limpio);
