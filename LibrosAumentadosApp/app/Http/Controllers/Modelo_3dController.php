@@ -63,11 +63,10 @@ class Modelo_3dController extends Controller
         $capitulo_id = Session::get('capitulo_id');
         $modelo->capitulo_id = $capitulo_id;
 
-        //Obtengo el archivo y creo una carpeta
         $elZip = $request->file;
         $filesystem = new Filesystem();
         try{
-            $ruta = 'modelos3d/'.$request->titulo;
+            $ruta = $request->titulo;
             $filesystem->mkdir($ruta);
             $modelo->modelo_3d = $ruta;
 
@@ -77,40 +76,8 @@ class Modelo_3dController extends Controller
         }catch(IOExceptionInterface $exception){
             dd("No funciona. Nada nuevo bajo el sol");
         }
+        
         $modelo->save();
-
-        /*
-        if (mkdir('modelos3d/'.$request->titulo)) {
-            echo 'directorio true';
-            
-            $modelo->titulo = $request->titulo;
-             
-                                                                    /*El archivo comprimido
-                                                                    $archivo = $request->modelo_3d;
-                                                                    $zip = new ZipArchive;
-                                                                    if ($zip->open($archivo) == true) {
-                                                                        echo 'descomprimir true';
-                                                                        $zip->extractTo('public/modelos3d/' . $request->titulo);
-                                                                        $zip->close();
-
-                                                                        $modelo->modelo_3d = 'public/modelos3d/' . $request->titulo;
-
-                                                                        $modelo->save();
-                                                                    } else {
-                                                                        echo 'descomprimir fallo';
-                                                                    }
-                                                                    
-                                                                    
-            $elZip = $request->file;
-            $elZip->move('modelos3d/'.$request->titulo, $elZip->getClientOriginalName());
-            exec("unzip ".$elZip->getClientOriginalName());
-
-            $modelo->modelo_3d =$request->titulo;
-            $modelo->save();
-        } else {
-            echo 'directorio fallo';
-        }
-        */
 
         $id = $request->capitulo_id;
         return redirect()->route('modelo.all', $capitulo_id);

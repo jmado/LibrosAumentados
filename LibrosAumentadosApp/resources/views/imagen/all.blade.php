@@ -12,7 +12,7 @@
                 <li class="breadcrumb-item text-primary"><a href="{{ route('libro.index') }}">LibrosAumentadosApp</a></li>
                 <li class="breadcrumb-item text-primary"><a href="{{ route('libro.index') }}">Libros</a></li>
                 <li class="breadcrumb-item text-primary"><a href="{{ route('capitulo.all', $libro_id) }}">Capitulos</a></li>
-                <li class="breadcrumb-item active text-secondary" aria-current="page">Imagenes</li>
+                <li class="breadcrumb-item active" aria-current="page">Imagenes</li>
             </ol>
         </nav>
         <h1>Imagenes</h1>
@@ -33,7 +33,7 @@
 
         
             @foreach ($datos as $imagen)   
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="elemento mb-4">
                     <div class="elemento-header">
                         <a href="../../{{$imagen->imagen}}">
