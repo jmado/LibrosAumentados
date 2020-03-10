@@ -8,6 +8,7 @@ use Session;
 
 use App\Audio;
 use App\Capitulo;
+use App\Libro;
 
 class AudiosController extends Controller
 {
@@ -32,8 +33,8 @@ class AudiosController extends Controller
         
 
         
-
-        return view('audio.all', compact('datos', 'libro_id'));
+        $libro = Libro::find($libro_id);
+        return view('audio.all', compact('libro','datos', 'libro_id'));
     }
 
     /**
