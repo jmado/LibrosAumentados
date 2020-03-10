@@ -41,7 +41,7 @@
     </div>
 
     @foreach ($capituloList as $capitulo)
-    <div class="row border p-2">
+    <div class="row border rounded p-2">
         <div class="col">
             <div class="row text-center p-1">
                 <div class="col">
@@ -91,7 +91,7 @@
     </div>
     @auth
     <div class="row">
-        <div class="col">
+        <div class="col p-1">
             <a href="{{route('capitulo.edit', $capitulo->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
             <a class="b{{$capitulo->id}} btn btn-sm btn-outline-danger" role="button">Borrar</a>
                 <script>
