@@ -8,10 +8,18 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item text-primary"><a href="{{ route('libro.index') }}">LibrosAumentadosApp</a></li>
                 <li class="breadcrumb-item text-primary"><a href="{{ route('libro.index') }}">Libros</a></li>
-                <li class="breadcrumb-item active text-secondary" aria-current="page">Capitulos</li>
+                <li class="breadcrumb-item active " aria-current="page">Capitulos</li>
             </ol>
         </nav>
 
+    <div class="row">
+        <div class="col">
+        
+        </div>
+        <div class="col">
+        
+        </div>
+    </div>
         <h1>Capitulos</h1>
         
       </div>
@@ -24,7 +32,11 @@
         </div>
         <div class="col">
             @auth
-            <p><a href="{{ route('capitulo.create') }}" class="btn btn-primary btn-lg" role="button">Nuevo Capitulo</a></p>
+            <p>
+                <a href="{{ route('capitulo.create') }}" class="btn btn-primary btn-lg" role="button">
+                    <i class="fas fa-plus"></i>Nuevo capitulo
+                </a>
+            </p>
             @endauth
         </div>
     </div>
