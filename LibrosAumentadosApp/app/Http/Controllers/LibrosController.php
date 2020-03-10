@@ -282,7 +282,9 @@ class LibrosController extends Controller
             $capituloList = Capitulo::where('libro_id', '=', $r->id_libro)->simplePaginate(3);
             //Session::put('dentro', $r->id_libro);
             //$dentro = Session::get('dentro');
-            return view('capitulo.all', compact('capituloList'));
+            //return view('capitulo.all', compact('capituloList'));
+           
+            return redirect()->route('capitulo.all', $r->id_libro);
         }else
         {
             Session::put('dentro', 'false');
