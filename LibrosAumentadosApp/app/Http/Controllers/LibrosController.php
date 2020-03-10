@@ -186,7 +186,7 @@ class LibrosController extends Controller
         $palabraElegida = Session::get('palabraElegida');
         echo "$palabraElegida";
         // $textoUsuario = "Del libro $libro he elegido el Capítulo: ".$capitulo->numero_orden." Página: ".($numPagina + 1)." Párrafo: ".Session::get('parrafo_numero')." Palabra: ".($numPalabra + 1)."";
-        $textoUsuario = "Del libro $libro he elegido el Capítulo: ".$capitulo->numero_orden." Página: ".($pagina->numero_pagina)." Párrafo: ".Session::get('parrafo_numero')." Palabra: ".($numPalabra + 1)."";
+        $textoUsuario = "Del libro $libro he elegido el Capítulo: ".$capitulo->numero_orden." Página: ".($paginas->numero_pagina)." Párrafo: ".Session::get('parrafo_numero')." Palabra: ".($numPalabra + 1)."";
 
 
         
@@ -200,7 +200,7 @@ class LibrosController extends Controller
         Session::put('parrafo_numero', $numParrafo);
         $contenidoParrafo = $parrafos[$numParrafo];
 
-        echo "Párrafo elegido: $numParrafo <br>"; //Hay que sumar 1 ".($numParrafo + 1)." ???
+        // echo "Párrafo elegido: $numParrafo <br>"; //Hay que sumar 1 ".($numParrafo + 1)." ???
 
         return $contenidoParrafo;
     }
