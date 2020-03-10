@@ -193,8 +193,21 @@ class LibrosController extends Controller
         $textoUsuario = "Del libro $libro he elegido el Capítulo: ".$capitulo->numero_orden." Página: ".$numero_pagina." Párrafo: ".Session::get('parrafo_numero')." Palabra: ".($numPalabra + 1)."";
 
 
+        $book = Libro::find($id_libro);
+        $palabra = $numPalabra + 1;
+        $contenido = [
+            'id_libro' =>$id_libro,
+            "libro" => $book->titulo,
+            "imagen" => $book->cubierta,
+            "capitulo" => $capitulo->numero_orden,
+            "pagina" => $numero_pagina,
+            "parrafo" => Session::get('parrafo_numero'),
+            "palabra" => $palabra
+        ];
         
         return view('libro.logUsu', compact("textoUsuario", "id_libro"));
+        //return view('libro.logUsu', compact("contenido"));
+
     }
     
     private function elegirParrafo($contenidoPagina)
