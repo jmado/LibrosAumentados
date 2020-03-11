@@ -55,7 +55,7 @@
 
         
             @foreach ($datos as $imagen)   
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <div class="elemento mb-4">
                     <div class="elemento-header">
                         <a href="../../{{$imagen->imagen}}">
