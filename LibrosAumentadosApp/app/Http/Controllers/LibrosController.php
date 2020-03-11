@@ -163,8 +163,8 @@ class LibrosController extends Controller
 
         $numPagina = rand(0, count($paginas)-1);
         $numero_pagina = $paginas[$numPagina]->numero_pagina;
-        echo "NumPagina = $numPagina - numero_pagina = $numero_pagina<br>";
-        var_dump($paginas);
+        //echo "NumPagina = $numPagina - numero_pagina = $numero_pagina<br>";
+        //var_dump($paginas);
         $contenidoPagina = $paginas[$numPagina]->texto;        
 
         // Ahora vamos a elegir un párrafo al azar de esa página.
