@@ -49,7 +49,46 @@
                 <div class="col">
                     {{$capitulo->numero_orden}} - {{$capitulo->titulo}}
                 </div>
+
+                <div class="col">
+                    <a href="{{ route('imagen.all', $capitulo->id) }}">
+                        <i class="far fa-image"></i>
+                    </a> 
+                </div>
+                <div class="col">
+                    <a href="{{ route('galeria.all', $capitulo->id) }}">
+                        <i class="far fa-images"></i>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="{{ route('audio.all', $capitulo->id) }}">
+                        <i class="fas fa-volume-up"></i>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="{{ route('video.all', $capitulo->id) }}">
+                        <i class="fas fa-video"></i>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="{{ route('modelo.all', $capitulo->id) }}">
+                        <i class="fas fa-cube"></i>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="{{ route('descarga.all', $capitulo->id) }}">
+                        <i class="fas fa-file-download"></i>
+                    </a>
+                </div>
+                @auth
+                <div class="col">
+                    <a href="{{ route('pagina.all', $capitulo->id) }}">
+                        <i class="far fa-file-alt"></i>
+                    </a>
+                </div>
+                @endauth
             </div>
+            {{-- 
             <div class="row p-1">
                 <div class="col">
                     <a href="{{ route('imagen.all', $capitulo->id) }}">
@@ -89,6 +128,7 @@
                 </div>
                 @endauth
             </div>
+            --}}
         </div>
     </div>
     @auth
