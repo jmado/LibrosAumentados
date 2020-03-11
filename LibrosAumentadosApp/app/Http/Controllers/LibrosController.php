@@ -159,13 +159,12 @@ class LibrosController extends Controller
         $capitulo = $capitulos->get($numCapitulo);
 
         // Después, elegimos una página al azar del capítulo seleccionado
-        $paginas = DB::select("select * from paginas where capitulo_id=:id",['id'=>$capitulo->id]);
-        $numero_pagina = DB::select("select numero_pagina from paginas where capitulo_id=:id",['id'=>$capitulo->id]);
-        
+        $paginas = DB::select("select * from paginas where capitulo_id=:id",['id'=>$capitulo->id]);   
 
         $numPagina = rand(0, count($paginas)-1);
-        $numero_pagina = $numero_pagina[$numPagina]->numero_pagina;
-        //dd($numero_pagina);
+        $numero_pagina = $paginas[$numPagina]->numero_pagina;
+        echo "NumPagina = $numPagina - numero_pagina = $numero_pagina<br>";
+        var_dump($paginas);
         $contenidoPagina = $paginas[$numPagina]->texto;        
 
         // Ahora vamos a elegir un párrafo al azar de esa página.
