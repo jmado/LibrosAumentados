@@ -63,7 +63,7 @@
                         </a> 
                     </div>
                     <div class="elemento-body">
-                        <h5>{{$imagen->titulo}}</h5>
+                        <h4>{{$imagen->titulo}}</h4>
                         {{--<p><a href="{{route('capitulo.index')}}">Capitulo: {{$imagen->capitulo_id}}</a></p>--}}
                         <p><b>Descripcion:</b> {{$imagen->descripcion}} </p>
 
