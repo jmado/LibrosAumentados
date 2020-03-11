@@ -124,13 +124,15 @@ class Modelo_3dController extends Controller
 
         $capitulo_id = Session::get('capitulo_id');
         $modelo->capitulo_id = $capitulo_id;
+        
+        $modelo->titulo = $request->titulo;
 
         //Obtengo el titulo y creo una carpeta
-        
+        /*
         if (mkdir('public/modelos3d/' . $request->titulo, 0777)) {
             echo 'directorio true';
             
-            $modelo->titulo = $request->titulo;
+            
             
             //El archivo comprimido
             $archivo = $request->modelo_3d;
@@ -150,6 +152,7 @@ class Modelo_3dController extends Controller
         } else {
             echo 'directorio fallo';
         }
+        */
 
         return redirect()->route('imagen.all', $capitulo_id);
     }

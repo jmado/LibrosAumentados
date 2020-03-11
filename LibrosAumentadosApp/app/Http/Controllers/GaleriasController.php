@@ -42,9 +42,9 @@ class GaleriasController extends Controller
         inner join galerias on galeria_imagen.galeria_id = galerias.id
         where galerias.capitulo_id =' . $capitulo .' group by galeria_imagen.galeria_id');
 */
-/*
+/* 
         $imagenes = DB::table('imagens')
-        ->select('imagen')
+        ->select('imagens.imagen')
         ->join('galeria_imagen', function ($join) {
             $join->on('imagens.id', '=', 'galeria_imagen.imagen_id');
         })
@@ -54,6 +54,7 @@ class GaleriasController extends Controller
         ->where('galerias.capitulo_id', '=', $capitulo)
         ->groupBy('galeria_imagen.galeria_id')
         ;
+        dd($imagenes);
         */
         //$imagenes = DB::table('imagens')->select('imagen', 'id')->get();
         //dd($imagenes);

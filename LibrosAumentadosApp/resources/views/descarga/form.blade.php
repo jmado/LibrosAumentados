@@ -22,7 +22,7 @@
 <div class="container ">
     <div class="form">
         @isset($datos)
-            <form action="/descarga/{{$datos->id}}" method="POST" enctype='multipart/form-data'>
+            <form action="{{ route('descargas.update') }}" method="POST" enctype='multipart/form-data'>
             @method("PUT")
         @else
             <form action="{{ route('descarga.store') }}" method="POST" enctype="multipart/form-data">

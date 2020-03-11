@@ -27,7 +27,7 @@
     {{ $modelos->links() }}
     <div class="row">
         <h2>Lista</h2>
-        <div class="table-responsive">
+        <div class="table-responsive text-center">
              <table class="table table-striped table-sm">
                 <thead>
                     <tr>   
@@ -40,11 +40,13 @@
                     @foreach ($modelos as $modelo)
                     <tr>
                         <td>{{$modelo->titulo}}</td>
+                        <th>{{$modelo->descripcion}}</th>
                         <td>
                             <a href="{{route('modelo.show', $modelo->id)}}" class="btn btn-sm btn-info" role="button">Ver</a>
                             @auth
+                                {{-- 
                                 <a href="{{route('modelo.edit', $modelo->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
-
+                                --}}
 
                                 <a class="b{{$modelo->id}} btn btn-sm btn-outline-danger" role="button">Borrar</a>
 

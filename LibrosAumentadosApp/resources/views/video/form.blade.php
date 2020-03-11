@@ -24,14 +24,7 @@
                 <form action="{{ route('video.store') }}" method="POST" enctype="multipart/form-data">
             @endisset
                 @csrf
-                <div class="form-group">
-                <div class="form-group">
-                    <ul class="list-group">
-                        <li class="list-group-item"><strong>Capitulo</strong></li>
-                        <li class="list-group-item">{{$capitulos}}</li>
-                    </ul>
-                </div>
-                </div>
+                
                 
 
                 
