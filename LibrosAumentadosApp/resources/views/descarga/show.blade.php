@@ -15,7 +15,7 @@
 
 <div class="container"> 
     <div class="archivo">
-      <div class="bg-secondary text-light">
+      <div style="backgroud-color:white">
         <iframe src='{{ URL::asset("$datos->archivo") }}' height="400" width="100%"></iframe>
       </div>
       
