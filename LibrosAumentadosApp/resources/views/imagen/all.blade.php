@@ -63,9 +63,9 @@
                         </a> 
                     </div>
                     <div class="elemento-body">
-                        <h2>{{$imagen->titulo}}</h2>
+                        <h4>{{$imagen->titulo}}</h4>
                         {{--<p><a href="{{route('capitulo.index')}}">Capitulo: {{$imagen->capitulo_id}}</a></p>--}}
-                        <p>Descripcion: {{$imagen->descripcion}} </p>
+                        <p><b>Descripcion:</b> {{$imagen->descripcion}} </p>
 
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
