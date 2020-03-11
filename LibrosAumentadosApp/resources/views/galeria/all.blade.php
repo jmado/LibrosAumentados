@@ -18,10 +18,10 @@
         </div>
     </div>
     <div class="row mt-5 mb-5">
-        <div class="col-3">
+        <div class="col-2">
             <img src="{{ url($libro->cubierta) }}" alt="Cubierta del libro: {{$libro->titulo}}">
         </div>
-        <div class="col-9">
+        <div class="col-10">
             <div class="row">
                 {{$libro->titulo}}
             </div>

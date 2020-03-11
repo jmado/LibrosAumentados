@@ -26,7 +26,7 @@ class ImagensController extends Controller
     public function index($id)
     {
         //Consulta todas las imagenes de ese capitulo
-        $datos = Imagen::where('capitulo_id', '=', $id)->simplePaginate(3);
+        $datos = Imagen::where('capitulo_id', '=', $id)->simplePaginate(8);
         
         $libro_id = $consulta = DB::select("select libro_id from capitulos where id=:id", ['id'=>$id]);
         $libro_id = $libro_id[0]->libro_id;

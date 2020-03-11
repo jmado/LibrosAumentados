@@ -19,7 +19,7 @@
 
 
             @foreach ($libroList as $libro)   
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="elemento mb-4">
                     <div class="elemento-header">
                     <p>
