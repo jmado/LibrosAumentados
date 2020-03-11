@@ -8,6 +8,7 @@ use Session;
 
 use App\Video;
 use App\Capitulo;
+use App\Libro;
 
 class VideosController extends Controller
 {
@@ -26,7 +27,9 @@ class VideosController extends Controller
         Session::put('capitulo_id', $capitulo_id);
 
         $datos = Video::where('capitulo_id', '=', $capitulo_id)->simplePaginate(3);
-        return view('video.all', compact('datos', 'libro_id'));
+
+        $libro = Libro::findOrFail($libro_id);
+        return view('video.all', compact('libro','datos', 'libro_id'));
     }
 
     /**

@@ -4,9 +4,9 @@
 
 
 <div class="container p-5">
-    <section class="text-center selectLogin">
+    <section class="text-center ">
 
-    <div class="row rowLogin">
+    <div class="row">
         <div class="container">    
             <button class="btn btn-primary btn-block" role="button" onclick="goBack()">Atras</button>
             <script>
@@ -19,33 +19,36 @@
 
 
 
-        <div class="container text-center selectLogin">
+        <div class="container text-center ">
             <form class="form-signin" action="{{ url('/libro/comprobarPalabra')}}" method="GET">
                 @csrf
                 <div class="row mt-5 mb-5">
-                    <div class="col-3">
-                        <img src="{{ url($contenido->imagen) }}" alt="Cubierta del libro: {{$contenido->libro}}">
+                    <div class="col-4">
+                        <img src="{{ url($contenido['imagen']) }}" alt="Cubierta del libro: {{$contenido['libro']}}">
                     </div>
-                    <div class="col-9">
+                    <div class="col-8 mt-5">
                         <div class="row">
-                            {{$contenido->capitulo}}
+                        <p>Escribe la palabra que corresponde al </p>
                         </div>
                         <div class="row">
-                            {{$contenido->pagina}}
+                        Capítulo:    {{$contenido['capitulo']}}
                         </div>
                         <div class="row">
-                            {{$contenido->parrafo}}
+                        Página:    {{$contenido['pagina']}}
                         </div>
                         <div class="row">
-                            {{$contenido->palabra}}
+                        Párrafo:    {{$contenido['parrafo']}}
+                        </div>
+                        <div class="row">
+                        Palabra:    {{$contenido['palabra']}}
                         </div>
                     </div>
                 </div>
                 <div class="row mt-5 mb-5">
-                    <input type="hidden" name="id_libro" value="{{$contenido->id_libro}}">
-                    <label for="inputEmail" class="sr-only">Escribe la palabra</label>
+                    <input type="hidden" name="id_libro" value="{{$contenido['id_libro']}}">
+                    <label for="inputEmail">Escribe la palabra</label>
                     <input type="text" name="palabra" id="palabraTexto" class="form-control" placeholder="Palabra" required="" autofocus=""><br>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Continuar</button>
+                    <button class="btn btn-lg btn-primary btn-block mt-2" type="submit">Continuar</button>
                 </div>
 
             </form>

@@ -34,12 +34,15 @@
                 </div>
             </div>
         </div>
+        @auth
         <div class="row mt-5 mb-5 text-center">
             <div class="col">
                 <a href="{{ route('imagen.create') }}" class="btn btn-primary btn-lg" role="button">
                     <i class="fas fa-plus"></i> Añadir imagen
                 </a>
             </div>
+        </div>
+        @endauth
     </div>
 </div>
 
