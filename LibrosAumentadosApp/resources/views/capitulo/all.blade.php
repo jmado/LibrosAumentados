@@ -52,42 +52,47 @@
             </div>
             <div class="row p-1">
                 <div class="col">
-                    <a href="{{ route('imagen.all', $capitulo->id) }}">
+                    <a href="{{ route('imagen.all', $capitulo->id) }}" data-toggle="tooltip" title="Imagenes">
                         <i class="far fa-image"></i>
                     </a> 
                 </div>
                 <div class="col">
-                    <a href="{{ route('galeria.all', $capitulo->id) }}">
+                    <a href="{{ route('galeria.all', $capitulo->id) }}" data-toggle="tooltip" title="Galerias">
                         <i class="far fa-images"></i>
                     </a>
                 </div>
                 <div class="col">
-                    <a href="{{ route('audio.all', $capitulo->id) }}">
+                    <a href="{{ route('audio.all', $capitulo->id) }}" data-toggle="tooltip" title="Audios">
                         <i class="fas fa-volume-up"></i>
                     </a>
                 </div>
                 <div class="col">
-                    <a href="{{ route('video.all', $capitulo->id) }}">
+                    <a href="{{ route('video.all', $capitulo->id) }}" data-toggle="tooltip" title="Videos">
                         <i class="fas fa-video"></i>
                     </a>
                 </div>
                 <div class="col">
-                    <a href="{{ route('modelo.all', $capitulo->id) }}">
+                    <a href="{{ route('modelo.all', $capitulo->id) }}" data-toggle="tooltip" title="Modelos 3d">
                         <i class="fas fa-cube"></i>
                     </a>
                 </div>
                 <div class="col">
-                    <a href="{{ route('descarga.all', $capitulo->id) }}">
+                    <a href="{{ route('descarga.all', $capitulo->id) }}" data-toggle="tooltip" title="Descargas">
                         <i class="fas fa-file-download"></i>
                     </a>
                 </div>
                 @auth
                 <div class="col">
-                    <a href="{{ route('pagina.all', $capitulo->id) }}">
+                    <a href="{{ route('pagina.all', $capitulo->id) }}" data-toggle="tooltip" title="Paginas">
                         <i class="far fa-file-alt"></i>
                     </a>
                 </div>
                 @endauth
+                    <script>
+                        $(document).ready(function(){
+                        $('[data-toggle="tooltip"]').tooltip();   
+                        });
+                    </script>
             </div>
         </div>
     </div>
