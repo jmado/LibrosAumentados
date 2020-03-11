@@ -35,8 +35,8 @@
                     
                     </div>
                     <div class="elemento-body">
-                        <h3>{{$libro->titulo}}</h3>
-                        <h5>{{$libro->subtitulo}}</h5>
+                        <h6>{{$libro->titulo}}</h6>
+                        <p>{{$libro->subtitulo}}</p>
                         <p>Autor: {{$libro->autor}}</p>
 
                         <div class="d-flex justify-content-between align-items-center">
