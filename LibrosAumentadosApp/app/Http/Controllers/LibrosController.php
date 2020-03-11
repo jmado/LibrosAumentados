@@ -164,6 +164,8 @@ class LibrosController extends Controller
         
 
         $numPagina = rand(0, count($paginas)-1);
+//        if($numPagina>0);
+        //dd($numPagina);
         $numero_pagina = $numero_pagina[$numPagina]->numero_pagina;
         //dd($numero_pagina);
         $contenidoPagina = $paginas[$numPagina]->texto;        
@@ -204,9 +206,9 @@ class LibrosController extends Controller
             "parrafo" => Session::get('parrafo_numero'),
             "palabra" => $palabra
         ];
-        
-        return view('libro.logUsu', compact("textoUsuario", "id_libro"));
-        //return view('libro.logUsu', compact("contenido"));
+        //dd($contenido);
+        //return view('libro.logUsu', compact("textoUsuario", "id_libro"));
+        return view('libro.logUsu', compact("contenido"));
 
     }
     
