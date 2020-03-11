@@ -80,7 +80,7 @@ class GaleriasController extends Controller
 
         //Listado de galerias existentes
         //$imagenes = DB::table('imagens')->select('id', 'imagen')->where('capitulo_id', '=', $capitulo_id)->get();
-        $imagenes = DB::select("select id, imagen from imagens where capitulo_id=:id",['id'=>$capitulo_id]);
+        $imagenes = DB::select("select id, titulo, imagen from imagens where capitulo_id=:id",['id'=>$capitulo_id]);
         return view('galeria.form', compact('capitulo_id','imagenes'));
     }
 
