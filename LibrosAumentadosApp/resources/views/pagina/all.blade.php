@@ -8,7 +8,7 @@
                 <li class="breadcrumb-item text-primary"><a href="{{ route('libro.index') }}">LibrosAumentadosApp</a></li>
                 <li class="breadcrumb-item text-primary"><a href="{{ route('libro.index') }}">Libros</a></li>
                 <li class="breadcrumb-item text-primary"><a href="{{ route('capitulo.all', $id) }}">Capitulos</a></li>
-                <li class="breadcrumb-item active text-secondary" aria-current="page">Páginas</li>
+                <li class="breadcrumb-item active" aria-current="page">Páginas</li>
             </ol>
         </nav>
         <h1>Páginas</h1>

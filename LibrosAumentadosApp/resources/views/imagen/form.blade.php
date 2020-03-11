@@ -4,9 +4,9 @@
 
 
 
-
+<div class="container p-5">
 <section class="text-center">
-    <div class="container">    
+    <div class="container pb-3">    
         <button class="btn btn-primary btn-block" role="button" onclick="goBack()">Atras</button>
         <script>
             function goBack() {
@@ -47,28 +47,31 @@
 
             
 
-            <br>
-            <label for="title">Titulo:</label>
-            <br>
-            <input id="title" type="text" name="titulo" class="form-control" value="{{$datos->titulo ?? ''}}" required>
-            <br>
-            <label for="info">Descripción:</label>
-            <br>
-            <input id="info" type="text" name="descripcion" class="form-control" value="{{$datos->descripcion ?? ''}}">
-            <br>
-            <div class="custom-file">
-                <input type="file" name="file" class="custom-file-input" id="fichero" lang="es">
-                <label class="custom-file-label" for="fichero">Seleccionar Imagen</label>
-            </div>
-            <br>
-            
-
+           <div class="form-group">
+                <label for="title">Titulo:</label>
+                <input id="title" type="text" name="titulo" class="form-control" value="{{$datos->titulo ?? ''}}" required>
+           </div>
+           <div class="form-group">
+                <label for="info">Descripción:</label>
+                <input id="info" type="text" name="descripcion" class="form-control" value="{{$datos->descripcion ?? ''}}" required>
+           </div>
+           <div class="form-group pt-3">
+                <div class="custom-file">
+                    <input type="file" name="file" class="custom-file-input" id="fichero" lang="es" required>
+                    <label class="custom-file-label" for="fichero">Seleccionar Imagen</label>
+                </div>
+           </div>
+            <div class="form-group pt-3">
             <input type="submit" value="Enviar" class="btn btn-primary btn-block" role="button">
+            </div>
+            
 
             </form>
 
     </div>    
 </div>
+</div>
+
 
 @endsection
 

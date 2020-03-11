@@ -4,7 +4,7 @@
 
 
 
-
+<div class="container p-5">
 <section class="text-center">
     <div class="container">    
         <button class="btn btn-primary btn-block" role="button" onclick="goBack()">Atras</button>
@@ -68,13 +68,13 @@
 
             <div class="form-group">
                 <label for="info">Descripción:</label>
-                <input id="info" type="text" name="descripcion" class="form-control" value="{{$datos->descripcion ?? ''}}">
+                <input id="info" type="text" name="descripcion" class="form-control" value="{{$datos->descripcion ?? ''}}" required>
             </div>
 
 
             <div class="form-group">
                 <div class="custom-file">
-                    <input type="file" name="file" class="custom-file-input" id="fichero" lang="es">
+                    <input type="file" name="file" class="custom-file-input" id="fichero" lang="es" required>
                     <label class="custom-file-label" for="fichero">Seleccionar Archivo</label>
                 </div>
             </div>
@@ -89,6 +89,8 @@
 
     </div>    
 </div>
+</div>
+
 
 @endsection
 

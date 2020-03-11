@@ -9,6 +9,7 @@ use Session;
 use App\Imagen;
 use App\Galeria;
 use App\Capitulo;
+use App\Libro;
 
 use App\Galeria_imagen;
 
@@ -34,8 +35,9 @@ class ImagensController extends Controller
         Session::put('libro_id', $libro_id);
         Session::put('capitulo_id', $id);
         
+        $libro = Libro::find($libro_id);
 
-        return view('imagen.all', compact('datos', 'libro_id'));
+        return view('imagen.all', compact('libro', 'datos', 'libro_id'));
     }
 
     /**

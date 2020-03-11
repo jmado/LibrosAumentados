@@ -162,9 +162,16 @@ class LibrosController extends Controller
         $paginas = DB::select("select * from paginas where capitulo_id=:id",['id'=>$capitulo->id]);   
 
         $numPagina = rand(0, count($paginas)-1);
+<<<<<<< HEAD
         $numero_pagina = $paginas[$numPagina]->numero_pagina;
         echo "NumPagina = $numPagina - numero_pagina = $numero_pagina<br>";
         var_dump($paginas);
+=======
+//        if($numPagina>0);
+        //dd($numPagina);
+        $numero_pagina = $numero_pagina[$numPagina]->numero_pagina;
+        //dd($numero_pagina);
+>>>>>>> master
         $contenidoPagina = $paginas[$numPagina]->texto;        
 
         // Ahora vamos a elegir un párrafo al azar de esa página.
@@ -192,8 +199,21 @@ class LibrosController extends Controller
         $textoUsuario = "Del libro $libro he elegido el Capítulo: ".$capitulo->numero_orden." Página: ".$numero_pagina." Párrafo: ".Session::get('parrafo_numero')." Palabra: ".($numPalabra + 1)."";
 
 
-        
-        return view('libro.logUsu', compact("textoUsuario", "id_libro"));
+        $book = Libro::find($id_libro);
+        $palabra = $numPalabra + 1;
+        $contenido = [
+            'id_libro' =>$id_libro,
+            "libro" => $book->titulo,
+            "imagen" => $book->cubierta,
+            "capitulo" => $capitulo->numero_orden,
+            "pagina" => $numero_pagina,
+            "parrafo" => Session::get('parrafo_numero'),
+            "palabra" => $palabra
+        ];
+        //dd($contenido);
+        //return view('libro.logUsu', compact("textoUsuario", "id_libro"));
+        return view('libro.logUsu', compact("contenido"));
+
     }
     
     private function elegirParrafo($contenidoPagina)
@@ -268,7 +288,9 @@ class LibrosController extends Controller
             $capituloList = Capitulo::where('libro_id', '=', $r->id_libro)->simplePaginate(3);
             //Session::put('dentro', $r->id_libro);
             //$dentro = Session::get('dentro');
-            return view('capitulo.all', compact('capituloList'));
+            //return view('capitulo.all', compact('capituloList'));
+           
+            return redirect()->route('capitulo.all', $r->id_libro);
         }else
         {
             Session::put('dentro', 'false');

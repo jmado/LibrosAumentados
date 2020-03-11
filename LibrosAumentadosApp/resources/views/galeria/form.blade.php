@@ -3,7 +3,7 @@
 @section("content")
 
 
-
+<div class="container p-5">
 <section class="text-center">
     <div class="container">    
         <button class="btn btn-primary btn-block" role="button" onclick="goBack()">Atras</button>
@@ -51,7 +51,7 @@
             
             <div class="form-group">
                 <label for="img">Imagenes</label>
-                <select id="img" name="imagenes_id[]" class="form-control" multiple>
+                <select id="img" name="imagenes_id[]" class="form-control" multiple required>
                     @foreach ($imagenes as $imagen)
                         @isset($galeria)
                             @if($galeria->imagenes()->get()->contains($imagen->id))
@@ -72,6 +72,9 @@
             </form>
 
     </div>    
+</div>
+
+
 </div>
 
 @endsection
