@@ -57,7 +57,7 @@
            </div>
            <div class="form-group pt-3">
                 <div class="custom-file">
-                    <input type="file" name="file" class="custom-file-input" id="fichero" lang="es" required>
+                    <input type="file" name="file" class="custom-file-input" id="fichero" lang="es">
                     <label class="custom-file-label" for="fichero">Seleccionar Imagen</label>
                 </div>
            </div>

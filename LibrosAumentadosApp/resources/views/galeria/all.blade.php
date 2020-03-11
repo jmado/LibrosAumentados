@@ -51,7 +51,7 @@
         <div class="col">
             <div class="row text-center p1">
                 <div class="col">
-                    Imagen¿?
+                    <img src="" alt="">
                 </div>
                 <div class="col">
                     <div class="row text-center">

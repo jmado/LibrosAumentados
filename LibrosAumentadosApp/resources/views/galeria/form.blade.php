@@ -51,7 +51,7 @@
             
             <div class="form-group">
                 <label for="img">Imagenes</label>
-                <select id="img" name="imagenes_id[]" class="form-control" multiple required>
+                <select id="img" name="imagenes_id[]" class="form-control" multiple>
                     @foreach ($imagenes as $imagen)
                         @isset($galeria)
                             @if($galeria->imagenes()->get()->contains($imagen->titulo))

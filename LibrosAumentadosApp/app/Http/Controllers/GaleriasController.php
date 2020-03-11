@@ -37,9 +37,30 @@ class GaleriasController extends Controller
 
         /*Imagenes de galerias
         $imagenes=DB::select('select imagens.imagen 
-        from imagens inner join galeria_imagen on imagens.id=galeria_imagen.imagen_id 
-        where galeria_imagen.galeria_id=:id order by ', ['id'=>$id]);
+        from imagens 
+        inner join galeria_imagen on imagens.id = galeria_imagen.imagen_id
+        inner join galerias on galeria_imagen.galeria_id = galerias.id
+        where galerias.capitulo_id =' . $capitulo .' group by galeria_imagen.galeria_id');
 */
+/*
+        $imagenes = DB::table('imagens')
+        ->select('imagen')
+        ->join('galeria_imagen', function ($join) {
+            $join->on('imagens.id', '=', 'galeria_imagen.imagen_id');
+        })
+        ->join('galerias', function ($join) {
+            $join->on('galeria_imagen.galeria_id', '=', 'galerias.id');
+        })
+        ->where('galerias.capitulo_id', '=', $capitulo)
+        ->groupBy('galeria_imagen.galeria_id')
+        ;
+        */
+        //$imagenes = DB::table('imagens')->select('imagen', 'id')->get();
+        //dd($imagenes);
+
+
+        
+
         $libro = Libro::findOrFail($libro_id);
         return view('galeria.all', compact('libro', 'galerias', 'libro_id', 'capitulo', 'numero_orden'));
     }
@@ -58,8 +79,8 @@ class GaleriasController extends Controller
         $galerias = DB::select('select id, titulo from galerias where capitulo_id=:id',['id'=>$capitulo_id]);
 
         //Listado de galerias existentes
-        $imagenes = DB::table('imagens')->select('id', 'imagen')->where('capitulo_id', '=', $capitulo_id)->get();
-
+        //$imagenes = DB::table('imagens')->select('id', 'imagen')->where('capitulo_id', '=', $capitulo_id)->get();
+        $imagenes = DB::select("select id, imagen from imagens where capitulo_id=:id",['id'=>$capitulo_id]);
         return view('galeria.form', compact('capitulo_id','imagenes'));
     }
 

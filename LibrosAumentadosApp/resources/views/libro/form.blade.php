@@ -42,7 +42,7 @@
                 </div>  
 
                 <div class="custom-file">
-                        <input type="file" class="form-control" name="cubierta" class="custom-file-input" id="fichero" lang="es" required>
+                        <input type="file" class="form-control" name="cubierta" class="custom-file-input" id="fichero" lang="es">
                         <label class="custom-file-label" for="fichero">Seleccionar Imagen</label>
                 </div>  
 
