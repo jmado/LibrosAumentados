@@ -22,7 +22,7 @@
 <div class="container ">
     <div class="form">
         @isset($datos)
-            <form action="/imagen/{{$datos->id}}" method="POST" enctype='multipart/form-data'>
+            <form action="{{ route('imagen.update', ['imagen' => $datos->id]) }}" method="POST" enctype='multipart/form-data'>
             @method("PUT")
         @else
             <form action="{{ route('imagen.store') }}" method="POST" enctype="multipart/form-data">

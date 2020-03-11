@@ -21,7 +21,7 @@
 <div class="container ">
     <div class="form">
         @isset($datos)
-            <form action="/audio/{{$datos->id}}" method="POST" enctype='multipart/form-data'>
+            <form action="{{ route('audio.update', ['audio' => $datos->id]) }}" method="POST" enctype='multipart/form-data'>
             @method("PUT")
         @else
             <form action="{{ route('audio.store') }}" method="POST" enctype="multipart/form-data">
