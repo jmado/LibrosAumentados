@@ -54,13 +54,13 @@
                 <select id="img" name="imagenes_id[]" class="form-control" multiple required>
                     @foreach ($imagenes as $imagen)
                         @isset($galeria)
-                            @if($galeria->imagenes()->get()->contains($imagen->id))
-                                <option value={{$imagen->id}} selected>{{$imagen->id}}</option>    
+                            @if($galeria->imagenes()->get()->contains($imagen->titulo))
+                                <option value={{$imagen->id}} selected>{{$imagen->titulo}}</option>    
                             @else   
-                                <option value={{$imagen->id}}>{{$imagen->id}}</option> 
+                                <option value={{$imagen->id}}>{{$imagen->titulo}}</option> 
                             @endif
                             @else   
-                                <option value={{$imagen->id}}>{{$imagen->id}}</option> 
+                                <option value={{$imagen->id}}>{{$imagen->titulo}}</option> 
                         @endisset
                     @endforeach
                 </select>
