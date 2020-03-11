@@ -15,9 +15,11 @@
 
     <div class="container"> 
         <div class="row imagen">
-            <iframe src="https://player.vimeo.com/video/{{$videoNumero}}" width="640" height="361" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-            <p><a href="{{$datos->video}}">{{$datos->titulo}}</a> disponible en <a href="https://vimeo.com">Vimeo</a>.</p> 
+            <iframe src="https://player.vimeo.com/video/{{$videoNumero}}" width="640" height="361" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> 
         </div> 
+        <div class="row">
+            <p><a href="{{$datos->video}}">{{$datos->titulo}}</a> disponible en <a href="https://vimeo.com">Vimeo</a>.</p> 
+        </div>
         <div class="row">
             <h1>{{$datos->titulo}}</h1>
             <a href="capitulo">Capitulo: {{$datos->capitulo_id}}</a>
