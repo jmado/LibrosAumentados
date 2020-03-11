@@ -21,9 +21,11 @@
             <p><a href="{{$datos->video}}">{{$datos->titulo}}</a> disponible en <a href="https://vimeo.com">Vimeo</a>.</p> 
         </div>
         <div class="row">
-            <h1>{{$datos->titulo}}</h1>
-            <a href="capitulo">Capitulo: {{$datos->capitulo_id}}</a>
-            <p class="lead">Descripcion: {{$datos->descripcion}}</p>   
+            <h1>{{$datos->titulo}}</h1> 
+        </div>
+        <div class="row">
+            <p><a href="capitulo">Capitulo: {{$datos->capitulo_id}}</a></p>
+            <p class="lead">Descripcion: {{$datos->descripcion}}</p>  
         </div>
     </div>
 </div>
