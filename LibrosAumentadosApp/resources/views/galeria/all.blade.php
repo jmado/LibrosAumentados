@@ -46,35 +46,32 @@
 
 
     {{ $galerias->links() }}
-    @foreach ($galerias as $galeria)
-    <div class="row border rounded p-2 mt-3">
-        <div class="col">
-            <div class="row text-center p1">
-                <div class="col">
-                    <img src="" alt="">
-                </div>
-                <div class="col">
-                    <div class="row text-center">
-                        <div class="col">{{$galeria->titulo}}</div>
-                    </div>
-                    <div class="row">
-                        <div class="col">{{$galeria->descripcion}}</div>
-                    </div> 
-                    <div class="row">
-                        <div class="col">
-                            <a href="{{route('galeria.show', $galeria->id)}}" class="btn btn-sm btn-primary" role="button">Ver</a>
-                        </div>
-                    </div>  
-                </div>
-            </div>
-        </div>
-    </div>
-    @auth
-    <div class="row">
-        <div class="col p1">
-            <a href="{{route('galeria.edit', $galeria->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
-            <a href="#"  class="b{{$galeria->id}} btn btn-sm btn-outline-danger" role="button">Borrar</a>
-                <script>
+<div class="table-responsive text-center">
+    <table class="table table-striped table-sm">
+        <thead>
+            <tr>   
+                <th>Titulo</th>
+                <th>Descripcion</th>
+                <th></th>
+                @auth
+                <th></th>
+                @endauth
+            </tr>
+        </thead>
+    <tbody>
+@foreach ($galerias as $galeria)
+    
+        <tr>
+            <td>{{$galeria->titulo}}</td>
+            <td>{{$galeria->descripcion}}</td>
+            <td><a href="{{route('galeria.show', $galeria->id)}}" class="btn btn-sm btn-primary" role="button">Ver</a></td>
+
+            @auth 
+            <td>
+                <a href="{{route('galeria.edit', $galeria->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
+                <a href="#"  class="b{{$galeria->id}} btn btn-sm btn-outline-danger" role="button">Borrar</a>
+            </td>
+            <script>
                 $(document).ready(function(){ 
                     var borrar = $(".b{{$galeria->id}}").click(function(){
                         var id = {{$galeria->id}};
@@ -103,97 +100,24 @@
 
                     });
                 });    
-                </script>
-        </div>
-    </div>
-    @endauth
-    @endforeach
+            </script>
+            @endauth
+        </tr> 
+@endforeach
+    </tbody>
+    </table>
+
+
+
+                
+            
+    
+   
 
 
 </div>
 
-{{-- 
-<section class="text-center">
-    <div class="container">
-        
-        <h1>Galerias</h1>
 
-        <p>
-            
-                <a href="{{ route('galeria.create', $capitulo) }}" class="btn btn-primary btn-lg" role="button">Nueva Galeria</a>
-            
-        </p>
-      </div>
-</section>
-
-
-
-<div class="elementos container">
-    <div class="row">
-        <h2>Capitulo {{$numero_orden[0]->numero_orden}} Lista de galerias</h2>
-        <div class="table-responsive">
-             <table class="table table-striped table-sm">
-                <thead>
-                    <tr>
-                        
-                        <th>Titulo</th>
-                        <th>Descripcion</th>
-                         
-                    </tr>
-                </thead>
-                <tbody>
-                {{ $galerias->links() }}
-                    @foreach ($galerias as $galeria)
-                    <tr>
-                        <td>{{$galeria->titulo}}</td>
-                        <td>{{$galeria->descripcion}}</td> 
-                        <td>
-                            <a href="{{route('galeria.show', $galeria->id)}}" class="btn btn-sm btn-primary" role="button">Ver</a>
-                            @auth
-                                <a href="{{route('galeria.edit', $galeria->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
-                                <a href="#"  class="b{{$galeria->id}} btn btn-sm btn-outline-danger" role="button">Borrar</a>
-                                    <script>
-                                    $(document).ready(function(){ 
-                                        var borrar = $(".b{{$galeria->id}}").click(function(){
-                                            var id = {{$galeria->id}};
-                                            var direccion = "{{route('galeria.delete', 0)}}";
-                                            direccion = direccion.replace("0", id);
-
-                                            swal({
-                                                title: "¿Seguro de que borrar este elemento?",
-                                                text: "Una vez eliminado, ¡no podrá recuperar este elemento!",
-                                                icon: "warning",
-                                                buttons: true,
-                                                dangerMode: true,
-                                                })
-                                                .then((willDelete) => {
-                                                if (willDelete) {
-                                                    swal("El elemento se borrar si no tiene contenido", {
-                                                    icon: "success",
-                                                    });
-
-                                                location.href=direccion; 
-                                                
-                                                } else {
-                                                    swal("¡Su elemento está a salvo!");
-                                                }
-                                            }); 
-
-                                        });
-                                    });
-                                       
-                                    </script>
-
-
-                            @endauth
-                        </td>
-                    </tr>    
-                    @endforeach
-                    
-                </tbody>
-        </div>
-</div>    
---}}
 
 
 @endsection

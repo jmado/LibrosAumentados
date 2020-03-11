@@ -61,11 +61,7 @@
             @foreach ($datos as $video)   
             <div class="col-md-4">
                 <div class="elemento mb-4">
-                    <div class="elemento-header">
-                        <a href="{{route('video.show', $video->id)}}">
-                            <img src="{{$video->video}}" alt="{{$video->titulo}}">
-                        </a> 
-                    </div>
+                    
                     <div class="elemento-body">
                         <h2>{{$video->titulo}}</h2>
                         <p><a href="{{route('capitulo.index')}}">Capitulo: {{$video->capitulo_id}}</a></p>

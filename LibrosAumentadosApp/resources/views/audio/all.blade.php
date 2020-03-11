@@ -34,6 +34,7 @@
                 </div>
             </div>
         </div>
+        @auth 
         <div class="row mt-5 mb-5 text-center">
             <div class="col">
                 <a href="{{ route('audio.create') }}" class="btn btn-primary btn-lg" role="button">
@@ -41,6 +42,7 @@
                 </a>
             </div>
         </div>
+        @endauth
     </div>
 </div>
 
