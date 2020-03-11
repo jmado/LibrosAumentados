@@ -68,13 +68,13 @@
 
             <div class="form-group">
                 <label for="info">Descripción:</label>
-                <input id="info" type="text" name="descripcion" class="form-control" value="{{$datos->descripcion ?? ''}}">
+                <input id="info" type="text" name="descripcion" class="form-control" value="{{$datos->descripcion ?? ''}}" required>
             </div>
 
 
             <div class="form-group">
                 <div class="custom-file">
-                    <input type="file" name="file" class="custom-file-input" id="fichero" lang="es">
+                    <input type="file" name="file" class="custom-file-input" id="fichero" lang="es" required>
                     <label class="custom-file-label" for="fichero">Seleccionar Archivo</label>
                 </div>
             </div>

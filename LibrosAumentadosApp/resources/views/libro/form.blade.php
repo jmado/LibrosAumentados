@@ -37,23 +37,14 @@
             
             <div class="form-group">
                 <label for="sub">Subtitulo:</label>
-                <input id="sub" type="text" class="form-control" name="subtitulo" value="{{$libro->subtitulo ?? ''}}">
+                <input id="sub" type="text" class="form-control" name="subtitulo" value="{{$libro->subtitulo ?? ''}}" required>
             </div>  
 
             <div class="custom-file">
-                    <input type="file" class="form-control" name="cubierta" class="custom-file-input" id="fichero" lang="es">
+                    <input type="file" class="form-control" name="cubierta" class="custom-file-input" id="fichero" lang="es" required>
                     <label class="custom-file-label" for="fichero">Seleccionar Imagen</label>
             </div>  
 
-<<<<<<< HEAD
-            {{--<div class="form-group">
-                <img src="{{$libro->portada ?? ''}}" class="cubierta-mini">
-            </div>  
-                --}}
-=======
-             
-                
->>>>>>> master
                 
             <input type="submit" value="Enviar" class="btn btn-primary btn-block" role="button">
 
