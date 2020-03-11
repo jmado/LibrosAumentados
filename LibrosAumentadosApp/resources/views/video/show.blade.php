@@ -24,7 +24,7 @@
             <h1>{{$datos->titulo}}</h1> 
         </div>
         <div class="row">
-            <p><a href="capitulo">Capitulo: {{$datos->capitulo_id}}</a></p>
+            <p><a href="capitulo">Capitulo: {{$datos->capitulo_id}} </a></p>
             <p class="lead">Descripcion: {{$datos->descripcion}}</p>  
         </div>
     </div>
