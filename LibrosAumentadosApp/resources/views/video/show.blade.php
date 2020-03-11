@@ -14,10 +14,10 @@
 
 
     <div class="container"> 
-        <div class="row imagen">
+        <div class="row imagen text-center">
             <iframe src="https://player.vimeo.com/video/{{$videoNumero}}" width="640" height="361" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> 
         </div> 
-        <div class="row">
+        <div class="row text-center">
             <p><a href="{{$datos->video}}">{{$datos->titulo}}</a> disponible en <a href="https://vimeo.com">Vimeo</a>.</p> 
         </div>
         <div class="row">
