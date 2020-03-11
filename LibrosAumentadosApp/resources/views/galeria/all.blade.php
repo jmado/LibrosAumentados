@@ -58,7 +58,7 @@
                         <div class="col">{{$galeria->titulo}}</div>
                     </div>
                     <div class="row">
-                        <div class="col">{{$galeria->titulo}}</div>
+                        <div class="col">{{$galeria->descripcion}}</div>
                     </div> 
                     <div class="row">
                         <div class="col">
