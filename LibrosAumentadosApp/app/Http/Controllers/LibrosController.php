@@ -187,7 +187,7 @@ class LibrosController extends Controller
         $numPalabra = rand(0, 4);
         Session::put('palabraElegida', $palabras[$numPalabra]);
         $palabraElegida = Session::get('palabraElegida');
-        //echo "$palabraElegida";
+        echo "$palabraElegida";
         // $textoUsuario = "Del libro $libro he elegido el Capítulo: ".$capitulo->numero_orden." Página: ".($numPagina + 1)." Párrafo: ".Session::get('parrafo_numero')." Palabra: ".($numPalabra + 1)."";
         $textoUsuario = "Del libro $libro he elegido el Capítulo: ".$capitulo->numero_orden." Página: ".$numero_pagina." Párrafo: ".Session::get('parrafo_numero')." Palabra: ".($numPalabra + 1)."";
 
