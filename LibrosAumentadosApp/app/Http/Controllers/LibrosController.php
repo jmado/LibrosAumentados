@@ -290,7 +290,7 @@ class LibrosController extends Controller
             //$dentro = Session::get('dentro');
             $libroList = DB::table('libros')->simplePaginate(3);
             //return view('libro.all', compact('libroList'));
-            redirect()->route('libro.all');
+            redirect()->route('libro.index');
         }
 
         
