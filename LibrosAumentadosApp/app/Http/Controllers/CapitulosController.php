@@ -51,6 +51,8 @@ class CapitulosController extends Controller
      */
     public function store(Request $r)
     {
+        $this->validate($request, ['numero_orden'=>'required|unique']);
+
         $cap = new Capitulo($r->all());
         $cap->numero_orden = $r->numero_orden;
         $cap->titulo = $r->titulo;
