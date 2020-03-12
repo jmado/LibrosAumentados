@@ -56,7 +56,7 @@ class AudiosController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['archivo'=>'required']);
+        $this->validate($request, ['file'=>'required']);
 
         $datos = new Audio;
         $datos->titulo = $request->titulo;
