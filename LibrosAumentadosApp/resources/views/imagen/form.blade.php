@@ -61,6 +61,15 @@
                     <label class="custom-file-label" for="fichero">Seleccionar Imagen</label>
                 </div>
            </div>
+           <div class="form-group pt-3">
+                
+                @if(count($errors)>0)
+                @foreach($errors->all() as $error)
+                    <div class="text-danger">{{$error}}</div>
+                @endforeach
+                @endif   
+                
+           </div>
             <div class="form-group pt-3">
             <input type="submit" value="Enviar" class="btn btn-primary btn-block" role="button">
             </div>

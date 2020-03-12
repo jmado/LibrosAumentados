@@ -43,6 +43,13 @@
                     <input id="video_url" type="text" name="video" class="form-control" value="{{$datos->video ?? ''}}" placeholder="https://vimeo.com/999999999">
                 </div>
                 
+                <div class="form-group">
+                @if(count($errors)>0)
+                @foreach($errors->all() as $error)
+                    <div class="text-danger">{{$error}}</div>
+                @endforeach
+                @endif   
+                </div>
 
                 <input type="submit" value="Enviar" class="btn btn-primary btn-block" role="button">
 

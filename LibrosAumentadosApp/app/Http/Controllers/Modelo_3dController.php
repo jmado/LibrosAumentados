@@ -56,6 +56,8 @@ class Modelo_3dController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, ['modelo_3d'=>'required']);
+
         //Creo un nuevo modelo
         $modelo = new Modelo_3d;
         $modelo->titulo = $request->titulo;

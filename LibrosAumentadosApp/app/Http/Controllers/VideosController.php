@@ -19,6 +19,8 @@ class VideosController extends Controller
      */
     public function index($capitulo_id)
     {
+        
+
         $libro_id = $consulta = DB::select("select libro_id from capitulos where id=:id", ['id'=>$capitulo_id]);
         $libro_id = $libro_id[0]->libro_id;
 
@@ -52,6 +54,8 @@ class VideosController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, ['video'=>'required']);
+        
         $datos = new Video;
         $datos->titulo = $request->titulo;
         $datos->descripcion = $request->descripcion;

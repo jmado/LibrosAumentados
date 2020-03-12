@@ -53,6 +53,9 @@ class DescargasController extends Controller
      */
     public function store(Request $request)
     {
+
+        $this->validate($request, ['archivo'=>'required']);
+
         $datos = new Descarga;
         $datos->titulo = $request->titulo;
         $datos->descripcion = $request->descripcion;

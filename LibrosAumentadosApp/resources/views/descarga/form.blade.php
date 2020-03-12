@@ -79,6 +79,13 @@
                 </div>
             </div>
             
+            <div class="form-group">
+                @if(count($errors)>0)
+                @foreach($errors->all() as $error)
+                    <div class="text-danger">{{$error}}</div>
+                @endforeach
+                @endif   
+                </div>
             
             <div class="form-group">
                 <input type="submit" value="Enviar" class="btn btn-primary btn-block" role="button">

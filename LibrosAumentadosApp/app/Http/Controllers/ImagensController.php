@@ -64,6 +64,9 @@ class ImagensController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, ['imagen'=>'required']);
+        
+        //$validateData = $request->validate(['imagen'=>required]);
         $datos = new Imagen;
         $datos->titulo = $request->titulo;
         $datos->descripcion = $request->descripcion;
