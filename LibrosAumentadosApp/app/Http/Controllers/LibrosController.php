@@ -289,7 +289,8 @@ class LibrosController extends Controller
             Session::put('dentro', 'false');
             //$dentro = Session::get('dentro');
             $libroList = DB::table('libros')->simplePaginate(3);
-            return view('libro.all', compact('libroList'));
+            //return view('libro.all', compact('libroList'));
+            redirect()->route('libro.all');
         }
 
         
