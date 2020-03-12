@@ -51,7 +51,7 @@ class CapitulosController extends Controller
      */
     public function store(Request $r)
     {
-        $this->validate($r, ['numero_orden'=>'required|unique:posts|max:255']);
+        $this->validate($r, ['numero_orden'=>'required|unique:capitulos|max:255']);
 
         $cap = new Capitulo($r->all());
         $cap->numero_orden = $r->numero_orden;
