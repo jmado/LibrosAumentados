@@ -37,11 +37,7 @@
                     <input id="title" type="text" class="form-control" name="titulo" value="{{$capitulo->titulo ?? ''}}" required>
                 </div>
                 
-                @if(count($errors)>0)
-                @foreach($errors->all() as $error)
-                    <div class="text-danger">{{$error}}</div>
-                @endforeach
-                @endif   
+               
 
                 <input type="submit" value="Guardar" class="btn btn-primary btn-block" role="button">
 
