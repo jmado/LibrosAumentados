@@ -33,17 +33,7 @@
             
 
 
-            @if(isset($galerias))
-            <div class="form-group">
-                <ul class="list-group">
-                    <li class="list-group-item"><strong>Galerias en las que aparece</strong></li>
-                        @foreach ($galerias as $galeria)  
-                            <li class="list-group-item">{{$galeria->titulo}}</li>
-                        @endforeach
-                </ul>
-            </div>
             
-            @endif
 
             
 
