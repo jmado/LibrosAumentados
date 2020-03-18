@@ -258,3 +258,7 @@ th.texto{
 .contenedorArchivo{
   background-color: azure;
 }
+
+.cubierta_galeria{
+  width: 65px;
+}

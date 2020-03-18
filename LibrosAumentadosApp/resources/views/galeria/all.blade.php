@@ -49,7 +49,8 @@
 <div class="table-responsive text-center">
     <table class="table table-striped table-sm">
         <thead>
-            <tr>   
+            <tr>  
+                <th></th> 
                 <th>Titulo</th>
                 <th>Descripcion</th>
                 <th></th>
@@ -62,6 +63,8 @@
 @foreach ($galerias as $galeria)
     
         <tr>
+        
+            <td><img src="{{ url($galeria->cubierta) }}" alt="cubierta de la galeria" class="cubierta_galeria"></td>
             <td>{{$galeria->titulo}}</td>
             <td>{{$galeria->descripcion}}</td>
             <td><a href="{{route('galeria.show', $galeria->id)}}" class="btn btn-sm btn-primary" role="button">Ver</a></td>

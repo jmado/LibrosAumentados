@@ -57,7 +57,32 @@ class GaleriasController extends Controller
         dd($imagenes);
         */
         //$imagenes = DB::table('imagens')->select('imagen', 'id')->get();
-        //dd($imagenes);
+        /*$imagenes = DB::select("select imagens.imagen , galeria_imagen.galeria_id 
+        from imagens 
+        inner join galeria_imagen on imagens.id = galeria_imagen.imagen_id
+        inner join galerias on galeria_imagen.galeria_id = galerias.id 
+        
+        where galerias.capitulo_id =:id", ['id'=> $id],
+        );
+        */
+        /*
+        $imagenes = DB::table('imagens')
+        ->join('galeria_imagen', 'imagens.id', '=', 'galeria_imagen.imagen_id')
+        ->join('galerias', 'galeria_imagen.galeria_id', '=', 'galerias.id')
+        ->select('imagens.imagen', 'galerias.id')
+        ->where('galerias.capitulo_id', '=', $id)
+        ->orderByDesc('galerias.id')
+        ->limit(1)
+        ->get();
+        */
+        /*
+        $imagenes=DB::select('select imagens.imagen, imagens.capitulo_id 
+        from imagens 
+        inner join galeria_imagen on imagens.id = galeria_imagen.imagen_id
+        inner join galerias on galeria_imagen.galeria_id = galerias.id
+        where galerias.capitulo_id=:id', ['id'=>$id]);
+        */
+        
 
 
         
@@ -99,6 +124,15 @@ class GaleriasController extends Controller
         $datos_galeria->titulo = $request->titulo;
         $datos_galeria->descripcion = $request->descripcion;
         $datos_galeria->tipo = $request->tipo;
+       
+        //Cubierta
+        $archivo = $request->cubierta;
+        //Lo muevo a la carpeta
+        $archivo->move('imagenes', $archivo->getClientOriginalName());
+        //Lo guardo en la base de datos
+        $datos_galeria->cubierta ="imagenes/" .$archivo->getClientOriginalName();
+
+
         $capitulo = Session::get('capitulo_id');
         $datos_galeria->capitulo_id = $capitulo;
         //Guardo galeria
@@ -163,16 +197,26 @@ class GaleriasController extends Controller
         $datos_galeria->capitulo_id = Session::get('capitulo_id');
         $datos_galeria->tipo = $request->tipo;
 
+
         
+
+        //Cubierta
+        $archivo = $request->cubierta;
+        if($archivo != null){
+            $archivo->move('imagenes', $archivo->getClientOriginalName());
+            $datos_galeria->cubierta ="imagenes/" .$archivo->getClientOriginalName();  
+        }
+             
+
         //Guardo la informacion de la galeria
         $datos_galeria->save();
 
         //Actualizo las imagenes relacionadas con la galeria
-        $imagenes_id = $request->imagenes_id;
-        $galeria_id = $request->galeria_id;
-
-        //Sincronizo los campos relacionados entre galerias e imagenes de forma automatica Laravel te quiero
-        $datos_galeria->imagenes()->sync($imagenes_id);
+        $imagenes = $request->imagenes_id;
+        if($imagenes != null){
+            //Sincronizo los campos relacionados entre galerias e imagenes de forma automatica Laravel te quiero
+            $datos_galeria->imagenes()->sync($imagenes);
+        }
         return redirect()->route('galeria.show', $id);
 
     }

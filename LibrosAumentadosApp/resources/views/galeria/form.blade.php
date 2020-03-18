@@ -35,6 +35,13 @@
                 <label for="title">Titulo:</label>
                 <input id="title" type="text" name="titulo" class="form-control" value="{{$galeria->titulo ?? ''}}" required>
             </div>
+
+            <div class="form-group">
+            <div class="custom-file">
+                    <input type="file" name="cubierta" class="custom-file-input" id="cubierta" lang="es">
+                    <label class="custom-file-label" for="cubierta">Seleccionar una cubierta para la galeria</label>
+                </div>
+            </div>
             
             <div class="form-group">
                 <label for="info">Descripción:</label>
