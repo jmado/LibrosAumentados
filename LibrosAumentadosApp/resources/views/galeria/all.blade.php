@@ -64,7 +64,38 @@
     
         <tr>
         
-            <td><img src="{{ url($galeria->cubierta) }}" alt="cubierta de la galeria" class="cubierta_galeria"></td>
+            <td>
+                <a href="#" class="modal{{$galeria->id}}">
+                    <img src="{{ url($galeria->cubierta) }}" alt="cubierta de la galeria" class="cubierta_galeria">
+                </a>
+                <script>
+                    $(document).ready(function(){
+                        var modal = $(".modal{{$galeria->id}}").click(function(){
+                            var id = {{$galeria->id}};
+                            var img = '{{ url($galeria->cubierta) }}';
+                            var titulo = '{{$galeria->titulo}}';
+                            var direccion = "{{route('galeria.show', 0)}}";
+                            direccion = direccion.replace("0", id);
+                            swal({
+                                title: titulo,
+                                content: {
+                                    element: "img",
+                                    attributes: {
+                                    src: img,
+                                    },
+                                },
+                                button: "Ver galeria",
+                                })
+                                .then((willDelete) => {
+                                    if (willDelete) {
+                                    location.href=direccion; 
+                                    } 
+                                }); 
+                        });
+                    });
+                </script>
+                
+            </td>
             <td>{{$galeria->titulo}}</td>
             <td>{{$galeria->descripcion}}</td>
             <td><a href="{{route('galeria.show', $galeria->id)}}" class="btn btn-sm btn-primary" role="button">Ver</a></td>
