@@ -99,3 +99,5 @@ Auth::routes();
 Route::get('/home', 'LibrosController@index')->name('home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
+//Rutas para usuarios
+Route::resource('admin/users', 'AdminUserController');

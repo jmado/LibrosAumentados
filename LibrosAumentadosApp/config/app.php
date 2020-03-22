@@ -162,6 +162,9 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+        //provider para vimeo
+        Vimeo\Laravel\VimeoServiceProvider::class,
+
         /*
          * Package Service Providers...
          */
@@ -232,6 +235,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Vimeo' => Vimeo\Laravel\Facades\Vimeo::class,
 
         //'Vimeo' => Vimeo\Laravel\Facades\Vimeo::class
     ],

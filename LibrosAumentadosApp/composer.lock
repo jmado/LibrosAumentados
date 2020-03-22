@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "01801affb60bba1b3ac4d42f953fb51c",
+    "content-hash": "cd04fbc172e21164f8ce4bff388911f6",
     "packages": [
         {
             "name": "ankitpokhrel/tus-php",
@@ -3491,29 +3491,29 @@
         },
         {
             "name": "vimeo/laravel",
-            "version": "5.4.1",
+            "version": "5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vimeo/laravel.git",
-                "reference": "e45d3ff5a9aeba166a69ff3685bf47e2d1940d83"
+                "reference": "83abaeec0576755547bc994b61d714de1f17e0f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vimeo/laravel/zipball/e45d3ff5a9aeba166a69ff3685bf47e2d1940d83",
-                "reference": "e45d3ff5a9aeba166a69ff3685bf47e2d1940d83",
+                "url": "https://api.github.com/repos/vimeo/laravel/zipball/83abaeec0576755547bc994b61d714de1f17e0f8",
+                "reference": "83abaeec0576755547bc994b61d714de1f17e0f8",
                 "shasum": ""
             },
             "require": {
                 "graham-campbell/manager": "^4.0",
-                "illuminate/contracts": "^5.8|^6.0|^6.2",
-                "illuminate/support": "^5.8|^6.0|^6.2",
+                "illuminate/contracts": "^5.8|^6.0|^7.0",
+                "illuminate/support": "^5.8|^6.0|^7.0",
                 "php": "^7.2",
-                "vimeo/vimeo-api": "^3.0.2"
+                "vimeo/vimeo-api": "^3.0.3"
             },
             "require-dev": {
                 "graham-campbell/analyzer": "^2.0",
                 "graham-campbell/testbench": "^5.2",
-                "laravel/framework": "^5.8|^6.0|^6.2",
+                "laravel/framework": "^5.8|^6.0|^7.0",
                 "laravel/lumen-framework": "^5.7",
                 "mockery/mockery": "^1.0",
                 "phpunit/phpunit": "^7.0",
@@ -3557,7 +3557,7 @@
                 "video",
                 "vimeo"
             ],
-            "time": "2019-11-09T14:58:31+00:00"
+            "time": "2020-03-06T02:48:26+00:00"
         },
         {
             "name": "vimeo/vimeo-api",
