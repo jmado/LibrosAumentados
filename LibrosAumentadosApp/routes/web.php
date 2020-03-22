@@ -54,7 +54,8 @@ Route::resource('/pagina', 'PaginasController');
 Route::get("/imagen/index/{id}", "ImagensController@index")->name("imagen.all");
 Route::get("/imagen/destroy/{id}", "ImagensController@destroy")->name("imagen.delete");
 Route::resource('/imagen', 'ImagensController');
-
+    //AJAX
+    Route::post("/imagen/buscador", "ImagensController@buscador")->name("imagen.buscador");
 //Imagenes confirmacion de borrado 
 Route::get("/imagen/deleteConfirm/{id}", "ImagensController@deleteConfirm")->name("imagen.deleteConfirm");
 

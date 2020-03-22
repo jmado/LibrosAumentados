@@ -64,7 +64,7 @@
     
         <tr>
         
-            <td>
+            <td class="cubierta_galeria">
                 <a href="#" class="modal{{$galeria->id}}">
                     <img src="{{ url($galeria->cubierta) }}" alt="cubierta de la galeria" class="cubierta_galeria">
                 </a>

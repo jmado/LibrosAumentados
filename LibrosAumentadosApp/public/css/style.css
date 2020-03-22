@@ -259,6 +259,9 @@ th.texto{
   background-color: azure;
 }
 
-.cubierta_galeria{
+td.cubierta_galeria{
   width: 65px;
+}
+.cubierta_galeria{
+  width: 100%;
 }

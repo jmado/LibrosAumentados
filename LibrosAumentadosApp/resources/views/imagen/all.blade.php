@@ -17,6 +17,96 @@
         </nav>
 </section>
 
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <form class="form-group">
+           
+                <input type="text" name="search" id="search" class="form-control" placeholder="Search">
+            </form>
+        </div>
+        <div class="col-6">
+            <h3 align="center">Total Data : <span id="total_records"></span></h3>
+            <table class="lista-search">
+            
+            </table>
+        </div>
+    </div>         
+</div>
+<script>
+    
+$(function(){
+
+   /*
+    $('.mimodal').click(function(){
+        console.log('hola');
+        var task = $(this);
+        var id = task.id;
+        var img = task.url;
+        var titulo = task.titulo;
+        var editar = "{{route('galeria.edit', 0)}}";
+            editar = editar.replace("0", id);
+        var borrar = "{{route('imagen.deleteConfirm', 0)}}";
+            borrar = borrar.replace("0", id);
+        swal({
+            title: titulo,
+            content: {
+                element: "img",
+                attributes: {
+                src: img,
+                },
+            },
+            button: "Ver galeria",
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                location.href=direccion; 
+                } 
+            }); 
+    });
+*/
+let tasks;
+    $('#search').keyup(function(){
+        if($('#search').val()){
+
+            let search = $('#search').val();
+
+            $.ajax({
+                url: "{{ route('imagen.buscador') }}",
+                type: 'POST',
+                data: {search: search},
+                success: function(response){
+                    //console.log(response);
+                     tasks = JSON.parse(response);
+                    let template = '';
+                    //console.log(tasks);
+                    
+                    tasks.forEach(task => {
+                        //console.log(task);
+                        template += ` 
+                        <tr> 
+                            <td>${task.titulo}</td>
+                            <td> <a href='#' >Modificar</a> </td>
+                            <td> <a href='#' >Eliminar</a> </td>   
+                        </tr> `;
+                    });
+                    $('.lista-search').html(template);
+                }
+            });
+        }
+    });
+
+});
+
+function modalfuncion(){
+    console.log(tasks);
+}
+
+</script>
+
+
+
 <div class="container">
     <div class="row mt-5 mb-5">
             <div class="col-2">
@@ -72,7 +162,10 @@
                                 @auth           
                                     <a href="{{route('imagen.edit', $imagen->id)}}" class="btn btn-sm btn-outline-info" role="button">Modificar</a>
 
-
+    <script>
+        ruta = "{{route('imagen.edit', $imagen->id)}}";
+        console.log(ruta);
+    </script>
 
                                     <a class="b{{$imagen->id}} btn btn-sm btn-outline-danger" role="button">Borrar</a>
 
