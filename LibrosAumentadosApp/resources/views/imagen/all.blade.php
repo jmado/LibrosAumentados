@@ -27,7 +27,6 @@
             </form>
         </div>
         <div class="col-6">
-            <h3 align="center">Total Data : <span id="total_records"></span></h3>
             <table class="lista-search">
             
             </table>
@@ -84,11 +83,12 @@ let tasks;
                     
                     tasks.forEach(task => {
                         //console.log(task);
+
                         template += ` 
                         <tr> 
                             <td>${task.titulo}</td>
-                            <td> <a href='#' >Modificar</a> </td>
-                            <td> <a href='#' >Eliminar</a> </td>   
+                            <td> <a href='http://homestead.test/imagen/` + task.id + `/edit' >Modificar</a> </td>
+                            <td> <a href='http://homestead.test/imagen/deleteConfirm/` + task.id + `' >Eliminar</a> </td>   
                         </tr> `;
                     });
                     $('.lista-search').html(template);
@@ -163,7 +163,7 @@ function modalfuncion(){
                                     <a href="{{route('imagen.edit', $imagen->id)}}" class="btn btn-sm btn-outline-info" role="button">Modificar</a>
 
     <script>
-        ruta = "{{route('imagen.edit', $imagen->id)}}";
+        ruta = "{{route('imagen.deleteConfirm', $imagen->id)}}";
         console.log(ruta);
     </script>
 
