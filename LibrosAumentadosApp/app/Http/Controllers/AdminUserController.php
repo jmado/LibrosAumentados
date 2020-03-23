@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\User;
+
 class AdminUserController extends Controller
 {
     /**
@@ -13,7 +15,9 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        return view('admin.users.index');
+
+        $users = User::all();
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -23,6 +27,9 @@ class AdminUserController extends Controller
      */
     public function create()
     {
+
+       
+
         return view('admin.users.create');
     }
 
@@ -32,9 +39,19 @@ class AdminUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $r)
     {
-        //
+        //$user = new User($r->all());
+        $user = new User;
+        $user->name = $r->name;
+        $user->email = $r->email;
+        $user->email_verified_at = $r->email_verified_at;
+        $user->password = $r->password;
+
+
+        $user->save();
+
+        return redirect()->route('admin.users.create');
     }
 
     /**
@@ -56,7 +73,8 @@ class AdminUserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('admin.user.update', compact('user'));
     }
 
     /**
@@ -66,9 +84,15 @@ class AdminUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $r, $id)
     {
-        //
+        $user = Libro::find($id);
+
+        $user->fill($r->all());
+
+        $user->save();
+
+        return redirect()->route('admin.users.update');
     }
 
     /**

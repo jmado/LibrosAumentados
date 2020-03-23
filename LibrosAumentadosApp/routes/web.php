@@ -100,4 +100,7 @@ Route::get('/home', 'LibrosController@index')->name('home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 //Rutas para usuarios
-Route::resource('admin/users', 'AdminUserController');
+Route::get('admin/users', 'AdminUserController@index')->name('user.index');
+Route::get('admin/users/edit/{id}', 'AdminUserController@update')->name('user.edit');
+Route::get('admin/users/create', 'AdminUserController@store')->name('user.create');
+Route::resource('/users', 'AdminUserController');
