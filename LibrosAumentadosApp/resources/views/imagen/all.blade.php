@@ -170,10 +170,12 @@ function modalfuncion(){
                                 @auth           
                                     <a href="{{route('imagen.edit', $imagen->id)}}" class="btn btn-sm btn-outline-info" role="button">Modificar</a>
 
+{{-- 
     <script>
         ruta = "{{route('imagen.deleteConfirm', $imagen->id)}}";
         console.log(ruta);
     </script>
+--}}
 
                                     <a class="b{{$imagen->id}} btn btn-sm btn-outline-danger" role="button">Borrar</a>
 

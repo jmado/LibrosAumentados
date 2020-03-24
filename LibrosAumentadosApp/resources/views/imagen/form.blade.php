@@ -32,28 +32,24 @@
 
             @if(isset($galerias))
             <div class="form-group">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Lista de galerias a las que pertenece esta imagen</th>
-                        </tr>
-                    </thead>
-                        <tbody>
+                <ul class="list-group">
+                    <li class="list-group-item active">Lista de galerias en las que aparece</li>
+                        
                         @foreach($galerias as $galeria) 
-                        <tr>
-                            <td>{{$galeria->titulo}}</td>
-                        </tr>   
+                            <li class="list-group-item">{{$galeria->titulo}}</li>   
                         @endforeach
-                    </tbody>
-                </table>
+                   
+                </ul>
             </div>
             @endif
             
+            @isset($datos)
             <div class="form-group">
                 <div class="imagen_formulario">
                     <img src="{{ url($datos->imagen) }}" alt="{{$datos->titulo}}">
                 </div>
             </div>
+            @endisset
             
 
            <div class="form-group">
