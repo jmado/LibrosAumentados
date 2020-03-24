@@ -66,13 +66,17 @@
         
             <td class="cubierta_galeria">
                 <a href="#" class="modal{{$galeria->id}}">
+                   
                     <img src="{{ url($galeria->cubierta) }}" alt="cubierta de la galeria" class="cubierta_galeria">
+                    
                 </a>
                 <script>
                     $(document).ready(function(){
                         var modal = $(".modal{{$galeria->id}}").click(function(){
                             var id = {{$galeria->id}};
+
                             var img = '{{ url($galeria->cubierta) }}';
+                        
                             var titulo = '{{$galeria->titulo}}';
                             var direccion = "{{route('galeria.show', 0)}}";
                             direccion = direccion.replace("0", id);

@@ -40,9 +40,10 @@ class ImagensController extends Controller
         return view('imagen.all', compact('libro', 'datos', 'libro_id'));
     }
 
+
+
     public function buscador(Request $request)
     {
-        
         
         $capitulo_id = Session::get('capitulo_id');
 
@@ -53,14 +54,19 @@ class ImagensController extends Controller
             if(!$result) {
                 die('Query Error' . mysqli_error($connection));
             }
-            
+        
            
             $jsonstring = json_encode($result);
             echo $jsonstring;
         }
-        
-        
-        
+        /*
+        else{
+            $result = "No se ha encontrado ningún resultados";
+            $jsonstring = json_encode($result);
+            echo $jsonstring;
+        } 
+        */   
+            
     }
 
 

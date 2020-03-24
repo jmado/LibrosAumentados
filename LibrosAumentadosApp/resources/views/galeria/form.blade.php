@@ -38,7 +38,7 @@
 
             <div class="form-group">
             <div class="custom-file">
-                    <input type="file" name="cubierta" class="custom-file-input" id="cubierta" lang="es" required>
+                    <input type="file" name="cubierta" class="custom-file-input" id="cubierta" lang="es">
                     <label class="custom-file-label" for="cubierta">Seleccionar una cubierta para la galeria</label>
                 </div>
             </div>
