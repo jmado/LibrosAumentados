@@ -25,8 +25,18 @@ class AdminUserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $r)
     {
+
+        $user = new User;
+        $user->name = $r->name;
+        $user->email = $r->email;
+        $user->email_verified_at = $r->email_verified_at;
+        $user->password = $r->password;
+
+        dd($user);
+        $user->save();
+
         return view('admin.users.create');
     }
 
@@ -45,7 +55,7 @@ class AdminUserController extends Controller
         $user->email_verified_at = $r->email_verified_at;
         $user->password = $r->password;
 
-        dd($user);
+       // dd($user);
         $user->save();
 
         return redirect()->route('admin.users.create');
