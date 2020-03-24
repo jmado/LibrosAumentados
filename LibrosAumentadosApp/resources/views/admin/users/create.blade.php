@@ -36,6 +36,16 @@
                     <label for="email">E-mail:</label>
                     <input id="email" type="text" class="form-control" name="email" value="{{$user->email ?? ''}}" required>    
                 </div>
+{{--
+                <div class="form-group">
+                    <label for="email">email_verified_at:</label>
+                    <input id="email_verified_at" type="text" class="form-control" name="email_verified_at" value="{{$user->email_verified_at ?? ''}}" required>    
+                </div>
+--}}
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input id="password" type="password" class="form-control" name="password" value="{{$user->password ?? ''}}" required>    
+                </div>
                 
                 <div class="form-group">
                     <label for="created_at">created_at:</label>
