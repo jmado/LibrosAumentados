@@ -263,5 +263,8 @@ td.cubierta_galeria{
   width: 65px;
 }
 .cubierta_galeria{
-  width: 100%;
+  width: 100px;
+  height: 50px;
+  border-radius: 10px;
 }
+
