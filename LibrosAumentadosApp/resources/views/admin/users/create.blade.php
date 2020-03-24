@@ -20,12 +20,12 @@
 
     <div class="container">
         
-            @isset($user)
+            {{--@isset($user)
             <form action="{{ route('AdminUserController@update', ['user' => $user->id]) }}" method="POST" enctype="multipart/form-data" class="formulario">
                 @method("PUT")
-            @else
-            <form action="{{ route('AdminUserController@store') }}" method="POST" enctype="multipart/form-data" class="formulario">
-            @endisset
+            @else--}}
+            <form action="{{ route('AdminUserController@create') }}" method="POST" enctype="multipart/form-data" class="formulario">
+            {{--@endisset--}}
                 @csrf
                 <div class="form-group">
                     <label for="name">Nombre:</label>
