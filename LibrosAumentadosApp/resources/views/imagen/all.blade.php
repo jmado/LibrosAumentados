@@ -88,12 +88,12 @@ let tasks;
                         <tr> 
                             <td>${task.titulo}</td>
                             <td> 
-                                <a href='http://homestead.test/imagen/` + task.id + `/edit' >
+                                <a href='https://iescelia.org/librosapp/LibrosAumentadosApp/public/imagen/` + task.id + `/edit' >
                                     <i class="fas fa-plus-circle"></i>
                                 </a> 
                             </td>
                             <td> 
-                                <a href='http://homestead.test/imagen/deleteConfirm/` + task.id + `' >
+                                <a href='https://iescelia.org/librosapp/LibrosAumentadosApp/public/imagen/deleteConfirm/` + task.id + `' >
                                     <i class="fas fa-minus-circle"></i>
                                 </a> 
                             </td>   
