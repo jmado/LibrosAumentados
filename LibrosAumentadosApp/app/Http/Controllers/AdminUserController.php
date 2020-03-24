@@ -27,16 +27,6 @@ class AdminUserController extends Controller
      */
     public function create(Request $r)
     {
-
-        $user = new User;
-        $user->name = $r->name;
-        $user->email = $r->email;
-        $user->email_verified_at = $r->email_verified_at;
-        $user->password = $r->password;
-
-        dd($user);
-        $user->save();
-
         return view('admin.users.create');
     }
 
