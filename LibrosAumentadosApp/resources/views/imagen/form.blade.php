@@ -30,11 +30,30 @@
             @csrf
             
 
+            @if(isset($galerias))
+            <div class="form-group">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Lista de galerias a las que pertenece esta imagen</th>
+                        </tr>
+                    </thead>
+                        <tbody>
+                        @foreach($galerias as $galeria) 
+                        <tr>
+                            <td>{{$galeria->titulo}}</td>
+                        </tr>   
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            @endif
             
-
-
-            
-
+            <div class="form-group">
+                <div class="imagen_formulario">
+                    <img src="{{ url($datos->imagen) }}" alt="{{$datos->titulo}}">
+                </div>
+            </div>
             
 
            <div class="form-group">

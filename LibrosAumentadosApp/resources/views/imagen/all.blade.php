@@ -87,8 +87,16 @@ let tasks;
                         template += ` 
                         <tr> 
                             <td>${task.titulo}</td>
-                            <td> <a href='http://homestead.test/imagen/` + task.id + `/edit' >Modificar</a> </td>
-                            <td> <a href='http://homestead.test/imagen/deleteConfirm/` + task.id + `' >Eliminar</a> </td>   
+                            <td> 
+                                <a href='http://homestead.test/imagen/` + task.id + `/edit' >
+                                    <i class="fas fa-plus-circle"></i>
+                                </a> 
+                            </td>
+                            <td> 
+                                <a href='http://homestead.test/imagen/deleteConfirm/` + task.id + `' >
+                                    <i class="fas fa-minus-circle"></i>
+                                </a> 
+                            </td>   
                         </tr> `;
                     });
                     $('.lista-search').html(template);

@@ -134,7 +134,15 @@ class ImagensController extends Controller
         //Listado de capitulos 
         $capitulo_id = Session::get('capitulo_id');
         //Listado de galerias  
-        $galerias = DB::table('galerias')->select('id','titulo')->where('capitulo_id', '=', $capitulo_id)->get();
+        //$galerias = DB::table('galerias')->select('id','titulo')->where('capitulo_id', '=', $capitulo_id)->get();
+       
+       $galerias=DB::select('select galerias.id, galerias.titulo 
+        from galerias 
+        inner join galeria_imagen on galerias.id = galeria_imagen.galeria_id
+        where galeria_imagen.imagen_id=:id',['id'=>$id]);
+
+        
+       
         return view('imagen.form', compact('datos','capitulo_id','galerias'));
     }
 
