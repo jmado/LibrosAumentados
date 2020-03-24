@@ -88,12 +88,12 @@ let tasks;
                         <tr> 
                             <td>${task.titulo}</td>
                             <td> 
-                                <a href='http://homestead.test/imagen/` + task.id + `/edit' >
+                                <a href='https://iescelia.org/librosapp/LibrosAumentadosApp/public/imagen/` + task.id + `/edit' >
                                     <i class="fas fa-plus-circle"></i>
                                 </a> 
                             </td>
                             <td> 
-                                <a href='http://homestead.test/imagen/deleteConfirm/` + task.id + `' >
+                                <a href='https://iescelia.org/librosapp/LibrosAumentadosApp/public/imagen/deleteConfirm/` + task.id + `' >
                                     <i class="fas fa-minus-circle"></i>
                                 </a> 
                             </td>   
@@ -170,10 +170,12 @@ function modalfuncion(){
                                 @auth           
                                     <a href="{{route('imagen.edit', $imagen->id)}}" class="btn btn-sm btn-outline-info" role="button">Modificar</a>
 
+{{-- 
     <script>
         ruta = "{{route('imagen.deleteConfirm', $imagen->id)}}";
         console.log(ruta);
     </script>
+--}}
 
                                     <a class="b{{$imagen->id}} btn btn-sm btn-outline-danger" role="button">Borrar</a>
 
