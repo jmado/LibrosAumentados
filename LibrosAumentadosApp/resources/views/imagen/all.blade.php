@@ -77,29 +77,34 @@ let tasks;
                 data: {search: search},
                 success: function(response){
                     //console.log(response);
-                     tasks = JSON.parse(response);
-                    let template = '';
-                    //console.log(tasks);
-                    
-                    tasks.forEach(task => {
-                        //console.log(task);
+                    tasks = JSON.parse(response);
+                    //if(tasks == "No se ha encontrado ningún resultados"){
+                        //console.log("hola");
+                    //}
+                    //else{
+                        let template = '';
+                        //console.log(tasks);
+                        
+                        tasks.forEach(task => {
+                            //console.log(task);
 
-                        template += ` 
-                        <tr> 
-                            <td>${task.titulo}</td>
-                            <td> 
-                                <a href='https://iescelia.org/librosapp/LibrosAumentadosApp/public/imagen/` + task.id + `/edit' >
-                                    <i class="fas fa-plus-circle"></i>
-                                </a> 
-                            </td>
-                            <td> 
-                                <a href='https://iescelia.org/librosapp/LibrosAumentadosApp/public/imagen/deleteConfirm/` + task.id + `' >
-                                    <i class="fas fa-minus-circle"></i>
-                                </a> 
-                            </td>   
-                        </tr> `;
-                    });
-                    $('.lista-search').html(template);
+                            template += ` 
+                            <tr> 
+                                <td>${task.titulo}</td>
+                                <td> 
+                                    <a href='https://iescelia.org/librosapp/LibrosAumentadosApp/public/imagen/` + task.id + `/edit' >
+                                        <i class="fas fa-plus-circle"></i>
+                                    </a> 
+                                </td>
+                                <td> 
+                                    <a href='https://iescelia.org/librosapp/LibrosAumentadosApp/public/imagen/deleteConfirm/` + task.id + `' >
+                                        <i class="fas fa-minus-circle"></i>
+                                    </a> 
+                                </td>   
+                            </tr> `;
+                        });
+                        $('.lista-search').html(template);
+                    //}
                 }
             });
         }

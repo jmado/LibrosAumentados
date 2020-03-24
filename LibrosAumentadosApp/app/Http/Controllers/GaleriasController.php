@@ -127,13 +127,18 @@ class GaleriasController extends Controller
        
         //Cubierta
         $archivo = $request->cubierta;
-        //Lo muevo a la carpeta
-        $archivo->move('imagenes', $archivo->getClientOriginalName());
-        //Lo guardo en la base de datos
-        $datos_galeria->cubierta ="imagenes/" .$archivo->getClientOriginalName();
-
+        if($archivo==null){
+            $datos_galeria->cubierta ="complementos/iconos/galeria.png" ;
+        }
+        else{
+            //Lo muevo a la carpeta
+            $archivo->move('imagenes', $archivo->getClientOriginalName());
+            //Lo guardo en la base de datos
+            $datos_galeria->cubierta ="imagenes/" .$archivo->getClientOriginalName();
+        }
 
         $capitulo = Session::get('capitulo_id');
+       
         $datos_galeria->capitulo_id = $capitulo;
         //Guardo galeria
         $datos_galeria->save();
