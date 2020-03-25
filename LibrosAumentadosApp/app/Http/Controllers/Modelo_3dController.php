@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
-use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
-use Symfony\Component\Filesystem\Filesystem;
+//use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
+//use Symfony\Component\Filesystem\Filesystem;
 
 
 use Illuminate\Http\Request;
@@ -56,32 +56,54 @@ class Modelo_3dController extends Controller
      */
     public function store(Request $request)
     {
+        
         $this->validate($request, ['file'=>'required']);
 
-        //Creo un nuevo modelo
-        $modelo = new Modelo_3d;
-        $modelo->titulo = $request->titulo;
-        $modelo->descripcion = $request->descripcion;
+        $titulo = $request->titulo;
+        $descripcion = $request->descripcion;
+        $file = $request->file;
         $capitulo_id = Session::get('capitulo_id');
+
+        $modelo = new Modelo_3d;
+        $modelo->titulo = $titulo;
+        $modelo->descripcion = $descripcion;
         $modelo->capitulo_id = $capitulo_id;
 
-        $elZip = $request->file;
-        $filesystem = new Filesystem();
-        try{
-            $ruta = $request->titulo;
-            $filesystem->mkdir($ruta);
-            $modelo->modelo_3d = $ruta;
 
-            $elZip->move('modelos3d/'.$request->titulo, $elZip->getClientOriginalName()); 
-            exec("unzip ".$elZip->getClientOriginalName());//esto no funciona
 
-        }catch(IOExceptionInterface $exception){
-            dd("No funciona. Nada nuevo bajo el sol");
+        //Crear la una carpeta con el nombre del archivo.zip
+        $carpeta_ruta = "modelos3d/" . $titulo;
+       
+        $process = new Process('mkdir ' . $carpeta_ruta);
+        $process->run();
+        if(!$process->isSuccessful()){
+            //throw new \RuntimeException($process->getErrorOutput());
         }
+        //print $process->getOutput();
+
+
+
+        //Muevo el archivo
+        $file->move( $carpeta_ruta , $file->getClientOriginalName() );
+
+
+        //Extraer en archivo zip    
+        //dd('unzip ' . $carpeta_ruta . "/" . $file->getClientOriginalName() . " -d ". $carpeta_ruta);   
+        $process = new Process('unzip ' . $carpeta_ruta . "/" . $file->getClientOriginalName() . " -d " . $carpeta_ruta);
+        $process->run();
         
+       
+    
+        //Elimino el ZIP
+        $file = $carpeta_ruta."/".$file->getClientOriginalName();
+        //dd($file);
+        $process = new Process('rm -f ' . $file);
+        $process->run();
+
+
+        $modelo->modelo_3d = $titulo;
         $modelo->save();
 
-        $id = $request->capitulo_id;
         return redirect()->route('modelo.all', $capitulo_id);
          
     }
@@ -122,41 +144,58 @@ class Modelo_3dController extends Controller
     {
         $modelo = Modelo_3d::findOrFail($id);
 
-        $modelo->descripcion = $request->descripcion;
-
+        $titulo = $request->titulo;
+        $descripcion = $request->descripcion;
         $capitulo_id = Session::get('capitulo_id');
+        
+
+        
+
+        
+        //Renombrar direcorio
+        $process = new Process('mv modelos3d/' . $modelo->titulo .' modelos3d/' . $titulo);
+        $process->run();
+
+
+        $modelo->titulo = $titulo;
+        $modelo->descripcion = $descripcion;
         $modelo->capitulo_id = $capitulo_id;
         
-        $modelo->titulo = $request->titulo;
+        $file = $request->file;
 
-        //Obtengo el titulo y creo una carpeta
-        /*
-        if (mkdir('public/modelos3d/' . $request->titulo, 0777)) {
-            echo 'directorio true';
-            
-            
-            
-            //El archivo comprimido
-            $archivo = $request->modelo_3d;
-            $zip = new ZipArchive;
-            if ($zip->open($archivo) == true) {
-                echo 'descomprimir true';
-                $archivo->move('imagenes', $archivo->getClientOriginalName());
-                $zip->extractTo('public/modelos3d/' . $archivo);
-                $zip->close();
+        if($file != null){
+            //Borrar directorio texturas
+            $process = new Process('rm -r modelos3d/' . $titulo .'/textures');
+            $process->run();
 
-                $modelo->modelo_3d = $request->titulo;
+            //Actualizo el campo en la base de datos
+            $modelo->modelo_3d = $titulo;
 
-                $modelo->save();
-            } else {
-                echo 'descomprimir fallo';
-            }
-        } else {
-            echo 'directorio fallo';
+            //Muevo y descomprimo el zip
+            $carpeta_ruta = "modelos3d/" . $titulo;
+            $file->move( $carpeta_ruta , $file->getClientOriginalName() );
+
+
+            //Extraer en archivo zip    
+            $process = new Process('unzip ' . $carpeta_ruta . "/" . $file->getClientOriginalName() . " -d " . $carpeta_ruta);
+            $process->run();
+
+           
+
+            //Elimino el ZIP
+            $process = new Process('rm -f modelos3d/' . $titulo . '/' . $file->getClientOriginalName());
+            $process->run();
+
+           
         }
-        */
+       
 
-        return redirect()->route('imagen.all', $capitulo_id);
+        $modelo->save();
+        
+
+
+        return redirect()->route('modelo.all', $capitulo_id);
+        
     }
 
 
@@ -173,43 +212,19 @@ class Modelo_3dController extends Controller
     public function destroy($id)
     {
         $modelo = Modelo_3d::findOrFail($id);
-        $capitulo_id = $modelo->capitulo_id;
+        $capitulo_id = Session::get('capitulo_id');
         
-        //Modelo_3dController::rrmdir($modelo->modelo_3d);
+        $file ="modelos3d/" . $modelo->modelo_3d;
+        
+
+        //Elimino la carpeta
+        $process = new Process('rm -r ' . $file);
+        $process->run();
+        
+        
         $modelo->delete();
 
         return redirect()->route('modelo.all', $capitulo_id);
     }
-
-
-
-    /**
-     * Borrar ficheros 3d completos ( carpeta raiz , ficheros internos, subcarpetas y ficheros de las subcarpetas )
-     * 
-     * @param ZipArchive $file
-     * @return boolean $result
-     */
-    public function rrmdir($file){
-        //$result = false;
-        
-        if (is_dir($file)) {
-            $archivos = scandir($file);
-            foreach ($archivos as $archivo){
-                if ($archivo != "." && $archivo != "..") {
-                    if (filetype($file."/".$archivo) == "dir") {
-                        rrmdir($file."/".$archivo);
-                    } else{
-                        unlink($file."/".$archivo);
-                    }
-                }
-            }
-            //Establece el puntero interno de un array a su primer elemento
-            reset($archivos);
-            //Borro el directorio
-            rmdir($file);
-        }
-    }
-
-
     
 }

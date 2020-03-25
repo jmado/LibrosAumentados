@@ -4,6 +4,7 @@
 
 
 
+<div class="container p-5">
 
 <section class="text-center">
     <div class="container">    
@@ -19,8 +20,10 @@
 
 <div class="container ">
     <div class="form">
-        @isset($datos)
-            <form action="/modelo/{{$modelo->id}}" method="POST" enctype='multipart/form-data'>
+
+    
+        @isset($modelo)
+            <form action="{{ route('modelo.update', ['modelo' => $modelo->id]) }}" method="POST" enctype='multipart/form-data'>
             @method("PUT")
         @else
             <form action="{{ route('modelo.store') }}" method="POST" enctype="multipart/form-data">
@@ -66,4 +69,5 @@
     </div>    
 </div>
 
+</div>
 @endsection

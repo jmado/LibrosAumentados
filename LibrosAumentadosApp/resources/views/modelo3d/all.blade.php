@@ -44,9 +44,9 @@
                         <td>
                             <a href="{{route('modelo.show', $modelo->id)}}" class="btn btn-sm btn-info" role="button">Ver</a>
                             @auth
-                                {{-- 
+                                
                                 <a href="{{route('modelo.edit', $modelo->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
-                                --}}
+                                
 
                                 <a class="b{{$modelo->id}} btn btn-sm btn-outline-danger" role="button">Borrar</a>
 
