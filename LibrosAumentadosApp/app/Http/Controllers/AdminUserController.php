@@ -27,16 +27,6 @@ class AdminUserController extends Controller
      */
     public function create(Request $r)
     {
-
-        $user = new User;
-        $user->name = $r->name;
-        $user->email = $r->email;
-        $user->email_verified_at = $r->email_verified_at;
-        $user->password = $r->password;
-
-        dd($user);
-        $user->save();
-
         return view('admin.users.create');
     }
 
@@ -49,16 +39,20 @@ class AdminUserController extends Controller
     public function store(Request $r)
     {
         //$user = new User($r->all());
-        $user = new User;
+        /*$user = new User;
         $user->name = $r->name;
         $user->email = $r->email;
         $user->email_verified_at = $r->email_verified_at;
-        $user->password = $r->password;
+        $user->password = $r->password;*/
+
+        $users = User::all();
+
+        User::create($r->all());
 
        // dd($user);
-        $user->save();
+        //$user->save();
 
-        return redirect()->route('admin.users.create');
+        return redirect()->route('admin.user.index', compact('users'));
     }
 
     /**
@@ -81,7 +75,8 @@ class AdminUserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        return view('admin.user.update', compact('user'));
+        /*return view('admin.user.update', compact('user'));*/
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -93,17 +88,24 @@ class AdminUserController extends Controller
      */
     public function update(Request $r, $id)
     {
-        $user = new User;
+        /*$user = new User;
         $user->name = $r->name;
         $user->email = $r->email;
         $user->email_verified_at = $r->email_verified_at;
         $user->password = $r->password;
 
+        
         //$user->fill($r->all());
+      
+        $user->save();*/
 
-        $user->save();
+        $user = User::find($id);
 
-        return redirect()->route('admin.users.update');
+        $user->name = $r->name;
+        $user->email = $r->email;
+        $user->password = $r->password;
+
+        return redirect()->route('admin.user.edit');
     }
 
     /**
@@ -114,6 +116,9 @@ class AdminUserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+
+        return redirect()->route('admin.user.index', $user->id);
     }
 }
