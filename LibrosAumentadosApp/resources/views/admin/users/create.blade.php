@@ -21,10 +21,10 @@
     <div class="container">
         
             {{--@isset($user)
-            <form action="{{ route('AdminUserController@update', ['user' => $user->id]) }}" method="POST" enctype="multipart/form-data" class="formulario">
+            <form action="{{ route('admin.user.update', ['user' => $user->id]) }}" method="POST" enctype="multipart/form-data" class="formulario">
                 @method("PUT")
             @else--}}
-            <form action="{{ route('AdminUserController@store') }}" method="POST" enctype="multipart/form-data" class="formulario">
+            <form action="{{ route('admin.user.store') }}" method="PUT" enctype="multipart/form-data" class="formulario">
             {{--@endisset--}}
                 @csrf
                 <div class="form-group">
@@ -66,8 +66,6 @@
             </form>
         
     </div>
-
-</div>
 
 
 @endsection
