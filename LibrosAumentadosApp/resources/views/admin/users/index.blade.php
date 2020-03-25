@@ -19,7 +19,7 @@
 
     <div class="container text-center">
         <div class="row">
-            <a href="{{ route('admin.user.create') }}" class="btn btn-primary btn-lg" role="button">Nuevo Usuario</a><br>
+            <a href="{{ route('users.create') }}" class="btn btn-primary btn-lg" role="button">Nuevo Usuario</a><br>
         </div>
         <br>
         <div class="row">

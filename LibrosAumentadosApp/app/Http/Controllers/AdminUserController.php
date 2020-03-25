@@ -37,22 +37,12 @@ class AdminUserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $r)
-    {
-        //$user = new User($r->all());
-        /*$user = new User;
-        $user->name = $r->name;
-        $user->email = $r->email;
-        $user->email_verified_at = $r->email_verified_at;
-        $user->password = $r->password;*/
-
+    {    
         $users = User::all();
 
         User::create($r->all());
 
-       // dd($user);
-        //$user->save();
-
-        return redirect()->route('admin.user.index', compact('users'));
+        return redirect()->route('users.index', compact('users'));
     }
 
     /**
@@ -75,7 +65,6 @@ class AdminUserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        /*return view('admin.user.update', compact('user'));*/
         return view('admin.users.edit', compact('user'));
     }
 
@@ -88,16 +77,6 @@ class AdminUserController extends Controller
      */
     public function update(Request $r, $id)
     {
-        /*$user = new User;
-        $user->name = $r->name;
-        $user->email = $r->email;
-        $user->email_verified_at = $r->email_verified_at;
-        $user->password = $r->password;
-
-        
-        //$user->fill($r->all());
-      
-        $user->save();*/
 
         $user = User::find($id);
 
@@ -105,7 +84,9 @@ class AdminUserController extends Controller
         $user->email = $r->email;
         $user->password = $r->password;
 
-        return redirect()->route('admin.user.edit');
+        $user->save();
+
+        return redirect()->route('users.index');
     }
 
     /**
@@ -119,6 +100,6 @@ class AdminUserController extends Controller
         $user = User::find($id);
         $user->delete();
 
-        return redirect()->route('admin.user.index', $user->id);
+        return redirect()->route('users.index', $user->id);
     }
 }
