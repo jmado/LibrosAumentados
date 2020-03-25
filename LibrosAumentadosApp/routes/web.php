@@ -101,8 +101,8 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 //Rutas para usuarios
 Route::get('admin/users', 'AdminUserController@index')->name('admin.user.index');
-Route::get('admin/users/edit/{id}', 'AdminUserController@update')->name('admin.user.edit');
+Route::get('admin/users/edit/{id}', 'AdminUserController@edit')->name('admin.user.edit');
 Route::get('admin/users/create', 'AdminUserController@create')->name('admin.user.create');
 Route::get('admin/users/store', 'AdminUserController@store')->name('admin.user.store');
 Route::get('admin/users/destroy/{id}', 'AdminUserController@destroy')->name('user.delete');
-//Route::resource('admin/users', 'AdminUserController');
+Route::resource('admin/users', 'AdminUserController');

@@ -76,7 +76,7 @@ class AdminUserController extends Controller
     {
         $user = User::find($id);
         /*return view('admin.user.update', compact('user'));*/
-        return view('admin.user.update', compact('user'));
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -101,12 +101,9 @@ class AdminUserController extends Controller
 
         $user = User::find($id);
 
-        $user->id = $r->id;
         $user->name = $r->name;
         $user->email = $r->email;
         $user->password = $r->password;
-
-
 
         return redirect()->route('admin.user.edit');
     }
