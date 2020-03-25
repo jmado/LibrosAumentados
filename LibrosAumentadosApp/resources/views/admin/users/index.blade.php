@@ -19,7 +19,11 @@
 
     <div class="container text-center">
         <div class="row">
-            <div class="col-2">ID</div>
+            <a href="{{ route('admin.user.create') }}" class="btn btn-primary btn-lg" role="button">Nuevo Usuario</a><br>
+        </div>
+        <br>
+        <div class="row">
+            {{--<div class="col-2">ID</div>--}}
             <div class="col-2">NOMBRE</div>
             <div class="col-2">EMAIL</div>
             <div class="col-2">FECHA CREACIÓN</div>
@@ -27,24 +31,23 @@
         </div>
         @foreach ($users as $user)
             <div class="row">
-                <div class="col-2">{{$user->id}}</div>
+                {{--<div class="col-2">{{$user->id}}</div>--}}
                 <div class="col-2">{{$user->name}}</div>
                 <div class="col-2">{{$user->email}}</div>
                 <div class="col-2">{{$user->created_at}}</div>
                 <div class="col-2">{{$user->updated_at}}</div>
-            </div>
-        @endforeach
+            {{--</div>--}}
+        {{--@endforeach--}}
 
-        @auth
-        <div class="row">
-            <div class="col p-1">
-                <a href="{{route('user.admin.edit', $user->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
+        {{--<div class="row">--}}
+            <div class="col 4">
+                <a href="{{route('admin.user.edit', $user->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>
                 <a class="b{{$user->id}} btn btn-sm btn-outline-danger" role="button">Borrar</a>
                     <script>
                                 $(document).ready(function(){ 
                                     var borrar = $(".b{{$user->id}}").click(function(){
                                         var id = {{$user->id}};
-                                        var direccion = "{{route('user.deleteConfirm', 0)}}";
+                                        var direccion = "{{route('user.delete', 0)}}";
                                         direccion = direccion.replace("0", id);
                                         swal({
                                             title: "¿Seguro de que borrar este elemento?",
@@ -68,8 +71,10 @@
                                 });   
                     </script>
             </div>
+            
         </div>
-        @endauth
+        <br>
+        @endforeach
 
 </div>
 @endsection

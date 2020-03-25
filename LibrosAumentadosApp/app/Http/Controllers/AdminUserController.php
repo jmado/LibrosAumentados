@@ -52,7 +52,7 @@ class AdminUserController extends Controller
        // dd($user);
         //$user->save();
 
-        return redirect()->route('admin.users.index', compact('users'));
+        return redirect()->route('admin.user.index', compact('users'));
     }
 
     /**
@@ -75,6 +75,7 @@ class AdminUserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
+        /*return view('admin.user.update', compact('user'));*/
         return view('admin.user.update', compact('user'));
     }
 
@@ -87,17 +88,27 @@ class AdminUserController extends Controller
      */
     public function update(Request $r, $id)
     {
-        $user = new User;
+        /*$user = new User;
         $user->name = $r->name;
         $user->email = $r->email;
         $user->email_verified_at = $r->email_verified_at;
         $user->password = $r->password;
 
+        
         //$user->fill($r->all());
       
-        $user->save();
+        $user->save();*/
 
-        return redirect()->route('admin.users.update');
+        $user = User::find($id);
+
+        $user->id = $r->id;
+        $user->name = $r->name;
+        $user->email = $r->email;
+        $user->password = $r->password;
+
+
+
+        return redirect()->route('admin.user.edit');
     }
 
     /**
@@ -108,6 +119,9 @@ class AdminUserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+
+        return redirect()->route('admin.user.index', $user->id);
     }
 }
