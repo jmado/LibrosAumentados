@@ -47,7 +47,7 @@
                     <input id="password" type="password" class="form-control" name="password" value="{{$user->password ?? ''}}" required>    
                 </div>
                 
-                <div class="form-group">
+               {{--<div class="form-group">
                     <label for="created_at">created_at:</label>
                     <input id="created_at" type="text" class="form-control" name="created_at" value="{{$user->created_at ?? ''}}" >
                 </div>
@@ -55,7 +55,7 @@
                 <div class="form-group">
                     <label for="update_at">update_at:</label>
                 <input id="update_at" type="text" class="form-control" name="update_at" value="{{$user->update_at ?? ''}}" >
-                </div>
+                </div>--}} 
 
                 
                 
