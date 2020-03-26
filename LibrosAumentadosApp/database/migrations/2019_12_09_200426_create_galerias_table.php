@@ -20,7 +20,6 @@ class CreateGaleriasTable extends Migration
             $table->string('descripcion');
             $table->enum('tipo', ['normal','transparencia']); 
             $table->integer('capitulo_id');
-            $table->string('cubierta')->nullable();
             $table->timestamps();
         });
     }
