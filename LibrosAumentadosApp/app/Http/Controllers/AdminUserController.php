@@ -38,9 +38,15 @@ class AdminUserController extends Controller
      */
     public function store(Request $r)
     {    
-        $users = User::all();
+        //$users = User::all();
+        $users = new User;
+        //User::create($r->all());
 
-        User::create($r->all());
+        $users->name = $r->name;
+        $users->email = $r->email;
+        $users['password'] = bcrypt($r->password);
+
+        $users->save();
 
         return redirect()->route('users.index', compact('users'));
     }
@@ -82,7 +88,8 @@ class AdminUserController extends Controller
 
         $user->name = $r->name;
         $user->email = $r->email;
-        $user->password = $r->password;
+        //$user->password = $r->password;
+        $user['password'] = bcrypt($r->password);
 
         $user->save();
 

@@ -83,7 +83,8 @@
     
     
     @auth
-      <a href="{{route('logout')}}">Log out</a>    
+      <a href="{{route('logout')}}">Log out</a>
+      <a href="{{route('users.index')}}">Usuarios</a>    
     @endauth
 
     <label for="chk" class="hide-menu-btn">
