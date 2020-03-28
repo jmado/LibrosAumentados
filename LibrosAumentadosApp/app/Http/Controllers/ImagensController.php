@@ -49,10 +49,10 @@ class ImagensController extends Controller
 
         $search = $request->search;
         if(!empty($search)){
-            $query="select * from imagens where (titulo like '$search%') and (capitulo_id='$capitulo_id') order by titulo";
+            $query="select * from imagens where (titulo like '%$search%') and (capitulo_id='$capitulo_id') order by titulo";
             $result =  DB::select($query);
             if(!$result) {
-                die('Query Error' . mysqli_error($connection));
+                //die('Query Error' . mysqli_error($connection));
             }
         
            

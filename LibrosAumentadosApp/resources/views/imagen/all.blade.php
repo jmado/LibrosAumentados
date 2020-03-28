@@ -37,37 +37,13 @@
     
 $(function(){
 
-   /*
-    $('.mimodal').click(function(){
-        console.log('hola');
-        var task = $(this);
-        var id = task.id;
-        var img = task.url;
-        var titulo = task.titulo;
-        var editar = "{{route('galeria.edit', 0)}}";
-            editar = editar.replace("0", id);
-        var borrar = "{{route('imagen.deleteConfirm', 0)}}";
-            borrar = borrar.replace("0", id);
-        swal({
-            title: titulo,
-            content: {
-                element: "img",
-                attributes: {
-                src: img,
-                },
-            },
-            button: "Ver galeria",
-            })
-            .then((willDelete) => {
-                if (willDelete) {
-                location.href=direccion; 
-                } 
-            }); 
-    });
-*/
+   
 let tasks;
     $('#search').keyup(function(){
+
         if($('#search').val()){
+            
+           
 
             let search = $('#search').val();
 
@@ -104,9 +80,12 @@ let tasks;
                             </tr> `;
                         });
                         $('.lista-search').html(template);
+                        $('.lista-search').show();
                     //}
                 }
             });
+        }else{
+            $('.lista-search').hide();
         }
     });
 
