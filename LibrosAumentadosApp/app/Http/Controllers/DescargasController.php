@@ -54,14 +54,21 @@ class DescargasController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate($request, ['file'=>'required']);
-
+        //$this->validate($request, ['file'=>'required']);
+        $this->validate($request, [
+            'titulo' => 'required|max:50',
+            'descripcion' => 'required|max:255',
+            'file' => 'request|mimetypes:text/plain, 
+                    application/pdf ,
+                    application/vnd.openxmlformats-officedocument.wordprocessingml.document, 
+                    application/vnd.oasis.opendocument.text'
+        ]);
         $datos = new Descarga;
         $datos->titulo = $request->titulo;
         $datos->descripcion = $request->descripcion;
 
         //Archivo
-        $datos->tipo_archivo = $request->tipo_archivo;
+        //$datos->tipo_archivo = $request->tipo_archivo;
         $archivo = $request->file;
         //Lo muevo a la carpeta
         $archivo->move('descargas', $archivo->getClientOriginalName());
@@ -111,6 +118,14 @@ class DescargasController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'titulo' => 'required|max:50',
+            'descripcion' => 'required|max:255',
+            'file' => 'mimetypes:text/plain, 
+                    application/pdf ,
+                    application/vnd.openxmlformats-officedocument.wordprocessingml.document, 
+                    application/vnd.oasis.opendocument.text'
+        ]);
         $datos = Descarga::findOrFail($id);
         $datos->titulo = $request->titulo;
         $datos->descripcion = $request->descripcion;
@@ -118,7 +133,7 @@ class DescargasController extends Controller
         $capitulo_id = Session::get('capitulo_id');
         $datos->capitulo_id = $capitulo_id;
 
-        $datos->tipo_archivo = $request->tipo_archivo;
+        //$datos->tipo_archivo = $request->tipo_archivo;
 
         
 

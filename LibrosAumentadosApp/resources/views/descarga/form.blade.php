@@ -33,7 +33,7 @@
 
 
             
-
+{{-- 
             <div class="form-group">
                 <label for="tipo">Tipo de archivo:</label>
                 <select name="tipo_archivo" class="form-control" id="tipo" required>
@@ -51,7 +51,7 @@
                         @endisset
                 </select>
             </div>
-            
+--}}       
 
             
 
