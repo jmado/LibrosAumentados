@@ -56,7 +56,13 @@ class AudiosController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['file'=>'required']);
+        //$this->validate($request, ['file'=>'required']);
+        $this->validate($request, [
+            'titulo' => 'required|max:50',
+            'descripcion' => 'required|max:255',
+            'file' => 'required|mimetypes:audio/mpeg'
+        ]);
+
 
         $datos = new Audio;
         $datos->titulo = $request->titulo;
@@ -111,6 +117,12 @@ class AudiosController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'titulo' => 'required|max:50',
+            'descripcion' => 'required|max:255',
+            'file' => 'mimetypes:audio/mpeg'
+        ]);
+
         $datos = Audio::findOrFail($id);
         $datos->titulo = $request->titulo;
         $datos->descripcion = $request->descripcion;
