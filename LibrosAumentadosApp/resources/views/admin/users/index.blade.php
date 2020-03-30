@@ -34,6 +34,8 @@
                 {{--<div class="col-2">{{$user->id}}</div>--}}
                 <div class="col-2">{{$user->name}}</div>
                 <div class="col-2">{{$user->email}}</div>
+                {{--<div class="col-2">{!! \Carbon\Carbon::parse($user->created_at)->format(‘d-m-Y’) !!}</div>
+                <div class="col-2">{!! \Carbon\Carbon::parse($user->update_at)->format(‘d-m-Y’) !!}</div>--}}
                 <div class="col-2">{{$user->created_at}}</div>
                 <div class="col-2">{{$user->updated_at}}</div>
             {{--</div>--}}
