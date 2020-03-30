@@ -57,7 +57,12 @@ class Modelo_3dController extends Controller
     public function store(Request $request)
     {
         
-        $this->validate($request, ['file'=>'required']);
+        //$this->validate($request, ['file'=>'required']);
+        $this->validate($request, [
+            'titulo' => 'required|max:50',
+            'descripcion' => 'required|max:255',
+            'file' => 'required|mimetypes:application/zip'
+        ]);
 
         $titulo = $request->titulo;
         $descripcion = $request->descripcion;
@@ -142,6 +147,12 @@ class Modelo_3dController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'titulo' => 'required|max:50',
+            'descripcion' => 'required|max:255',
+            'file' => 'mimetypes:application/zip'
+        ]);
+
         $modelo = Modelo_3d::findOrFail($id);
 
         $titulo = $request->titulo;
