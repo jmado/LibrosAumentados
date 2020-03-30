@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 use Session;
 
 use App\Imagen;
@@ -51,21 +52,13 @@ class ImagensController extends Controller
         if(!empty($search)){
             $query="select * from imagens where (titulo like '%$search%') and (capitulo_id='$capitulo_id') order by titulo";
             $result =  DB::select($query);
-            if(!$result) {
-                //die('Query Error' . mysqli_error($connection));
-            }
+            
         
            
             $jsonstring = json_encode($result);
             echo $jsonstring;
         }
-        /*
-        else{
-            $result = "No se ha encontrado ningún resultados";
-            $jsonstring = json_encode($result);
-            echo $jsonstring;
-        } 
-        */   
+        
             
     }
 
@@ -94,9 +87,17 @@ class ImagensController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['file'=>'required']);
+        //$this->validate($request, ['file'=>'required']);
         
-        //$validateData = $request->validate(['imagen'=>required]);
+        $this->validate($request, [
+            'titulo' => 'required|max:50',
+            'descripcion' => 'required|max:255',
+            'file' => 'required|mimes:jpeg,png'
+        ]);
+        
+
+        
+
         $datos = new Imagen;
         $datos->titulo = $request->titulo;
         $datos->descripcion = $request->descripcion;
@@ -161,6 +162,13 @@ class ImagensController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'titulo' => 'required|max:50',
+            'descripcion' => 'required|max:255',
+            'file' => 'mimes:jpeg,png'
+        ]);
+
+
         $datos = Imagen::findOrFail($id);
         $datos->titulo = $request->titulo;
         $datos->descripcion = $request->descripcion;
