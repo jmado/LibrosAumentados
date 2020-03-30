@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 use App\User;
 
@@ -86,10 +87,22 @@ class AdminUserController extends Controller
 
         $user = User::find($id);
 
+        //Se guarda la contraseña antigua en una varible para que en el caso de que no se edite el campo contraseña
+        //tenerla almacenada para que esta no cambie
+        $pass = $user->password;
+        
         $user->name = $r->name;
         $user->email = $r->email;
-        //$user->password = $r->password;
-        $user['password'] = bcrypt($r->password);
+        $user->password = $r->password;
+        
+        //Si el campo contraseña se deja vacio en el formulario esta será la misma de antes, 
+        //almacenada en la variable $pass, en caso contrario, se encripta la nueva contraseña y se envia a la BBDD 
+        //con el resto de datos
+        if(empty($r->password)){
+            $user->password = $pass;
+        }else{
+            $user['password'] = bcrypt($r->password);
+        }
 
         $user->save();
 

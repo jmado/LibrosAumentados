@@ -22,7 +22,7 @@
 
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input id="password" type="password" class="form-control" name="password" value="{{$user->password ?? ''}}" required>    
+                <input id="password" type="password" class="form-control" name="password" {{--value="{{$user->password ?? ''}}" required--}}>    
             </div>
             
             <input type="submit" value="Guardar" class="btn btn-primary btn-block" role="button">
