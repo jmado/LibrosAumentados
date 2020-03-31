@@ -58,10 +58,7 @@ class DescargasController extends Controller
         $this->validate($request, [
             'titulo' => 'required|max:50',
             'descripcion' => 'required|max:255',
-            'file' => 'request|mimetypes:text/plain, 
-                    application/pdf ,
-                    application/vnd.openxmlformats-officedocument.wordprocessingml.document, 
-                    application/vnd.oasis.opendocument.text'
+            'file' => 'required|mimetypes:text/plain,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.oasis.opendocument.text'
         ]);
         $datos = new Descarga;
         $datos->titulo = $request->titulo;
@@ -121,10 +118,7 @@ class DescargasController extends Controller
         $this->validate($request, [
             'titulo' => 'required|max:50',
             'descripcion' => 'required|max:255',
-            'file' => 'mimetypes:text/plain, 
-                    application/pdf ,
-                    application/vnd.openxmlformats-officedocument.wordprocessingml.document, 
-                    application/vnd.oasis.opendocument.text'
+            'file' => 'mimetypes:text/plain,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.oasis.opendocument.text'
         ]);
         $datos = Descarga::findOrFail($id);
         $datos->titulo = $request->titulo;
