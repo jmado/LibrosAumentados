@@ -23,6 +23,10 @@ class CreateDescargasTable extends Migration
             $table->integer('capitulo_id');
             $table->timestamps();
         });
+
+        Schema::table('descargas', function (Blueprint $table) {
+            $table->dropColumn('tipo_archivo');
+        });
     }
 
     /**
