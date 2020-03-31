@@ -64,8 +64,9 @@
                     <div class="elemento-body">
                         <h2>{{$dato->titulo}}</h2>
                         <p>Descripcion: {{$dato->descripcion}} </p>
+                        {{-- 
                         <p>Tipo de archivo: {{$dato->tipo_archivo}} </p>
-
+                        --}}
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                                 <a href="{{route('descarga.show', $dato->id)}}" class="btn btn-sm btn-outline-primary" role="button">Ver</a>
