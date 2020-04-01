@@ -79,6 +79,11 @@
     <ul class="menu">
       {{--<a href="/">Home</a>--}}
       <a href="{{route('libro.index')}}">Libros</a>
+      @auth
+        <a href="{{route('users.index')}}">Usuarios</a>    
+      @endauth
+      <a href="{{route('login')}}">Login</a>
+      <a href="{{url('/acercade')}}">Acerca de</a>
         {{-- 
           <a href="#">Sobre nosotros</a>
           <a href="#">Contacto</a>
@@ -86,8 +91,7 @@
     
     
     @auth
-      <a href="{{route('logout')}}">Log out</a>
-      <a href="{{route('users.index')}}">Usuarios</a>    
+      <a href="{{route('logout')}}">Log out</a>   
     @endauth
 
     <label for="chk" class="hide-menu-btn">
