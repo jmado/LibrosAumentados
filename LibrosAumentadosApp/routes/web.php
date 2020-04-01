@@ -106,3 +106,8 @@ Route::get('admin/users/create', 'AdminUserController@create')->name('admin.user
 Route::get('admin/users/store', 'AdminUserController@store')->name('admin.user.store');
 Route::get('admin/users/destroy/{id}', 'AdminUserController@destroy')->name('user.delete');
 Route::resource('admin/users', 'AdminUserController');
+
+
+Route::get('/aboutUs', function () {
+    return view('acercade');
+});
