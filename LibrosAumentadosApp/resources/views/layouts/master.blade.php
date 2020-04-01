@@ -69,7 +69,7 @@
     <!-- Cabecera -->
 <header class="header bg-primary">
     <a href="{{route('libro.index')}}">
-      <h2 class="logo text-light">LibrosAumentados</h2>
+      <h2 class="logo text-light">Libros<strong>Aumentados</strong></h2>
     </a>
     <input type="checkbox" id="chk">
     <label for="chk" class="show-menu-btn">
@@ -82,13 +82,12 @@
       @auth
         <a href="{{route('users.index')}}">Usuarios</a>    
       @endauth
-      <a href="{{route('login')}}">Login</a>
-      <a href="{{url('/acercade')}}">Acerca de</a>
-        {{-- 
-          <a href="#">Sobre nosotros</a>
-          <a href="#">Contacto</a>
-        --}}
-    
+      
+      <a href="{{url('/aboutUs')}}">About Us</a>
+      
+      @unless (Auth::check())
+        <a href="{{route('login')}}">Login</a>
+      @endunless
     
     @auth
       <a href="{{route('logout')}}">Log out</a>   

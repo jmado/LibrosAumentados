@@ -270,8 +270,18 @@ td.cubierta_galeria{
 
 /*---------------------Acerca de--------------------*/
 .acercade {
-  margin-left: 15%;
-  margin-right: 15%;
-  margin-top: 7%;
+  margin-left: 10%;
+  margin-right: 35%;
+  margin-top: 2%;
+}
+.logocelia {
+  float: right;
+  margin-right: 2%;
+  margin-bottom: 2%;
+}
+.logocelia img {
+  alt: 70%;
+  width: 70%;
+  height: 70%;
 }
 

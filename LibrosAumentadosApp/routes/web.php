@@ -108,6 +108,6 @@ Route::get('admin/users/destroy/{id}', 'AdminUserController@destroy')->name('use
 Route::resource('admin/users', 'AdminUserController');
 
 
-Route::get('/acercade', function () {
+Route::get('/aboutUs', function () {
     return view('acercade');
 });
