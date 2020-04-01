@@ -14,5 +14,5 @@
     Celia Viñas (Almería)</p>
 </div>
 
-<div class="logocelia"><img src="/imagenes/logo.png"></div>
+<div class="logocelia"><img src="/imagenes/logo.png" alt="escudo celia viñas"></div>
 @endsection
