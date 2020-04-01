@@ -40,9 +40,9 @@
             <div class="images">
                 @foreach ($imagenes as $imagen)
                     @if($loop->first)
-                        <div class="active galeria-img" style="background-image: url('../{{$imagen->imagen}}')"></div>
+                        <div class="active galeria-img imagenes" style="background-image: url('../{{$imagen->imagen}}')"></div>
                     @else
-                    <div class="galeria-img" style="background-image: url('../{{$imagen->imagen}}')"></div>
+                    <div class="galeria-img imagenes" style="background-image: url('../{{$imagen->imagen}}')"></div>
                     @endif
                 @endforeach
             <!-- Fin galeria-->

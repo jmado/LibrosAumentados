@@ -23,19 +23,19 @@ function transparencia(){
     
 }
 
-var galeria = document.getElementsByClassName("galeria-img");
+var galeria = document.getElementsByClassName("imagenes");
 var cont = 0;
 function izquierda(){
-    if(galeria[0].className != "active galeria-img"){
-        galeria[cont].className = "galeria-img";
+    if(galeria[0].className != "active galeria-img imagenes"){
+        galeria[cont].className = "galeria-img imagenes";
         cont--;
-        galeria[cont].className = "active galeria-img";
+        galeria[cont].className = "active galeria-img imagenes";
     }
 }
 function derecha(){
-    if(galeria[galeria.length-1].className != "active galeria-img"){
-        galeria[cont].className = "galeria-img";
+    if(galeria[galeria.length-1].className != "active galeria-img imagenes"){
+        galeria[cont].className = "galeria-img imagenes";
         cont++;
-        galeria[cont].className = "active galeria-img";
+        galeria[cont].className = "active galeria-img imagenes";
     }   
 }

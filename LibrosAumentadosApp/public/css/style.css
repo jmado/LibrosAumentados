@@ -191,7 +191,7 @@ a:link, a:visited, a:active, a:hover , a{
           border:3px solid transparent;
           width:100px;
           height:100px;
-          cursor:pointer;
+          
           -webkit-transition:all .88s ease;
           transition:all .88s ease
         }
@@ -218,12 +218,7 @@ a:link, a:visited, a:active, a:hover , a{
             left:25px;
           }
         }
-        .gallery .thumbs>div.active{
-          border-color:silver;
-        }
-        .gallery .thumbs>div.active:before{
-          border-bottom-color:silver;
-        }   
+        
         /* 
 ---------------------FIN Estilo Imagenes -------------------
 ---------------------FIN GaleriaTransparente ---------------
