@@ -162,10 +162,11 @@ class LibrosController extends Controller
         $paginas = DB::select("select * from paginas where capitulo_id=:id",['id'=>$capitulo->id]);   
 
         $numPagina = rand(0, count($paginas)-1);
+        echo "numPagina: $numPagina <br>";
         $numero_pagina = $paginas[$numPagina]->numero_pagina;
-        //echo "NumPagina = $numPagina - numero_pagina = $numero_pagina<br>";
-        //var_dump($paginas);
-        $contenidoPagina = $paginas[$numPagina]->texto;        
+        echo "numero_pagina: $numero_pagina <br>";
+        $contenidoPagina = $paginas[$numPagina]->texto; 
+        echo "contenidoPagina: $contenidoPagina <br>";       
 
         // Ahora vamos a elegir un párrafo al azar de esa página.
         // No todos los párrafos valen, solo los que tengan más de 5 palabras.
