@@ -160,9 +160,11 @@ class LibrosController extends Controller
 
         // Después, elegimos una página al azar del capítulo seleccionado
         $paginas = DB::select("select * from paginas where capitulo_id=:id",['id'=>$capitulo->id]);   
-
+    
         $numPagina = "";
-        while($numPagina < 0) {
+        if($numPagina < 0) {
+            $numPagina = rand(0, count($paginas)-1);
+        }else {
             $numPagina = rand(0, count($paginas)-1);
         }
         echo "numPagina: $numPagina <br>";
