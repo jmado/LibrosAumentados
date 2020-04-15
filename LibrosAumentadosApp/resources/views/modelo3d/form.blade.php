@@ -8,7 +8,7 @@
 
 <section class="text-center">
     <div class="container">    
-        <button class="btn btn-primary btn-block" role="button" onclick="goBack()">Atras</button>
+        <button class="btn btn-primary btn-block" role="button" onclick="goBack()">Atrás</button>
         <script>
             function goBack() {
                 window.history.back();

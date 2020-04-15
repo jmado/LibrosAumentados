@@ -6,7 +6,7 @@
 <div class="container p-5">
     <section class="text-center">
         <div class="container">    
-            <button class="btn btn-primary btn-block" role="button" onclick="goBack()">Atras</button>
+            <button class="btn btn-primary btn-block" role="button" onclick="goBack()">Atrás</button>
             <script>
                 function goBack() {
                     window.history.back();
@@ -27,7 +27,7 @@
                 @csrf
 
                 <div class="form-group">
-                    <label for="title">Titulo:</label>
+                    <label for="title">Título:</label>
                     <input id="title" type="text" class="form-control" name="titulo" value="{{$libro->titulo ?? ''}}" required>
                 </div>
                     
@@ -37,7 +37,7 @@
                 </div>  
                 
                 <div class="form-group">
-                    <label for="sub">Subtitulo:</label>
+                    <label for="sub">Subtítulo:</label>
                     <input id="sub" type="text" class="form-control" name="subtitulo" value="{{$libro->subtitulo ?? ''}}" required>
                 </div>  
 

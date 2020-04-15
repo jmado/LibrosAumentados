@@ -63,7 +63,7 @@
                     </div>
                     <div class="elemento-body">
                         <h2>{{$dato->titulo}}</h2>
-                        <p>Descripcion: {{$dato->descripcion}} </p>
+                        <p>Descripción: {{$dato->descripcion}} </p>
                         {{-- 
                         <p>Tipo de archivo: {{$dato->tipo_archivo}} </p>
                         --}}

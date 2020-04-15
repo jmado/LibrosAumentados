@@ -13,7 +13,7 @@
         </nav>
         <h1>Páginas</h1>
         <p>
-          <a href="{{ route('pagina.create') }}" class="btn btn-primary btn-lg" role="button">Nueva Pagina</a>
+          <a href="{{ route('pagina.create') }}" class="btn btn-primary btn-lg" role="button">Nueva Página</a>
         </p>
       </div>
 </section>

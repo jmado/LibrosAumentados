@@ -36,7 +36,7 @@
     <div class="row mt-5 mb-5">
         <div class="col">
             <a href="{{ route('capitulo.create') }}" class="btn btn-primary btn-lg" role="button">
-                <i class="fas fa-plus"></i> Añadir capitulo
+                <i class="fas fa-plus"></i> Añadir capítulo
             </a>
         </div>
     </div>
@@ -52,12 +52,12 @@
             </div>
             <div class="row p-1">
                 <div class="col">
-                    <a href="{{ route('imagen.all', $capitulo->id) }}" data-toggle="tooltip" title="Imagenes">
+                    <a href="{{ route('imagen.all', $capitulo->id) }}" data-toggle="tooltip" title="Imágenes">
                         <i class="far fa-image"></i>
                     </a> 
                 </div>
                 <div class="col">
-                    <a href="{{ route('galeria.all', $capitulo->id) }}" data-toggle="tooltip" title="Galerias">
+                    <a href="{{ route('galeria.all', $capitulo->id) }}" data-toggle="tooltip" title="Galerías">
                         <i class="far fa-images"></i>
                     </a>
                 </div>
@@ -83,7 +83,7 @@
                 </div>
                 @auth
                 <div class="col">
-                    <a href="{{ route('pagina.all', $capitulo->id) }}" data-toggle="tooltip" title="Paginas">
+                    <a href="{{ route('pagina.all', $capitulo->id) }}" data-toggle="tooltip" title="Páginas">
                         <i class="far fa-file-alt"></i>
                     </a>
                 </div>

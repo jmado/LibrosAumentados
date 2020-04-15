@@ -9,7 +9,7 @@
     manera de la que no se había llegado nunca hasta ahora.</p>
     <p>A través de ella puedes conocer las historias como si de una propia situación se tratase, es decir,
     desde el punto de vista del autor.</p>
-    <p>El desarrollo de esta Web corre a cargo de Jose Manuel Maldonado y Adrián Sánchez, 
+    <p>El desarrollo de esta Web corre a cargo de José Manuel Maldonado y Adrián Sánchez, 
     con la supervisión de Alfredo Moreno y Félix Expósito para el proyecto final del curso 2019-2020 en el instituto I.E.S.
     Celia Viñas (Almería)</p>
 </div>

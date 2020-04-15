@@ -31,8 +31,8 @@
              <table class="table table-striped table-sm">
                 <thead>
                     <tr>   
-                        <th>Titulo</th>
-                        <th>Descripcion</th>
+                        <th>Título</th>
+                        <th>Descripción</th>
                         <th></th>
                     </tr>
                 </thead>

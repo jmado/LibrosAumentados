@@ -64,7 +64,7 @@
                     
                     <div class="elemento-body">
                         <h2>{{$video->titulo}}</h2>
-                        <p><a href="{{route('capitulo.index')}}">Capitulo: {{$video->capitulo_id}}</a></p>
+                        <p><a href="{{route('capitulo.index')}}">Capítulo: {{$video->capitulo_id}}</a></p>
                         <p>Descripcion: {{$video->descripcion}} </p>
 
                         <div class="d-flex justify-content-between align-items-center">

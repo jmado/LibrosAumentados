@@ -53,7 +53,7 @@
             
 
            <div class="form-group">
-                <label for="title">Titulo:</label>
+                <label for="title">Título:</label>
                 <input id="title" type="text" name="titulo" class="form-control" value="{{$datos->titulo ?? ''}}" required>
            </div>
            <div class="form-group">

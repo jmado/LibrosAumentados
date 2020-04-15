@@ -6,7 +6,7 @@
 <div class="container p-5">
 <section class="text-center">
     <div class="container">    
-        <button class="btn btn-primary btn-block" role="button" onclick="goBack()">Atras</button>
+        <button class="btn btn-primary btn-block" role="button" onclick="goBack()">Atrás</button>
         <script>
             function goBack() {
                 window.history.back();
@@ -32,7 +32,7 @@
 
             
             <div class="form-group">
-                <label for="title">Titulo:</label>
+                <label for="title">Título:</label>
                 <input id="title" type="text" name="titulo" class="form-control" value="{{$galeria->titulo ?? ''}}" required>
             </div>
 
@@ -57,7 +57,7 @@
             </div>
             
             <div class="form-group">
-                <label for="img">Imagenes</label>
+                <label for="img">Imágenes</label>
                 <select id="img" name="imagenes_id[]" class="form-control" multiple>
                     @foreach ($imagenes as $imagen)
                         @isset($galeria)

@@ -4,7 +4,7 @@
 
 <section class="text-center">
     <div class="container">    
-        <button class="btn btn-primary btn-block" role="button" onclick="goBack()">Atras</button>
+        <button class="btn btn-primary btn-block" role="button" onclick="goBack()">Atrás</button>
         <script>
             function goBack() {
                 window.history.back();
@@ -49,7 +49,7 @@
         </div>
 
         <div class="form-group">
-            <label for="n_pagina">Numero de pagina:</label>
+            <label for="n_pagina">Numero de página:</label>
             <input type="text" name="numero_pagina" class="form-control" id="n_pagina" value="{{$pagina->numero_pagina ?? ''}}">
         </div>
 
