@@ -37,7 +37,7 @@
     <div class="row mt-5 mb-5">
         <div class="col">
             <a href="{{ route('galeria.create', $capitulo) }}" class="btn btn-primary btn-lg" role="button">
-                <i class="fas fa-plus"></i> Añadir Galeria
+                <i class="fas fa-plus"></i> Añadir Galería
             </a>
         </div>
     </div>
@@ -51,8 +51,8 @@
         <thead>
             <tr>  
                 <th></th> 
-                <th>Titulo</th>
-                <th>Descripcion</th>
+                <th>Título</th>
+                <th>Descripción</th>
                 <th></th>
                 @auth
                 <th></th>
