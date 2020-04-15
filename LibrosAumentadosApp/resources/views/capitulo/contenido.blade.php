@@ -25,7 +25,7 @@
                     <input class="form-control" type="search" placeholder="Buscador de libros" aria-label="Search">
                   </form>
                 <div class="search">
-                    <ul>
+                    <ul class="libros-ajax">
                         <li>Libro 1</li>
                         <li>Libro 2</li>
                         <li>Libro 3</li>
@@ -106,6 +106,7 @@
 
               <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                 <div class="card-body">
+
                   <div class="row">
                     <div class="col col-12 col-md-2">
                       <i class="fas fa-video"></i>
@@ -117,23 +118,7 @@
                       </p>
                     </div>
                   </div>
-                  <!-- 
-                    <ul class="list-unstyled">
-                        <li class="media">
-                          <i class="fas fa-video"></i>
-                          <i class="fas fa-volume-up"></i>
-                          <i class="far fa-image"></i>
-                          <i class="far fa-images"></i>
-                          <i class="fas fa-box-open"></i>
-                          <i class="fas fa-archway"></i>
-                          <i class="far fa-file-alt"></i>
-                          <div class="media-body">
-                            <h5>List-based media object</h5>
-                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-                          </div>
-                        </li>
-                      </ul>
-                    -->
+
                 </div>
               </div>
 
