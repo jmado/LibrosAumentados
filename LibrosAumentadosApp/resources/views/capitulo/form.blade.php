@@ -28,7 +28,7 @@
             @endisset
                 @csrf
                 <div class="form-group">
-                    <label for="capitulo">Numero de capitulo:</label>
+                    <label for="capitulo">Número de capítulo:</label>
                     <input id="capitulo" type="number" class="form-control" name="numero_orden" value="{{$capitulo->numero_orden ?? ''}}" required>    
                 </div>
                     
