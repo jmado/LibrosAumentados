@@ -280,3 +280,36 @@ td.cubierta_galeria{
   height: 70%;
 }
 
+/*-------------------------Front Contenido -------------*/
+/*Estilos de la pagina principal de contenidos*/
+
+
+div.search ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0
+}
+div.search ul li{
+  text-align: center;
+  font-size: 0.8em;
+}
+div.media-body{
+  padding-left: 10px;
+}
+div.imagen-libro img{
+  width: 150px;
+  max-height: 200px;
+  display:block;
+  margin:0 auto 0 auto;
+}
+
+div.mensage{
+  text-align: center;
+}
+p.mensage-login{
+  font-size: 0.7em;
+}
+form.login{
+  width: 80%;
+  padding-left: 20%;
+}
