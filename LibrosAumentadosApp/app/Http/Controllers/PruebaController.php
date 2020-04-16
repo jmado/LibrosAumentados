@@ -3,6 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Session;
+
+
+use App\Libro;
+use App\Pagina;
+use App\Capitulo;
+use App\Imagen;
+use App\Galeria;
+use App\Audio;
+use App\Video;
+use App\Descarga;
+use App\Modelo_3d;
+
 
 class PruebaController extends Controller
 {
@@ -11,9 +25,15 @@ class PruebaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($libro_id)
     {
-        //
+        //$libro = DB::table('libros')->where('id', '=', $libro_id);
+        $libro = DB::select("select * from libros where id=:id", ['id'=>$libro_id]);
+
+        //$capitulos = DB::table('capitulo')->where('libro_id', '=', $libro_id);
+        $capitulos = DB::select("select * from capitulos where libro_id=:id", ['id'=>$libro_id]);
+
+        return view('capitulo.contenido', compact('libro', 'capitulos'));
     }
 
     /**

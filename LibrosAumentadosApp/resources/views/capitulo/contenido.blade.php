@@ -26,6 +26,7 @@
                   </form>
                 <div class="search">
                     <ul class="libros-ajax">
+                      <!-- 
                         <li>Libro 1</li>
                         <li>Libro 2</li>
                         <li>Libro 3</li>
@@ -34,6 +35,7 @@
                         <li>Libro 6</li>
                         <li>Libro 7</li>
                         <li>Libro 8</li>
+                      -->
                     </ul>
                 </div>
             </div>
@@ -44,12 +46,16 @@
                 <!-- Informacion del libro -->
                 <div class="row">
                   <div class="imagen-libro col col-12 col-md-3">
-                    <img src="cubierta.jpg" class="align-self-center" alt="Cubierta del libro">
+                    <a href="#">
+                      <img src='{{ URL::asset($libro[0]->cubierta)}}' class="align-self-center" alt="Cubierta del libro">
+                    </a> 
+                    
                   </div>
                   <div class="col col-12 col-md-9">
                     <div class="libro-body">
-                      <h5>Center-aligned media</h5>
-                          <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                      <h5>{{$libro[0]->titulo}}</h5>
+                      <p>{{$libro[0]->subtitulo}}</p>
+                      <p>Autor: {{$libro[0]->autor}}</p>
                     </div>
                     <div class="libro-login">
                       <p class="text-info">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam quibusdam quod vero hic vitae, ab voluptas autem nisi! Exercitationem explicabo tenetur quasi inventore.</p>
@@ -60,26 +66,7 @@
                     </form>
                     </div>
                   </div>
-                    <div class="media">
-                        
-                        <div class="media-body">
-                          
-
-                                <!-- Login del libro --
-                                <div class="login">
-                                    <div class="mensage">
-                                        <p class="text-info">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam quibusdam quod vero hic vitae, ab voluptas autem nisi! Exercitationem explicabo tenetur quasi inventore.</p>
-                                        <p class="mensage-login">Mensage</p>
-                                    </div>
-                                    <form class="login form-block">
-                                        <input class="login form-control" type="search" placeholder="Palabra" aria-label="Search">
-                                        <button class="login btn btn-info btn-block" type="submit">Acceder</button>
-                                    </form>   
-                                </div>
-                                !-- FIN Login del libro -->
-
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
             <!--FIN Libro-->
@@ -107,6 +94,7 @@
               <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                 <div class="card-body">
 
+                <!-- -->
                   <div class="row">
                     <div class="col col-12 col-md-2">
                       <i class="fas fa-video"></i>
@@ -118,6 +106,7 @@
                       </p>
                     </div>
                   </div>
+                <!-- -->
 
                 </div>
               </div>
