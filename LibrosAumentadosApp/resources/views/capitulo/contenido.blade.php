@@ -26,16 +26,11 @@
                   </form>
                 <div class="search">
                     <ul class="libros-ajax">
-                      <!-- 
-                        <li>Libro 1</li>
-                        <li>Libro 2</li>
-                        <li>Libro 3</li>
-                        <li>Libro 4</li>
-                        <li>Libro 5</li>
-                        <li>Libro 6</li>
-                        <li>Libro 7</li>
-                        <li>Libro 8</li>
-                      -->
+                      @forelse ($libros as $l)
+                        <li>{{$l->titulo}}</li>
+                      @empty
+                        <li>...</li>
+                      @endforelse
                     </ul>
                 </div>
             </div>

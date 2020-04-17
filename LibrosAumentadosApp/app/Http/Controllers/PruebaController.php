@@ -36,8 +36,9 @@ class PruebaController extends Controller
 
         $mensage_login = $this->login($libro_id);
 
+        $libros = DB::select("select id, titulo from libros where id!=:id", ['id'=>$libro_id]);
 
-        return view('capitulo.contenido', compact('libro', 'capitulos', 'mensage_login'));
+        return view('capitulo.contenido', compact('libro', 'libros', 'capitulos', 'mensage_login'));
     }
 
     /**
@@ -127,7 +128,7 @@ class PruebaController extends Controller
             $capitulo = $this->capitulo_random($libro_id);
                 $numero_capitulo = $capitulo->numero_orden;
 
-            $pagina = $this->pagina_random($numero_capitulo);
+            $pagina = $this->pagina_random($capitulo->id);
                 $numero_pagina = $pagina->numero_pagina;
 
             $parrafos = $this->parrafos_limpios($pagina->texto);
@@ -175,7 +176,7 @@ class PruebaController extends Controller
         private function pagina_random($capitulo_id)
         {
             $paginas = DB::select('select * from paginas where capitulo_id = :id', ['id' => $capitulo_id]);
-            $pagina = $paginas[rand(1, count($paginas)) -1];
+            $pagina = $paginas[(rand(1, count($paginas))) -1];
             return $pagina;
         }
         private function parrafos_limpios($texto){
