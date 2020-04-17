@@ -7,9 +7,9 @@
     <!--  Arbol de páginas -->            
     <nav  class="arbol">
       <ol class="breadcrumb">
-          <li class="breadcrumb-item">Inicio</li>
-          <li class="breadcrumb-item">Libros</li>
-          <li class="breadcrumb-item active">Libros 1</li>
+        <li class="breadcrumb-item text-primary"><a href="{{ route('libro.index') }}">Inicio</a></li>
+        <li class="breadcrumb-item text-primary"><a href="{{ route('libro.index') }}">Libros</a></li>
+        <li class="breadcrumb-item active">{{$libro[0]->titulo}}</li> 
       </ol>
     </nav>    
     <!--  FIN Arbol de páginas --> 
@@ -58,10 +58,18 @@
                       <p>Autor: {{$libro[0]->autor}}</p>
                     </div>
                     <div class="libro-login">
-                      <p class="text-info">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam quibusdam quod vero hic vitae, ab voluptas autem nisi! Exercitationem explicabo tenetur quasi inventore.</p>
+                      <p class="text-info">Escribe la palabra {{$mensage_login["palabra"]}} del párrafo {{$mensage_login["parrafo"]}} de la página {{$mensage_login["pagina"]}} del capítulo {{$mensage_login["capitulo"]}}</p>
+                      {{-- 
+                      <p class="mensage-login"><span>Capítulo:</span>{{$mensage_login["capitulo"]}}</p>
+                      <p class="mensage-login"><span>Página:</span>{{$mensage_login["pagina"]}}</p>
+                      <p class="mensage-login"><span>Párrafo:</span>{{$mensage_login["parrafo"]}}</p>
+                      <p class="mensage-login"><span>Palabra:</span>{{$mensage_login["palabra"]}}</p>
+                      --}}
                       <p class="mensage-login">Mensage</p>
-                      <form class="login form-block">
-                        <input class="login form-control" type="search" placeholder="Palabra" aria-label="Search">
+
+                      <form action="{{ route('contenido.loginConfirma') }}" method="GEST"  class="formulario">
+                      @csrf
+                        <input type="text" name="password" class="login form-control"  placeholder="Palabra">
                         <button class="login btn btn-info btn-block" type="submit">Acceder</button>
                     </form>
                     </div>
@@ -80,6 +88,7 @@
         <div class="accordion" id="accordionExample">
 
 
+          @foreach($capitulos as $capitulo)
             <div class="card">
 
               <div class="card-header" id="headingThree">
@@ -87,7 +96,7 @@
                   <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                     <i class="fas fa-plus"></i>
                   </button>
-                  <span class="mensage">Capitulo 1</span>
+                  <span class="mensage">{{$capitulo->titulo}}</span>
                 </h6>
               </div>
 
@@ -112,9 +121,11 @@
               </div>
 
             </div>
+          @endforeach
 
 
-          </div>
+
+        </div>
         
 
 

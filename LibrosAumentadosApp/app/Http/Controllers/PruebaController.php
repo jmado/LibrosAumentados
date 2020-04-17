@@ -27,13 +27,17 @@ class PruebaController extends Controller
      */
     public function index($libro_id)
     {
-        //$libro = DB::table('libros')->where('id', '=', $libro_id);
+        Session::put('libro_id', $libro_id);
+
         $libro = DB::select("select * from libros where id=:id", ['id'=>$libro_id]);
 
-        //$capitulos = DB::table('capitulo')->where('libro_id', '=', $libro_id);
+        
         $capitulos = DB::select("select * from capitulos where libro_id=:id", ['id'=>$libro_id]);
 
-        return view('capitulo.contenido', compact('libro', 'capitulos'));
+        $mensage_login = $this->login($libro_id);
+
+
+        return view('capitulo.contenido', compact('libro', 'capitulos', 'mensage_login'));
     }
 
     /**
@@ -101,4 +105,139 @@ class PruebaController extends Controller
     {
         //
     }
+
+
+
+
+
+
+    /**
+     * Sistema de login de usuarios
+     *
+     * @param  int  $libro_id
+     * @return string $mensage_login
+     */
+    public function login($libro_id)
+    {
+    $capitulo;
+    $pagina;
+    $parrafo;
+    $palabra;
+        do{
+            $capitulo = $this->capitulo_random($libro_id);
+                $numero_capitulo = $capitulo->numero_orden;
+
+            $pagina = $this->pagina_random($numero_capitulo);
+                $numero_pagina = $pagina->numero_pagina;
+
+            $parrafos = $this->parrafos_limpios($pagina->texto);
+            $parrafo = $this->parrafo_random($parrafos);
+            
+            $palabra = $this->validar_parrafo($parrafo["texto"]);
+            
+        }while($palabra==null);
+
+    $datos = array(
+        $capitulo,
+        $pagina,
+        $parrafo,
+        $palabra
+    );   
+    
+    Session::put('palabra', $palabra["palabra"]);
+    
+    
+    $mensage_login = array(
+        "capitulo" => $capitulo->numero_orden,
+        "pagina" => $pagina->numero_pagina,
+        "parrafo" => $parrafo["posicion"],
+        "palabra" => $palabra["posicion"]
+    );
+    
+    /*
+    $mensage_login = "<p class='mensage'>Escribe la palabra que corresponde al </p><p><span>Capítulo:</span> ".$capitulo->numero_orden."</p><p><span>Página:</span> ".$pagina->numero_pagina."</p><p><span>Párrafo:</span> ".$parrafo["posicion"]. "</p><p><span>Palabra:</span> ".$palabra["posicion"]. "</p>";
+
+    $jsonstring = json_encode($mensage_login);
+    echo $jsonstring;
+    */
+    return $mensage_login;    
+    }
+
+
+
+
+        private function capitulo_random($libro_id)
+        {
+            $capitulos = DB::select('select * from capitulos where libro_id = :id', ['id' => $libro_id]);
+            $capitulo = $capitulos[rand(1, count($capitulos)) -1];
+            return $capitulo;
+        }
+        private function pagina_random($capitulo_id)
+        {
+            $paginas = DB::select('select * from paginas where capitulo_id = :id', ['id' => $capitulo_id]);
+            $pagina = $paginas[rand(1, count($paginas)) -1];
+            return $pagina;
+        }
+        private function parrafos_limpios($texto){
+            $texto = str_replace(array("<div>","</div>"), "<br>", $texto);
+            $texto = explode("<br>", $texto);
+            $parrafos = array();
+            foreach($texto as $linea){
+                if($linea!=""){
+                    array_push($parrafos, $linea);
+                }
+            }
+            return $parrafos;
+        }
+        private function parrafo_random($parrafos){
+            $posicion = rand(0, count($parrafos)-1)+1;
+            $parrafo = $parrafos[$posicion-1];
+            $datos = array(
+                "posicion" => $posicion,
+                "texto" => $parrafo
+            );
+            return $datos;
+        }
+        private function validar_parrafo($texto){
+            $palabras = str_word_count($texto, 1);
+            if(count($palabras)>=5){
+                $posicion = rand(0, count($palabras)-1)+1;
+                $datos = array(
+                    "posicion" => $posicion,
+                    "palabra" => $palabras[$posicion-1]
+                );
+                return $datos;
+            }else{
+                return null;
+            }
+            
+        }
+
+
+    /**
+    * Compruebar password
+    *
+    * @param  int  $libro_id
+    * @return string $mensage_login
+    */
+    public function loginConfirma(Request $request)
+    {
+        $password = $request->password;
+        $login = false;
+        if(Session::get("palabra") == $password){
+            $login = true;
+        }
+        return $login;
+    }
+        
+
+
+
+
+
+
+
+
+
+
 }

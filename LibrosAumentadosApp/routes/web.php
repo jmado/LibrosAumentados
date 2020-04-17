@@ -119,7 +119,7 @@ Route::get("/contenido/index/{libro_id}", "PruebaController@index")->name("conte
     #Rutas Ajax
     Route::get("/contenido/libros", "PruebaController@libros")->name("contenido.libros");
     Route::get("/contenido/login/{libro_id}", "PruebaController@login")->name("contenido.login");
-    Route::get("/contenido/loginConfirma/{password}", "PruebaController@loginConfirma")->name("contenido.loginConfirma");
+    Route::get("/contenido/loginConfirma", "PruebaController@loginConfirma")->name("contenido.loginConfirma");
 
     Route::get("/contenido/capitulos/{libro_id}", "PruebaController@capitulos")->name("contenido.capitulos");
     Route::get("/contenido/multimedia/{capitulo_id}", "PruebaController@multimedia")->name("contenido.multimedia");
