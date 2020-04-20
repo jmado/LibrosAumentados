@@ -204,7 +204,7 @@ class PruebaController extends Controller
             if(count($palabras)>=5){
                 $posicion = rand(0, 4);
                 $datos = array(
-                    "posicion" => $posicion,
+                    "posicion" => $posicion + 1,
                     "palabra" => $palabras[$posicion]
                 );
                 return $datos;
