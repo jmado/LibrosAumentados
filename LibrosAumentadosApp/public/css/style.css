@@ -284,12 +284,12 @@ td.cubierta_galeria{
 /*Estilos de la pagina principal de contenidos*/
 
 
-div.search ul{
+ul.libros-php{
   list-style-type: none;
   margin: 0;
   padding: 0
 }
-div.search ul li{
+ul.libros-php li{
   text-align: center;
   font-size: 0.8em;
 }
@@ -303,11 +303,21 @@ div.imagen-libro img{
   margin:0 auto 0 auto;
 }
 
-div.mensage{
+.text-info{
   text-align: center;
+  
 }
-p.mensage-login{
+p.mensage-login-error,
+p.mensage-login-valido
+{
   font-size: 0.7em;
+  
+}
+p.mensage-login-error{
+  color:red;
+}
+p.mensage-login-valido{
+  color:green;
 }
 form.login{
   width: 80%;

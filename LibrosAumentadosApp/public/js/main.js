@@ -1,4 +1,11 @@
 
+    
+
+
+function modalfuncion(){
+    console.log(tasks);
+}
+    
 
 
 

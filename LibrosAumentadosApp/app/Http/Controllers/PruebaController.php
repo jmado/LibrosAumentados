@@ -111,7 +111,7 @@ class PruebaController extends Controller
 
 
 
-
+//+++++++++++++++++++++++++++++++++++++++++Login++++++++++++++++++++++++++++++++++++
     /**
      * Sistema de login de usuarios
      *
@@ -231,8 +231,25 @@ class PruebaController extends Controller
         return $login;
     }
         
+//+++++++++++++++++++++++++++++++FIN Login++++++++++++++++++++++++++++++++++++++++++
 
-
+/**
+    * Buscador de libros por ajax
+    *
+    * @param  
+    * @return string $mensage_login
+    */
+    public function libros(Request $request)
+    {
+        $search = $request->search;
+        if(!empty($search)){
+            $query="select * from libros where (titulo like '%$search%') order by titulo";
+            $result =  DB::select($query);
+            
+            $jsonstring = json_encode($result);
+            echo $jsonstring;
+        }
+    }
 
 
 
