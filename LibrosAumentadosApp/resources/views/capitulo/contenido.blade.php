@@ -27,7 +27,11 @@
                 <div class="search-libros">
                     <ul class="libros-php">
                       @forelse ($libros as $l)
-                        <li>{{$l->titulo}}</li>
+                        <li>
+                          <a href="{{ route('contenido.contenido', $l->id) }}">
+                            {{$l->titulo}}
+                          </a>
+                        </li>
                       @empty
                         <li>...</li>
                       @endforelse
