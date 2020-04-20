@@ -202,10 +202,10 @@ class PruebaController extends Controller
         private function validar_parrafo($texto){
             $palabras = str_word_count($texto, 1);
             if(count($palabras)>=5){
-                $posicion = rand(0, count($palabras)-1)+1;
+                $posicion = rand(0, 4);
                 $datos = array(
                     "posicion" => $posicion,
-                    "palabra" => $palabras[$posicion-1]
+                    "palabra" => $palabras[$posicion]
                 );
                 return $datos;
             }else{
