@@ -125,37 +125,7 @@
                         <button class="login btn btn-info btn-block" id="login-btn">Acceder</button>
                     {{--</form>--}}
                     </div>
-          <script>
-    $(function(){
-      //$('.accordion').hide(); 
-      $('#headingThree').html("hola mondo");    
-    let pass;
-        $('#login-btn').click(function(){
-            if($('#pass').val()){
-                let search = $('#search').val();
-                console.log(search);
-                $.ajax({
-                    url: "{{ route('contenido.libros') }}",
-                    type: 'POST',
-                    data: {search: search},
-                    success: function(response){
-                      
-                        if(response == true){
-                          $('.accordion').show();
-                          $('.mensage-login-valido').html("Palabra correcta");
-                        }else{
-                          $('.mensage-login-error').html("Palabra incorrecta");
-                        }   
-                    }
-                });
-            }else{
-              $('.mensage-login-error').html("Escribe una palabra");   
-            }
-        });
-
-    });
-    
-  </script>
+          
                   </div>
                    
                 </div>
@@ -172,44 +142,62 @@
 
 
           @foreach($capitulos as $capitulo)
-            <div class="card">
+            <div class="card" id="{{$capitulo->id}}">
 
-              <div class="card-header" id="headingThree">
-                <h6>
-                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    <i class="fas fa-plus"></i>
-                  </button>
+              <div class="card-header" id="{{$capitulo->id}}">
+                
+              <button class="btn btn-link collapsed">
                   <span class="mensage">{{$capitulo->titulo}}</span>
-                </h6>
+              </button>
+                
               </div>
 
-              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                <div class="card-body">
-
-                <!-- -->
-                  <div class="row">
-                    <div class="col col-12 col-md-2">
-                      <i class="fas fa-video"></i>
-                    </div>
-                    <div class="col col-12 col-md-10">
-                      <h5>List-based media object</h5>
-                      <p>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-                      </p>
-                    </div>
-                  </div>
-                <!-- -->
-
-                </div>
-              </div>
-
+              
             </div>
           @endforeach
 
 
 
         </div>
+        <script>
+    $(function(){
+      //$('.accordion').hide(); 
+      //$('#headingThree').html("hola mondo");    
+    let pass = false;
+        $('#login-btn').click(function(){
+            if($('#pass').val()){
+                let search = $('#search').val();
+                console.log(search);
+                $.ajax({
+                    url: "{{ route('contenido.libros') }}",
+                    type: 'POST',
+                    data: {search: search},
+                    success: function(response){
+                      
+                        if(response == true){
+                          pass = true;
+                          $('.mensage-login-valido').html("Palabra correcta");
+                        }else{
+                          pass = false;
+                          $('.mensage-login-error').html("Palabra incorrecta");
+                        }   
+                    }
+                });
+            }else{
+              $('.mensage-login-error').html("Escribe una palabra");   
+            }
+
+
+        $('.card-header').click(function(){
+          alert("hola");
+        })
+       
         
+        });
+
+    });
+    
+  </script>      
 
 
 
