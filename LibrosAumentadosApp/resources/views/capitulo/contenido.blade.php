@@ -119,15 +119,16 @@
                       <p class="mensage-login-error"></p>
                       
 
-                      <form class="formulario">
+                      {{--<form class="formulario">--}}
                       
                         <input id="pass" type="text" name="password" class="login form-control"  placeholder="Palabra">
                         <button class="login btn btn-info btn-block" id="login-btn">Acceder</button>
-                    </form>
+                    {{--</form>--}}
                     </div>
           <script>
     $(function(){
-      $('.accordion').hide();     
+      //$('.accordion').hide(); 
+      $('#headingThree').html("hola mondo");    
     let pass;
         $('#login-btn').click(function(){
             if($('#pass').val()){
@@ -153,6 +154,7 @@
         });
 
     });
+    
   </script>
                   </div>
                    
