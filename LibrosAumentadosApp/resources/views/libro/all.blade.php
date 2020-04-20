@@ -23,13 +23,14 @@
                 <div class="elemento mb-4">
                     <div class="elemento-header">
                     <p>
+                    {{-- 
                         @if (Auth::check())
                             <a href="{{ route('capitulo.all', $libro->id) }}"><img src='{{ URL::asset("$libro->cubierta")}}' class="cubierta"></a> 
                         @else
                             <a href="{{ url('/libro/loginVisitante/'.$libro->id)}}"><img src='{{ URL::asset("$libro->cubierta")}}' class="cubierta"></a>
                         @endif
-
-                       {{--<a href="{{route('libro.login', ['id_libro'=>$libro->id])}}"><img src='{{$libro->cubierta}}' class="cubierta"></a>--}}
+                        --}}
+                       <a href="{{route('contenido.contenido', $libro->id)}}"><img src='{{$libro->cubierta}}' class="cubierta"></a>
 
                     </p>
                     
