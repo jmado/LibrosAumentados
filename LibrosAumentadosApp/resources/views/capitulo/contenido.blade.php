@@ -164,27 +164,34 @@
 
         </div>
         <script>
-    $(function(){
+          let pass = false;
+          $(function(){
       //$('.accordion').hide(); 
       //$('#headingThree').html("hola mondo");    
-    let pass = false;
-        $('#login-btn').click(function(){
+    //let pass = false;
+          $('#login-btn').click(function(){
             if($('#pass').val()){
-                let search = $('#search').val();
+                let search = $('#pass').val();
                 console.log(search);
                 $.ajax({
-                    url: "{{ route('contenido.libros') }}",
+                    url: "{{ route('contenido.loginConfirma') }}",
                     type: 'POST',
                     data: {search: search},
                     success: function(response){
-                      
-                        if(response == true){
-                          pass = true;
-                          $('.mensage-login-valido').html("Palabra correcta");
-                        }else{
-                          pass = false;
-                          $('.mensage-login-error').html("Palabra incorrecta");
-                        }   
+
+                          tasks = JSON.parse(response);
+                          console.log(tasks);
+
+                          if(tasks == 1){
+                            console.log("correcto" + tasks);
+                            pass = true;
+                            $('.mensage-login-valido').html("Palabra correcta");
+                            $('.libro-login').hide(); 
+                          }else{
+                            console.log("incorrecto" + tasks);
+                            pass = false;
+                            $('.mensage-login-error').html("Palabra incorrecta");
+                          }   
                     }
                 });
             }else{
@@ -192,12 +199,20 @@
             }
 
 
-        $('.card-header').click(function(){
-          alert("hola");
-        })
+      
        
         
         });
+
+
+        $('.card-header').click(function(){
+          if(pass==true){
+            alert("hola, esto esta en proceso :)");
+          }
+          else{
+            $('.mensage-login-error').html("Escribe la palabra para acceder al contenido");  
+          }
+        })
 
     });
     

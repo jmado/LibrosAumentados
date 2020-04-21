@@ -223,12 +223,21 @@ class PruebaController extends Controller
     */
     public function loginConfirma(Request $request)
     {
-        $password = $request->password;
-        $login = false;
+        $password = $request->search;
+        $login = "0";
         if(Session::get("palabra") == $password){
-            $login = true;
+            $login = "1";
         }
-        return $login;
+        /*
+        $datos = array(
+            "sesion" => Session::get("palabra"),
+            "pass" => $password,
+            "request" => $request->search,
+            "login" => $login
+        );  
+        */
+        $jsonstring = json_encode($login);
+        echo $jsonstring;
     }
         
 //+++++++++++++++++++++++++++++++FIN Login++++++++++++++++++++++++++++++++++++++++++
