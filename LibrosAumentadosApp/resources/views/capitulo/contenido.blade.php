@@ -177,23 +177,23 @@
   </li>
 </ul>
 <div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="imagenes" role="tabpanel" aria-labelledby="imagenes-tab">
-1
+  <div class="tab-pane fade" id="imagenes" role="tabpanel" aria-labelledby="imagenes-tab">
+
   </div>
   <div class="tab-pane fade" id="galerias" role="tabpanel" aria-labelledby="galerias-tab">
-2
+
   </div>
   <div class="tab-pane fade" id="audios" role="tabpanel" aria-labelledby="audios-tab">
-3
+
   </div>
   <div class="tab-pane fade" id="videos" role="tabpanel" aria-labelledby="videos-tab">
-4
+
   </div>
   <div class="tab-pane fade" id="descargas" role="tabpanel" aria-labelledby="descargas-tab">
-5
+
   </div>
   <div class="tab-pane fade" id="modelos" role="tabpanel" aria-labelledby="modelos-tab">
-6
+
   </div>
 </div>
               
@@ -314,7 +314,42 @@
                 success: function(response){
 
                       tasks = JSON.parse(response);
-                      console.log(tasks);
+                               
+                      let template = '';
+                      
+                      //console.log(tasks);
+                      //imagenes
+                      tasks["imagenes"].forEach(task => {
+                        template += "<div class='row'><div class='col col-2'><img src='../../"+task.imagen+"' alt='logo del elemento'></div><div class='col col-10'><div class='row'><h5>"+task.titulo+"</h5></div><div class='row'><p>"+task.descripcion+"</p></div></div></div>";
+                      });
+                      $('#imagenes').html(template);
+                      //galerias
+                      tasks["galerias"].forEach(task => { 
+                        template += "<div class='row'><div class='col col-2'><img src='../../"+task.cubierta+"' alt='logo del elemento'></div><div class='col col-10'><div class='row'><h5>"+task.titulo+"</h5></div><div class='row'><p>"+task.descripcion+"</p></div></div></div>";
+                      });
+                      $('#galerias').html(template);
+                      //audios
+                      tasks["audios"].forEach(task => { 
+                        template += "<div class='row'><div class='col col-2'><img src='../../"+task.archivo+"' alt='logo del elemento'></div><div class='col col-10'><div class='row'><h5>"+task.titulo+"</h5></div><div class='row'><p>"+task.descripcion+"</p></div></div></div>";
+                      });
+                      $('#audios').html(template);
+                      //videos
+                      tasks["videos"].forEach(task => { 
+                        template += "<div class='row'><div class='col col-2'><img src='../../"+task.archivo+"' alt='logo del elemento'></div><div class='col col-10'><div class='row'><h5>"+task.titulo+"</h5></div><div class='row'><p>"+task.descripcion+"</p></div></div></div>";
+                      });
+                      $('#videos').html(template);
+                      //descargas
+                      tasks["descargas"].forEach(task => {
+                        template += "<div class='row'><div class='col col-2'><img src='../../"+task.archivo+"' alt='logo del elemento'></div><div class='col col-10'><div class='row'><h5>"+task.titulo+"</h5></div><div class='row'><p>"+task.descripcion+"</p></div></div></div>";
+                      });
+                      $('#descargas').html(template);
+                      //modelos
+                      tasks["modelos3d"].forEach(task => {
+                        template += "<div class='row'><div class='col col-2'><img src='../../"+task.archivo+"' alt='logo del elemento'></div><div class='col col-10'><div class='row'><h5>"+task.titulo+"</h5></div><div class='row'><p>"+task.descripcion+"</p></div></div></div>";
+                      });
+                      $('#modelos').html(template);
+
+                     
 
                       
                 }
@@ -329,6 +364,15 @@
             
           //}
         })
+/*
+        function plantilla(datos){
+          template = "";
+          foreach(datos as dato){
+template += "<div class='row'><div class='col col-2'><img src='"+dato[archivo]+"' alt='logo del elemento'></div><div class='col col-10'><div class='row'><h5>"+dato[titulo]+"</h5></div><div class='row'><p>"+dato[descripcion]+"</p></div></div></div>";
+          }
+          return 
+        }
+        */
 
     });
     
