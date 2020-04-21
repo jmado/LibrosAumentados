@@ -262,6 +262,48 @@ class PruebaController extends Controller
 
 
 
+/**
+    * Todo el contenido de un capitulo
+    *
+    * @param  int capitulo_id
+    * @return string $multimedia
+    */
+    public function multimedia(Request $request)
+    {
+        
+        $capitulo_id = $request->capitulo_id;
+        
+        $imagenes = DB::select("select * from imagens where capitulo_id=:id", ["id"=>$capitulo_id]);
+        
+
+        $galerias = DB::select("select * from galerias where capitulo_id=:id", ["id"=>$capitulo_id]);
+
+        $audios = DB::select("select * from audio where capitulo_id=:id", ["id"=>$capitulo_id]);
+
+        $videos = DB::select("select * from videos where capitulo_id=:id", ["id"=>$capitulo_id]);
+
+        $descargas = DB::select("select * from descargas where capitulo_id=:id", ["id"=>$capitulo_id]);
+
+        $modelos3d = DB::select("select * from modelo_3ds where capitulo_id=:id", ["id"=>$capitulo_id]);
+
+        $datos = array (
+            "imagenes" => $imagenes,
+            "galerias" => $galerias,
+            "audios" => $audios,
+            "videos" => $videos,
+            "descargas" => $descargas,
+            "modelos3d" => $modelos3d
+        );
+        
+               
+            //$datos = $imagenes;
+            $jsonstring = json_encode($datos);
+            echo $jsonstring;
+        
+    }
+
+
+
 
 
 

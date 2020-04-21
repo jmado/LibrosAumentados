@@ -42,6 +42,7 @@
 
             <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
             <script>
+            
               $(function(){
                   //$('.search-libros').hide();
                   
@@ -149,11 +150,94 @@
             <div class="card" id="{{$capitulo->id}}">
 
               <div class="card-header" id="{{$capitulo->id}}">
-                
-              <button class="btn btn-link collapsed">
-                  <span class="mensage">{{$capitulo->titulo}}</span>
-              </button>
-                
+                <button class="btn btn-link collapsed">
+                    <span class="mensage">{{$capitulo->titulo}}</span>
+                </button>
+              </div>
+              <div class="card-body" id="body{{$capitulo->id}}">
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="imagenes-tab" data-toggle="tab" href="#imagenes" role="tab" aria-controls="imagenes" aria-selected="true">Imagenes</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="galerias-tab" data-toggle="tab" href="#galerias" role="tab" aria-controls="galerias" aria-selected="false">Galerias</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="audios-tab" data-toggle="tab" href="#audios" role="tab" aria-controls="audios" aria-selected="false">Audios</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="videos-tab" data-toggle="tab" href="#videos" role="tab" aria-controls="videos" aria-selected="false">Videos</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="descargas-tab" data-toggle="tab" href="#descargas" role="tab" aria-controls="descargas" aria-selected="false">Descargas</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="modelos-tab" data-toggle="tab" href="#modelos" role="tab" aria-controls="modelos" aria-selected="false">Modelos 3d</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="imagenes" role="tabpanel" aria-labelledby="imagenes-tab">
+1
+  </div>
+  <div class="tab-pane fade" id="galerias" role="tabpanel" aria-labelledby="galerias-tab">
+2
+  </div>
+  <div class="tab-pane fade" id="audios" role="tabpanel" aria-labelledby="audios-tab">
+3
+  </div>
+  <div class="tab-pane fade" id="videos" role="tabpanel" aria-labelledby="videos-tab">
+4
+  </div>
+  <div class="tab-pane fade" id="descargas" role="tabpanel" aria-labelledby="descargas-tab">
+5
+  </div>
+  <div class="tab-pane fade" id="modelos" role="tabpanel" aria-labelledby="modelos-tab">
+6
+  </div>
+</div>
+              
+
+
+
+
+
+                {{-- 
+                        <div class="row">
+                          <div class="col">
+                            <a href="#" title="Imágenes" class="orden-imagen">
+                              <i class="far fa-image"></i>
+                            </a> 
+                          </div>
+                          <div class="col">
+                            <a href="#" title="Galerías" class="orden-galeria">
+                              <i class="far fa-images"></i>
+                            </a>
+                          </div>
+                          <div class="col">
+                            <a href="#" title="Audios" class="orden-audio">
+                              <i class="fas fa-volume-up"></i>
+                            </a>
+                          </div>
+                          <div class="col">
+                            <a href="#" title="Videos" class="orden-video">
+                              <i class="fas fa-video"></i>
+                            </a>
+                          </div>
+                          <div class="col">
+                            <a href="#" title="Descargas" class="orden-descarga">
+                              <i class="fas fa-file-download"></i>
+                            </a>
+                          </div>
+                          <div class="col">
+                            <a href="#" title="Modelos 3d" class="orden-modelo">
+                              <i class="fas fa-cube"></i>
+                            </a>
+                          </div>
+                        </div>
+                        <div class="row" id="orden-multimedia">
+                        </div>
+                --}}
               </div>
 
               
@@ -166,6 +250,7 @@
         <script>
           let pass = false;
           $(function(){
+          $('.card-body').hide();  
       //$('.accordion').hide(); 
       //$('#headingThree').html("hola mondo");    
     //let pass = false;
@@ -205,16 +290,48 @@
         });
 
 
-        $('.card-header').click(function(){
-          if(pass==true){
-            alert("hola, esto esta en proceso :)");
-          }
-          else{
-            $('.mensage-login-error').html("Escribe la palabra para acceder al contenido");  
-          }
+//Multimedia de los capitulos
+        let interruptor = 0;
+        $('.card-header').click(function(e){
+          //if(pass!=true){
+          //  $('.mensage-login-error').html("Escribe la palabra para acceder al contenido");  
+          //}
+          //else{
+            
+            identificador = "#body"+ $(this).attr("id");
+            //console.log(identificador);
+            if(interruptor == 0){
+              interruptor = 1;
+              $(identificador).show();
+              
+
+              capitulo_id = identificador.substring(5);
+              console.log(capitulo_id);
+              $.ajax({
+                url: "{{ route('contenido.multimedia') }}",
+                type: 'POST',
+                data: {capitulo_id: capitulo_id},
+                success: function(response){
+
+                      tasks = JSON.parse(response);
+                      console.log(tasks);
+
+                      
+                }
+            });
+
+
+              
+            }else{
+              interruptor = 0;
+              $(identificador).hide();
+            }
+            
+          //}
         })
 
     });
+    
     
   </script>      
 

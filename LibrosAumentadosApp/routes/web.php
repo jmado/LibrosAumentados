@@ -122,6 +122,7 @@ Route::get("/contenido/index/{libro_id}", "PruebaController@index")->name("conte
     Route::post("/contenido/loginConfirma", "PruebaController@loginConfirma")->name("contenido.loginConfirma");
 
     Route::get("/contenido/capitulos/{libro_id}", "PruebaController@capitulos")->name("contenido.capitulos");
-    Route::get("/contenido/multimedia/{capitulo_id}", "PruebaController@multimedia")->name("contenido.multimedia");
+    //Route::post("/contenido/multimedia/{capitulo_id}", "PruebaController@multimedia")->name("contenido.multimedia");
+    Route::post("/contenido/multimedia", "PruebaController@multimedia")->name("contenido.multimedia");
 
 
