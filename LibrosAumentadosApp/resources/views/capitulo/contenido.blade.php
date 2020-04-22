@@ -315,39 +315,62 @@
 
                       tasks = JSON.parse(response);
                                
-                      let template = '';
+                      var template = '';
                       
-                      //console.log(tasks);
+                      
                       //imagenes
                       tasks["imagenes"].forEach(task => {
-                        template += "<div class='row'><div class='col col-2'><img src='../../"+task.imagen+"' alt='logo del elemento'></div><div class='col col-10'><div class='row'><h5>"+task.titulo+"</h5></div><div class='row'><p>"+task.descripcion+"</p></div></div></div>";
+                        template += "<div class='row'><div class='col col-12 col-md-6 col-lg-4'><a href='../../"+task.imagen+"'><img src='../../"+task.imagen+"' alt='logo del elemento'></a></div><div class='col col-12 col-md-6 col-lg-8 p-5'><div class='row '><h5>"+task.titulo+"</h5></div><div class='row'><p>"+task.descripcion+"</p></div></div></div>";
+                        /*
+                        template += "<button type='button' class='btn btn-primary p-5' data-toggle='modal' data-target='#m"+task.id+"'>Launch demo modal</button>";
+                        template +="<div class='modal fade' id='m"+task.id+"' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'><div class='modal-dialog' role='document'><div class='modal-content'><div class='modal-header'><h5 class='modal-title' id='exampleModalLabel'>Modal title</h5><button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div><div class='modal-body'>Woohoo, you're reading this text in a modal!</div></div></div></div>";
+                        */
                       });
+                      
+
                       $('#imagenes').html(template);
+                      template = '';
+
+
                       //galerias
                       tasks["galerias"].forEach(task => { 
-                        template += "<div class='row'><div class='col col-2'><img src='../../"+task.cubierta+"' alt='logo del elemento'></div><div class='col col-10'><div class='row'><h5>"+task.titulo+"</h5></div><div class='row'><p>"+task.descripcion+"</p></div></div></div>";
+                        template += "<div class='row'><div class='col col-12 col-sm-6 col-md-4 col-lg-2'><a href='../../galeria/"+task.id+"'><img src='../../"+task.cubierta+"' alt='logo del elemento'></a></div><div class='col col-12 col-sm-6 col-md-8 col-lg-10 p-5'><div class='row'><h5>"+task.titulo+"</h5></div><div class='row'><p>"+task.descripcion+"</p></div></div></div>";
                       });
                       $('#galerias').html(template);
+                      template = '';
+
+
                       //audios
                       tasks["audios"].forEach(task => { 
-                        template += "<div class='row'><div class='col col-2'><img src='../../"+task.archivo+"' alt='logo del elemento'></div><div class='col col-10'><div class='row'><h5>"+task.titulo+"</h5></div><div class='row'><p>"+task.descripcion+"</p></div></div></div>";
+                        template += "<div class='row'><div class='col col-12 col-md-7 col-lg-5'><audio controls><source src='../../"+task.archivo+"' type='audio/mp3'><source src='../../"+task.archivo+"' type='audio/ogg'><source src='../../"+task.archivo+"' type='audio/mpeg'></audio></div><div class='col col-12 col-md-5 col-lg-6 p-3'><div class='row'><h5>"+task.titulo+"</h5></div><div class='row'><p>"+task.descripcion+"</p></div></div></div>";  
                       });
                       $('#audios').html(template);
+                      template = '';
+
+
                       //videos
                       tasks["videos"].forEach(task => { 
-                        template += "<div class='row'><div class='col col-2'><img src='../../"+task.archivo+"' alt='logo del elemento'></div><div class='col col-10'><div class='row'><h5>"+task.titulo+"</h5></div><div class='row'><p>"+task.descripcion+"</p></div></div></div>";
+                        template += "<div class='row p-3'><div class='col col-12'><h5>"+task.titulo+"</h5></div><div class='col col-12'><p>"+task.descripcion+"</p></div><div class='col col-12'><a href='../../video/"+task.id+"' class='btn  btn-primary' role='button'>Ver</a></div></div>";
                       });
                       $('#videos').html(template);
+                      template = '';
+
+
                       //descargas
                       tasks["descargas"].forEach(task => {
-                        template += "<div class='row'><div class='col col-2'><img src='../../"+task.archivo+"' alt='logo del elemento'></div><div class='col col-10'><div class='row'><h5>"+task.titulo+"</h5></div><div class='row'><p>"+task.descripcion+"</p></div></div></div>";
+                        template += "<div class='row p-3'><div class='col col-12'><h5>"+task.titulo+"</h5></div><div class='col col-12'><p>"+task.descripcion+"</p></div><div class='col col-12'><a href='../../descarga/"+task.id+"' class='btn  btn-primary' role='button'>Ver</a></div></div>";
                       });
                       $('#descargas').html(template);
+                      template = '';
+
+
                       //modelos
                       tasks["modelos3d"].forEach(task => {
-                        template += "<div class='row'><div class='col col-2'><img src='../../"+task.archivo+"' alt='logo del elemento'></div><div class='col col-10'><div class='row'><h5>"+task.titulo+"</h5></div><div class='row'><p>"+task.descripcion+"</p></div></div></div>";
+                        template += "<div class='row p-3'><div class='col col-12'><h5>"+task.titulo+"</h5></div><div class='col col-12'><p>"+task.descripcion+"</p></div><div class='col col-12'><a href='../../modelo/"+task.id+"' class='btn btn-primary' role='button'>Ver</a></div></div>";
                       });
+                      
                       $('#modelos').html(template);
+                      template = '';
 
                      
 
