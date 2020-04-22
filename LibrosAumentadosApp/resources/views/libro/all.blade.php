@@ -27,7 +27,7 @@
                         @if (Auth::check())
                             <a href="{{ route('capitulo.all', $libro->id) }}"><img src='{{ URL::asset("$libro->cubierta")}}' class="cubierta"></a> 
                         @else
-                        <a href="{{route('contenido.contenido', $libro->id)}}"><img src='{{$libro->cubierta}}' class="cubierta"></a>
+                        <a href="{{route('contenido.contenido', $libro->id)}}"><img src='{{ URL::asset("$libro->cubierta")}}' class="cubierta"></a>
                         @endif
                         
                        
