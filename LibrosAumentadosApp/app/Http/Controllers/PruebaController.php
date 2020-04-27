@@ -138,8 +138,12 @@ class PruebaController extends Controller
         $pagina,
         $parrafo,
         $palabra
-    );   
-    
+    );  
+    //*********************************************************************
+    /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    $libro_session = $libro_id;
+    Session::put($libro_session);
+    */
     Session::put('palabra', $palabra["palabra"]);
     
     

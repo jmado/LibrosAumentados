@@ -293,10 +293,12 @@
 //Multimedia de los capitulos
         let interruptor = 0;
         $('.card-header').click(function(e){
-          //if(pass!=true){
-          //  $('.mensage-login-error').html("Escribe la palabra para acceder al contenido");  
-          //}
-          //else{
+          //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+          if(pass!=true){
+            $('.mensage-login-error').html("Escribe la palabra para acceder al contenido");  
+          }
+          else{
+          //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             
             identificador = "#body"+ $(this).attr("id");
             //console.log(identificador);
@@ -385,7 +387,8 @@
               $(identificador).hide();
             }
             
-          //}
+          }
+          //******************************************
         })
 /*
         function plantilla(datos){
