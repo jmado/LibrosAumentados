@@ -126,3 +126,10 @@ Route::get("/contenido/index/{libro_id}", "PruebaController@index")->name("conte
     Route::post("/contenido/multimedia", "PruebaController@multimedia")->name("contenido.multimedia");
 
 
+//Rutas para la instalación
+Route::get('install', 'InstallController@index')->name('install.index');
+Route::get('install/migration', 'InstallController@migration')->name('install.migration');
+Route::post('install/storeUser', 'InstallController@storeUser')->name('install.storeUser');
+Route::post('install/createFile', 'InstallController@createFile')->name('install.createFile');
+Route::get('install/createUser', 'InstallController@createUser')->name('install.createUser');
+Route::get('install/erase', 'InstallController@erase')->name('install.erase');

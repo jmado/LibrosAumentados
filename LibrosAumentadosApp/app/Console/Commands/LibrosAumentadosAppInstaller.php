@@ -59,6 +59,10 @@ class LibrosAumentadosAppInstaller extends Command
 
         /*Ejecuto este comando suponiendo que al copiar el código fuente en el servidor, se copiaran también las migraciones de las tablas*/
         Artisan::call('php artisan migrate:refresh');
+<<<<<<< Updated upstream
+=======
+        Artisan::call('db:seed --class=UsersTableSeeder');
+>>>>>>> Stashed changes
 
 
     }
