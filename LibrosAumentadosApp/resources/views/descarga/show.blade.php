@@ -6,9 +6,11 @@
 
 <section class="text-center">
   <div class="container">
-      <p>
-        <a href="{{ route('descarga.all', $datos->capitulo_id) }}" class="btn btn-primary " role="button">Archivos</a>
-      </p>
+      @if (isset($libro_id))
+        <p><a href="{{route('contenido.contenido', $libro_id)}}" class="btn btn-primary" role="button">Archivos</a></p> 
+      @else
+        <p><a href="{{ route('descarga.all', $datos->capitulo_id) }}" class="btn btn-primary " role="button">Archivos</a></p>
+      @endif
     </div>
 </section>
 

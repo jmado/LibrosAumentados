@@ -121,8 +121,9 @@ class Modelo_3dController extends Controller
      */
     public function show($id)
     {
+        $libro_id = Session::get('libro_id');
         $modelo = Modelo_3d::findOrFail($id);
-        return view('modelo3d.modelo3d', compact('modelo'));
+        return view('modelo3d.modelo3d', compact('modelo', 'libro_id'));
     }
 
     /**

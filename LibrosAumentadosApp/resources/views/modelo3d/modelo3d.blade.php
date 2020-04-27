@@ -43,9 +43,14 @@
               <!-- Boton de atras 
               <button class="btn btn-primary btn-block" role="button" onclick="goBack()">Atras</button>
               -->
-                  <a onclick="goBack()">
+                  @if (isset($libro_id))
+                    <a href="{{route('contenido.contenido', $libro_id)}}"> <img src="{{ URL::asset('complementos/iconos/modelo.png') }}" alt=""></a>
+                  @else
+                    <a onclick="goBack()">
                       <img src="{{ URL::asset('complementos/iconos/modelo.png') }}" alt="">
-                  </a>
+                    </a>
+                  @endif
+                  
               <script>
                   function goBack() {
                       window.history.back();

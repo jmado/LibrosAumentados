@@ -7,7 +7,12 @@
     <section class="text-center">
       <div class="container">
           <p>
-            <a href="{{ route('video.all', $datos->capitulo_id) }}" class="btn btn-primary " role="button">Videos</a>
+            @if (isset($libro_id))
+            
+            <a href="{{route('contenido.contenido', $libro_id)}}" class="btn btn-primary " role="button">Videos</a>
+            @else
+                <a href="{{ route('video.all', $datos->capitulo_id) }}" class="btn btn-primary " role="button">Videos</a>
+            @endif
           </p>
         </div>
     </section>

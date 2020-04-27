@@ -76,11 +76,12 @@ class VideosController extends Controller
      */
     public function show($id)
     {
+        $libro_id = Session::get('libro_id');
         $datos = Video::findOrFail($id);
         $url = $datos->video;
         $videoNumero = substr($url, 18);
         //dd($videoNumero);
-        return view('video.show', compact('datos', 'videoNumero'));
+        return view('video.show', compact('datos', 'videoNumero', 'libro_id'));
     }
 
     /**
