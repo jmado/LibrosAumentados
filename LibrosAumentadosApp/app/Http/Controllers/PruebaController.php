@@ -65,13 +65,13 @@ class PruebaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function video(Request $id)
+    public function video($id)
     {
-        $libro_id = Session::get('libro_id');
+        
         $datos = Video::findOrFail($id);
         $url = $datos->video;
         $videoNumero = substr($url, 18);
-        //dd($videoNumero);
+        $libro_id = Session::get('libro_id');
         return view('video.show', compact('datos', 'videoNumero', 'libro_id'));
     }
 
