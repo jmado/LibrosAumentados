@@ -169,8 +169,7 @@ class GaleriasController extends Controller
         from imagens 
         inner join galeria_imagen on imagens.id=galeria_imagen.imagen_id 
         where galeria_imagen.galeria_id=:id', ['id'=>$id]);
-        $libro_id = Session::get('libro_id');
-        return view('galeria.galeria', compact('galeria','imagenes', 'libro_id'));
+        return view('galeria.galeria', compact('galeria','imagenes'));
     }
 
     /**

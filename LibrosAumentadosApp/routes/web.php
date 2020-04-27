@@ -125,6 +125,11 @@ Route::get("/contenido/index/{libro_id}", "PruebaController@index")->name("conte
     //Route::post("/contenido/multimedia/{capitulo_id}", "PruebaController@multimedia")->name("contenido.multimedia");
     Route::post("/contenido/multimedia", "PruebaController@multimedia")->name("contenido.multimedia");
 
+    Route::get("/contenido/galeria/{galeria_id}", "PruebaController@galeria")->name("contenido.galeria");
+    Route::get("/contenido/video/{video_id}", "PruebaController@video")->name("contenido.video");
+    Route::get("/contenido/descarga/{descarga_id}", "PruebaController@descarga")->name("contenido.descarga");
+    Route::get("/contenido/modelo/{modelo_id}", "PruebaController@modelo")->name("contenido.modelo");
+
 
 //Rutas para la instalación
 Route::get('install', 'InstallController@index')->name('install.index');

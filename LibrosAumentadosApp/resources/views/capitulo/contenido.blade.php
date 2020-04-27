@@ -334,7 +334,7 @@
 
                       //galerias
                       tasks["galerias"].forEach(task => { 
-                        template += "<div class='row'><div class='col col-12 col-sm-6 col-md-4 col-lg-2'><a href='../../galeria/"+task.id+"'><img src='../../"+task.cubierta+"' alt='logo del elemento'></a></div><div class='col col-12 col-sm-6 col-md-8 col-lg-10 p-5'><div class='row'><h5>"+task.titulo+"</h5></div><div class='row'><p>"+task.descripcion+"</p></div></div></div>";
+                        template += "<div class='row'><div class='col col-12 col-sm-6 col-md-4 col-lg-2'><a href='../galeria/"+task.id+"'><img src='../../"+task.cubierta+"' alt='logo del elemento'></a></div><div class='col col-12 col-sm-6 col-md-8 col-lg-10 p-5'><div class='row'><h5>"+task.titulo+"</h5></div><div class='row'><p>"+task.descripcion+"</p></div></div></div>";
                       });
                       $('#galerias').html(template);
                       template = '';
@@ -350,7 +350,7 @@
 
                       //videos
                       tasks["videos"].forEach(task => { 
-                        template += "<div class='row p-3'><div class='col col-12'><h5>"+task.titulo+"</h5></div><div class='col col-12'><p>"+task.descripcion+"</p></div><div class='col col-12'><a href='../../video/"+task.id+"' class='btn  btn-primary' role='button'>Ver</a></div></div>";
+                        template += "<div class='row p-3'><div class='col col-12'><h5>"+task.titulo+"</h5></div><div class='col col-12'><p>"+task.descripcion+"</p></div><div class='col col-12'><a href='../video/"+task.id+"' class='btn  btn-primary' role='button'>Ver</a></div></div>";
                       });
                       $('#videos').html(template);
                       template = '';
@@ -358,7 +358,7 @@
 
                       //descargas
                       tasks["descargas"].forEach(task => {
-                        template += "<div class='row p-3'><div class='col col-12'><h5>"+task.titulo+"</h5></div><div class='col col-12'><p>"+task.descripcion+"</p></div><div class='col col-12'><a href='../../descarga/"+task.id+"' class='btn  btn-primary' role='button'>Ver</a></div></div>";
+                        template += "<div class='row p-3'><div class='col col-12'><h5>"+task.titulo+"</h5></div><div class='col col-12'><p>"+task.descripcion+"</p></div><div class='col col-12'><a href='../descarga/"+task.id+"' class='btn  btn-primary' role='button'>Ver</a></div></div>";
                       });
                       $('#descargas').html(template);
                       template = '';
@@ -366,7 +366,7 @@
 
                       //modelos
                       tasks["modelos3d"].forEach(task => {
-                        template += "<div class='row p-3'><div class='col col-12'><h5>"+task.titulo+"</h5></div><div class='col col-12'><p>"+task.descripcion+"</p></div><div class='col col-12'><a href='../../modelo/"+task.id+"' class='btn btn-primary' role='button'>Ver</a></div></div>";
+                        template += "<div class='row p-3'><div class='col col-12'><h5>"+task.titulo+"</h5></div><div class='col col-12'><p>"+task.descripcion+"</p></div><div class='col col-12'><a href='../modelo/"+task.id+"' class='btn btn-primary' role='button'>Ver</a></div></div>";
                       });
                       
                       $('#modelos').html(template);

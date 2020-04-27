@@ -89,8 +89,7 @@ class DescargasController extends Controller
     public function show($id)
     {
         $datos = Descarga::findOrFail($id);
-        $libro_id = Session::get('libro_id');
-        return view('descarga.show', compact('datos', 'libro_id'));
+        return view('descarga.show', compact('datos'));
     }
 
     /**

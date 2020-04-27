@@ -42,70 +42,65 @@ class PruebaController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
+     * Show the view for galeries for users .
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function galeria($id)
     {
-        //
+        //Datos de la galeria
+        $galeria = DB::select('select * from galerias where id=:id',['id'=>$id]);
+        //Imagenes
+        $imagenes=DB::select('select imagens.id, imagens.titulo, imagens.imagen 
+        from imagens 
+        inner join galeria_imagen on imagens.id=galeria_imagen.imagen_id 
+        where galeria_imagen.galeria_id=:id', ['id'=>$id]);
+        $libro_id = Session::get('libro_id');
+        return view('galeria.galeria', compact('galeria','imagenes', 'libro_id'));
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
+     * Show the view for videos for users.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function video(Request $id)
     {
-        //
+        $libro_id = Session::get('libro_id');
+        $datos = Video::findOrFail($id);
+        $url = $datos->video;
+        $videoNumero = substr($url, 18);
+        //dd($videoNumero);
+        return view('video.show', compact('datos', 'videoNumero', 'libro_id'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the view for downloads for users
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function descarga($id)
     {
-        //
+        $datos = Descarga::findOrFail($id);
+        $libro_id = Session::get('libro_id');
+        return view('descarga.show', compact('datos', 'libro_id'));
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
+     * Show the view for models for users
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function modelo($id)
     {
-        //
+        $libro_id = Session::get('libro_id');
+        $modelo = Modelo_3d::findOrFail($id);
+        return view('modelo3d.modelo3d', compact('modelo', 'libro_id'));
     }
+
 
 
 
