@@ -38,7 +38,15 @@ class PruebaController extends Controller
 
         $libros = DB::select("select id, titulo from libros where id!=:id", ['id'=>$libro_id]);
 
-        return view('capitulo.contenido', compact('libro', 'libros', 'capitulos', 'mensage_login'));
+        //Comprobar si hay sesion
+        $sesion = Session::get('sesion');
+        if($sesion == $libro_id){
+
+        }else{
+            return view('capitulo.contenido', compact('libro', 'libros', 'capitulos', 'mensage_login'));
+        }
+
+        
     }
 
     /**
@@ -226,6 +234,8 @@ class PruebaController extends Controller
         $login = "0";
         if(Session::get("palabra") == $password){
             $login = "1";
+            $libro = Session::get('libro_id');
+            Session::put("sesion", $libro);
         }
         /*
         $datos = array(
