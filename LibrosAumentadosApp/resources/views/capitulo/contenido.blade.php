@@ -69,12 +69,15 @@
                                       
                                       
                                       tasks.forEach(task => {
-                                          
 
-                                          template += ` 
-                                          <ul class="libros-php"> 
-                                              <li>${task.titulo}</li>
-                                          </ul> `;
+                                      var ruta = "{{ route('contenido.contenido', 1) }}";  
+                                      ruta = ruta.substr(0, ruta.length-1); 
+                                      var id = task.id;
+                                      var titulo = task.titulo;
+                                      
+
+                                      
+                                          template += "<ul class='libros-php'><li><a href='"+ruta+""+id+"'>"+titulo+"</li></a></ul>";
                                       });
                                       $('.search-libros').html(template);
                                       $('.search-libros').show();
