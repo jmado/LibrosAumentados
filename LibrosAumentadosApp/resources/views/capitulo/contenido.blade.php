@@ -205,42 +205,7 @@
 
 
 
-                {{-- 
-                        <div class="row">
-                          <div class="col">
-                            <a href="#" title="Imágenes" class="orden-imagen">
-                              <i class="far fa-image"></i>
-                            </a> 
-                          </div>
-                          <div class="col">
-                            <a href="#" title="Galerías" class="orden-galeria">
-                              <i class="far fa-images"></i>
-                            </a>
-                          </div>
-                          <div class="col">
-                            <a href="#" title="Audios" class="orden-audio">
-                              <i class="fas fa-volume-up"></i>
-                            </a>
-                          </div>
-                          <div class="col">
-                            <a href="#" title="Videos" class="orden-video">
-                              <i class="fas fa-video"></i>
-                            </a>
-                          </div>
-                          <div class="col">
-                            <a href="#" title="Descargas" class="orden-descarga">
-                              <i class="fas fa-file-download"></i>
-                            </a>
-                          </div>
-                          <div class="col">
-                            <a href="#" title="Modelos 3d" class="orden-modelo">
-                              <i class="fas fa-cube"></i>
-                            </a>
-                          </div>
-                        </div>
-                        <div class="row" id="orden-multimedia">
-                        </div>
-                --}}
+                
               </div>
 
               

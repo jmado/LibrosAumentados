@@ -34,14 +34,36 @@ class PruebaController extends Controller
         
         $capitulos = DB::select("select * from capitulos where libro_id=:id", ['id'=>$libro_id]);
 
+        //dd($capitulos);
         $mensage_login = $this->login($libro_id);
 
         $libros = DB::select("select id, titulo from libros where id!=:id", ['id'=>$libro_id]);
 
         //Comprobar si hay sesion
         $sesion = Session::get('sesion');
+        //dd($sesion);
         if($sesion == $libro_id){
+            
+            //Multimedia
+            $imagenes = array();
+            $galerias = array();
+            $audios = array();
+            $videos = array();
+            $descargas = array();
+            $modelos = array();
 
+            foreach($capitulos as $capitulo){
+                $id = $capitulo->id;
+                array_push($imagenes, DB::select("select * from imagens where capitulo_id=:id", ["id"=>$id]));
+                array_push($galerias, DB::select("select * from galerias where capitulo_id=:id", ["id"=>$id]));
+                array_push($audios, DB::select("select * from audio where capitulo_id=:id", ["id"=>$id]));
+                array_push($videos, DB::select("select * from videos where capitulo_id=:id", ["id"=>$id]));
+                array_push($descargas, DB::select("select * from descargas where capitulo_id=:id", ["id"=>$id]));
+                array_push($modelos, DB::select("select * from modelo_3ds where capitulo_id=:id", ["id"=>$id]));
+            }
+            $datosMultimedia = array($imagenes, $galerias, $audios, $videos, $descargas, $modelos);
+            
+            return view('capitulo.contenido', compact('libro', 'libros', 'capitulos', 'mensage_login', 'datosMultimedia'));
         }else{
             return view('capitulo.contenido', compact('libro', 'libros', 'capitulos', 'mensage_login'));
         }
