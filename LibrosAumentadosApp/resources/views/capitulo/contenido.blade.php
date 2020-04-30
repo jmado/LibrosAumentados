@@ -140,10 +140,95 @@
 
 
 @if(isset($datosMultimedia))
+
   @for($i=0; $i<count($capitulos); $i++)
+  
       <div class="card">
-        <div class="card-header">
-          <button class="btn btn-link collapsed"><span class="mensage">{{$capitulos[$i]->titulo}}</span></button>
+        <div class="card-header m" id="h-{{$capitulos[$i]->id}}">
+          <button class="btn btn-link collapsed"><span class="mensage">{{$capitulos[$i]->titulo}} 0</span></button>
+        </div>
+        <div class="card-body body-{{$capitulos[$i]->id}}">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item"><a class="nav-link" id="imagenes-tab" data-toggle="tab" href="#imagenes" role="tab" aria-controls="imagenes" aria-selected="true">Imagenes</a></li>
+                <li class="nav-item"><a class="nav-link" id="galerias-tab" data-toggle="tab" href="#galerias" role="tab" aria-controls="galerias" aria-selected="false">Galerias</a></li>
+                <li class="nav-item"><a class="nav-link" id="audios-tab" data-toggle="tab" href="#audios" role="tab" aria-controls="audios" aria-selected="false">Audios</a></li>
+                <li class="nav-item"><a class="nav-link" id="videos-tab" data-toggle="tab" href="#videos" role="tab" aria-controls="videos" aria-selected="false">Videos</a></li>
+                <li class="nav-item"><a class="nav-link" id="descargas-tab" data-toggle="tab" href="#descargas" role="tab" aria-controls="descargas" aria-selected="false">Descargas</a></li>
+                <li class="nav-item"><a class="nav-link" id="modelos-tab" data-toggle="tab" href="#modelos" role="tab" aria-controls="modelos" aria-selected="false">Modelos 3d</a></li>
+            </ul>
+
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade" id="imagenes" role="tabpanel" aria-labelledby="imagenes-tab">
+              @for($j=0; $j<count($datosMultimedia[0][$i]); $j++)
+                <div class='row'>
+                  <div class='col col-12 col-md-6 col-lg-4'>
+                    <a href='{{ URL::asset($datosMultimedia[0][$i][$j]->imagen)}}'><img src='{{ URL::asset($datosMultimedia[0][$i][$j]->imagen)}}' alt='logo del elemento'></a>
+                  </div>
+                  <div class='col col-12 col-md-6 col-lg-8 p-5'>
+                    <div class='row '>
+                      <div class="col">
+                        <h5>{{$datosMultimedia[0][$i][$j]->titulo}}</h5>
+                      </div>
+                    </div>
+                    <div class='row'>
+                      <div class="col">
+                        <p>{{$datosMultimedia[0][$i][$j]->descripcion}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              @endfor
+              </div>
+              <div class="tab-pane fade" id="galerias" role="tabpanel" aria-labelledby="galerias-tab">
+              @for($j=0; $j<count($datosMultimedia[1][$i]); $j++)
+
+              @endfor
+              </div>
+              <div class="tab-pane fade" id="audios" role="tabpanel" aria-labelledby="audios-tab">
+              @for($j=0; $j<count($datosMultimedia[2][$i]); $j++)
+                  <div class='row'>
+                    <div class='col col-12 col-md-7 col-lg-5'>
+                      <audio controls>
+                        <source src='{{ URL::asset($datosMultimedia[2][$i][$j]->archivo)}}' type='audio/mp3'>
+                        <source src='{{ URL::asset($datosMultimedia[2][$i][$j]->archivo)}}' type='audio/ogg'>
+                        <source src='{{ URL::asset($datosMultimedia[2][$i][$j]->archivo)}}' type='audio/mpeg'>
+                      </audio>
+                    </div>
+                    <div class='col col-12 col-md-5 col-lg-6 p-3'>
+                      <div class='row'><h5>{{$datosMultimedia[2][$i][$j]->titulo}}</h5></div>
+                      <div class='row'><p>{{$datosMultimedia[2][$i][$j]->descripcion}}</p></div>
+                    </div>
+                </div>
+              @endfor
+              </div>
+              <div class="tab-pane fade" id="videos" role="tabpanel" aria-labelledby="videos-tab">
+              @for($j=0; $j<count($datosMultimedia[3][$i]); $j++)
+                  <div class='row p-3'>
+                    <div class='col col-12'><h5>{{$datosMultimedia[3][$i][$j]->titulo}}</h5></div>
+                    <div class='col col-12'><p>{{$datosMultimedia[3][$i][$j]->descripcion}}</p></div>
+                    <div class='col col-12'><a href="{{ route('contenido.video', $datosMultimedia[3][$i][$j]->id) }}" class='btn  btn-primary' role='button'>Ver</a></div>
+                  </div> 
+              @endfor
+              </div>
+              <div class="tab-pane fade" id="descargas" role="tabpanel" aria-labelledby="descargas-tab">
+              @for($j=0; $j<count($datosMultimedia[4][$i]); $j++)
+                  <div class='row p-3'>
+                    <div class='col col-12'><h5>{{$datosMultimedia[4][$i][$j]->titulo}}</h5></div>
+                    <div class='col col-12'><p>{{$datosMultimedia[4][$i][$j]->descripcion}}</p></div>
+                    <div class='col col-12'><a href="{{ route('contenido.descarga', $datosMultimedia[4][$i][$j]->id) }}" class='btn  btn-primary' role='button'>Ver</a></div>
+                  </div>
+              @endfor
+              </div>
+              <div class="tab-pane fade" id="modelos" role="tabpanel" aria-labelledby="modelos-tab">
+              @for($j=0; $j<count($datosMultimedia[5][$i]); $j++)
+                  <div class='row p-3'>
+                    <div class='col col-12'><h5>{{$datosMultimedia[5][$i][$j]->titulo}}</h5></div>
+                    <div class='col col-12'><p>{{$datosMultimedia[5][$i][$j]->descripcion}}</p></div>
+                    <div class='col col-12'><a href="{{ route('contenido.modelo', $datosMultimedia[5][$i][$j]->id) }}" class='btn  btn-primary' role='button'>Ver</a></div>
+                  </div>
+              @endfor
+              </div>
+            </div>
         </div>
       </div>      
   @endfor
@@ -194,6 +279,40 @@
 
         </div>
         <script>
+  @if(isset($datosMultimedia))
+          
+    $(function(){
+      $('.libro-login').hide();
+      $('.card-body').hide();
+
+      $('.card-header').click(function(){
+        id = $(this).attr('id').substring(2);
+        accion = $(this).attr('class').substring(12);
+        if(accion == "m"){
+          $(".body-"+id).show();
+          $("#h-"+id).removeClass("m");
+          $("#h-"+id).addClass("o");
+        }else{
+          $(".body-"+id).hide();
+          $("#h-"+id).removeClass("o");
+          $("#h-"+id).addClass("m");
+        }
+        
+        //clase = clase.substring(20);
+        //console.log(id);
+        //cuerpoClass = ".body-"+clase;
+        //console.log(cuerpoClass);
+
+        //clase2 = cabezaClass.substring(0, 7);
+        //console.log(clase2);
+        //$(cuerpoClass).show();
+        //$(".card-header").removeClass(cabezaClass);
+        //$(".card-header").addClass("rojo grande26");
+      });
+    });
+
+  @else
+
           let pass = false;
           $(function(){
             
@@ -339,19 +458,11 @@
           }
           //******************************************
         })
-/*
-        function plantilla(datos){
-          template = "";
-          foreach(datos as dato){
-template += "<div class='row'><div class='col col-2'><img src='"+dato[archivo]+"' alt='logo del elemento'></div><div class='col col-10'><div class='row'><h5>"+dato[titulo]+"</h5></div><div class='row'><p>"+dato[descripcion]+"</p></div></div></div>";
-          }
-          return 
-        }
-        */
+
 
     });
-    
-    
+  
+  @endif
   </script>      
 
 
