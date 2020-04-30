@@ -116,22 +116,12 @@
                     <div class="login-valido">
                       <p class="mensage-login-valido"></p>
                     </div>
+
                     <div class="libro-login">
                       <p class="text-info">Escribe la palabra {{$mensage_login["palabra"]}} del párrafo {{$mensage_login["parrafo"]}} de la página {{$mensage_login["pagina"]}} del capítulo {{$mensage_login["capitulo"]}}</p>
-                      {{-- 
-                      <p class="mensage-login"><span>Capítulo:</span>{{$mensage_login["capitulo"]}}</p>
-                      <p class="mensage-login"><span>Página:</span>{{$mensage_login["pagina"]}}</p>
-                      <p class="mensage-login"><span>Párrafo:</span>{{$mensage_login["parrafo"]}}</p>
-                      <p class="mensage-login"><span>Palabra:</span>{{$mensage_login["palabra"]}}</p>
-                      --}}
                       <p class="mensage-login-error"></p>
-                      
-
-                      {{--<form class="formulario">--}}
-                      
                         <input id="pass" type="text" name="password" class="login form-control"  placeholder="Palabra">
                         <button class="login btn btn-info btn-block" id="login-btn">Acceder</button>
-                    {{--</form>--}}
                     </div>
           
                   </div>
@@ -149,75 +139,66 @@
         <div class="accordion" id="accordionExample">
 
 
-          @foreach($capitulos as $capitulo)
-            <div class="card" id="{{$capitulo->id}}">
+@if(isset($datosMultimedia))
+  @for($i=0; $i<count($capitulos); $i++)
+      <div class="card">
+        <div class="card-header">
+          <button class="btn btn-link collapsed"><span class="mensage">{{$capitulos[$i]->titulo}}</span></button>
+        </div>
+      </div>      
+  @endfor
+@else
 
-              <div class="card-header" id="{{$capitulo->id}}">
-                <button class="btn btn-link collapsed">
-                    <span class="mensage">{{$capitulo->titulo}}</span>
-                </button>
-              </div>
-              <div class="card-body" id="body{{$capitulo->id}}">
+  @foreach($capitulos as $capitulo)
+    <div class="card" id="{{$capitulo->id}}">
+      <div class="card-header" id="{{$capitulo->id}}">
+        <button class="btn btn-link collapsed"><span class="mensage">{{$capitulo->titulo}}</span></button>
+      </div>
+      <div class="card-body" id="body{{$capitulo->id}}">
 
-<ul class="nav nav-tabs" id="myTab" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link active" id="imagenes-tab" data-toggle="tab" href="#imagenes" role="tab" aria-controls="imagenes" aria-selected="true">Imagenes</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="galerias-tab" data-toggle="tab" href="#galerias" role="tab" aria-controls="galerias" aria-selected="false">Galerias</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="audios-tab" data-toggle="tab" href="#audios" role="tab" aria-controls="audios" aria-selected="false">Audios</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="videos-tab" data-toggle="tab" href="#videos" role="tab" aria-controls="videos" aria-selected="false">Videos</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="descargas-tab" data-toggle="tab" href="#descargas" role="tab" aria-controls="descargas" aria-selected="false">Descargas</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="modelos-tab" data-toggle="tab" href="#modelos" role="tab" aria-controls="modelos" aria-selected="false">Modelos 3d</a>
-  </li>
-</ul>
-<div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade" id="imagenes" role="tabpanel" aria-labelledby="imagenes-tab">
-
-  </div>
-  <div class="tab-pane fade" id="galerias" role="tabpanel" aria-labelledby="galerias-tab">
-
-  </div>
-  <div class="tab-pane fade" id="audios" role="tabpanel" aria-labelledby="audios-tab">
-
-  </div>
-  <div class="tab-pane fade" id="videos" role="tabpanel" aria-labelledby="videos-tab">
-
-  </div>
-  <div class="tab-pane fade" id="descargas" role="tabpanel" aria-labelledby="descargas-tab">
-
-  </div>
-  <div class="tab-pane fade" id="modelos" role="tabpanel" aria-labelledby="modelos-tab">
-
-  </div>
-</div>
-              
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="imagenes-tab" data-toggle="tab" href="#imagenes" role="tab" aria-controls="imagenes" aria-selected="true">Imagenes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="galerias-tab" data-toggle="tab" href="#galerias" role="tab" aria-controls="galerias" aria-selected="false">Galerias</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="audios-tab" data-toggle="tab" href="#audios" role="tab" aria-controls="audios" aria-selected="false">Audios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="videos-tab" data-toggle="tab" href="#videos" role="tab" aria-controls="videos" aria-selected="false">Videos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="descargas-tab" data-toggle="tab" href="#descargas" role="tab" aria-controls="descargas" aria-selected="false">Descargas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="modelos-tab" data-toggle="tab" href="#modelos" role="tab" aria-controls="modelos" aria-selected="false">Modelos 3d</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade" id="imagenes" role="tabpanel" aria-labelledby="imagenes-tab"></div>
+          <div class="tab-pane fade" id="galerias" role="tabpanel" aria-labelledby="galerias-tab"></div>
+          <div class="tab-pane fade" id="audios" role="tabpanel" aria-labelledby="audios-tab"></div>
+          <div class="tab-pane fade" id="videos" role="tabpanel" aria-labelledby="videos-tab"></div>
+          <div class="tab-pane fade" id="descargas" role="tabpanel" aria-labelledby="descargas-tab"></div>
+          <div class="tab-pane fade" id="modelos" role="tabpanel" aria-labelledby="modelos-tab"></div>
+        </div>
 
 
-
-
-
-                
-              </div>
-
-              
-            </div>
-          @endforeach
-
+      </div>            
+    </div>
+  @endforeach
+@endif
 
 
         </div>
         <script>
           let pass = false;
           $(function(){
+            
+
+
           $('.card-body').hide();  
       //$('.accordion').hide(); 
       //$('#headingThree').html("hola mondo");    

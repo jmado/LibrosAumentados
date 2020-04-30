@@ -63,6 +63,7 @@ class PruebaController extends Controller
             }
             $datosMultimedia = array($imagenes, $galerias, $audios, $videos, $descargas, $modelos);
             
+            
             return view('capitulo.contenido', compact('libro', 'libros', 'capitulos', 'mensage_login', 'datosMultimedia'));
         }else{
             return view('capitulo.contenido', compact('libro', 'libros', 'capitulos', 'mensage_login'));
