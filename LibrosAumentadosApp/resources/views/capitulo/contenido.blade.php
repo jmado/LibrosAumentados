@@ -145,7 +145,7 @@
   
       <div class="card">
         <div class="card-header m" id="h-{{$capitulos[$i]->id}}">
-          <button class="btn btn-link collapsed"><span class="mensage">{{$capitulos[$i]->titulo}} 0</span></button>
+          <button class="btn btn-link collapsed"><span class="mensage">{{$capitulos[$i]->titulo}}</span></button>
         </div>
         <div class="card-body body-{{$capitulos[$i]->id}}">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
