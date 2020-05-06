@@ -23,6 +23,12 @@
       width: 100%;
       text-align:center;
     }
+    a, input{
+      display: block;
+    }
+    input{
+      margin: 0 auto;
+    }
     img{
       width: 150px;
     }
@@ -56,13 +62,17 @@
                       window.history.back();
                   }
               </script>
-              <!--<input type="range" name="iluminacion" value="50">-->
+
+              <input type="range" name="iluminacion" id="iluminacion" min="100" max="1000" onchange="ilu()">
 
             </div>
-
+            
             <!-- Modelo 3d -->
             <script>
-                let scene, camera, renderer, controls;
+                let scene, camera, renderer, controls, iluminacion;
+                iluminacion = 0;
+
+
                 function init() {
                   renderer = new THREE.WebGLRenderer({antialias:true});
                   renderer.setSize(window.innerWidth,window.innerHeight);
@@ -87,9 +97,17 @@
                   scene.add(directionalLight);
 
                   //Luces
-                  light = new THREE.PointLight(0xc4c4c4,100);
-                  light.position.set(0,300,500);
-                  scene.add(light);
+                  if(iluminacion==0){
+                    light = new THREE.PointLight(0xc4c4c4,100);
+                    light.position.set(0,300,500);
+                    scene.add(light);
+                  }
+                  else{
+                    light = new THREE.PointLight(0xc4c4c4,100);
+                    light.position.set(iluminacion,iluminacion,iluminacion);
+                    scene.add(light);
+                  }
+                  console.log(iluminacion);
                   
                   
                   let loader = new THREE.GLTFLoader();
@@ -105,7 +123,14 @@
                   renderer.render(scene,camera);
                   requestAnimationFrame(animate);
                 }
+
+                function ilu(){
+                  iluminacion = document.getElementById("iluminacion").value;
+                  init();
+                }
+
                 init();
+
             </script>
 
 
