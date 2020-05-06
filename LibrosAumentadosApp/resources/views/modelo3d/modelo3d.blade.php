@@ -23,14 +23,12 @@
       width: 100%;
       text-align:center;
     }
-    a, input{
-      display: block;
-    }
-    input{
-      margin: 0 auto;
-    }
+    
     img{
       width: 150px;
+    }
+    a.iluminacion img, a.iluminacion img{
+      width: 60px;
     }
 
 </style>
@@ -49,6 +47,9 @@
               <!-- Boton de atras 
               <button class="btn btn-primary btn-block" role="button" onclick="goBack()">Atras</button>
               -->
+                  <a onclick="mas()" class="iluminacion">
+                    <img src="{{ URL::asset('complementos/iconos/mas1.png') }}" alt="">
+                  </a>
                   @if (isset($libro_id))
                     <a href="{{route('contenido.contenido', $libro_id)}}"> <img src="{{ URL::asset('complementos/iconos/modelo.png') }}" alt=""></a>
                   @else
@@ -56,21 +57,24 @@
                       <img src="{{ URL::asset('complementos/iconos/modelo.png') }}" alt="">
                     </a>
                   @endif
-                  
+                  <a onclick="menos()" class="iluminacion">
+                    <img src="{{ URL::asset('complementos/iconos/menos1.png') }}" alt="">
+                  </a>
               <script>
                   function goBack() {
                       window.history.back();
                   }
               </script>
-
-              <input type="range" name="iluminacion" id="iluminacion" min="100" max="1000" onchange="ilu()">
+              
+                    
+                    
 
             </div>
             
             <!-- Modelo 3d -->
             <script>
                 let scene, camera, renderer, controls, iluminacion;
-                iluminacion = 0;
+                iluminacion = 100;
 
 
                 function init() {
@@ -96,18 +100,6 @@
                   directionalLight.castShadow = true;
                   scene.add(directionalLight);
 
-                  //Luces
-                  if(iluminacion==0){
-                    light = new THREE.PointLight(0xc4c4c4,100);
-                    light.position.set(0,300,500);
-                    scene.add(light);
-                  }
-                  else{
-                    light = new THREE.PointLight(0xc4c4c4,iluminacion);
-                    light.position.set(0,300,500);
-                    scene.add(light);
-                  }
-                  console.log(iluminacion);
                   
                   
                   let loader = new THREE.GLTFLoader();
@@ -124,9 +116,27 @@
                   requestAnimationFrame(animate);
                 }
 
-                function ilu(){
-                  iluminacion = Math.abs(document.getElementById("iluminacion").value);
-                  init();
+                function mas(){
+                  if(iluminacion<=500){
+                    
+                    directionalLight = new THREE.DirectionalLight(0xffffff,iluminacion);
+                    directionalLight.position.set(0,1,0);
+                    directionalLight.castShadow = true;
+                    scene.add(directionalLight);
+                    animate();
+                  } 
+                  console.log(iluminacion);
+                }
+                function menos(){
+                  if(iluminacion>=100){
+                    
+                    directionalLight = new THREE.DirectionalLight(0xffffff,-iluminacion);
+                    directionalLight.position.set(0,1,0);
+                    directionalLight.castShadow = true;
+                    scene.add(directionalLight);
+                    animate();
+                  } 
+                  console.log(iluminacion);
                 }
 
                 init();
