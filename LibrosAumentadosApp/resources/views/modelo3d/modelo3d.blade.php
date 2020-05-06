@@ -104,7 +104,7 @@
                   }
                   else{
                     light = new THREE.PointLight(0xc4c4c4,100);
-                    light.position.set(iluminacion,iluminacion,iluminacion);
+                    light.position.set(0,iluminacion,iluminacion);
                     scene.add(light);
                   }
                   console.log(iluminacion);
