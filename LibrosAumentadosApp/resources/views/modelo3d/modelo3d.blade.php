@@ -125,7 +125,7 @@
                 }
 
                 function ilu(){
-                  iluminacion = document.getElementById("iluminacion").value;
+                  iluminacion = Math.abs(document.getElementById("iluminacion").value);
                   init();
                 }
 
