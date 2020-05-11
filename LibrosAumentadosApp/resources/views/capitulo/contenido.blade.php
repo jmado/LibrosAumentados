@@ -181,7 +181,14 @@
               </div>
               <div class="tab-pane fade" id="galerias" role="tabpanel" aria-labelledby="galerias-tab">
               @for($j=0; $j<count($datosMultimedia[1][$i]); $j++)
-
+                <div class='row'>
+                  <div class='col col-12 col-sm-6 col-md-4 col-lg-2'>
+                    <a href="{{ route('contenido.galeria', $datosMultimedia[1][$i][$j]->id) }}">
+                    <img src='{{ URL::asset($datosMultimedia[1][$i][$j]->cubierta)}}' alt='logo de la galería'>
+                  </a>
+                </div>
+                <div class='col col-12 col-sm-6 col-md-8 col-lg-10 p-5'>
+                  <div class='row'><h5>{{$datosMultimedia[1][$i][$j]->titulo}}</h5></div><div class='row'><p>{{$datosMultimedia[1][$i][$j]->descripcion}}]</p></div></div></div>
               @endfor
               </div>
               <div class="tab-pane fade" id="audios" role="tabpanel" aria-labelledby="audios-tab">

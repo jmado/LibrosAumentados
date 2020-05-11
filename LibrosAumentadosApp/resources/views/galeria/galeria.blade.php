@@ -40,6 +40,15 @@
             <!--Galeria-->
             <div id="mygallery" class="col-sm-12 gallery">
             <div class="images">
+            @if (isset($libro_id))
+                @foreach ($imagenes as $imagen)
+                    @if($loop->first)
+                        <div class="active galeria-img imagenes" style="background-image: url('../../{{$imagen->imagen}}')"></div>
+                    @else
+                    <div class="galeria-img imagenes" style="background-image: url('../../{{$imagen->imagen}}')"></div>
+                    @endif
+                @endforeach
+            @else
                 @foreach ($imagenes as $imagen)
                     @if($loop->first)
                         <div class="active galeria-img imagenes" style="background-image: url('../{{$imagen->imagen}}')"></div>
@@ -47,6 +56,7 @@
                     <div class="galeria-img imagenes" style="background-image: url('../{{$imagen->imagen}}')"></div>
                     @endif
                 @endforeach
+            @endif
             <!-- Fin galeria-->
                 @if($galeria[0]->tipo == "normal")
                     <span class="left" onclick="izquierda()"></span>
@@ -55,14 +65,24 @@
             </div>
             
             <div class="thumbs">
-            @if($galeria[0]->tipo == "normal")    
-                @foreach ($imagenes as $imagen)
-                    @if($loop->first)
-                        <div class="galeria-img active" style="background-image: url('../{{$imagen->imagen}}')"></div>
-                    @else
-                    <div class="galeria-img" style="background-image: url('../{{$imagen->imagen}}')"></div>
-                    @endif
-                @endforeach
+            @if($galeria[0]->tipo == "normal") 
+                @if (isset($libro_id))       
+                    @foreach ($imagenes as $imagen)
+                        @if($loop->first)
+                            <div class="galeria-img active" style="background-image: url('../../{{$imagen->imagen}}')"></div>
+                        @else
+                        <div class="galeria-img" style="background-image: url('../../{{$imagen->imagen}}')"></div>
+                        @endif
+                    @endforeach
+                @else
+                    @foreach ($imagenes as $imagen)
+                        @if($loop->first)
+                            <div class="galeria-img active" style="background-image: url('../{{$imagen->imagen}}')"></div>
+                        @else
+                        <div class="galeria-img" style="background-image: url('../{{$imagen->imagen}}')"></div>
+                        @endif
+                    @endforeach
+                @endif
             @else
                 <div>
                 @if(count($imagenes)>2)

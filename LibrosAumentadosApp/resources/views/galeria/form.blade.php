@@ -28,7 +28,17 @@
     @endisset
         @csrf
 
-            
+
+        <!-- 
+        <div class="custom-control custom-checkbox image-checkbox">
+            <input type="checkbox" class="custom-control-input" id="im1">
+            <label class="custom-control-label" for="im1">
+                <img src="https://source.unsplash.com/640x426/?people" alt="#" class="img-fluid">
+            </label>
+        </div>
+        -->
+
+        
 
             
             <div class="form-group">
@@ -57,9 +67,39 @@
             </div>
             
             <div class="form-group">
-                <label for="img">Imágenes</label>
-                <select id="img" name="imagenes_id[]" class="form-control" multiple>
-                    @foreach ($imagenes as $imagen)
+                <div class="container">
+                    <div class="row titulo text-center">
+                        <div class="col">Selecciona las imágenes que compondran la galería</div>
+                    </div>
+                    <div class="row selector-box">
+                        
+                        <div class="col-12">
+                            <div class="row">
+                                
+                                @foreach ($imagenes as $imagen)
+                                <div class="col col-3">
+                                    <div class="custom-control custom-checkbox image-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="i{{$imagen->id}}" value="{{$imagen->id}}" name="imagenes_id[]">
+                                        <label class="custom-control-label" for="i{{$imagen->id}}">
+                                            <img src="{{ url($imagen->imagen) }}" alt="{{$imagen->titulo}}" class="img-fluid">
+                                        </label>
+                                    </div>
+                                </div>
+                                @endforeach
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
+
+
+
+
+
+
+
+                    {{-- 
                         @isset($galeria)
                             @if($galeria->imagenes()->get()->contains($imagen->titulo))
                                 <option value={{$imagen->id}} selected>{{$imagen->titulo}}</option>    
@@ -69,8 +109,9 @@
                             @else   
                                 <option value={{$imagen->id}}>{{$imagen->titulo}}</option> 
                         @endisset
-                    @endforeach
-                </select>
+                    --}}
+                    
+                
             </div>
 
             

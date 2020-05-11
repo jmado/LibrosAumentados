@@ -118,6 +118,7 @@ class GaleriasController extends Controller
      */
     public function store(Request $request)
     {
+        
         //Creo una galeria
         $datos_galeria = new Galeria;
 
