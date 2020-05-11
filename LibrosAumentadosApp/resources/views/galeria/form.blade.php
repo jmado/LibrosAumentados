@@ -61,8 +61,19 @@
             <div class="form-group">
                 <label for="type">Tipo</label>
                 <select class="form-control" id="type" name="tipo">
-                    <option value="normal">Normal</option>
-                    <option value="transparencia">Transparente</option>
+                    @if(isset($galeria->tipo))
+                        @if($galeria->tipo == "normal")
+                            <option value="normal" selected>Normal</option>
+                            <option value="transparencia">Transparente</option>
+                        @else
+                            <option value="normal">Normal</option>
+                            <option value="transparencia" selected>Transparente</option>
+                        @endif
+                    @else
+                        <option value="normal">Normal</option>
+                        <option value="transparencia">Transparente</option>
+                    @endif
+
                 </select>
             </div>
             
@@ -77,14 +88,36 @@
                             <div class="row">
                                 
                                 @foreach ($imagenes as $imagen)
-                                <div class="col col-3">
-                                    <div class="custom-control custom-checkbox image-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="i{{$imagen->id}}" value="{{$imagen->id}}" name="imagenes_id[]">
-                                        <label class="custom-control-label" for="i{{$imagen->id}}">
-                                            <img src="{{ url($imagen->imagen) }}" alt="{{$imagen->titulo}}" class="img-fluid">
-                                        </label>
-                                    </div>
-                                </div>
+                                    @isset($galeria)
+                                        @if($galeria->imagenes()->get()->contains($imagen->id))
+                                            <div class="col col-3">
+                                                <div class="custom-control custom-checkbox image-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="i{{$imagen->id}}" value="{{$imagen->id}}" name="imagenes_id[]" checked>
+                                                    <label class="custom-control-label" for="i{{$imagen->id}}">
+                                                        <img src="{{ url($imagen->imagen) }}" alt="{{$imagen->titulo}}" class="img-fluid">
+                                                    </label>
+                                                </div>
+                                            </div> <!-- checked -->
+                                        @else
+                                            <div class="col col-3">
+                                                <div class="custom-control custom-checkbox image-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="i{{$imagen->id}}" value="{{$imagen->id}}" name="imagenes_id[]">
+                                                    <label class="custom-control-label" for="i{{$imagen->id}}">
+                                                        <img src="{{ url($imagen->imagen) }}" alt="{{$imagen->titulo}}" class="img-fluid">
+                                                    </label>
+                                                </div>
+                                            </div> <!-- NO checked -->
+                                        @endif
+                                    @else
+                                        <div class="col col-3">
+                                            <div class="custom-control custom-checkbox image-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="i{{$imagen->id}}" value="{{$imagen->id}}" name="imagenes_id[]">
+                                                <label class="custom-control-label" for="i{{$imagen->id}}">
+                                                    <img src="{{ url($imagen->imagen) }}" alt="{{$imagen->titulo}}" class="img-fluid">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    @endisset
                                 @endforeach
                                
                             </div>
@@ -95,22 +128,6 @@
 
 
 
-
-
-
-
-                    {{-- 
-                        @isset($galeria)
-                            @if($galeria->imagenes()->get()->contains($imagen->titulo))
-                                <option value={{$imagen->id}} selected>{{$imagen->titulo}}</option>    
-                            @else   
-                                <option value={{$imagen->id}}>{{$imagen->titulo}}</option> 
-                            @endif
-                            @else   
-                                <option value={{$imagen->id}}>{{$imagen->titulo}}</option> 
-                        @endisset
-                    --}}
-                    
                 
             </div>
 
