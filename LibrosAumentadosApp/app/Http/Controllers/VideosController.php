@@ -33,7 +33,12 @@ class VideosController extends Controller
         $libro = Libro::findOrFail($libro_id);
         return view('video.all', compact('libro','datos', 'libro_id'));
     }
-
+    public function admin()
+    {
+        $videos = $consulta = DB::select("select * from videos");
+        
+        return view('video.all', compact('videos'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -128,4 +133,61 @@ class VideosController extends Controller
         $datos->delete();
         return redirect()->route('video.all', $capitulo_id);
     }
+
+
+
+
+
+
+
+
+//Backend CRUD Administrador ******************************************************************************************************************
+
+/**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showAdmin($id)
+    {
+        $datos = Video::findOrFail($id);
+        return view('video.showTable', compact('datos'));
+    }
+/**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createAdmin()
+    {
+        //Libros
+        $libros = DB::select("select * from libros");
+        //Capitulos
+        $capitulos = DB::select("select * from capitulos");
+        return view('video.formTable', compact('libros', 'capitulos'));
+    }
+//Admin tablas
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function editAdmin($id)
+    {
+        //Libros
+        $libros = DB::select("select * from libros");
+        //Capitulos
+        $capitulos = DB::select("select * from capitulos");
+        //Elemento $id
+        $datos = Video::findOrFail($id);
+        return view('video.formTable', compact('datos', 'libros', 'capitulos'));
+    }
+
+
+
+
+
+
 }

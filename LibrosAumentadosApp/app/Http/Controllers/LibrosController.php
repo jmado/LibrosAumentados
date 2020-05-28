@@ -28,6 +28,12 @@ class LibrosController extends Controller
         return view('libro.all', compact('libroList'));
     }
 
+    public function admin()
+    {
+        $libros = DB::select('select * from libros');
+        return view('libro.libroTable', compact('libros'));
+    }
+
     
     /**
      * Show the form for creating a new resource.
@@ -292,6 +298,46 @@ class LibrosController extends Controller
         }
 
         
+    }
+
+
+
+
+
+
+
+
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showAdmin($id)
+    {
+        //
+    }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createAdmin()
+    {
+        return view('libro.formTable');
+    }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function editAdmin($id)
+    {
+        $datos = Libro::find($id);
+        return view('libro.formTable', ["datos" => $datos] );
     }
 
 }

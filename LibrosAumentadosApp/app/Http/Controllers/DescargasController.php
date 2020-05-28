@@ -32,6 +32,12 @@ class DescargasController extends Controller
         $libro = Libro::findOrFail($libro_id);
         return view('descarga.all', compact('libro','datos', 'libro_id'));
     }
+    public function admin()
+    {
+        $descargas = $consulta = DB::select("select * from descargas");
+        
+        return view('descarga.all', compact('descargas'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -157,4 +163,57 @@ class DescargasController extends Controller
         $datos->delete();
         return redirect()->route('descarga.all', $id_capitulo);
     }
+
+
+
+
+
+//Backend CRUD Administrador ******************************************************************************************************************
+
+/**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showAdmin($id)
+    {
+        $datos = Descarga::findOrFail($id);
+        return view('descarga.showTable', compact('datos'));
+    }
+/**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createAdmin()
+    {
+        //Libros
+        $libros = DB::select("select * from libros");
+        //Capitulos
+        $capitulos = DB::select("select * from capitulos");
+        return view('descarga.formTable', compact('libros', 'capitulos'));
+    }
+//Admin tablas
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function editAdmin($id)
+    {
+        //Libros
+        $libros = DB::select("select * from libros");
+        //Capitulos
+        $capitulos = DB::select("select * from capitulos");
+        //Elemento $id
+        $datos = Descarga::findOrFail($id);
+        return view('descarga.formTable', compact('datos', 'libros', 'capitulos'));
+    }
+
+
+
+
+    
 }

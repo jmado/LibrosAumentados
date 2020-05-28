@@ -33,7 +33,12 @@ class PaginasController extends Controller
         $id = $libro_id;
         return view('pagina.all', compact('paginaList', 'id', 'numero_orden'));
     }
-
+    public function admin()
+    {
+        $paginas = $consulta = DB::select("select * from paginas");
+        
+        return view('pagina.all', compact('paginas'));
+    }
     public function mostrarPaginaCapitulo($id_capitulo)
     {
         $paginaList = Pagina::where('capitulo_id', '=', $id_capitulo)->get();

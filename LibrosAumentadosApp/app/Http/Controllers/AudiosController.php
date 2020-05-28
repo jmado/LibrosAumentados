@@ -36,6 +36,12 @@ class AudiosController extends Controller
         $libro = Libro::find($libro_id);
         return view('audio.all', compact('libro','datos', 'libro_id'));
     }
+    public function admin()
+    {
+        $audios = $consulta = DB::select("select * from audio");
+        
+        return view('audio.all', compact('audios'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -157,4 +163,70 @@ class AudiosController extends Controller
         $datos->delete();
         return redirect()->route('audio.all', $id_capitulo);
     }
+
+
+
+
+
+
+
+
+
+//Backend CRUD Administrador ******************************************************************************************************************
+
+/**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showAdmin($id)
+    {
+        $datos = Audio::findOrFail($id);
+        return view('audio.showTable', compact('datos'));
+    }
+/**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createAdmin()
+    {
+       //Libros
+       $libros = DB::select("select * from libros");
+       //Capitulos
+       $capitulos = DB::select("select * from capitulos");
+        return view('audio.formTable', compact('libros', 'capitulos'));
+    }
+//Admin tablas
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function editAdmin($id)
+    {
+        //Libros
+        $libros = DB::select("select * from libros");
+        //Capitulos
+        $capitulos = DB::select("select * from capitulos");
+        //Elemento $id
+        $datos = Audio::findOrFail($id);
+        
+        return view('audio.formTable', compact('datos','libros', 'capitulos'));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

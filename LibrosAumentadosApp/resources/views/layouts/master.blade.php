@@ -55,7 +55,54 @@
     <!-- JavaScript -->
     <script src="{{ URL::asset('js/main.js')}}"></script>
 
-    
+    <style>
+      .contenido{
+        border-radius: 5px;
+  background-color: rgb(48, 48, 48);
+  
+}
+.grid-container {
+height: 70%;
+display: grid;
+grid-template-columns: auto auto;
+grid-gap: 10px;
+padding: 10px;
+}
+
+.grid-container > div {
+text-align: center;
+padding: 20px 0;
+}
+
+.item2 {
+grid-column-start: 2;
+grid-row-start: 1;
+grid-row-end: 6;
+}
+
+
+.grid-container2 {
+display: grid;
+grid-template-columns: auto auto auto auto;
+grid-gap: 10px;
+padding: 10px;
+}
+.buscador-grid {
+grid-column-start: 1;
+grid-column-end: 5;
+
+}
+.image-grid img{
+  width: 86px;
+  height: 45px;
+  border-radius: 5px;
+}
+    </style>
+
+
+
+
+  
 </head>
 <body>
 
@@ -69,7 +116,7 @@
     <!-- Cabecera -->
 <header class="header bg-primary">
     <a href="{{route('libro.index')}}">
-      <h2 class="logo text-light">Libros<strong>Aumentados</strong></h2>
+      <h2 class="logo text-light">Libros<strong>App</strong></h2>
     </a>
     <input type="checkbox" id="chk">
     <label for="chk" class="show-menu-btn">
@@ -77,20 +124,19 @@
     </label>
 
     <ul class="menu">
-      {{--<a href="/">Home</a>--}}
-      <a href="{{route('libro.index')}}">Libros</a>
-      @auth
-        <a href="{{route('users.index')}}">Usuarios</a>    
-      @endauth
       
-      <a href="{{url('/aboutUs')}}">About Us</a>
+      <a href="{{route('libro.index')}}">Libros</a>
+     
+      
+      <a href="{{url('/aboutUs')}}">Sobre nosotros</a>
       
       @unless (Auth::check())
         <a href="{{route('login')}}">Login</a>
       @endunless
     
     @auth
-      <a href="{{route('logout')}}">Log out</a>   
+        <a href="{{route('libro.admin')}}">Administrador</a>    
+        <a href="{{route('logout')}}">Log out</a>   
     @endauth
 
     <label for="chk" class="hide-menu-btn">

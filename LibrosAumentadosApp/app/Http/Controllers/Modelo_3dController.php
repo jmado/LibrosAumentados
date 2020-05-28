@@ -36,7 +36,12 @@ class Modelo_3dController extends Controller
         $modelos = Modelo_3d::where('capitulo_id', '=', $id)->simplePaginate(6);
         return view('modelo3d.all', compact('modelos', 'libro_id'));
     }
-
+    public function admin()
+    {
+        $modelos = $consulta = DB::select("select * from modelo_3ds");
+        
+        return view('modelo3d.all', compact('modelos'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -236,6 +241,65 @@ class Modelo_3dController extends Controller
         $modelo->delete();
 
         return redirect()->route('modelo.all', $capitulo_id);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //Backend CRUD Administrador ******************************************************************************************************************
+
+/**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showAdmin($id)
+    {
+        $datos = Modelo_3d::findOrFail($id);
+        return view('modelo3d.showTable', compact('datos'));
+    }
+/**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createAdmin()
+    {
+        //Libros
+        $libros = DB::select("select * from libros");
+        //Capitulos
+        $capitulos = DB::select("select * from capitulos");
+        return view('modelo3d.formTable', compact('libros', 'capitulos'));
+    }
+//Admin tablas
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function editAdmin($id)
+    {
+        //Libros
+        $libros = DB::select("select * from libros");
+        //Capitulos
+        $capitulos = DB::select("select * from capitulos");
+        //Elemento $id
+        $datos = Modelo_3d::findOrFail($id);
+        return view('modelo3d.formTable', compact('datos', 'libros', 'capitulos'));
     }
     
 }

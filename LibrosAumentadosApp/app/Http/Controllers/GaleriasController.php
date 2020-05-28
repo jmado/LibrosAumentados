@@ -90,7 +90,12 @@ class GaleriasController extends Controller
         $libro = Libro::findOrFail($libro_id);
         return view('galeria.all', compact('libro', 'galerias', 'libro_id', 'capitulo', 'numero_orden'));
     }
-
+    public function admin()
+    {
+        $galerias = $consulta = DB::select("select * from galerias");
+        
+        return view('galeria.all', compact('galerias'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -118,7 +123,7 @@ class GaleriasController extends Controller
      */
     public function store(Request $request)
     {
-        
+        //dd($request->tipo);
         //Creo una galeria
         $datos_galeria = new Galeria;
 
@@ -240,4 +245,92 @@ class GaleriasController extends Controller
         $datos->delete();
         return redirect()->route('galeria.all', $id_capitulo);
     }
+
+
+
+
+/**
+    * Buscador de libros por ajax
+    *
+    * @param  
+    * @return string $mensage_login
+    */
+    public function imagenBuscador(Request $request)
+    {
+        $id = Session::get('capitulo_id');
+        $search = $request->search;
+        if(!empty($search)){
+            $query="select * from imagens where (titulo like '%$search%') and capitulo_id=".$id;
+            $result =  DB::select($query);
+            
+            $jsonstring = json_encode($result);
+            echo $jsonstring;
+        }
+    }
+
+
+
+
+
+
+//Backend CRUD Administrador ******************************************************************************************************************
+
+/**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showAdmin($id)
+    {
+        $datos = Video::findOrFail($id);
+        return view('galeria.showTable', compact('datos'));
+    }
+/**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createAdmin()
+    {
+        //Libros
+        $libros = DB::select("select * from libros");
+        //Capitulos
+        $capitulos = DB::select("select * from capitulos");
+        //Imagenes
+        $imagenes = DB::select("select * from imagens");
+        return view('galeria.formTable', compact('libros', 'capitulos', 'imagenes'));
+    }
+//Admin tablas
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function editAdmin($id)
+    {
+        //Libros
+        $libros = DB::select("select * from libros");
+        //Capitulos
+        $capitulos = DB::select("select * from capitulos");
+        //Imagenes
+        $imagenes = DB::select("select * from imagens");
+        //Elemento $id
+        $datos = Video::findOrFail($id);
+        return view('galeria.formTable', compact('datos', 'libros', 'capitulos', 'imagenes'));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

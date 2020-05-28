@@ -25,7 +25,12 @@ class CapitulosController extends Controller
         $libro = Libro::find($libro_id);
         return view('capitulo.all', compact('libro','capituloList', 'id'));
     }
-
+    public function admin()
+    {
+        $capitulos = $consulta = DB::select("select * from capitulos");
+        
+        return view('capitulo.all', compact('capitulos'));
+    }
     /*
     public function mostrarCapitulosLibro($id_book)
     {
@@ -182,5 +187,48 @@ class CapitulosController extends Controller
         //return redirect()->route('capitulo.contenido', $id);
         return view('capitulo.contenido', compact('id', 'id_libro'));
 
+    }
+
+
+
+
+    //Backend CRUD Administrador ******************************************************************************************************************
+
+/**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showAdmin($id)
+    {
+        $datos = Capitulo::findOrFail($id);
+        return view('capitulo.formTable', compact('datos'));
+    }
+/**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createAdmin()
+    {
+        //Libros
+        $libros = DB::select("select * from libros");
+        return view('capitulo.formTable', compact('libros'));
+    }
+//Admin tablas
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function editAdmin($id)
+    {
+        //Libros
+        $libros = DB::select("select * from libros");
+        //Elemento
+        $datos = Capitulo::findOrFail($id);
+        return view('capitulo.formTable', compact('datos', 'libros'));
     }
 }

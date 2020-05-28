@@ -40,7 +40,12 @@ class ImagensController extends Controller
 
         return view('imagen.all', compact('libro', 'datos', 'libro_id'));
     }
-
+    public function admin()
+    {
+        $imagenes = $consulta = DB::select("select * from imagens");
+        
+        return view('imagen.all', compact('imagenes'));
+    }
 
 
     public function buscador(Request $request)
@@ -238,4 +243,60 @@ class ImagensController extends Controller
            
         }
     }
+
+
+
+
+
+
+
+//Backend CRUD Administrador ******************************************************************************************************************
+
+/**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showAdmin($id)
+    {
+        $datos = Imagen::findOrFail($id);
+        return view('imagen.showTable', compact('datos'));
+    }
+/**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createAdmin()
+    {
+        //Libros
+        $libros = DB::select("select * from libros");
+        //Capitulos
+        $capitulos = DB::select("select * from capitulos");
+        return view('imagen.formTable', compact('libros', 'capitulos'));
+    }
+//Admin tablas
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function editAdmin($id)
+    {
+        //Libros
+        $libros = DB::select("select * from libros");
+        //Capitulos
+        $capitulos = DB::select("select * from capitulos");
+        //Elemento $id
+        $datos = Imagen::findOrFail($id);
+        return view('imagen.formTable', compact('datos', 'libros', 'capitulos'));
+    }
+
+
+
+
+
+
 }

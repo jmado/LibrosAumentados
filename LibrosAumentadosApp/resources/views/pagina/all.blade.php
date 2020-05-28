@@ -1,105 +1,67 @@
-@extends("layouts.master")
+@extends("layouts.adminMaster")
 
 @section("content")
-<section class="text-center">
-    <div class="container">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item text-primary"><a href="{{ route('libro.index') }}">LibrosAumentadosApp</a></li>
-                <li class="breadcrumb-item text-primary"><a href="{{ route('libro.index') }}">Libros</a></li>
-                <li class="breadcrumb-item text-primary"><a href="{{ route('capitulo.all', $id) }}">Capítulos</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Páginas</li>
-            </ol>
-        </nav>
-        <h1>Páginas</h1>
-        <p>
-          <a href="{{ route('pagina.create') }}" class="btn btn-primary btn-lg" role="button">Nueva Página</a>
-        </p>
-      </div>
-</section>
 
-
-
-
-<div class="elementos container">
-    <div class="row">
-        <h2>Capitulo: {{$numero_orden[0]->numero_orden}} Lista de páginas</h2>
-        <div class="table-responsive">
-             <table class="table table-striped table-sm">
-                <thead>
-                    <tr>
-                  
-                        
-                        <th>Página</th>
-                        <th>Texto</th>  
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($paginaList as $pagina)
-                    <tr>
-                        <td>
-                            {{$pagina->numero_pagina}}
-                        </td>
-                        <td class="texto">
-                            <details>
-                                <summary>Texto de la página {{$pagina->numero_pagina}}</summary>
-                                <p>
-                                {!!html_entity_decode($pagina->texto)!!}
-                                </p>
-                            </details>
-                        </td>
-                        <td>
-                            <a href="{{route('pagina.edit', $pagina->id)}}" class="btn btn-sm btn-info" role="button">Modificar</a>   
-                        </td>
-                        <td>
-                        <a class="b{{$pagina->id}} btn btn-sm btn-outline-danger" role="button">Borrar</a>
-
-                            <script>
-                                $(document).ready(function(){ 
-                                        var borrar = $(".b{{$pagina->id}}").click(function(){
-                                            var id = {{$pagina->id}};
-                                            var direccion = "{{route('pagina.delete', 0)}}";
-                                            direccion = direccion.replace("0", id);
-
-                                            swal({
-                                                title: "¿Seguro de que borrar este elemento?",
-                                                text: "Una vez eliminado, ¡no podrá recuperar este elemento!",
-                                                icon: "warning",
-                                                buttons: true,
-                                                dangerMode: true,
-                                                })
-                                                .then((willDelete) => {
-                                                if (willDelete) {
-                                                    swal("El elemento se borrar si no tiene contenido", {
-                                                    icon: "success",
-                                                    });
-
-                                                location.href=direccion; 
-                                                
-                                                } else {
-                                                    swal("¡Su elemento está a salvo!");
-                                                }
-                                            }); 
-
-                                        });
-                                    });
-                            
-                            </script>
-                        </td>
-                    </tr>  
-                    @endforeach
-                    {{ $paginaList->links() }}
-                </tbody>
-        </div>
-</div>
-
-
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="page-header">Páginas</h1>
+		</div>
+		<!-- /.col-lg-12 -->
+	</div>
+	<!-- /.row -->
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					Tabla de páginas
+				</div>
+				<!-- /.panel-heading -->
+				<div class="panel-body">
+					<div class="table-responsive">
+						<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+							<thead>
+								<tr>
+									<th>Capitulo ID</th>
+									<th>Titulo</th>
+									<th>Descripción</th>
+									<th>Ver</th>
+									<th>Modificar</th>
+									<th>Borrar</th>
+								</tr>
+							</thead>
+							<tbody>
+							@foreach ($paginas as $pagina)
+								<tr class="gradeA">
+									<td>{{$pagina->capitulo_id}}</td>
+									<td>{{$pagina->numero_pagina}}</td>
+									<td>{{$pagina->texto}}</td>
+									<td>
+										<a href="{{route('pagina.show', $pagina->id)}}" class="ver-btn pv{{$pagina->id}}" id="pv{{$pagina->id}}"><i class="far fa-eye"></i> Ver</a>
+									</td>
+									<td>
+										<a href="{{route('pagina.edit', $pagina->id)}}" class="text-warning modificar-btn pm{{$pagina->id}}" id="pm{{$pagina->id}}"><i class="fas fa-pen-square"></i> Modificar</a>
+									</td>
+									<td>
+										<a href="#" class="text-danger borrar-btn pb{{$pagina->id}}" id="pb{{$pagina->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
+									</td>
+								</tr>
+							@endforeach	
+							</tbody>	
+						</table>
+					</div>
+					<!-- /.table-responsive -->
+					<div class="well">
+						<h4>Añadir nuevas páginas</h4>
+						
+						<a class="btn btn-default btn-lg btn-block" href="{{route('pagina.create')}}"><i class="fas fa-plus-square"></i> Nueva página</a>
+					</div>
+				</div>
+				<!-- /.panel-body -->
+			</div>
+			<!-- /.panel -->
+		</div>
+		<!-- /.col-lg-12 -->
+	</div>
+	<!-- /.row -->
 
 @endsection
-
-
-
-
-

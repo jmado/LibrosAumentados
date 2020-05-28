@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>LibrosApp</title>
 
     
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap2.min.css') }}">
@@ -67,7 +67,7 @@
     
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a href="#" class="navbar-brand">LibrosAumentados</a>
+            <a href="#" class="navbar-brand">LibrosApp</a>
         </nav>
 
         <!-- Optional: some overlay text to describe the video -->

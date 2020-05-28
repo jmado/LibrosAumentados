@@ -17,9 +17,11 @@ class AdminUserController extends Controller
     public function index()
     {
 
-        $users = User::all();
-        return view('admin.users.index', compact('users'));
+        $usuarios = User::all();
+        return view('users.index', compact('usuarios'));
     }
+
+    
 
     /**
      * Show the form for creating a new resource.
@@ -28,7 +30,7 @@ class AdminUserController extends Controller
      */
     public function create(Request $r)
     {
-        return view('admin.users.create');
+        return view('users.formTable');
     }
 
     /**
@@ -49,19 +51,9 @@ class AdminUserController extends Controller
 
         $users->save();
 
-        return redirect()->route('users.index', compact('users'));
+        return redirect()->route('user.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -71,8 +63,8 @@ class AdminUserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        return view('admin.users.edit', compact('user'));
+        $datos = User::find($id);
+        return view('users.formTable', compact('datos'));
     }
 
     /**
@@ -106,7 +98,7 @@ class AdminUserController extends Controller
 
         $user->save();
 
-        return redirect()->route('users.index');
+        return redirect()->route('user.index');
     }
 
     /**
@@ -120,6 +112,6 @@ class AdminUserController extends Controller
         $user = User::find($id);
         $user->delete();
 
-        return redirect()->route('users.index', $user->id);
+        return redirect()->route('user.index');
     }
 }

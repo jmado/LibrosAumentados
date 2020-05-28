@@ -1,214 +1,67 @@
-@extends("layouts.master")
+@extends("layouts.adminMaster")
 
 @section("content")
 
-
-
-
-<section class="text-center">
-    <div class="container">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item text-primary"><a href="{{ route('libro.index') }}">LibrosAumentadosApp</a></li>
-                <li class="breadcrumb-item text-primary"><a href="{{ route('libro.index') }}">Libros</a></li>
-                <li class="breadcrumb-item text-primary"><a href="{{ route('capitulo.all', $libro_id) }}">Capítulos</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Imágenes</li>
-            </ol>
-        </nav>
-</section>
-
-
-<div class="container">
-    <div class="row">
-        <div class="col-6">
-            <form class="form-group">
-           
-                <input type="text" name="search" id="search" class="form-control" placeholder="Search">
-            </form>
-        </div>
-        <div class="col-6">
-            <table class="lista-search">
-            
-            </table>
-        </div>
-    </div>         
-</div>
-<script>
-    
-$(function(){
-
-   
-let tasks;
-    $('#search').keyup(function(){
-
-        if($('#search').val()){
-            
-           
-
-            let search = $('#search').val();
-
-            $.ajax({
-                url: "{{ route('imagen.buscador') }}",
-                type: 'POST',
-                data: {search: search},
-                success: function(response){
-                    //console.log(response);
-                    tasks = JSON.parse(response);
-                    //if(tasks == "No se ha encontrado ningún resultados"){
-                        //console.log("hola");
-                    //}
-                    //else{
-                        let template = '';
-                        //console.log(tasks);
-                        
-                        tasks.forEach(task => {
-                            //console.log(task);
-
-                            template += ` 
-                            <tr> 
-                                <td>${task.titulo}</td>
-                                <td> 
-                                    <a href='https://iescelia.org/librosapp/LibrosAumentadosApp/public/imagen/` + task.id + `/edit' >
-                                        <i class="fas fa-plus-circle"></i>
-                                    </a> 
-                                </td>
-                                <td> 
-                                    <a href='https://iescelia.org/librosapp/LibrosAumentadosApp/public/imagen/deleteConfirm/` + task.id + `' >
-                                        <i class="fas fa-minus-circle"></i>
-                                    </a> 
-                                </td>   
-                            </tr> `;
-                        });
-                        $('.lista-search').html(template);
-                        $('.lista-search').show();
-                    //}
-                }
-            });
-        }else{
-            $('.lista-search').hide();
-        }
-    });
-
-});
-
-function modalfuncion(){
-    console.log(tasks);
-}
-
-</script>
-
-
-
-<div class="container">
-    <div class="row mt-5 mb-5">
-            <div class="col-2">
-                <img src="{{ url($libro->cubierta) }}" alt="Cubierta del libro: {{$libro->titulo}}">
-            </div>
-            <div class="col-10">
-                <div class="row">
-                    {{$libro->titulo}}
-                </div>
-                <div class="row">
-                    {{$libro->subtitulo}}
-                </div>
-                <div class="row">
-                    {{$libro->autor}}
-                </div>
-            </div>
-        </div>
-        @auth
-        <div class="row mt-5 mb-5 text-center">
-            <div class="col">
-                <a href="{{ route('imagen.create') }}" class="btn btn-primary btn-lg" role="button">
-                    <i class="fas fa-plus"></i> Añadir imagen
-                </a>
-            </div>
-        </div>
-        @endauth
-    </div>
-</div>
-
-
-
-<div class="elementos">
-    <div class="container">
-    {{ $datos->links() }}
-        <div class="row">
-
-        
-            @foreach ($datos as $imagen)   
-            <div class="col-md-3">
-                <div class="elemento mb-4">
-                    <div class="elemento-header">
-                        <a href="../../{{$imagen->imagen}}">
-                            <img src="../../{{$imagen->imagen}}" alt="{{$imagen->titulo}}">
-                        </a> 
-                    </div>
-                    <div class="elemento-body">
-                        <h4>{{$imagen->titulo}}</h4>
-                        {{--<p><a href="{{route('capitulo.index')}}">Capitulo: {{$imagen->capitulo_id}}</a></p>--}}
-                        <p><b>Descripcion:</b> {{$imagen->descripcion}} </p>
-
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                @auth           
-                                    <a href="{{route('imagen.edit', $imagen->id)}}" class="btn btn-sm btn-outline-info" role="button">Modificar</a>
-
-{{-- 
-    <script>
-        ruta = "{{route('imagen.deleteConfirm', $imagen->id)}}";
-        console.log(ruta);
-    </script>
---}}
-
-                                    <a class="b{{$imagen->id}} btn btn-sm btn-outline-danger" role="button">Borrar</a>
-
-                                    <script>
-                                    $(document).ready(function(){ 
-                                        var borrar = $(".b{{$imagen->id}}").click(function(){
-                                            var id = {{$imagen->id}};
-                                            var direccion = "{{route('imagen.deleteConfirm', 0)}}";
-                                            direccion = direccion.replace("0", id);
-
-                                            swal({
-                                                title: "¿Seguro de que borrar este elemento?",
-                                                text: "Una vez eliminado, ¡no podrá recuperar este elemento!",
-                                                icon: "warning",
-                                                buttons: true,
-                                                dangerMode: true,
-                                                })
-                                                .then((willDelete) => {
-                                                if (willDelete) {
-                                                    swal("El elemento se borrar si no tiene contenido", {
-                                                    icon: "success",
-                                                    });
-
-                                                location.href=direccion; 
-                                                
-                                                } else {
-                                                    swal("¡Su elemento está a salvo!");
-                                                }
-                                            }); 
-
-                                        });
-                                    });
-                                       
-                                    </script>
-                                @endauth
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>  
-            @endforeach
-            
-
-        </div>
-    </div>    
-</div> 
-
-
-
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="page-header">Imagenes</h1>
+		</div>
+		<!-- /.col-lg-12 -->
+	</div>
+	<!-- /.row -->
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					Tabla de imagenes
+				</div>
+				<!-- /.panel-heading -->
+				<div class="panel-body">
+					<div class="table-responsive">
+						<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+							<thead>
+								<tr>
+									<th>Capitulo ID</th>
+									<th>Titulo</th>
+									<th>Descripción</th>
+									<th>Ver</th>
+									<th>Modificar</th>
+									<th>Borrar</th>
+								</tr>
+							</thead>
+							<tbody>
+							@foreach ($imagenes as $imagen)
+								<tr class="gradeA">
+									<td>{{$imagen->capitulo_id}}</td>
+									<td>{{$imagen->titulo}}</td>
+									<td>{{$imagen->descripcion}}</td>
+									<td>
+										<a href="{{route('imagen.showAdmin', $imagen->id)}}" class="ver-btn iv{{$imagen->id}}" id="iv{{$imagen->id}}"><i class="far fa-eye"></i> Ver</a>
+									</td>
+									<td>
+										<a href="{{route('imagen.editAdmin', $imagen->id)}}" class="text-warning modificar-btn im{{$imagen->id}}" id="im{{$imagen->id}}"><i class="fas fa-pen-square"></i> Modificar</a>
+									</td>
+									<td>
+										<a href="{{route('imagen.delete', $imagen->id)}}" class="text-danger borrar-btn ib{{$imagen->id}}" id="ib{{$imagen->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
+									</td>
+								</tr>
+							@endforeach	
+							</tbody>
+						</table>
+					</div>
+					<!-- /.table-responsive -->
+					<div class="well">
+						<h4>Añadir nueva imagen</h4>
+						
+						<a class="btn btn-default btn-lg btn-block" href="{{route('imagen.createAdmin')}}"><i class="fas fa-plus-square"></i> Nueva imagen</a>
+					</div>
+				</div>
+				<!-- /.panel-body -->
+			</div>
+			<!-- /.panel -->
+		</div>
+		<!-- /.col-lg-12 -->
+	</div>
+	<!-- /.row -->
 
 @endsection
