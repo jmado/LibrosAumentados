@@ -15,6 +15,7 @@ use Session;
 
 use App\Modelo_3d;
 use App\Capitulo;
+use App\Libro;
 
 class Modelo_3dController extends Controller
 {

@@ -64,7 +64,7 @@
                     <div class="hero-widget well well-sm">
                         <div class="icon">
                         
-                            <img src="{{URL::asset($libro->cubierta)}}" alt="Cubierta de {{$libro->titulo}}">
+                            <img src="{{URL::asset($libro->cubierta)}}" alt="Cubierta de {{$libro->titulo}}" style="width: 190px; height: 300px;">
                         </div>
                         <div class="text">
                             <p><label class="text-muted">{{$libro->titulo}}</label></p>

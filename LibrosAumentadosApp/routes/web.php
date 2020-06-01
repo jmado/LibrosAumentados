@@ -147,7 +147,7 @@ Route::get("/admin/{capitulo}/videos", "VideosController@adminIndex")->name("lib
 Route::get("/admin/{capitulo}/audios", "AudiosController@adminIndex")->name("libro.audios");
 Route::get("/admin/{capitulo}/descargas", "DescargasController@adminIndex")->name("libro.descargas");
 Route::get("/admin/{capitulo}/paginas", "PaginasController@adminIndex")->name("libro.paginas");
-Route::get("/admin/{capitulo}/modelos", "Modelo_3dController@adminIndex")->name("libro.modelos");
+Route::get("/admin/{capitulo}/modelos3d", "Modelo_3dController@adminIndex")->name("libro.modelos");
 
 
 
