@@ -90,12 +90,7 @@ class GaleriasController extends Controller
         $libro = Libro::findOrFail($libro_id);
         return view('galeria.all', compact('libro', 'galerias', 'libro_id', 'capitulo', 'numero_orden'));
     }
-    public function admin()
-    {
-        $galerias = $consulta = DB::select("select * from galerias");
-        
-        return view('galeria.all', compact('galerias'));
-    }
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -274,7 +269,32 @@ class GaleriasController extends Controller
 
 
 //Backend CRUD Administrador ******************************************************************************************************************
+public function adminIndex($id)
+    {
+        $libro_id = $consulta = DB::select("select libro_id from capitulos where id=:id", ['id'=>$id]);
+        $libro_id = $libro_id[0]->libro_id;
 
+        //Variables de sesion para imagenes
+        Session::put('libro_id', $libro_id);
+        Session::put('capitulo_id', $id);
+
+        $capitulo = Capitulo::find($id);
+        $numero_orden = DB::select("select numero_orden, id from capitulos where id=:id", ['id'=>$id]);
+
+
+        $libro = Libro::findOrFail($libro_id);
+
+        //$datos = Galeria::where('capitulo_id', '=', $id)->simplePaginate(3);
+        $datos = DB::select('Select * from galerias where capitulo_id=:id', ['id'=>$id]);
+
+        return view('galeria.galeriaAll', compact('libro', 'datos', 'libro_id', 'capitulo',));
+    }
+    public function admin()
+    {
+        $galerias = $consulta = DB::select("select * from galerias");
+        
+        return view('galeria.all', compact('galerias'));
+    }
 /**
      * Display the specified resource.
      *

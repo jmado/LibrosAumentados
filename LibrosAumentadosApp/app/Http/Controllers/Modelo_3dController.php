@@ -36,12 +36,7 @@ class Modelo_3dController extends Controller
         $modelos = Modelo_3d::where('capitulo_id', '=', $id)->simplePaginate(6);
         return view('modelo3d.all', compact('modelos', 'libro_id'));
     }
-    public function admin()
-    {
-        $modelos = $consulta = DB::select("select * from modelo_3ds");
-        
-        return view('modelo3d.all', compact('modelos'));
-    }
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -259,7 +254,33 @@ class Modelo_3dController extends Controller
 
 
     //Backend CRUD Administrador ******************************************************************************************************************
+    public function adminIndex($id)
+    {
+        
+        $libro_id = $consulta = DB::select("select libro_id from capitulos where id=:id", ['id'=>$id]);
+        $libro_id = $libro_id[0]->libro_id;
+        $libro = Libro::findOrFail($libro_id);
 
+        
+        
+        $capitulo = Capitulo::findOrFail($id);
+        //Variables de sesion para imagenes
+        Session::put('libro_id', $libro_id);
+        Session::put('capitulo_id', $id);
+
+
+        //$modelos = Modelo_3d::where('capitulo_id', '=', $id)->simplePaginate(6);
+        $datos = DB::select('Select * from modelo_3ds where capitulo_id=:id', ['id'=>$id]);
+
+       
+
+        return view('modelo3d.modelo3dAll', compact('libro', 'capitulo', 'datos', 'libro_id'));
+    }
+    public function admin()
+    {
+        $modelos = $consulta = DB::select("select * from modelo_3ds");
+        return view('modelo3d.modeloAll', compact('modelos'));
+    }
 /**
      * Display the specified resource.
      *

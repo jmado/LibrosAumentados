@@ -36,12 +36,7 @@ class AudiosController extends Controller
         $libro = Libro::find($libro_id);
         return view('audio.all', compact('libro','datos', 'libro_id'));
     }
-    public function admin()
-    {
-        $audios = $consulta = DB::select("select * from audio");
-        
-        return view('audio.all', compact('audios'));
-    }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -173,7 +168,26 @@ class AudiosController extends Controller
 
 
 //Backend CRUD Administrador ******************************************************************************************************************
+    public function adminIndex($capitulo_id)
+    {
+        $libro_id = $consulta = DB::select("select libro_id from capitulos where id=:id", ['id'=>$capitulo_id]);
+        $libro_id = $libro_id[0]->libro_id;
+        $libro = Libro::find($libro_id);
+        //Variables de sesion para imagenes
+        Session::put('libro_id', $libro_id);
+        Session::put('capitulo_id', $capitulo_id);
 
+        //$datos = Audio::where('capitulo_id', '=', $capitulo_id)->simplePaginate(4);
+        $capitulo = Capitulo::find($capitulo_id);
+        $datos = DB::select('Select * from audio where capitulo_id=:id', ['id'=>$capitulo_id]);
+
+        return view('audio.audioAll', compact('libro', 'capitulo', 'datos', 'libro_id'));
+    }
+    public function admin()
+    {
+        $audios = $consulta = DB::select("select * from audio");
+        return view('audio.all', compact('audios'));
+    }
 /**
      * Display the specified resource.
      *

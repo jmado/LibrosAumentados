@@ -40,12 +40,7 @@ class ImagensController extends Controller
 
         return view('imagen.all', compact('libro', 'datos', 'libro_id'));
     }
-    public function admin()
-    {
-        $imagenes = $consulta = DB::select("select * from imagens");
-        
-        return view('imagen.all', compact('imagenes'));
-    }
+    
 
 
     public function buscador(Request $request)
@@ -251,7 +246,34 @@ class ImagensController extends Controller
 
 
 //Backend CRUD Administrador ******************************************************************************************************************
+/**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function adminIndex($id)
+    {
+        //Consulta todas las imagenes de ese capitulo
+        $datos = Imagen::where('capitulo_id', '=', $id)->simplePaginate(8);
+        
+        $libro_id = $consulta = DB::select("select libro_id from capitulos where id=:id", ['id'=>$id]);
+        $libro_id = $libro_id[0]->libro_id;
 
+        $capitulo = Capitulo::find($id);
+        //Variables de sesion para imagenes
+        Session::put('libro_id', $libro_id);
+        Session::put('capitulo_id', $id);
+        
+        $libro = Libro::find($libro_id);
+
+        return view('imagen.imagenAll', compact('libro', 'capitulo', 'datos', 'libro_id'));
+    }
+    public function admin()
+    {
+        $imagenes = $consulta = DB::select("select * from imagens");
+        
+        return view('imagen.all', compact('imagenes'));
+    }
 /**
      * Display the specified resource.
      *

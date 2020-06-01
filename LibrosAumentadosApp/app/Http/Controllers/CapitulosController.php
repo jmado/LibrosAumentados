@@ -25,6 +25,14 @@ class CapitulosController extends Controller
         $libro = Libro::find($libro_id);
         return view('capitulo.all', compact('libro','capituloList', 'id'));
     }
+    public function adminIndex($libro_id)
+    {
+        $libro = Libro::find($libro_id);
+        $capitulos = Capitulo::where('libro_id', '=', $libro_id)->orderBy('numero_orden')->simplePaginate(3);
+        //Variables de sesion para imagenes
+        Session::put('libro_id', $libro_id);
+        return view('capitulo.CapituloAll', compact('libro','capitulos', 'libro_id'));
+    }
     public function admin()
     {
         $capitulos = $consulta = DB::select("select * from capitulos");

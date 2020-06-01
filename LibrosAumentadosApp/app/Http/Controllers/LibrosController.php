@@ -28,6 +28,12 @@ class LibrosController extends Controller
         return view('libro.all', compact('libroList'));
     }
 
+    public function adminIndex()
+    {
+        //$libros = DB::table('libros')->simplePaginate(8);
+        $libros = DB::select('select * from libros');
+        return view('libro.libroAll', compact('libros'));
+    }
     public function admin()
     {
         $libros = DB::select('select * from libros');

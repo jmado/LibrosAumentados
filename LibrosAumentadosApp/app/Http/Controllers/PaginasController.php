@@ -33,12 +33,7 @@ class PaginasController extends Controller
         $id = $libro_id;
         return view('pagina.all', compact('paginaList', 'id', 'numero_orden'));
     }
-    public function admin()
-    {
-        $paginas = $consulta = DB::select("select * from paginas");
-        
-        return view('pagina.all', compact('paginas'));
-    }
+    
     public function mostrarPaginaCapitulo($id_capitulo)
     {
         $paginaList = Pagina::where('capitulo_id', '=', $id_capitulo)->get();
@@ -143,4 +138,40 @@ class PaginasController extends Controller
 
         return redirect()->route('pagina.all', $id_capitulo);
     }
+
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function adminIndex($id)
+    {
+        $libro_id = $consulta = DB::select("select libro_id from capitulos where id=:id", ['id'=>$id]);
+        $libro_id = $libro_id[0]->libro_id;
+        $libro = Libro::findOrFail($libro_id);
+        $capitulo = Capitulo::findOrFail($id);
+
+        //Variables de sesion para imagenes
+        Session::put('libro_id', $libro_id);
+        Session::put('capitulo_id', $id);
+
+        
+
+        //$paginaList = Pagina::where('capitulo_id', '=', $id)->simplePaginate(3);
+        $datos = DB::select('Select * from paginas where capitulo_id=:id', ['id'=>$id]);
+
+        $id = $libro_id;
+        return view('pagina.paginaAll', compact('libro', 'capitulo', 'datos'));
+    }
+    public function admin()
+    {
+        $paginas = $consulta = DB::select("select * from paginas");
+        
+        return view('pagina.all', compact('paginas'));
+    }
+    
+
+
 }

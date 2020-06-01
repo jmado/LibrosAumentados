@@ -102,6 +102,12 @@ Route::resource('admin/users', 'AdminUserController');
 
 
 
+
+
+
+
+
+
 //Frontend
 //Rutas de Contenido 
 Route::get("/contenido/index/{libro_id}", "PruebaController@index")->name("contenido.contenido");
@@ -121,8 +127,8 @@ Route::get("/contenido/index/{libro_id}", "PruebaController@index")->name("conte
 
 //Backend
 //Menu
-Route::get('admin/users', 'AdminUserController@index')->name('user.index');
 Route::get("/admin/index", "LibrosController@adminIndex")->name("libro.adminIndex");
+Route::get('/admin/users', 'AdminUserController@index')->name('user.index');
 Route::get("/admin/libros", "LibrosController@admin")->name("libro.admin");
 Route::get("/admin/capitulos", "CapitulosController@admin")->name("capitulo.admin");  
 Route::get("/admin/paginas", "PaginasController@admin")->name("pagina.admin");  
@@ -132,6 +138,19 @@ Route::get("/admin/modelos", "Modelo_3dController@admin")->name("modelo.admin");
 Route::get("/admin/videos", "VideosController@admin")->name("video.admin");
 Route::get("/admin/audios", "AudiosController@admin")->name("audio.admin");
 Route::get("/admin/descargas", "DescargasController@admin")->name("descarga.admin");
+
+//Rutas administrador guiado Libros>capitulos>multimedia
+Route::get("/admin/{libro}/capitulos", "CapitulosController@adminIndex")->name("libro.capitulos");
+Route::get("/admin/{capitulo}/imagenes", "ImagensController@adminIndex")->name("libro.imagenes");
+Route::get("/admin/{capitulo}/galerias", "GaleriasController@adminIndex")->name("libro.galerias");
+Route::get("/admin/{capitulo}/videos", "VideosController@adminIndex")->name("libro.videos");
+Route::get("/admin/{capitulo}/audios", "AudiosController@adminIndex")->name("libro.audios");
+Route::get("/admin/{capitulo}/descargas", "DescargasController@adminIndex")->name("libro.descargas");
+Route::get("/admin/{capitulo}/paginas", "PaginasController@adminIndex")->name("libro.paginas");
+Route::get("/admin/{capitulo}/modelos", "Modelo_3dController@adminIndex")->name("libro.modelos");
+
+
+
 //Rutas para modificar directamente las tablas
         //Libros
         Route::get("/admin/libros/showAdmin", "LibrosController@showAdmin")->name("libro.showAdmin");

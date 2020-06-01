@@ -100,7 +100,7 @@
             <li class="dropdown">
                 @auth
                 <a class="dropdown-toggle"  href="{{route('logout')}}">
-                    <i class="fa fa-user fa-fw"></i> Cerrar sesión <b class="caret"></b>
+                    <i class="fa fa-user fa-fw"></i> Cerrar sesión 
                 </a>
                 @endauth
             </li>
@@ -112,7 +112,7 @@
 
                 <ul class="nav" id="side-menu">
                     <li>
-                        <a href="#"><i class="fa fa-book fa-fw"></i> Libros</a>
+                        <a href="{{route('libro.adminIndex')}}"><i class="fa fa-book fa-fw"></i> Libros</a>
                     </li>
                     <li>
                         <a href="{{route('user.index')}}"><i class="fa fa-users fa-fw"></i> Usuarios</a>

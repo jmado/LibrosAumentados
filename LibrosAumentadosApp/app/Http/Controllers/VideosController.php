@@ -33,12 +33,7 @@ class VideosController extends Controller
         $libro = Libro::findOrFail($libro_id);
         return view('video.all', compact('libro','datos', 'libro_id'));
     }
-    public function admin()
-    {
-        $videos = $consulta = DB::select("select * from videos");
-        
-        return view('video.all', compact('videos'));
-    }
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -142,7 +137,36 @@ class VideosController extends Controller
 
 
 //Backend CRUD Administrador ******************************************************************************************************************
+/**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function adminIndex($capitulo_id)
+    {
+        
 
+        $libro_id = $consulta = DB::select("select libro_id from capitulos where id=:id", ['id'=>$capitulo_id]);
+        $libro_id = $libro_id[0]->libro_id;
+
+        //Variables de sesion para imagenes
+        Session::put('libro_id', $libro_id);
+        Session::put('capitulo_id', $capitulo_id);
+
+        $libro = Libro::findOrFail($libro_id);
+        $capitulo = Capitulo::findOrFail($capitulo_id);
+
+        //$datos = Video::where('capitulo_id', '=', $capitulo_id)->simplePaginate(4);
+        $datos = DB::select('Select * from videos where capitulo_id=:id', ['id'=>$capitulo_id]);
+
+        return view('video.videoAll', compact('libro','capitulo', 'datos', 'libro_id'));
+    }
+    public function admin()
+    {
+        $videos = $consulta = DB::select("select * from videos");
+        
+        return view('video.all', compact('videos'));
+    }
 /**
      * Display the specified resource.
      *

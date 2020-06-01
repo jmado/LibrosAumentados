@@ -32,12 +32,7 @@ class DescargasController extends Controller
         $libro = Libro::findOrFail($libro_id);
         return view('descarga.all', compact('libro','datos', 'libro_id'));
     }
-    public function admin()
-    {
-        $descargas = $consulta = DB::select("select * from descargas");
-        
-        return view('descarga.all', compact('descargas'));
-    }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -169,7 +164,31 @@ class DescargasController extends Controller
 
 
 //Backend CRUD Administrador ******************************************************************************************************************
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function adminIndex($capitulo_id)
+    {
+        $libro_id = $consulta = DB::select("select libro_id from capitulos where id=:id", ['id'=>$capitulo_id]);
+        $libro_id = $libro_id[0]->libro_id;
+        $libro = Libro::findOrFail($libro_id);
+        //Variables de sesion para imagenes
+        Session::put('libro_id', $libro_id);
+        Session::put('capitulo_id', $capitulo_id);
 
+        //$datos = Descarga::where('capitulo_id', '=', $capitulo_id)->simplePaginate(4);
+        $capitulo = Capitulo::find($capitulo_id);
+        $datos = DB::select('Select * from descargas where capitulo_id=:id', ['id'=>$capitulo_id]);
+        
+        return view('descarga.descargaAll', compact('libro', 'capitulo', 'datos', 'libro_id'));
+    }
+    public function admin()
+    {
+        $descargas = $consulta = DB::select("select * from descargas");
+        return view('descarga.all', compact('descargas'));
+    }
 /**
      * Display the specified resource.
      *
