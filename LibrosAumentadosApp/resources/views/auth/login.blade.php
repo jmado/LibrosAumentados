@@ -8,12 +8,12 @@
         <meta name="author" content="">
 
         <title>Startmin - Bootstrap Admin Theme</title>
-
+        
         <!-- Bootstrap Core CSS -->
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="{{ URL::asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
         <!-- Custom CSS -->
-        <link href="../css/startmin.css" rel="stylesheet">
+        <link href="{{ URL::asset('css/startmin.css') }}" rel="stylesheet">
   
     </head>
     <body>
