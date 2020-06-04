@@ -42,7 +42,7 @@
 										<a href="{{route('audio.editAdmin', $audio->id)}}" class="text-warning modificar-btn am{{$audio->id}}" id="am{{$audio->id}}"><i class="fas fa-pen-square"></i> Modificar</a>
 									</td>
 									<td>
-										<a href="{{route('audio.destroy', $audio->id)}}" class="text-danger borrar-btn ab{{$audio->id}}" id="ab{{$audio->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
+										<a href="{{route('audio.deleteAdmin', $audio->id)}}" class="text-danger borrar-btn ab{{$audio->id}}" id="ab{{$audio->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
 									</td>
 								</tr>
 							@endforeach	

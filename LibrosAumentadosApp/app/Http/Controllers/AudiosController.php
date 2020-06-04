@@ -46,7 +46,7 @@ class AudiosController extends Controller
     public function create()
     {
         $capitulo_id = Session::get('capitulo_id');
-        return view('audio.form', compact('capitulo_id'));
+        return view('audio.formTable', compact('capitulo_id'));
     }
 
     /**
@@ -76,12 +76,19 @@ class AudiosController extends Controller
         //Lo guardo en la base de datos
         $datos->archivo ="audios/" .$archivo->getClientOriginalName();
 
-        $id = Session::get('capitulo_id');
-        $datos->capitulo_id = $id;
         
-        $datos->save();
-        
-        return redirect()->route('audio.all', $id);
+
+
+        if(isset($request->capitulo_id) && $request->capitulo_id!=null){
+            $datos->capitulo_id = $request->capitulo_id;
+            $datos->save();
+            return redirect()->route('audio.admin');
+        }else{
+            $capitulo_id = Session::get('capitulo_id');
+            $datos->capitulo_id = $capitulo_id;
+            $datos->save();
+            return redirect()->route('libro.audios', $capitulo_id);
+        }
     }
 
     /**
@@ -105,8 +112,10 @@ class AudiosController extends Controller
     {
         $datos = Audio::findOrFail($id);
         //Capitulos
-        $capitulo_id = Session::get('capitulo_id');
-        return view('audio.form', compact('datos','capitulo_id'));
+        $capitulo = Capitulo::findOrFail($datos->capitulo_id);
+        //libro
+        $libro = Libro::findOrFail($capitulo->libro_id);
+        return view('audio.formTable', compact('datos', 'capitulo', 'libro'));
     }
 
     /**
@@ -136,12 +145,39 @@ class AudiosController extends Controller
         $archivo = $request->file;
         if($archivo != null){
             $archivo->move('audios', $archivo->getClientOriginalName());
-            $datos->imagen = "audios/" . $archivo->getClientOriginalName();
+            $datos->archivo = "audios/" . $archivo->getClientOriginalName();
         }
         //Guardo la imagen con sus datos
         $datos->save();
+        return redirect()->route('libro.audios', $capitulo_id);
+        
+    }
+    public function updateAdmin(Request $request, $id)
+    {
+        $this->validate($request, [
+            'titulo' => 'required|max:50',
+            'descripcion' => 'required|max:255',
+            'file' => 'mimetypes:audio/mpeg'
+        ]);
 
-        return redirect()->route('audio.all', $capitulo_id);
+        $datos = Audio::findOrFail($id);
+        $datos->titulo = $request->titulo;
+        $datos->descripcion = $request->descripcion;
+        $capitulo_id = Session::get('capitulo_id');
+        $datos->capitulo_id = $capitulo_id;
+
+        
+
+        //Audio
+        $archivo = $request->file;
+        if($archivo != null){
+            $archivo->move('audios', $archivo->getClientOriginalName());
+            $datos->archivo = "audios/" . $archivo->getClientOriginalName();
+        }
+        //Guardo la imagen con sus datos
+        $datos->save();
+        return redirect()->route('audio.admin', $capitulo_id);
+        
     }
 
     /**
@@ -156,7 +192,15 @@ class AudiosController extends Controller
         $id_capitulo = $datos->capitulo_id;
         unlink($datos->archivo);
         $datos->delete();
-        return redirect()->route('audio.all', $id_capitulo);
+        return redirect()->route('libro.audios', $id_capitulo);
+    }
+    public function deleteAdmin($id)
+    {
+        $datos = Audio::findOrFail($id);
+        $id_capitulo = $datos->capitulo_id;
+        unlink($datos->archivo);
+        $datos->delete();
+        return redirect()->route('audio.admin', 'id_capitulo');
     }
 
 
