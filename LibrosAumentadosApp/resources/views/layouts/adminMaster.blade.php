@@ -36,7 +36,50 @@
     <!-- Custom Fonts -->
     <script src="https://kit.fontawesome.com/df8e722098.js" crossorigin="anonymous"></script>
     
+    <!--Galerias form de imagenes -->
+    <style>
+    .contenido{
+        border-radius: 5px;
+        background-color: rgb(48, 48, 48);
+        
+        }
+    .grid-container {
+        height: 70%;
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-gap: 10px;
+        padding: 10px;
+        }
 
+    .grid-container > div {
+        text-align: center;
+        padding: 20px 0;
+        }
+
+    .item2 {
+        grid-column-start: 2;
+        grid-row-start: 1;
+        grid-row-end: 6;
+        }
+
+
+    .grid-container2 {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        grid-gap: 10px;
+        padding: 10px;
+        }
+    .buscador-grid {
+        grid-column-start: 1;
+        grid-column-end: 5;
+
+        }
+    .image-grid img{
+        width: 86px;
+        height: 45px;
+        border-radius: 5px;
+        }
+    </style>
 
 
     <!-- jQuery -->

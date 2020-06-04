@@ -42,7 +42,7 @@
 										<a href="{{route('galeria.editAdmin', $galeria->id)}}" class="text-warning modificar-btn gm{{$galeria->id}}" id="gm{{$galeria->id}}"><i class="fas fa-pen-square"></i> Modificar</a>
 									</td>
 									<td>
-										<a href="{{route('galeria.delete', $galeria->id)}}" class="text-danger borrar-btn gb{{$galeria->id}}" id="gb{{$galeria->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
+										<a href="{{route('galeria.deleteAdmin', $galeria->id)}}" class="text-danger borrar-btn gb{{$galeria->id}}" id="gb{{$galeria->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
 									</td>
 								</tr>
 							@endforeach

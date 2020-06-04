@@ -99,15 +99,17 @@ class GaleriasController extends Controller
     public function create()
     {
         //Capitulo
-        $capitulo_id = Session::get('capitulo_id');
+        $capitulo = Capitulo::findOrFail(Session::get('capitulo_id'));
+        //libro
+        $libro = Libro::findOrFail($capitulo->libro_id);
 
         //Listado de imagenes
-        $galerias = DB::select('select id, titulo from galerias where capitulo_id=:id',['id'=>$capitulo_id]);
+        $galerias = DB::select('select id, titulo from galerias where capitulo_id=:id',['id'=>$capitulo->id]);
 
         //Listado de galerias existentes
         //$imagenes = DB::table('imagens')->select('id', 'imagen')->where('capitulo_id', '=', $capitulo_id)->get();
-        $imagenes = DB::select("select id, titulo, imagen from imagens where capitulo_id=:id",['id'=>$capitulo_id]);
-        return view('galeria.form', compact('capitulo_id','imagenes'));
+        $imagenes = DB::select("select id, titulo, imagen from imagens where capitulo_id=:id",['id'=>$capitulo->id]);
+        return view('galeria.formTable', compact('capitulo','libro', 'imagenes'));
     }
 
     /**
@@ -140,18 +142,29 @@ class GaleriasController extends Controller
 
         $capitulo = Session::get('capitulo_id');
        
-        $datos_galeria->capitulo_id = $capitulo;
-        //Guardo galeria
-        $datos_galeria->save();
 
-        //Id de la galeria
-        $id = DB::select('select max(id) as "id" from galerias');
-        $galeria_id = $id[0]->id;
-        //Array con todas las id de imagenes
-        $imagenes_id = $request->imagenes_id;
-        $datos_galeria->imagenes()->sync($imagenes_id);
-
-        return redirect()->route('galeria.all', $capitulo);
+        if(isset($request->capitulo_id) && $request->capitulo_id!=null){
+            $datos_galeria->capitulo_id = $request->capitulo_id;
+            $datos_galeria->save();
+            //Id de la galeria
+            $id = DB::select('select max(id) as "id" from galerias');
+            $galeria_id = $id[0]->id;
+            //Array con todas las id de imagenes
+            $imagenes_id = $request->imagenes_id;
+            $datos_galeria->imagenes()->sync($imagenes_id);
+            return redirect()->route('galeria.admin');
+        }else{
+            $capitulo_id = Session::get('capitulo_id');
+            $datos_galeria->capitulo_id = $capitulo_id;
+            $datos_galeria->save();
+            //Id de la galeria
+            $id = DB::select('select max(id) as "id" from galerias');
+            $galeria_id = $id[0]->id;
+            //Array con todas las id de imagenes
+            $imagenes_id = $request->imagenes_id;
+            $datos_galeria->imagenes()->sync($imagenes_id);
+            return redirect()->route('libro.galerias', $capitulo_id);
+        }
 
     }
 
@@ -181,10 +194,12 @@ class GaleriasController extends Controller
      */
     public function edit($id)
     {
-        $galeria = Galeria::findOrFail($id);
-        $capitulo_id = $galeria->capitulo_id;
-        $imagenes = DB::select('select id, imagen, titulo from imagens where capitulo_id=:id', ["id"=>$capitulo_id]);
-        return view('galeria.form', compact('galeria', 'imagenes', 'capitulo_id'));
+        $datos = Galeria::findOrFail($id);
+        $capitulo = Capitulo::findOrFail($datos->capitulo_id);
+        $libro = Libro::findOrFail($capitulo->libro_id);
+        $imagenes = DB::select('select id, imagen, titulo from imagens where capitulo_id=:id', ["id"=>$datos->capitulo_id]);
+        
+        return view('galeria.formTable', compact('imagenes', 'capitulo', 'datos', 'libro'));
     }
 
     /**
@@ -195,6 +210,38 @@ class GaleriasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
+    {
+        //Campos de galeria
+        $datos_galeria = Galeria::findOrFail($id);
+        $datos_galeria->titulo = $request->titulo;
+        $datos_galeria->descripcion = $request->descripcion;
+        $datos_galeria->capitulo_id = Session::get('capitulo_id');
+        $datos_galeria->tipo = $request->tipo;
+
+
+        
+
+        //Cubierta
+        $archivo = $request->cubierta;
+        if($archivo != null){
+            $archivo->move('imagenes', $archivo->getClientOriginalName());
+            $datos_galeria->cubierta ="imagenes/" .$archivo->getClientOriginalName();  
+        }
+         $capitulo_id = Session::get('capitulo_id');
+        
+        //Guardo la informacion de la galeria
+        $datos_galeria->save();
+
+        //Actualizo las imagenes relacionadas con la galeria
+        $imagenes = $request->imagenes_id;
+        if($imagenes != null){
+            //Sincronizo los campos relacionados entre galerias e imagenes de forma automatica Laravel te quiero
+            $datos_galeria->imagenes()->sync($imagenes);
+        }
+        return redirect()->route('libro.galerias', $capitulo_id);
+
+    }
+    public function updateAdmin(Request $request, $id)
     {
         //Campos de galeria
         $datos_galeria = Galeria::findOrFail($id);
@@ -223,7 +270,7 @@ class GaleriasController extends Controller
             //Sincronizo los campos relacionados entre galerias e imagenes de forma automatica Laravel te quiero
             $datos_galeria->imagenes()->sync($imagenes);
         }
-        return redirect()->route('galeria.show', $id);
+        return redirect()->route('galeria.admin', $id);
 
     }
 
@@ -238,9 +285,20 @@ class GaleriasController extends Controller
         $datos = Galeria::findOrFail($id);
         $id_capitulo = $datos->capitulo_id;
         $datos->delete();
-        return redirect()->route('galeria.all', $id_capitulo);
+        
+        return redirect()->route('libro.galerias', $id_capitulo);
     }
+    public function deleteAdmin($id)
+    {
+        $datos = Galeria::findOrFail($id);
+        $id_capitulo = $datos->capitulo_id;
+    
+        $datos->delete();
 
+        
+        $id = Session::get('capitulo_id');
+        return redirect()->route('galeria.admin', $id);
+    }
 
 
 
@@ -271,8 +329,11 @@ class GaleriasController extends Controller
 //Backend CRUD Administrador ******************************************************************************************************************
 public function adminIndex($id)
     {
-        $libro_id = $consulta = DB::select("select libro_id from capitulos where id=:id", ['id'=>$id]);
-        $libro_id = $libro_id[0]->libro_id;
+        $capitulo = DB::select("select * from capitulos where id=:id", ['id'=>$id]);
+        
+        $libro_id = $capitulo[0]->libro_id;
+        
+        
 
         //Variables de sesion para imagenes
         Session::put('libro_id', $libro_id);
@@ -337,7 +398,7 @@ public function adminIndex($id)
         //Imagenes
         $imagenes = DB::select("select * from imagens");
         //Elemento $id
-        $datos = Video::findOrFail($id);
+        $datos = Galeria::findOrFail($id);
         return view('galeria.formTable', compact('datos', 'libros', 'capitulos', 'imagenes'));
     }
 
