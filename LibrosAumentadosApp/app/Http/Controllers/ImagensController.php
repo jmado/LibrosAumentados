@@ -71,12 +71,21 @@ class ImagensController extends Controller
     public function create()
     {
         //Capitulo
-        $capitulo_id = Session::get('capitulo_id');
-
+        $capitulo = Capitulo::find(Session::get('capitulo_id'));
+        $libro = Libro::find($capitulo->id);
+        
         //Listado de galerias existentes
         //$galerias = DB::select('select id, titulo from galerias where capitulo_id=:id',['id'=>$capitulo_id]);
 
-        return view('imagen.form', compact('capitulo_id'));
+        return view('imagen.formTable', compact('capitulo', 'libro'));
+    }
+    public function createAdmin()
+    {
+        //Libros
+        $libros = DB::select("select * from libros");
+        //Capitulos
+        $capitulos = DB::select("select * from capitulos");
+        return view('imagen.formTable', compact('libros', 'capitulos'));
     }
 
     /**
@@ -105,15 +114,20 @@ class ImagensController extends Controller
         $archivo = $request->file;
         $archivo->move('imagenes', $archivo->getClientOriginalName());
         $datos->imagen = "imagenes/".$archivo->getClientOriginalName();
-        //Capitulo al que pertenece
-        $id = Session::get('capitulo_id');
-        $datos->capitulo_id = $id;
-        //Guardo
-        $datos->save();
+        
 
+        if(isset($request->capitulo_id) && $request->capitulo_id!=null){
+            $datos->capitulo_id = $request->capitulo_id;
+            $datos->save();
+            return redirect()->route('imagen.admin');
+        }else{
+            $capitulo_id = Session::get('capitulo_id');
+            $datos->capitulo_id = $capitulo_id;
+            $datos->save();
+            return redirect()->route('libro.imagenes', $capitulo_id);
+        }
         
         
-        return redirect()->route('imagen.all', $id);
     }
 
     /**
@@ -139,7 +153,8 @@ class ImagensController extends Controller
         $datos = Imagen::findOrFail($id);
       
         //Listado de capitulos 
-        $capitulo_id = Session::get('capitulo_id');
+        $capitulo = Capitulo::findOrFail($datos->capitulo_id);
+        $libro = Libro::findOrFail($capitulo->libro_id);
         //Listado de galerias  
         //$galerias = DB::table('galerias')->select('id','titulo')->where('capitulo_id', '=', $capitulo_id)->get();
        
@@ -149,8 +164,8 @@ class ImagensController extends Controller
         where galeria_imagen.imagen_id=:id',['id'=>$id]);
 
         
-       
-        return view('imagen.form', compact('datos','capitulo_id','galerias'));
+        return view('imagen.formTable', compact('datos', 'capitulo', 'galerias', 'libro'));
+        //return view('imagen.formAdmin', compact('datos','capitulo_id','galerias'));
     }
 
     /**
@@ -185,9 +200,36 @@ class ImagensController extends Controller
         $datos->save();
 
        
-        $id = Session::get('libro_id');
+        $id = Session::get('capitulo_id');
+        return redirect()->route('libro.imagenes', $id);
+    }
+    public function updateAdmin(Request $request, $id)
+    {
+        $this->validate($request, [
+            'titulo' => 'required|max:50',
+            'descripcion' => 'required|max:255',
+            'file' => 'mimes:jpeg,png'
+        ]);
 
-        return redirect()->route('imagen.all', $id);
+
+        $datos = Imagen::findOrFail($id);
+        $datos->titulo = $request->titulo;
+        $datos->descripcion = $request->descripcion;
+        //Capitulo al que pertenece
+        $datos->capitulo_id = Session::get('capitulo_id');
+
+        $archivo = $request->file;
+       //Imagen
+        if($archivo != null){
+            $archivo->move('imagenes', $archivo->getClientOriginalName());
+            $datos->imagen = "imagenes/" . $archivo->getClientOriginalName();
+        }
+        //Guardo la imagen con sus datos
+        $datos->save();
+
+       
+        $id = Session::get('capitulo_id');
+        return redirect()->route('imagen.admin', $id);
     }
 
     /**
@@ -216,7 +258,18 @@ class ImagensController extends Controller
 
         
         $id = Session::get('capitulo_id');
-        return redirect()->route('imagen.all', $id);
+        return redirect()->route('libro.imagenes', $id);
+    }
+    public function deleteAdmin($id)
+    {
+        $datos = Imagen::findOrFail($id);
+        $id_capitulo = $datos->capitulo_id;
+    
+        $datos->delete();
+
+        
+        $id = Session::get('capitulo_id');
+        return redirect()->route('imagen.admin', $id);
     }
 
 
@@ -285,19 +338,7 @@ class ImagensController extends Controller
         $datos = Imagen::findOrFail($id);
         return view('imagen.showTable', compact('datos'));
     }
-/**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function createAdmin()
-    {
-        //Libros
-        $libros = DB::select("select * from libros");
-        //Capitulos
-        $capitulos = DB::select("select * from capitulos");
-        return view('imagen.formTable', compact('libros', 'capitulos'));
-    }
+
 //Admin tablas
     /**
      * Show the form for editing the specified resource.

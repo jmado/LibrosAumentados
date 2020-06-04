@@ -52,7 +52,7 @@
                                 <a onclick="window.history.back()" class="btn btn-primary btn-lg btn-block"><i class="fa fa-arrow-left"></i> Atras</a>
                             </div>
                             <div class="col col-sm-6 options">
-                                <a href="{{ route('imagen.createAdmin') }}" class="btn btn-primary btn-lg btn-block"><i class="glyphicon glyphicon-plus"></i> Nuevo</a>
+                                <a href="{{ route('imagen.create') }}" class="btn btn-primary btn-lg btn-block"><i class="glyphicon glyphicon-plus"></i> Nuevo</a>
                             </div>
                         </div>
                         
@@ -75,7 +75,7 @@
                         </div>
                         <div class="row">
                             <div class="col col-sm-6 options">
-                                <a href="{{route('imagen.editAdmin', $dato->id)}}" class="btn btn-warning btn-lg btn-block btn-sm"><i class="fa fa-pencil"></i> Modificar</a>
+                                <a href="{{route('imagen.edit', $dato->id)}}" class="btn btn-warning btn-lg btn-block btn-sm"><i class="fa fa-pencil"></i> Modificar</a>
                             </div>
                             <div class="col col-sm-6 options">
                                 <a href="{{route('imagen.delete', $dato->id)}}" class="btn btn-danger btn-lg btn-block btn-sm"><i class="fa fa-minus"></i> Borrar</a>

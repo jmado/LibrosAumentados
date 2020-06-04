@@ -150,9 +150,7 @@
                             <li>
                                 <a href="{{route('descarga.admin')}}">Otros</a>
                             </li>
-                            <li>
-                                <a href="{{route('pagina.admin')}}">Páginas</a>
-                            </li>    
+                                
                         </ul>
                     </li>
                     

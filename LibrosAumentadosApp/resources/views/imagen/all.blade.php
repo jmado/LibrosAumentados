@@ -36,13 +36,13 @@
 									<td>{{$imagen->titulo}}</td>
 									<td>{{$imagen->descripcion}}</td>
 									<td>
-										<a href="{{route('imagen.showAdmin', $imagen->id)}}" class="ver-btn iv{{$imagen->id}}" id="iv{{$imagen->id}}"><i class="far fa-eye"></i> Ver</a>
+										<a href="{{URL::asset($imagen->imagen)}}" class="ver-btn iv{{$imagen->id}}" id="iv{{$imagen->id}}"><i class="far fa-eye"></i> Ver</a>
 									</td>
 									<td>
 										<a href="{{route('imagen.editAdmin', $imagen->id)}}" class="text-warning modificar-btn im{{$imagen->id}}" id="im{{$imagen->id}}"><i class="fas fa-pen-square"></i> Modificar</a>
 									</td>
 									<td>
-										<a href="{{route('imagen.delete', $imagen->id)}}" class="text-danger borrar-btn ib{{$imagen->id}}" id="ib{{$imagen->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
+										<a href="{{route('imagen.deleteAdmin', $imagen->id)}}" class="text-danger borrar-btn ib{{$imagen->id}}" id="ib{{$imagen->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
 									</td>
 								</tr>
 							@endforeach	
