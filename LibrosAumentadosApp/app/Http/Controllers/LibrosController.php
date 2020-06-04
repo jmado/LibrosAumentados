@@ -72,7 +72,7 @@ class LibrosController extends Controller
 
         $lib->save();
 
-        return redirect()->route('libro.index');
+        return redirect()->route('libro.adminIndex');
         
     }
 
@@ -120,7 +120,7 @@ class LibrosController extends Controller
 
         $lib->save();
 
-        return redirect()->route('libro.index');
+        return redirect()->route('libro.adminIndex');
     }
 
     /**
@@ -134,7 +134,7 @@ class LibrosController extends Controller
         $lib = Libro::find($id);
         $lib->delete();
         
-        return redirect()->route('libro.index');
+        return redirect()->route('libro.adminIndex');
     }
 
     /**

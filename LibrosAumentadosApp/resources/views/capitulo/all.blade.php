@@ -24,7 +24,6 @@
 									<th>Libro ID</th>
 									<th>Número</th>
 									<th>Título</th>
-									<th>Ver</th>
 									<th>Modificar</th>
 									<th>Borrar</th>
 								</tr>
@@ -36,14 +35,12 @@
 									<td>{{$capitulo->libro_id}}</td>
 									<td>{{$capitulo->numero_orden}}</td>
 									<td>{{$capitulo->titulo}}</td>
-									<td>
-										<a href="{{route('capitulo.showAdmin', $capitulo->id)}}" class="ver-btn cv{{$capitulo->id}}" id="cv{{$capitulo->id}}"><i class="far fa-eye"></i> Ver</a>
-									</td>
+									
 									<td>
 										<a href="{{route('capitulo.editAdmin', $capitulo->id)}}" class="text-warning modificar-btn cm{{$capitulo->id}}" id="cm{{$capitulo->id}}"><i class="fas fa-pen-square"></i> Modificar</a>
 									</td>
 									<td>
-										<a href="{{route('capitulo.delete', $capitulo->id)}}" class="text-danger borrar-btn cb{{$capitulo->id}}" id="cb{{$capitulo->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
+										<a href="{{route('capitulo.deleteAdmin', $capitulo->id)}}" class="text-danger borrar-btn cb{{$capitulo->id}}" id="cb{{$capitulo->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
 									</td>
 								</tr>
 							@endforeach	

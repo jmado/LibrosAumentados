@@ -48,7 +48,7 @@
                                 <a onclick="window.history.back()" class="btn btn-primary btn-lg btn-block"><i class="fa fa-arrow-left"></i> Atras</a>
                             </div>
                             <div class="col col-sm-6 options">
-                                <a href="{{ route('capitulo.createAdmin') }}" class="btn btn-primary btn-lg btn-block"><i class="glyphicon glyphicon-plus"></i> Nuevo</a>
+                                <a href="{{ route('capitulo.create') }}" class="btn btn-primary btn-lg btn-block"><i class="glyphicon glyphicon-plus"></i> Nuevo</a>
                             </div>
                         </div>
                         
@@ -71,7 +71,7 @@
                         </div>
                         <div class="row">
                             <div class="col col-sm-6 options">
-                                <a href="{{route('capitulo.editAdmin', $libro->id)}}" class="btn btn-warning btn-lg btn-block btn-sm"><i class="fa fa-pencil"></i> Modificar</a>
+                                <a href="{{route('capitulo.edit', $libro->id)}}" class="btn btn-warning btn-lg btn-block btn-sm"><i class="fa fa-pencil"></i> Modificar</a>
                             </div>
                             <div class="col col-sm-6 options">
                                 <a href="{{route('capitulo.delete', $capitulo->id)}}" class="btn btn-danger btn-lg btn-block btn-sm"><i class="fa fa-minus"></i> Borrar</a>

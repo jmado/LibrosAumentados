@@ -15,7 +15,11 @@
                         <div class="col-lg-12 text-center">
 
                             @isset($datos)
-                                <form action="{{ route('capitulo.update', ['capitulo' => $datos->id]) }}" method="POST" enctype='multipart/form-data'>
+                                @isset($libros)
+                                    <form action="{{ route('capitulo.updateAdmin', ['capitulo' => $datos->id]) }}" method="POST" enctype='multipart/form-data'>
+                                @else
+                                    <form action="{{ route('capitulo.update', ['capitulo' => $datos->id]) }}" method="POST" enctype='multipart/form-data'>
+                                @endisset
                                 @method("PUT")
                             @else
                                 <form action="{{ route('capitulo.store') }}" method="POST" enctype="multipart/form-data">
@@ -35,16 +39,36 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
-                                            
+                                            @if(isset($libros) && $libros!=null)
                                             <div class="form-group">
                                                 <label for="">Libro</label>
-                                                <select name="select" class="form-control">
-                                                    <option value="value1">Value 1</option> 
-                                                    <option value="value2" selected>Value 2</option>
-                                                    <option value="value3">Value 3</option>
+                                                
+                                                <select name="libro_id" class="form-control">
+                                                @foreach($libros as $l)
+                                                    @if(isset($libro) && ($l->id == $libro->id))
+                                                    <option value="{{$l->id}}" selected>{{$l->titulo}}</option> 
+                                                    @else
+                                                    <option value="{{$l->id}}" >{{$l->titulo}}</option>
+                                                    @endif
+                                                @endforeach
                                                 </select>
+
                                             </div>
+                                            @else
+                                            <div class="row">
+                                                <div class="col">
+                                                    <img src="{{URL::asset($libro->cubierta)}}" alt="Cubierta del libro" style="width: 190px; height: 300px;">
+                                                </div>
+                                                <div class="col">
+                                                    <p>{{$libro->titulo}}</p>
+                                                </div>
+                                            </div>
+                                            @endif
                     
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <button type="submit" class="btn btn-default">Enviar</button>
+                                            <button type="reset" class="btn btn-default" onclick="window.history.back()">Cancelar</button>
                                         </div>
                                     </div>
 
@@ -59,12 +83,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <button type="submit" class="btn btn-default">Enviar</button>
-                                            <button type="reset" class="btn btn-default" onclick="window.history.back()">Cancelar</button>
-                                        </div>
-                                    </div>
+                                    
                                 
                                 
                                 

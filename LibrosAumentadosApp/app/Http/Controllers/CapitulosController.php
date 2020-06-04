@@ -18,7 +18,7 @@ class CapitulosController extends Controller
      */
     public function index($libro_id)
     {
-        $capituloList = Capitulo::where('libro_id', '=', $libro_id)->orderBy('numero_orden')->simplePaginate(3);
+        $capituloList = Capitulo::where('libro_id', '=', $libro_id)->orderBy('numero_orden')->simplePaginate(8);
         $id = $libro_id;
         //Variables de sesion para imagenes
         Session::put('libro_id', $libro_id);
@@ -28,7 +28,7 @@ class CapitulosController extends Controller
     public function adminIndex($libro_id)
     {
         $libro = Libro::find($libro_id);
-        $capitulos = Capitulo::where('libro_id', '=', $libro_id)->orderBy('numero_orden')->simplePaginate(3);
+        $capitulos = Capitulo::where('libro_id', '=', $libro_id)->orderBy('numero_orden')->simplePaginate(8);
         //Variables de sesion para imagenes
         Session::put('libro_id', $libro_id);
         return view('capitulo.capituloAll', compact('libro','capitulos', 'libro_id'));
@@ -39,13 +39,7 @@ class CapitulosController extends Controller
         
         return view('capitulo.all', compact('capitulos'));
     }
-    /*
-    public function mostrarCapitulosLibro($id_book)
-    {
-        $capituloList = Capitulo::where('libro_id', '=', $id_book)->get();
-        return view('capitulo.all', compact('capituloList'));
-    }
-*/
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -53,7 +47,8 @@ class CapitulosController extends Controller
      */
     public function create()
     {
-        return view('capitulo.form');
+        $libro = Libro::find(Session::get('libro_id'));
+        return view('capitulo.formTable', compact('libro'));
     }
 
     /**
@@ -76,10 +71,18 @@ class CapitulosController extends Controller
         $libro_id = Session::get('libro_id');;
         $cap->libro_id = $libro_id;
         
-       
+        if(isset($r->libro_id) && $r->libro_id!=null){
+            $cap->libro_id = $r->libro_id;
+            $cap->save();
+            return redirect()->route('capitulo.admin');
+        }else{
+            $capitulo_id = Session::get('libro_id');
+            $cap->libro_id = $libro_id;
+            $cap->save();
+            return redirect()->route('libro.capitulos', $libro_id);
+        }
 
-        $cap->save();
-        return redirect()->route('capitulo.all', $libro_id);
+        
     }
 
     /**
@@ -101,8 +104,9 @@ class CapitulosController extends Controller
      */
     public function edit($id)
     {
-        $capitulo = Capitulo::find($id);
-        return view('capitulo.form', compact('capitulo'));
+        $datos = Capitulo::find($id);
+        $libro = Libro::find($datos->libro_id);
+        return view('capitulo.formTable', compact('datos', 'libro'));
     }
 
     /**
@@ -124,7 +128,21 @@ class CapitulosController extends Controller
 
         $cap->save();
 
-        return redirect()->route('capitulo.all', $libro_id);
+        return redirect()->route('libro.capitulos', $libro_id);
+    }
+    public function updateAdmin(Request $r, $id)
+    {
+        $cap = Capitulo::find($id);
+        $cap->numero_orden = $r->numero_orden;
+        $cap->titulo = $r->titulo;
+        $cap->capitulo_padre_id = ($r->numero_orden == 1)? '0' : ($r->numero_orden-1);
+
+        $libro_id = Session::get('libro_id');
+        $cap->libro_id = $libro_id;
+
+        $cap->save();
+
+        return redirect()->route('capitulo.admin');
     }
 
     /**
@@ -136,10 +154,18 @@ class CapitulosController extends Controller
     public function destroy($id)
     {
         $cap = Capitulo::find($id);
+        $libro_id = $cap->libro_id;
+        $cap->delete();
+        return redirect()->route('libro.capitulos', $libro_id);
+        
+    }
+    public function deleteAdmin($id)
+    {
+        $cap = Capitulo::find($id);
         $id_libro = $cap->libro_id;
         $cap->delete();
 
-        return redirect()->route('capitulo.all', $id_libro);
+        return redirect()->route('capitulo.admin');
     }
 
      /**
