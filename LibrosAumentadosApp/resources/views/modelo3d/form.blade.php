@@ -1,73 +1,92 @@
-@extends("layouts.master")
+@extends("layouts.adminMaster")
 
 @section("content")
 
-
-
-<div class="container p-5">
-
-<section class="text-center">
-    <div class="container">    
-        <button class="btn btn-primary btn-block" role="button" onclick="goBack()">Atrás</button>
-        <script>
-            function goBack() {
-                window.history.back();
-            }
-        </script>
-        
-    </div>
-</section>
-
-<div class="container ">
-    <div class="form">
-
-    
-        @isset($modelo)
-            <form action="{{ route('modelo.update', ['modelo' => $modelo->id]) }}" method="POST" enctype='multipart/form-data'>
-            @method("PUT")
-        @else
-            <form action="{{ route('modelo.store') }}" method="POST" enctype="multipart/form-data">
-        @endisset
-            @csrf
-            
-            
-           
-            <div class="form-group">
-                <label for="title">Titulo:</label>
-                <input id="title" type="text" name="titulo" class="form-control" value="{{$modelo->titulo ?? ''}}" required>
-            </div>
-            
-           
-
-            <div class="form-group">
-                <label for="info">Descripción:</label>
-                <input id="info" type="text" name="descripcion" class="form-control" value="{{$modelo->descripcion ?? ''}}">
-            </div>
-            
-           
-
-            <div class="form-group">
-                <div class="custom-file">
-                    <input type="file" name="file" class="custom-file-input" id="fichero" lang="es">
-                    <label class="custom-file-label" for="fichero">Seleccionar Archivo .ZIP</label>
+<div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                {{-- 
+                Boton de atras
+                --}}
                 </div>
-            </div>
-            
-            <div class="form-group">
-                @if(count($errors)>0)
-                @foreach($errors->all() as $error)
-                    <div class="text-danger">{{$error}}</div>
-                @endforeach
-                @endif   
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+
+                            @isset($datos)
+                                <form action="{{ route('modelo.updateAdmin', ['modelo' => $datos->id]) }}" method="POST" enctype='multipart/form-data'>
+                                @method("PUT")
+                            @else
+                                <form action="{{ route('modelo.store') }}" method="POST" enctype="multipart/form-data">
+                            @endisset
+                                @csrf
+
+
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="title">Título:</label>
+                                                <input class="form-control" id="title" type="text" name="titulo"  value="{{$datos->titulo ?? ''}}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="info">Descripción:</label>
+                                                <input id="info" type="text" name="descripcion" class="form-control" value="{{$datos->descripcion ?? ''}}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="custom-file">
+                                                    <label class="custom-file-label" for="fichero">Seleccionar Modelo 3D</label>
+                                                    <input type="file" name="file" class="custom-file-input" id="fichero" lang="es"> 
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-lg-6">
+                                            
+                                            <div class="form-group">
+                                                <label for="">Libro</label>
+                                                
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Capitulo</label>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                @if(count($errors)>0)
+                                                    @foreach($errors->all() as $error)
+                                                        <div class="text-danger">{{$error}}</div>
+                                                    @endforeach
+                                                @endif 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <button type="submit" class="btn btn-default">Enviar</button>
+                                            <button type="reset" class="btn btn-default" onclick="window.history.back()">Cancelar</button>
+                                        </div>
+                                    </div>
+                                
+                                
+                                
+                                </form>
+                        </div>
+                        <!-- /.col-lg-6 (nested) -->
+                        
+                        <!-- /.col-lg-6 (nested) -->
+                    </div>
+                    <!-- /.row (nested) -->
                 </div>
-            
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+</div>	
 
-            <input type="submit" value="Enviar" class="btn btn-primary btn-block" role="button">
-
-            </form>
-
-    </div>    
-</div>
-
-</div>
 @endsection

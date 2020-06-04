@@ -15,10 +15,10 @@
                         <div class="col-lg-12 text-center">
 
                             @isset($datos)
-                                <form action="{{ route('video.update', ['video' => $datos->id]) }}" method="POST" enctype='multipart/form-data'>
+                                <form action="{{ route('modelo.update', ['modelo' => $datos->id]) }}" method="POST" enctype='multipart/form-data'>
                                 @method("PUT")
                             @else
-                                <form action="{{ route('video.store') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('modelo.store') }}" method="POST" enctype="multipart/form-data">
                             @endisset
                                 @csrf
 

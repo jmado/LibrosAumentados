@@ -30,6 +30,9 @@
     <!-- Morris Charts CSS -->
     <link href="{{ URL::asset('css/morris.css') }}" rel="stylesheet">
 
+    <!-- Editor de texto online -->
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/pell/dist/pell.min.css">
+
     <!-- Custom Fonts -->
     <script src="https://kit.fontawesome.com/df8e722098.js" crossorigin="anonymous"></script>
     

@@ -39,10 +39,10 @@
 										<a href="{{route('pagina.show', $pagina->id)}}" class="ver-btn pv{{$pagina->id}}" id="pv{{$pagina->id}}"><i class="far fa-eye"></i> Ver</a>
 									</td>
 									<td>
-										<a href="{{route('pagina.edit', $pagina->id)}}" class="text-warning modificar-btn pm{{$pagina->id}}" id="pm{{$pagina->id}}"><i class="fas fa-pen-square"></i> Modificar</a>
+										<a href="{{route('pagina.editAdmin', $pagina->id)}}" class="text-warning modificar-btn pm{{$pagina->id}}" id="pm{{$pagina->id}}"><i class="fas fa-pen-square"></i> Modificar</a>
 									</td>
 									<td>
-										<a href="#" class="text-danger borrar-btn pb{{$pagina->id}}" id="pb{{$pagina->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
+										<a href="{{route('pagina.deleteAdmin', $pagina->id)}}" class="text-danger borrar-btn pb{{$pagina->id}}" id="pb{{$pagina->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
 									</td>
 								</tr>
 							@endforeach	
@@ -53,7 +53,7 @@
 					<div class="well">
 						<h4>Añadir nuevas páginas</h4>
 						
-						<a class="btn btn-default btn-lg btn-block" href="{{route('pagina.create')}}"><i class="fas fa-plus-square"></i> Nueva página</a>
+						<a class="btn btn-default btn-lg btn-block" href="{{route('pagina.createAdmin')}}"><i class="fas fa-plus-square"></i> Nueva página</a>
 					</div>
 				</div>
 				<!-- /.panel-body -->

@@ -156,38 +156,57 @@ Route::get("/admin/{capitulo}/modelos3d", "Modelo_3dController@adminIndex")->nam
         Route::get("/admin/libros/showAdmin", "LibrosController@showAdmin")->name("libro.showAdmin");
         Route::get("/admin/libros/createAdmin", "LibrosController@createAdmin")->name("libro.createAdmin");
         Route::get("/admin/libros/{libro}/editAdmin", "LibrosController@editAdmin")->name("libro.editAdmin");
+        Route::get("/admin/libros/{libros}/deleteAdmin", "LibrosController@deleteAdmin")->name("libro.deleteAdmin");
+        Route::put("/admin/libros/{libros}", "LibrosController@updateAdmin")->name("libro.updateAdmin");
         //Capitulos
         Route::get("/admin/capitulos/showAdmin", "CapitulosController@showAdmin")->name("capitulo.showAdmin");
         Route::get("/admin/capitulos/createAdmin", "CapitulosController@createAdmin")->name("capitulo.createAdmin");
         Route::get("/admin/capitulos/{capitulo}/editAdmin", "CapitulosController@editAdmin")->name("capitulo.editAdmin");
+        Route::get("/admin/capitulos/{capitulo}/deleteAdmin", "CapitulosController@deleteAdmin")->name("capitulo.deleteAdmin");
+        Route::put("/admin/capitulos/{capitulo}", "CapitulosController@updateAdmin")->name("capitulo.updateAdmin");
         //Paginas
         Route::get("/admin/paginas/showAdmin", "PaginasController@showAdmin")->name("pagina.showAdmin");
         Route::get("/admin/paginas/createAdmin", "PaginasController@createAdmin")->name("pagina.createAdmin");
         Route::get("/admin/paginas/{pagina}/editAdmin", "PaginasController@editAdmin")->name("pagina.editAdmin");
+        Route::get("/admin/paginas/{pagina}/deleteAdmin", "PaginasController@deleteAdmin")->name("pagina.deleteAdmin");
+        Route::put("/admin/paginas/{pagina}", "PaginasController@updateAdmin")->name("pagina.updateAdmin");
         //Imagenes
         Route::get("/admin/imagenes/showAdmin", "ImagensController@showAdmin")->name("imagen.showAdmin");
         Route::get("/admin/imagenes/createAdmin", "ImagensController@createAdmin")->name("imagen.createAdmin");
         Route::get("/admin/imagenes/{imagen}/editAdmin", "ImagensController@editAdmin")->name("imagen.editAdmin");
+        Route::get("/admin/imagenes/{imagen}/deleteAdmin", "ImagensController@deleteAdmin")->name("imagen.deleteAdmin");
+        Route::put("/admin/imagenes/{imagen}", "ImagensController@updateAdmin")->name("imagen.updateAdmin");
         //Galerias
         Route::get("/admin/galerias/showAdmin", "GaleriasController@showAdmin")->name("galeria.showAdmin");
         Route::get("/admin/galerias/createAdmin", "GaleriasController@createAdmin")->name("galeria.createAdmin");
         Route::get("/admin/galerias/{galeria}/editAdmin", "GaleriasController@editAdmin")->name("galeria.editAdmin");
+        Route::get("/admin/galerias/{galeria}/deleteAdmin", "GaleriasController@deleteAdmin")->name("galeria.deleteAdmin");
+        Route::put("/admin/galerias/{galeria}", "GaleriasController@updateAdmin")->name("galeria.updateAdmin");
         //Audios
         Route::get("/admin/audios/showAdmin", "AudiosController@showAdmin")->name("audio.showAdmin");
         Route::get("/admin/audios/createAdmin", "AudiosController@createAdmin")->name("audio.createAdmin");
         Route::get("/admin/audios/{audio}/editAdmin", "AudiosController@editAdmin")->name("audio.editAdmin");
+        Route::get("/admin/audios/{audio}/deleteAdmin", "AudiosController@deleteAdmin")->name("audio.deleteAdmin");
+        Route::put("/admin/audios/{audio}", "AudiosController@updateAdmin")->name("audio.updateAdmin");
         //Videos
         Route::get("/admin/videos/showAdmin", "VideosController@showAdmin")->name("video.showAdmin");
         Route::get("/admin/videos/createAdmin", "VideosController@createAdmin")->name("video.createAdmin");
         Route::get("/admin/videos/{video}/editAdmin", "VideosController@editAdmin")->name("video.editAdmin");
+        Route::get("/admin/videos/{video}/deleteAdmin", "VideosController@deleteAdmin")->name("video.deleteAdmin");
+        Route::put("/admin/videos/{video}", "VideosController@updateAdmin")->name("video.updateAdmin");
         //Descargas
         Route::get("/admin/descargas/showAdmin", "DescargasController@showAdmin")->name("descarga.showAdmin");
         Route::get("/admin/descargas/createAdmin", "DescargasController@createAdmin")->name("descarga.createAdmin");
         Route::get("/admin/descargas/{descarga}/editAdmin", "DescargasController@editAdmin")->name("descarga.editAdmin");
+        Route::get("/admin/descargas/{descarga}/deleteAdmin", "DescargasController@deleteAdmin")->name("descarga.deleteAdmin");
+        Route::put("/admin/descargas/{descarga}", "DescargasController@updateAdmin")->name("descarga.updateAdmin");
         //Modelos3d
         Route::get("/admin/modelos/showAdmin", "Modelo_3dController@showAdmin")->name("modelo.showAdmin");
         Route::get("/admin/modelos/createAdmin", "Modelo_3dController@createAdmin")->name("modelo.createAdmin");
         Route::get("/admin/modelos/{modelo}/editAdmin", "Modelo_3dController@editAdmin")->name("modelo.editAdmin");
+        Route::get("/admin/modelos/{modelo}/deleteAdmin", "Modelo_3dController@deleteAdmin")->name("modelo.deleteAdmin");
+        Route::put("/admin/modelos/{modelo}", "Modelo_3dController@updateAdmin")->name("modelo.updateAdmin");
+        
 
 
 

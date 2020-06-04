@@ -17,7 +17,7 @@
 
 <div class="container">
     @isset($pagina)
-        <form id="formulario" action="{{ route('pagina.update', ['pagina' => $pagina->id]) }}" method="POST" enctype="multipart/form-data" class="formulario">
+        <form id="formulario" action="{{ route('pagina.updateAdmin', ['pagina' => $pagina->id]) }}" method="POST" enctype="multipart/form-data" class="formulario">
         @method("PUT")
     @else
         <form id="formulario" action="{{ route('pagina.store') }}" method="POST" enctype="multipart/form-data" class="formulario">

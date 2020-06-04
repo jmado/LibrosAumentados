@@ -31,6 +31,7 @@ class PaginasController extends Controller
         $paginaList = Pagina::where('capitulo_id', '=', $id)->simplePaginate(3);
 
         $id = $libro_id;
+        
         return view('pagina.all', compact('paginaList', 'id', 'numero_orden'));
     }
     
@@ -60,8 +61,18 @@ class PaginasController extends Controller
     {
        
         $pagina = new Pagina;
-        $capitulo_id = Session::get('capitulo_id');
+        
+
+        if(isset($r->capitulo_id) && $r->capitulo_id!= null){
+            
+            $capitulo_id = $r->capitulo_id;
+        }else{
+            $capitulo_id = Session::get('capitulo_id');
+        }
         $pagina->capitulo_id = $capitulo_id;
+
+
+
         $pagina->numero_pagina = $r->numero_pagina;
         $pagina->texto = $r->texto;
 
@@ -71,7 +82,13 @@ class PaginasController extends Controller
         //$pag->capitulo()->associate($r->capitulo_id);
         $pagina->capitulo()->associate(Session::get('capitulo_id'));
 
-        return redirect()->route('pagina.all', $capitulo_id);
+        if(isset($r->capitulo_id) && $r->capitulo_id!= null){   
+            return redirect()->route('pagina.admin');  
+        }else{
+            return redirect()->route('libro.paginas', $capitulo_id);  
+        }
+        
+        
         
     }
 
@@ -110,10 +127,16 @@ class PaginasController extends Controller
     {
         
         $pag = Pagina::find($id);
+        if(isset($r->capitulo_id) && $r->capitulo_id!= null){
+            $capitulo_id = $r->capitulo_id;
+        }else{
+            $capitulo_id = Session::get('capitulo_id');
+        }
+        
         $pag->numero_pagina = $r->numero_pagina;
         $pag->texto = $r->texto;
 
-        $capitulo_id = Session::get('capitulo_id');
+        
         $pag->capitulo_id = $capitulo_id;
 
         $pag->save();
@@ -136,7 +159,7 @@ class PaginasController extends Controller
         $id_capitulo = $pag->capitulo_id;
         $pag->delete();
 
-        return redirect()->route('pagina.all', $id_capitulo);
+        return redirect()->route('libro.paginas', $id_capitulo);
     }
 
 
@@ -171,7 +194,72 @@ class PaginasController extends Controller
         
         return view('pagina.all', compact('paginas'));
     }
-    
+    public function createAdmin()
+    {
+        //Libros
+        $libros = DB::select("select * from libros");
+        //Capitulos
+        $capitulos = DB::select("select * from capitulos");
+        return view('pagina.formTable', compact('libros', 'capitulos'));
+    }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function editAdmin($id)
+    {
+        //Libros
+        $libros = DB::select("select * from libros");
+        //Capitulos
+        $capitulos = DB::select("select * from capitulos");
+        //Elemento $id
+        $datos = Pagina::findOrFail($id);
+        return view('pagina.formTable', compact('datos', 'libros', 'capitulos'));
+    }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteAdmin($id)
+    {
+        $pag = Pagina::find($id);
+        $id_capitulo = $pag->capitulo_id;
+        $pag->delete();
 
+        return redirect()->route('pagina.admin');
+    }
+/**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateAdmin(Request $r, $id)
+    {
+        
+        $pag = Pagina::find($id);
+        if(isset($r->capitulo_id) && $r->capitulo_id!= null){
+            $capitulo_id = $r->capitulo_id;
+        }else{
+            $capitulo_id = Session::get('capitulo_id');
+        }
+        
+        $pag->numero_pagina = $r->numero_pagina;
+        $pag->texto = $r->texto;
 
+        
+        $pag->capitulo_id = $capitulo_id;
+
+        $pag->save();
+
+        
+        return redirect()->route('pagina.admin');
+        
+        
+    }
 }
