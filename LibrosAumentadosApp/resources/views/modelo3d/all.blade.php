@@ -42,7 +42,7 @@
 										<a href="{{route('modelo.editAdmin', $modelo->id)}}" class="text-warning modificar-btn mm{{$modelo->id}}" id="mm{{$modelo->id}}"><i class="fas fa-pen-square"></i> Modificar</a>
 									</td>
 									<td>
-										<a href="{{route('modelo.deleteAdmin', $modelo->id)}} class="text-danger borrar-btn mb{{$modelo->id}}" id="mb{{$modelo->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
+										<a href="{{route('modelo.deleteAdmin', $modelo->id)}}" class="text-danger borrar-btn mb{{$modelo->id}}" id="mb{{$modelo->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
 									</td>
 								</tr>
 							@endforeach	

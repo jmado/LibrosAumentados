@@ -45,10 +45,23 @@ class Modelo_3dController extends Controller
      */
     public function create()
     {
-        $capitulo_id = Session::get('capitulo_id');
-        return view('modelo3d.form', compact('capitulo_id'));
-    }
+        //Capitulo
+        $capitulo = Capitulo::find(Session::get('capitulo_id'));
+        $libro = Libro::find($capitulo->id);
+        
+        //Listado de galerias existentes
+        //$galerias = DB::select('select id, titulo from galerias where capitulo_id=:id',['id'=>$capitulo_id]);
 
+        return view('modelo3d.formTable', compact('capitulo', 'libro'));
+    }
+    public function createAdmin()
+    {
+        //Libros
+        $libros = DB::select("select * from libros");
+        //Capitulos
+        $capitulos = DB::select("select * from capitulos");
+        return view('modelo3d.formTable', compact('libros', 'capitulos'));
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -148,9 +161,12 @@ class Modelo_3dController extends Controller
      */
     public function edit($id)
     {
-        $capitulo_id = Session::get('capitulo_id');
-        $modelo = Modelo_3d::findOrFail($id);
-        return view('modelo3d.formTable', compact('modelo', 'capitulo_id'));
+        $datos = Modelo_3d::findOrFail($id);
+      
+        //Listado de capitulos 
+        $capitulo = Capitulo::findOrFail($datos->capitulo_id);
+        $libro = Libro::findOrFail($capitulo->libro_id);
+        return view('modelo3d.formTable', compact('datos', 'capitulo', 'libro'));
     }
 
     /**
@@ -218,9 +234,51 @@ class Modelo_3dController extends Controller
 
         $modelo->save();
         
+        $id = Session::get('capitulo_id');
+        return redirect()->route('libro.modelos', $id);
 
+        
+        
+    }
+    public function updateAdmin(Request $request, $id)
+    {
+        $this->validate($request, [
+            'titulo' => 'required|max:50',
+            'descripcion' => 'required|max:255',
+            'file' => 'mimetypes:application/zip'
+        ]);
+        $modelo = Modelo_3d::findOrFail($id);
+        $titulo = $request->titulo;
+        $descripcion = $request->descripcion;
+        $capitulo_id = Session::get('capitulo_id');
+        //Renombrar direcorio
+        $process = new Process('mv modelos3d/' . $modelo->titulo .' modelos3d/' . $titulo);
+        $process->run();
+        $modelo->titulo = $titulo;
+        $modelo->descripcion = $descripcion;
+        $modelo->capitulo_id = $capitulo_id;
+        $file = $request->file;
+        if($file != null){
+            //Borrar directorio texturas
+            $process = new Process('rm -r modelos3d/' . $titulo .'/textures');
+            $process->run();
+            //Actualizo el campo en la base de datos
+            $modelo->modelo_3d = $titulo;
+            //Muevo y descomprimo el zip
+            $carpeta_ruta = "modelos3d/" . $titulo;
+            $file->move( $carpeta_ruta , $file->getClientOriginalName() );
+            //Extraer en archivo zip    
+            $process = new Process('unzip ' . $carpeta_ruta . "/" . $file->getClientOriginalName() . " -d " . $carpeta_ruta);
+            $process->run();
+            //Elimino el ZIP
+            $process = new Process('rm -f modelos3d/' . $titulo . '/' . $file->getClientOriginalName());
+            $process->run();  
+        }
+        $modelo->save();
+        $id = Session::get('capitulo_id');
+        return redirect()->route('modelo.admin', $id);
 
-        return redirect()->route('modelo.all', $capitulo_id);
+        
         
     }
 
@@ -249,8 +307,19 @@ class Modelo_3dController extends Controller
         
         
         $modelo->delete();
+        $id = Session::get('capitulo_id');
+        return redirect()->route('libro.modelos', $id);
+    }
+    public function deleteAdmin($id)
+    {
+        $datos = Modelo_3d::findOrFail($id);
+        $id_capitulo = $datos->capitulo_id;
+    
+        $datos->delete();
 
-        return redirect()->route('libro.modelos', $capitulo_id); 
+        
+        
+        return redirect()->route('modelo.admin', $id_capitulo);
     }
 
 
@@ -307,19 +376,7 @@ class Modelo_3dController extends Controller
         $datos = Modelo_3d::findOrFail($id);
         return view('modelo3d.showTable', compact('datos'));
     }
-/**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function createAdmin()
-    {
-        //Libros
-        $libros = DB::select("select * from libros");
-        //Capitulos
-        $capitulos = DB::select("select * from capitulos");
-        return view('modelo3d.formTable', compact('libros', 'capitulos'));
-    }
+
 //Admin tablas
     /**
      * Show the form for editing the specified resource.
@@ -337,85 +394,5 @@ class Modelo_3dController extends Controller
         $datos = Modelo_3d::findOrFail($id);
         return view('modelo3d.formTable', compact('datos', 'libros', 'capitulos'));
     }
-    public function updateAdmin(Request $r, $id)
-    { 
-
-        $this->validate($request, [
-            'titulo' => 'required|max:50',
-            'descripcion' => 'required|max:255',
-            'file' => 'mimetypes:application/zip'
-        ]);
-
-        $modelo = Modelo_3d::findOrFail($id);
-
-        $titulo = $request->titulo;
-        $descripcion = $request->descripcion;
-        $capitulo_id = Session::get('capitulo_id');
-        
-
-        
-
-        
-        //Renombrar direcorio
-        $process = new Process('mv modelos3d/' . $modelo->titulo .' modelos3d/' . $titulo);
-        $process->run();
-
-
-        $modelo->titulo = $titulo;
-        $modelo->descripcion = $descripcion;
-       
-        
-        $file = $request->file;
-
-        if($file != null){
-            //Borrar directorio texturas
-            $process = new Process('rm -r modelos3d/' . $titulo .'/textures');
-            $process->run();
-
-            //Actualizo el campo en la base de datos
-            $modelo->modelo_3d = $titulo;
-
-            //Muevo y descomprimo el zip
-            $carpeta_ruta = "modelos3d/" . $titulo;
-            $file->move( $carpeta_ruta , $file->getClientOriginalName() );
-
-
-            //Extraer en archivo zip    
-            $process = new Process('unzip ' . $carpeta_ruta . "/" . $file->getClientOriginalName() . " -d " . $carpeta_ruta);
-            $process->run();
-
-           
-
-            //Elimino el ZIP
-            $process = new Process('rm -f modelos3d/' . $titulo . '/' . $file->getClientOriginalName());
-            $process->run();
-
-           
-        }
-       
-
-        
-
-
-        
-        if(isset($r->capitulo_id) && $r->capitulo_id!= null){
-            $capitulo_id = $r->capitulo_id;
-        }else{
-            $capitulo_id = Session::get('capitulo_id');
-        }
-        
-        $modelo->capitulo_id = $capitulo_id;
-
-        $modelo->save();
-        
-        return redirect()->route('modelo.admin');
-        
-        
-    }
-    public function deleteAdmin($id)
-    {
-        $multimedia = Modelo_3d::find($id);
-        $multimedia->delete();
-        return redirect()->route('modelo.admin');
-    }
+    
 }
