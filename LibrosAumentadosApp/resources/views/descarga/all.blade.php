@@ -42,7 +42,7 @@
 										<a href="{{route('descarga.editAdmin', $descarga->id)}}" class="text-warning modificar-btn dm{{$descarga->id}}" id="dm{{$descarga->id}}"><i class="fas fa-pen-square"></i> Modificar</a>
 									</td>
 									<td>
-										<a href="{{route('descarga.delete', $descarga->id)}}" class="text-danger borrar-btn db{{$descarga->id}}" id="db{{$descarga->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
+										<a href="{{route('descarga.deleteAdmin', $descarga->id)}}" class="text-danger borrar-btn db{{$descarga->id}}" id="db{{$descarga->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
 									</td>
 								</tr>
 							@endforeach	

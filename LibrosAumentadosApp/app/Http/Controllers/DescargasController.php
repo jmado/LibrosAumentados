@@ -41,9 +41,17 @@ class DescargasController extends Controller
      */
     public function create()
     {
-
-        $capitulos = Session::get('capitulo_id');
-        return view('descarga.form', compact('capitulos'));
+        $capitulo = Capitulo::find(Session::get('capitulo_id'));
+        $libro = Libro::find($capitulo->id);
+        return view('descarga.formTable', compact('capitulo', 'libro'));
+    }
+    public function createAdmin()
+    {
+        //Libros
+        $libros = DB::select("select * from libros");
+        //Capitulos
+        $capitulos = DB::select("select * from capitulos");
+        return view('descarga.formTable', compact('libros', 'capitulos'));
     }
 
     /**
@@ -74,11 +82,18 @@ class DescargasController extends Controller
         $datos->archivo ="descargas/" .$archivo->getClientOriginalName();
 
         $id = Session::get('capitulo_id');
-        $datos->capitulo_id = $id;
         
-        $datos->save();
-        
-        return redirect()->route('descarga.all', $id);
+
+        if(isset($request->capitulo_id) && $request->capitulo_id!=null){
+            $datos->capitulo_id = $request->capitulo_id;
+            $datos->save();
+            return redirect()->route('descarga.admin');
+        }else{
+            $capitulo_id = Session::get('capitulo_id');
+            $datos->capitulo_id = $capitulo_id;
+            $datos->save();
+            return redirect()->route('libro.descargas', $capitulo_id);
+        }
     }
 
     /**
@@ -102,9 +117,12 @@ class DescargasController extends Controller
     public function edit($id)
     {
         $datos = Descarga::findOrFail($id);
-        //Capitulos
-        $capitulos = Session::get('capitulo_id');
-        return view('descarga.form', compact('datos','capitulos'));
+
+        //Capitulos y libros
+        $capitulo = Capitulo::findOrFail($datos->capitulo_id);
+        $libro = Libro::findOrFail($capitulo->libro_id);
+
+        return view('descarga.formTable', compact('datos', 'capitulo', 'libro'));
     }
 
     /**
@@ -141,7 +159,38 @@ class DescargasController extends Controller
         //Guardo la imagen con sus datos
         $datos->save();
 
-        return redirect()->route('descarga.all', $capitulo_id);
+        $id = Session::get('capitulo_id');
+        return redirect()->route('libro.descargas', $id);
+    }
+    public function updateAdmin(Request $request, $id)
+    {
+        $this->validate($request, [
+            'titulo' => 'required|max:50',
+            'descripcion' => 'required|max:255',
+            'file' => 'mimetypes:text/plain,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.oasis.opendocument.text'
+        ]);
+        $datos = Descarga::findOrFail($id);
+        $datos->titulo = $request->titulo;
+        $datos->descripcion = $request->descripcion;
+
+        $capitulo_id = Session::get('capitulo_id');
+        $datos->capitulo_id = $capitulo_id;
+
+        //$datos->tipo_archivo = $request->tipo_archivo;
+
+        
+
+        //Descargas
+        $archivo = $request->file;
+        if($archivo != null){
+            $archivo->move('descargas', $archivo->getClientOriginalName());
+            $datos->archivo = "descargas/" . $archivo->getClientOriginalName();
+        }
+        //Guardo la imagen con sus datos
+        $datos->save();
+
+        $id = Session::get('capitulo_id');
+        return redirect()->route('descarga.admin', $id);
     }
 
     /**
@@ -156,7 +205,17 @@ class DescargasController extends Controller
         $id_capitulo = $datos->capitulo_id;
         unlink($datos->archivo);
         $datos->delete();
-        return redirect()->route('descarga.all', $id_capitulo);
+
+        return redirect()->route('libro.descargas', $id_capitulo);
+    }
+    public function deleteAdmin($id)
+    {
+        $datos = Descarga::findOrFail($id);
+        $id_capitulo = $datos->capitulo_id;
+        unlink($datos->archivo);
+        $datos->delete();
+
+        return redirect()->route('descarga.admin', $id_capitulo);
     }
 
 
@@ -200,19 +259,7 @@ class DescargasController extends Controller
         $datos = Descarga::findOrFail($id);
         return view('descarga.showTable', compact('datos'));
     }
-/**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function createAdmin()
-    {
-        //Libros
-        $libros = DB::select("select * from libros");
-        //Capitulos
-        $capitulos = DB::select("select * from capitulos");
-        return view('descarga.formTable', compact('libros', 'capitulos'));
-    }
+
 //Admin tablas
     /**
      * Show the form for editing the specified resource.
