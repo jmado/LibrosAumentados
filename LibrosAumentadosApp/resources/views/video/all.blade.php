@@ -42,7 +42,7 @@
 										<a href="{{route('video.editAdmin', $video->id)}}" class="text-warning modificar-btn vm{{$video->id}}" id="vm{{$video->id}}"><i class="fas fa-pen-square"></i> Modificar</a>
 									</td>
 									<td>
-										<a href="{{route('video.delete', $video->id)}}" class="text-danger borrar-btn vb{{$video->id}}" id="vb{{$video->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
+										<a href="{{route('video.deleteAdmin', $video->id)}}" class="text-danger borrar-btn vb{{$video->id}}" id="vb{{$video->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
 									</td>
 								</tr>
 							@endforeach	

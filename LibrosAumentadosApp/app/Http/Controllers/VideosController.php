@@ -42,8 +42,17 @@ class VideosController extends Controller
     public function create()
     {
 
-        $capitulos = Session::get('capitulo_id');
-        return view('video.form', compact('capitulos'));
+        $capitulo = Capitulo::findOrFail(Session::get('capitulo_id'));
+        $libro = Libro::findOrFail($capitulo->libro_id);
+        return view('video.formTable', compact('capitulo', 'libro'));
+    }
+    public function createAdmin()
+    {
+        //Libros
+        $libros = DB::select("select * from libros");
+        //Capitulos
+        $capitulos = DB::select("select * from capitulos");
+        return view('video.formTable', compact('libros', 'capitulos'));
     }
 
     /**
@@ -63,9 +72,18 @@ class VideosController extends Controller
         $id =Session::get('capitulo_id');
         $datos->capitulo_id = $id;
         
-        $datos->save();
         
-        return redirect()->route('video.all', $id);
+
+        if(isset($request->capitulo_id) && $request->capitulo_id!=null){
+            $datos->capitulo_id = $request->capitulo_id;
+            $datos->save();
+            return redirect()->route('video.admin');
+        }else{
+            $capitulo_id = Session::get('capitulo_id');
+            $datos->capitulo_id = $capitulo_id;
+            $datos->save();
+            return redirect()->route('libro.videos', $capitulo_id);
+        }
     }
 
     /**
@@ -92,9 +110,9 @@ class VideosController extends Controller
     public function edit($id)
     {
         $datos = Video::findOrFail($id);
-        //Listado de capitulos 
-        $capitulos = Session::get('capitulo_id');
-        return view('video.form', compact('datos', 'capitulos'));
+        $capitulo = Capitulo::findOrFail($datos->capitulo_id);
+        $libro = Libro::findOrFail($capitulo->libro_id);
+        return view('video.formTable', compact('datos', 'capitulo', 'libro'));
     }
 
     /**
@@ -111,10 +129,22 @@ class VideosController extends Controller
         $datos->descripcion = $request->descripcion;
         $datos->capitulo_id = Session::get('capitulo_id');
         $datos->video = $request->video;
+        $capitulo_id = $datos->capitulo_id;
         $datos->save();
-        return redirect()->route('video.show', $id);
+        return redirect()->route('libro.videos', $capitulo_id);
     }
 
+    public function updateAdmin(Request $request, $id)
+    {
+        $datos = Video::findOrFail($id);
+        $datos->titulo = $request->titulo;
+        $datos->descripcion = $request->descripcion;
+        $datos->capitulo_id = Session::get('capitulo_id');
+        $datos->video = $request->video;
+        $capitulo_id = $datos->capitulo_id;
+        $datos->save();
+        return redirect()->route('video.admin', $capitulo_id);
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -126,7 +156,16 @@ class VideosController extends Controller
         $datos = Video::findOrFail($id);
         $capitulo_id = Session::get('capitulo_id');
         $datos->delete();
-        return redirect()->route('video.all', $capitulo_id);
+        $id = Session::get('capitulo_id');
+        return redirect()->route('libro.videos', $id);
+    }
+    public function deleteAdmin($id)
+    {
+        $datos = Video::findOrFail($id);
+        $capitulo_id = Session::get('capitulo_id');
+        $datos->delete();
+        $id = Session::get('capitulo_id');
+        return redirect()->route('video.admin', $id);
     }
 
 
@@ -178,19 +217,7 @@ class VideosController extends Controller
         $datos = Video::findOrFail($id);
         return view('video.showTable', compact('datos'));
     }
-/**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function createAdmin()
-    {
-        //Libros
-        $libros = DB::select("select * from libros");
-        //Capitulos
-        $capitulos = DB::select("select * from capitulos");
-        return view('video.formTable', compact('libros', 'capitulos'));
-    }
+
 //Admin tablas
     /**
      * Show the form for editing the specified resource.

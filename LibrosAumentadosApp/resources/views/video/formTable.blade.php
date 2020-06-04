@@ -13,14 +13,21 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12 text-center">
-
-                            @isset($datos)
-                                <form action="{{ route('video.update', ['video' => $datos->id]) }}" method="POST" enctype='multipart/form-data'>
+                        @isset($datos)
+                                @isset($libros)
+                                    <form action="{{ route('video.updateAdmin', ['video' => $datos->id]) }}" method="POST" enctype='multipart/form-data'>
+                                    sssssssssssss
+                                @else
+                                    <form action="{{ route('video.update', ['video' => $datos->id]) }}" method="POST" enctype='multipart/form-data'>
+                                @endif
+                                dddddddddddddddd
                                 @method("PUT")
                             @else
                                 <form action="{{ route('video.store') }}" method="POST" enctype="multipart/form-data">
+                                ffffffffffffff
                             @endisset
                                 @csrf
+
 
 
                                     <div class="row">
@@ -36,29 +43,43 @@
                                             <div class="form-group">
                                                 <div class="custom-file">
                                                     <label class="custom-file-label" for="fichero">Seleccionar Video .mp4</label>
-                                                    <input type="file" name="file" class="custom-file-input" id="fichero" lang="es"> 
+                                                    <input type="file" name="video" class="custom-file-input" id="fichero" lang="es"> 
                                                 </div>
                                             </div>
                                             
                                         </div>
                                         <div class="col-lg-6">
                                             
+                                        @if(isset($libros))
+                                            <!--Si hay capitulos a seleccionar -->
+                                            {{--
                                             <div class="form-group">
-                                                <label for="">Libro</label>
-                                                <select name="select" class="form-control">
-                                                    <option value="value1">Value 1</option> 
-                                                    <option value="value2" selected>Value 2</option>
-                                                    <option value="value3">Value 3</option>
+                                             
+                                                <img src="#" alt="Cubierta del libro" style="width: 190px; height: 300px;">
+                                            
+                                            </div>
+                                            --}}
+                                            <div class="form-group">
+                                                <label>Capitulo</label>
+                                                <select name="capitulo_id" class="form-control">
+                                                @foreach($capitulos as $c)
+                                                    @if(isset($capitulo) && ($c->id == $capitulo->id))
+                                                    <option value="{{$c->id}}" selected>{{$c->titulo}}</option> 
+                                                    @else
+                                                    <option value="{{$c->id}}" >{{$c->titulo}}</option>
+                                                    @endif
+                                                @endforeach    
                                                 </select>
                                             </div>
+                                            @else
+                                            <!--NO hay capitulos a seleccionar -->
                                             <div class="form-group">
-                                                <label for="">Capitulo</label>
-                                                <select name="select" class="form-control">
-                                                    <option value="value1">Value 1</option> 
-                                                    <option value="value2" selected>Value 2</option>
-                                                    <option value="value3">Value 3</option>
-                                                </select>
+                                                <img src="{{URL::asset($libro->cubierta)}}" alt="Cubierta del libro" style="width: 190px; height: 300px;">   
                                             </div>
+                                            <div class="form-group">
+                                                <p>Capitulo: {{$capitulo->titulo}}</p>
+                                            </div>
+                                            @endif
                                         </div>
                                     </div>
 
