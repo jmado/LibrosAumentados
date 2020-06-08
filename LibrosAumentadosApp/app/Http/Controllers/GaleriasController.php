@@ -348,7 +348,7 @@ public function adminIndex($id)
         //$datos = Galeria::where('capitulo_id', '=', $id)->simplePaginate(3);
         $datos = DB::select('Select * from galerias where capitulo_id=:id', ['id'=>$id]);
 
-        return view('galeria.galeriaAll', compact('libro', 'datos', 'libro_id', 'capitulo',));
+        return view('galeria.galeriaAll', compact('libro', 'datos', 'libro_id', 'capitulo'));
     }
     public function admin()
     {
