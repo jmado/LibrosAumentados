@@ -107,14 +107,8 @@ grid-column-end: 5;
 <body>
 
 
-
-
-
-
-<div class="cover-container d-flex h-100 p-3 mx-auto flex-column"> 
-
     <!-- Cabecera -->
-<header class="header bg-primary">
+    <header class="header bg-primary">
     <a href="{{route('libro.index')}}">
       <h2 class="logo text-light">Libros<strong>Celia</strong></h2>
     </a>
@@ -133,17 +127,21 @@ grid-column-end: 5;
       @unless (Auth::check())
         <a href="{{route('login')}}">Login</a>
       @endunless
-    
-    @auth
-        <a href="{{route('libro.admin')}}">Administrador</a>    
-        <a href="{{route('logout')}}">Log out</a>   
-    @endauth
+      @auth
+          <a href="{{route('libro.admin')}}">Administrador</a>     
+      @endauth
 
     <label for="chk" class="hide-menu-btn">
       <i class="fas fa-times"></i>
     </label>
   </ul>
 </header>
+
+
+
+
+
+
 
 
        
@@ -159,7 +157,7 @@ grid-column-end: 5;
 
     
 
-</div>
+
 
 
     

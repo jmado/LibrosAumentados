@@ -29,27 +29,7 @@
                             @endisset
                                 @csrf
 
-                                    <div class="row">
-                                        @if(isset($galerias) && $galerias!=null)
-                                        <div class="col-lg-6">
-                                            <table>
-                                                <thead>
-                                                    <tr>
-                                                        <td>Galerias a las que pertenece</td>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        @foreach($galerias as $galeria)
-                                                            <td>{{$galeria->titulo}}</td>
-                                                        @endforeach
-                                                    </tr>
-                                                </tbody>
-
-                                            </table>
-                                        </div>
-                                        @endif
-                                    </div>
+                                    
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="form-group">
@@ -118,6 +98,16 @@
                                             <button type="submit" class="btn btn-default">Enviar</button>
                                             <button type="reset" class="btn btn-default" onclick="window.history.back()">Cancelar</button>
                                         </div>
+                                        @if(isset($galerias) && $galerias!=null)
+                                        <div class="col-lg-6">
+                                            <div class="list-group">
+                                                <a href="#" class="list-group-item list-group-item-action active">Galerias a las que pertenece</a>
+                                                @foreach($galerias as $galeria)
+                                                <a href="#" class="list-group-item list-group-item-action disabled">{{$galeria->titulo}}</a>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        @endif
                                     </div>
                                 
                                 

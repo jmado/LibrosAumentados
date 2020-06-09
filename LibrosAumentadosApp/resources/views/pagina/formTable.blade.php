@@ -24,26 +24,10 @@
 
 
                                     <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label for="">Libro</label>
-                                                
-                                                
-                                                
-                                            </div>
-                                            
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label for="">Capitulo</label>
-                                               
-                                                
-                                                
-                                            </div>
-                                        </div>
+                                        
                                     </div>
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label for="texto">Texto: </label>
                                                 <textarea name="texto" class="form-control" id="texto" style="display:none;"></textarea>
@@ -68,6 +52,39 @@
                                                     editor.content.innerHTML = '{!!$pagina->texto ?? ''!!}'
                                                 </script>
                                             </div>
+                                        </div>
+                                        <div class="col-lg-6">  
+                                            @if(isset($libros))
+                                            <!--Si hay capitulos a seleccionar -->
+                                            {{--
+                                            <div class="form-group">
+                                               
+                                                <img src="#" alt="Cubierta del libro" style="width: 190px; height: 300px;">
+                                            
+                                            </div>
+                                            --}}
+                                            <div class="form-group">
+                                                <label>Capitulo</label>
+                                                <select name="capitulo_id" class="form-control">
+                                                @foreach($capitulos as $c)
+                                                    @if(isset($capitulo) && ($c->id == $capitulo->id))
+                                                    <option value="{{$c->id}}" selected>{{$c->titulo}}</option> 
+                                                    @else
+                                                    <option value="{{$c->id}}" >{{$c->titulo}}</option>
+                                                    @endif
+                                                @endforeach    
+                                                </select>
+                                            </div>
+                                            @else
+                                            <!--NO hay capitulos a seleccionar -->
+                                            <div class="form-group">
+                                            <h4>{{$libro->titulo}}</h4>
+                                                <img src="{{URL::asset($libro->cubierta)}}" alt="Cubierta del libro" style="width: 190px; height: 300px;">   
+                                            </div>
+                                            <div class="form-group">
+                                                <p>Capitulo: {{$capitulo->titulo}}</p>
+                                            </div>
+                                            @endif
                                         </div>
                                     </div>
 
