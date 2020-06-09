@@ -116,7 +116,7 @@ grid-column-end: 5;
     <!-- Cabecera -->
 <header class="header bg-primary">
     <a href="{{route('libro.index')}}">
-      <h2 class="logo text-light">Libros<strong>App</strong></h2>
+      <h2 class="logo text-light">Libros<strong>Celia</strong></h2>
     </a>
     <input type="checkbox" id="chk">
     <label for="chk" class="show-menu-btn">

@@ -15,6 +15,7 @@
         }
 
         #myVideo {
+            width: 100%;
             position: fixed;
             right: 0;
             bottom: 0;   
@@ -67,16 +68,16 @@
     
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a href="#" class="navbar-brand">LibrosApp</a>
+            <a href="#" class="navbar-brand">LibrosCelia</a>
         </nav>
 
         <!-- Optional: some overlay text to describe the video -->
         <main class="card">
             <!-- Use a button to pause/play the video with JavaScript --> 
-            <a href="{{route('libro.index')}}" id="myBtn" class="btn btn-dark bg-dark">Entrar</a>
-            <h1>Una nueva forma de disfrutar los libros</h1>
+            <h1>LibrosCelia</h1>
+            <h3>Una nueva forma de disfrutar los libros</h3>
             <p>Accede y disfruta de nuestro contenido multimedia de los distintos libros.</p>
-            
+            <a href="{{route('libro.index')}}" id="myBtn" class="btn btn-dark bg-dark">Entrar</a>
         </main> 
 
     </div>
