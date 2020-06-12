@@ -2,20 +2,24 @@
 
 @section("content")
 
+
+
 <div class="jumbotron">
-  <p class="lead text-center">Lista de libros</p>
+  <h3 class="text-center">Lista de libros</h3>
   
   <hr class="my-4">
-  <div class="elementos container">
+  <div class="elementos container-fluid">
     {{ $libroList->links() }}
         <div class="row">
 
-
-            @foreach ($libroList as $libro)   
             <div class="col-md-3">
+                Buscador
+            </div>
+            @foreach ($libroList as $libro)   
+            <div class="col-md-3 badge-secondary">
                 <div class="elemento mb-4">
                     <div class="elemento-header">
-                    <p>   
+                    <p>
                         <a href="{{route('contenido.contenido', $libro->id)}}"><img src='{{ URL::asset("$libro->cubierta")}}' class="cubierta"></a>
                     </p>
                     </div>

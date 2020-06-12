@@ -24,6 +24,9 @@
     <!-- DataTables Responsive CSS -->
     <link href="{{ URL::asset('css/dataTables/dataTables.responsive.css') }}" rel="stylesheet">
 
+<!-- Estilos basicos para el funcionamiento de las modales tingle-->
+<link href="{{ URL::asset('css/tingle.min.css') }}" rel="stylesheet">
+
     <!-- Custom CSS -->
     <link href="{{ URL::asset('css/startmin.css') }}" rel="stylesheet">
 
@@ -92,6 +95,9 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
 
+<!-- Modales tingle -->
+<script src="{{ URL::asset('js/tingle.min.js') }}"></script>
+
     <!-- Metis Menu Plugin JavaScript -->
     <script src="{{ URL::asset('js/metisMenu.min.js') }}"></script>
     
@@ -108,6 +114,9 @@
             });
     </script>
 
+
+
+    
     
     <!-- Custom Theme JavaScript -->
     <script src="{{ URL::asset('js/startmin.js') }}"></script>
@@ -196,7 +205,6 @@
                                 
                         </ul>
                     </li>
-                    
 
                 </ul>
 

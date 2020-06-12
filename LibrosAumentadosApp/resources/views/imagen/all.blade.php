@@ -36,7 +36,7 @@
 									<td>{{$imagen->titulo}}</td>
 									<td>{{$imagen->descripcion}}</td>
 									<td>
-										<a href="{{URL::asset($imagen->imagen)}}" class="ver-btn iv{{$imagen->id}}" id="iv{{$imagen->id}}"><i class="far fa-eye"></i> Ver</a>
+										<a onclick="i{{$imagen->id}}()" class="ver-btn iv{{$imagen->id}}" id="iv{{$imagen->id}}"><i class="far fa-eye"></i> Ver</a>
 									</td>
 									<td>
 										<a href="{{route('imagen.editAdmin', $imagen->id)}}" class="text-warning modificar-btn im{{$imagen->id}}" id="im{{$imagen->id}}"><i class="fas fa-pen-square"></i> Modificar</a>
@@ -45,6 +45,35 @@
 										<a href="{{route('imagen.deleteAdmin', $imagen->id)}}" class="text-danger borrar-btn ib{{$imagen->id}}" id="ib{{$imagen->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
 									</td>
 								</tr>
+								<script>
+									function i{{$imagen->id}}(){
+										// instanciate new modal
+										var modal = new tingle.modal({
+											footer: false,
+											stickyFooter: false,
+											closeMethods: ['overlay', 'button', 'escape'],
+											closeLabel: "Close",
+											cssClass: ['custom-class-1', 'custom-class-2'],
+											onOpen: function() {
+												console.log('modal open');
+											},
+											onClose: function() {
+												console.log('modal closed');
+											},
+											beforeClose: function() {
+												// here's goes some logic
+												// e.g. save content before closing the modal
+												return true; // close the modal
+												return false; // nothing happens
+											}
+										});
+										// set content
+										modal.setContent('<img src="{{URL::asset($imagen->imagen)}}" style="width:30%; display:block; margin:auto;"><p><label class="text-muted">{{$imagen->titulo}}</label></p><p><label class="text-muted">{{$imagen->descripcion}}</label></p>');
+										
+										// open modal
+										modal.open();
+									}
+								</script>
 							@endforeach	
 							</tbody>
 						</table>

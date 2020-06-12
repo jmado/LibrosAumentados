@@ -42,8 +42,25 @@ class PruebaController extends Controller
         //Comprobar si hay sesion
         $sesion = Session::get('sesion');
         //dd($sesion);
-        if($sesion == $libro_id){
-            
+        //if($sesion == $libro_id){
+                            //Datos del capitulos seleccionado por parametro-------------------------------------------------------------------
+                            $id = 1;
+                            $imagenes = array();
+                            $galerias = array();
+                            $audios = array();
+                            $videos = array();
+                            $descargas = array();
+                            $modelos = array();
+                                array_push($imagenes, DB::select("select * from imagens where capitulo_id=:id", ["id"=>$id]));
+                                array_push($galerias, DB::select("select * from galerias where capitulo_id=:id", ["id"=>$id]));
+                                array_push($audios, DB::select("select * from audio where capitulo_id=:id", ["id"=>$id]));
+                                array_push($videos, DB::select("select * from videos where capitulo_id=:id", ["id"=>$id]));
+                                array_push($descargas, DB::select("select * from descargas where capitulo_id=:id", ["id"=>$id]));
+                                array_push($modelos, DB::select("select * from modelo_3ds where capitulo_id=:id", ["id"=>$id]));
+                                //dd($audios);
+                            return view('capitulo.contenido', compact('libro', 'libros', 'capitulos', 'mensage_login', 'imagenes','galerias','audios','videos','descargas','modelos'));
+                            //Datos del capitulos seleccionado por parametro-------------------------------------------------------------------
+            /*
             //Multimedia
             $imagenes = array();
             $galerias = array();
@@ -65,9 +82,12 @@ class PruebaController extends Controller
             
             
             return view('capitulo.contenido', compact('libro', 'libros', 'capitulos', 'mensage_login', 'datosMultimedia'));
-        }else{
-            return view('capitulo.contenido', compact('libro', 'libros', 'capitulos', 'mensage_login'));
-        }
+            */
+        //}else{
+            
+            
+        //    return view('capitulo.contenido', compact('libro', 'libros', 'capitulos', 'mensage_login'));
+        //}
 
         
     }
