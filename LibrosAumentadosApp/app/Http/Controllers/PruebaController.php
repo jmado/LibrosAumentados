@@ -289,7 +289,7 @@ class PruebaController extends Controller
         );  
         */
         $jsonstring = json_encode($login);
-        echo $jsonstring;
+        echo "joder";
     }
         
 //+++++++++++++++++++++++++++++++FIN Login++++++++++++++++++++++++++++++++++++++++++

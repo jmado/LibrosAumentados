@@ -232,56 +232,7 @@
 
 
 
-    <script>
     
-      var capitulos = @json($capitulos);
-     
-      console.log(capitulos);
-      //Todo mi script del nuevo diseño
-
-      //Paginacion de capitulos
-      $(function() {
-            (function(name) {
-              var container = $('#pagination-' + name);
-              container.pagination({
-                dataSource: capitulos,
-                locator: 'items',
-                //totalNumber: 50,
-                pageSize: 6,
-                      showPageNumbers: false,
-                      showPrevious: true,
-                      showNext: true,
-                      showNavigator: true,
-                      showFirstOnEllipsisShow: true,
-                      showLastOnEllipsisShow: true,
-                ajax: {
-                  beforeSend: function() {
-                    container.prev().html('Cargando ...');
-                  }
-                },
-                callback: function(response, pagination) {
-                  window.console && console.log(22, response, pagination);
-
-                  //Template
-                  var dataHtml = `
-                  <div class="list-group">
-                      <a class="list-group-item list-group-item-action active text-light">Indice</a>`;
-          
-                  $.each(response, function (index, item) {
-                    
-                    dataHtml += `<button type="button" class="c`+item.id+` list-group-item list-group-item-action">Capitulo `+item.numero_orden+` : ` + item.titulo + `</button>`;
-                  });
-          
-                  dataHtml += '';
-                  //End template
-                  container.prev().html(dataHtml);
-                }
-              })
-            })('demo');
-      })
-
-
-    </script>
 
 
 
@@ -289,13 +240,14 @@
 
 
 <div class="container">
+  {{-- 
         <div class="row">
           <div class="col-12@sm">
-            <h1>Capitulo 1</h1>
+            <h1>Capitulo</h1>
           </div>
         </div>
       </div>
-      
+  --}}
       <div class="container">
         <div class="row">
           <div class="col-4@sm col-3@md">
@@ -324,16 +276,29 @@
       
       <div class="container">
         <div id="grid" class="row my-shuffle-container">
-
-
-     
-       
-        <!--Elemento audio-->
+        <!--Elementos imagen-->
+        @foreach($imagenes[0] as $imagen)
+          <figure class="col-3@xs col-4@sm col-4@md picture-item" data-groups='["imagenes"]' data-date-created="2017-04-30" data-title="Lake Walchen">
+            <div class="picture-item__inner">
+              <div class="aspect aspect--16x9">
+                <div class="aspect__inner bg-info">
+                <img src="{{URL::asset($imagen->imagen)}}"/>
+                </div>
+              </div>
+              <div class="picture-item__details">
+                <figcaption class="picture-item__title"><a href="{{URL::asset($imagen->imagen)}}" target="_blank" rel="noopener">{{$imagen->titulo}} </a></figcaption>
+                <p class="picture-item__tags hidden@xs">Imagen</p>
+              </div>
+              <p class="picture-item__description">{{$imagen->descripcion}}</p>
+            </div>
+          </figure>
+        @endforeach
+        <!--Elementos audio-->
         @foreach($audios[0] as $audio)
           <figure class="col-3@xs col-4@sm col-4@md picture-item" data-groups='["audios"]' data-date-created="2017-04-30" data-title="Lake Walchen">
             <div class="picture-item__inner">
               <div class="aspect aspect--16x9">
-                <div class="aspect__inner" style="display:flex; justify-content: center; align-items: center;">
+                <div class="aspect__inner bg-info" style="display:flex; justify-content: center; align-items: center;">
                 <audio src="{{URL::asset($audio->archivo)}}" controls style="width:80%;"></audio>
                 </div>
               </div>
@@ -345,31 +310,169 @@
             </div>
           </figure>
         @endforeach
-        @foreach($imagenes[0] as $imagen)
-          <figure class="col-3@xs col-4@sm col-4@md picture-item" data-groups='["imagenes"]' data-date-created="2017-04-30" data-title="Lake Walchen">
+        <!--Elementos modelo 3D -->
+        @foreach($modelos[0] as $modelo)
+          <figure class="col-3@xs col-4@sm col-4@md picture-item" data-groups='["modelos"]' data-date-created="2017-04-30" data-title="Lake Walchen">
             <div class="picture-item__inner">
               <div class="aspect aspect--16x9">
-                <div class="aspect__inner">
-                <img src="{{URL::asset($imagen->imagen)}}"/>
+                <div class="aspect__inner bg-info">
+                <img src="{{ url('complementos/iconos/modelo.png') }}"/>
                 </div>
               </div>
               <div class="picture-item__details">
-                <figcaption class="picture-item__title"><a href="{{URL::asset($imagen->imagen)}}" target="_blank" rel="noopener">{{$imagen->titulo}} </a></figcaption>
-                <p class="picture-item__tags hidden@xs">Imagenes</p>
+                <figcaption class="picture-item__title"><a href="#" target="_blank" rel="noopener">{{$modelo->titulo}} </a></figcaption>
+                <p class="picture-item__tags hidden@xs">Modelo 3D</p>
               </div>
-              <p class="picture-item__description">{{$imagen->descripcion}}</p>
+              <p class="picture-item__description">{{$modelo->descripcion}}</p>
             </div>
           </figure>
         @endforeach
-
-          
-          
+        <!--Elementos galeria -->
+        @foreach($galerias[0] as $galeria)
+          <figure class="col-3@xs col-4@sm col-4@md picture-item" data-groups='["galerias"]' data-date-created="2017-04-30" data-title="Lake Walchen">
+            <div class="picture-item__inner">
+              <div class="aspect aspect--16x9">
+                <div class="aspect__inner bg-info">
+                <img src="{{URL::asset($galeria->cubierta)}}"/>
+                </div>
+              </div>
+              <div class="picture-item__details">
+                <figcaption class="picture-item__title"><a href="#" target="_blank" rel="noopener">{{$galeria->titulo}} </a></figcaption>
+                <p class="picture-item__tags hidden@xs">Galeria</p>
+              </div>
+              <p class="picture-item__description">{{$galeria->descripcion}}</p>
+            </div>
+          </figure>
+        @endforeach
+        <!--Elementos video -->
+        @foreach($videos[0] as $video)
+          <figure class="col-3@xs col-4@sm col-4@md picture-item" data-groups='["videos"]' data-date-created="2017-04-30" data-title="Lake Walchen">
+            <div class="picture-item__inner">
+              <div class="aspect aspect--16x9">
+                <div class="aspect__inner bg-info">
+                <img src="{{ url('complementos/iconos/video.png') }}"/>
+                
+                </div>
+              </div>
+              <div class="picture-item__details">
+                <figcaption class="picture-item__title"><a href="{{URL::asset($imagen->imagen)}}" target="_blank" rel="noopener">{{$video->titulo}} </a></figcaption>
+                <p class="picture-item__tags hidden@xs">Video</p>
+              </div>
+              <p class="picture-item__description">{{$video->descripcion}}</p>
+            </div>
+          </figure>
+        @endforeach
+        <!--Elementos otro -->
+        @foreach($descargas[0] as $descarga)
+          <figure class="col-3@xs col-4@sm col-4@md picture-item" data-groups='["otros"]' data-date-created="2017-04-30" data-title="Lake Walchen">
+            <div class="picture-item__inner">
+              <div class="aspect aspect--16x9">
+                <div class="aspect__inner bg-info">
+                <img src="{{ url('complementos/iconos/descargas.png') }}"/>
+                </div>
+              </div>
+              <div class="picture-item__details">
+                <figcaption class="picture-item__title"><a href="#" target="_blank" rel="noopener">{{$descarga->titulo}} </a></figcaption>
+                <p class="picture-item__tags hidden@xs">Otros</p>
+              </div>
+              <p class="picture-item__description">{{$descarga->descripcion}}</p>
+            </div>
+          </figure>
+        @endforeach
           <div class="col-1@sm col-1@xs my-sizer-element"></div>
         </div>
       </div>
 
 
 
+<script>
+//Login
+let pass = false;
+      $(function(){  
+            $('#login-btn').click(function(){
+                if($('#pass').val()){
+                    let search = $('#pass').val();
+                    $.ajax({
+                        url: "{{ route('contenido.loginConfirma') }}",
+                        type: 'POST',
+                        data: {search: search},
+                        success: function(response){
+                        console.log("f2");
+                              tasks = JSON.parse(response);
+                              console.log(tasks);
 
+                              if(tasks == 1){
+                                console.log("correcto" + tasks);
+                                pass = true;
+                                console.log("correcto");
+                                
+                              }else{
+                                console.log("incorrecto" + tasks);
+                                pass = false;
+                                console.log("incorre");
+                              } 
+                              console.log("respuesta");  
+                        }
+                    });
+                }else{
+                  console.log("2");
+                  $('.mensage-login-error').html("Escribe una palabra");   
+                }
+                console.log("fin");
+          });
+      });
+
+
+
+
+    var capitulos = @json($capitulos);
+    //---------------------------------------------------Paginación del indice de capitulos 
+    
+      $('.c1').hide();
+
+    //Paginacion de capitulos
+    $(function() {
+          (function(name) {
+            var container = $('#pagination-' + name);
+            container.pagination({
+              dataSource: capitulos,
+              locator: 'items',
+              //totalNumber: 50,
+              pageSize: 6,
+                    showPageNumbers: false,
+                    showPrevious: true,
+                    showNext: true,
+                    showNavigator: true,
+                    showFirstOnEllipsisShow: true,
+                    showLastOnEllipsisShow: true,
+              ajax: {
+                beforeSend: function() {
+                  container.prev().html('Cargando ...');
+                }
+              },
+              callback: function(response, pagination) {
+                //window.console && console.log(22, response, pagination);
+
+                //Template
+                var dataHtml = `
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-action active text-light">Indice</a>`;
+        
+                $.each(response, function (index, item) {
+                  
+                  dataHtml += `<button type="button" class="c`+item.id+` list-group-item list-group-item-action">Capitulo `+item.numero_orden+` : ` + item.titulo + `</button>`;
+                });
+        
+                dataHtml += '';
+                //End template
+                container.prev().html(dataHtml);
+              }
+            })
+          })('demo');
+    })
+    //--------------------------------------------FIN de la paginación del indice de capitulos
+
+
+</script>
 
 @endsection
