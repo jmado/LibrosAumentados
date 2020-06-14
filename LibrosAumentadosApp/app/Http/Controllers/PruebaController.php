@@ -20,6 +20,48 @@ use App\Modelo_3d;
 
 class PruebaController extends Controller
 {
+    public function login2(Request $request){
+        $password = $request->password;
+        $login = "0";
+        if(Session::get("palabra") == $password){
+            $login = "1";
+            $libro = Session::get('libro_id');
+            Session::put("sesion", $libro);
+
+            $capitulo_id = DB::select("SELECT id FROM capitulos ORDER BY id ASC LIMIT 1;");
+            $capitulo_id = $capitulo_id[0]->id;
+            return redirect()->route('contenido.contenido2', $capitulo_id); 
+        }
+    }
+    public function index2($capitulo_id){
+        //Variables 
+        $capitulo = DB::select("select * from capitulos where id=:id", ['id'=>$capitulo_id]);
+        $libro_id = $capitulo[0]->libro_id;
+        //Comprueba si esta logeado
+        $sesion = Session::get('sesion');
+        if($sesion != $libro_id){
+            return redirect()->route('contenido.contenido', $libro_id);
+        }
+        //Contenido
+        $libro = DB::select("select * from libros where id=:id", ['id'=>$libro_id]);
+        $libros = DB::select("select id, titulo from libros where id!=:id", ['id'=>$libro_id]);
+        $capitulos = DB::select("select * from capitulos where libro_id=:id", ['id'=>$libro_id]);
+        //Contenido
+        $imagenes = array();
+        $galerias = array();
+        $audios = array();
+        $videos = array();
+        $descargas = array();
+        $modelos = array();
+        array_push($imagenes, DB::select("select * from imagens where capitulo_id=:id", ["id"=>$capitulo_id]));
+        array_push($galerias, DB::select("select * from galerias where capitulo_id=:id", ["id"=>$capitulo_id]));
+        array_push($audios, DB::select("select * from audio where capitulo_id=:id", ["id"=>$capitulo_id]));
+        array_push($videos, DB::select("select * from videos where capitulo_id=:id", ["id"=>$capitulo_id]));
+        array_push($descargas, DB::select("select * from descargas where capitulo_id=:id", ["id"=>$capitulo_id]));
+        array_push($modelos, DB::select("select * from modelo_3ds where capitulo_id=:id", ["id"=>$capitulo_id]));
+        return view('capitulo.contenido', compact('libro', 'libros', 'capitulo', 'capitulos', 'imagenes','galerias','audios','videos','descargas','modelos'));
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -30,20 +72,30 @@ class PruebaController extends Controller
         Session::put('libro_id', $libro_id);
 
         $libro = DB::select("select * from libros where id=:id", ['id'=>$libro_id]);
+        $libros = DB::select("select id, titulo from libros where id!=:id", ['id'=>$libro_id]);
+        $mensage_login = $this->login($libro_id);
+        return view('capitulo.contenido', compact('libro', 'libros', 'mensage_login'));
+        /*
+        if($session == $libro_id){
+            return redirect()->route('contenido.contenido2', $capitulo_id);
+        }
+        */
 
-        
-        $capitulos = DB::select("select * from capitulos where libro_id=:id", ['id'=>$libro_id]);
+        //$capitulos = DB::select("select * from capitulos where libro_id=:id", ['id'=>$libro_id]);
 
         //dd($capitulos);
-        $mensage_login = $this->login($libro_id);
-
-        $libros = DB::select("select id, titulo from libros where id!=:id", ['id'=>$libro_id]);
-
+        
+        
+        
+/*
         //Comprobar si hay sesion
         $sesion = Session::get('sesion');
         //dd($sesion);
         //if($sesion == $libro_id){
                             //Datos del capitulos seleccionado por parametro-------------------------------------------------------------------
+                            $capitulo_primero_id = DB::select("SELECT id FROM capitulos ORDER BY id ASC LIMIT 1;");
+                            $capitulo_primero_id = $capitulo_primero_id[0]->id;
+
                             $id = 1;
                             $imagenes = array();
                             $galerias = array();
@@ -51,13 +103,13 @@ class PruebaController extends Controller
                             $videos = array();
                             $descargas = array();
                             $modelos = array();
-                                array_push($imagenes, DB::select("select * from imagens where capitulo_id=:id", ["id"=>$id]));
-                                array_push($galerias, DB::select("select * from galerias where capitulo_id=:id", ["id"=>$id]));
-                                array_push($audios, DB::select("select * from audio where capitulo_id=:id", ["id"=>$id]));
-                                array_push($videos, DB::select("select * from videos where capitulo_id=:id", ["id"=>$id]));
-                                array_push($descargas, DB::select("select * from descargas where capitulo_id=:id", ["id"=>$id]));
-                                array_push($modelos, DB::select("select * from modelo_3ds where capitulo_id=:id", ["id"=>$id]));
-                                //dd($audios);
+                            array_push($imagenes, DB::select("select * from imagens where capitulo_id=:id", ["id"=>$capitulo_primero_id]));
+                            array_push($galerias, DB::select("select * from galerias where capitulo_id=:id", ["id"=>$capitulo_primero_id]));
+                            array_push($audios, DB::select("select * from audio where capitulo_id=:id", ["id"=>$capitulo_primero_id]));
+                            array_push($videos, DB::select("select * from videos where capitulo_id=:id", ["id"=>$capitulo_primero_id]));
+                            array_push($descargas, DB::select("select * from descargas where capitulo_id=:id", ["id"=>$capitulo_primero_id]));
+                            array_push($modelos, DB::select("select * from modelo_3ds where capitulo_id=:id", ["id"=>$capitulo_primero_id]));
+                                
                             return view('capitulo.contenido', compact('libro', 'libros', 'capitulos', 'mensage_login', 'imagenes','galerias','audios','videos','descargas','modelos'));
                             //Datos del capitulos seleccionado por parametro-------------------------------------------------------------------
             /*
@@ -91,6 +143,7 @@ class PruebaController extends Controller
 
         
     }
+   
 
     /**
      * Show the view for galeries for users .

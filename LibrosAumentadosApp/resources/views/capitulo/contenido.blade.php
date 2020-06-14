@@ -186,22 +186,25 @@
                     </div>
         </div>
         <!--FIN Libro-->
+        @if(isset($mensage_login))
         <div class="col col-lg-3">
             <div class="libro-login">
                 <p class="text-info">Escribe la palabra {{$mensage_login["palabra"]}} del párrafo {{$mensage_login["parrafo"]}} de la página {{$mensage_login["pagina"]}} del capítulo {{$mensage_login["capitulo"]}}</p>
                 <p class="mensage-login-error"></p>
-                
-                  <input id="pass" type="text" name="password" class="login form-control"  placeholder="Palabra">
-                  <button class="login btn btn-info btn-block" id="login-btn">Acceder</button>
+                  <form action="{{ route('contenido.login2') }}" method="GET" enctype='multipart/form-data'>
+                      <input id="pass" type="text" name="password" class="login form-control"  placeholder="Palabra">
+                      <button type="submint" class="login btn btn-info btn-block" id="login-btn">Acceder</button>
+                  </form>
             </div>
         </div>
+        @endif
   </div>
 
   <hr class="my-4">
 
+  @if(isset($capitulos))
   <div class="row row-indice">
         <div class="col col-12">
-                
                 <div class="card">
                       <div class="card-header">
                           <p class="text-center"> Lista de capitulos</p>
@@ -210,10 +213,10 @@
                       <div class="card-body">
                           <div class="data-container"></div>
                       </div>
-                </div>
-                
+                </div>   
         </div>
   </div>
+  @endif
 </div>
 
 
@@ -238,16 +241,17 @@
 
 
 
-
+@if(isset($capitulos))
 <div class="container">
-  {{-- 
+  
         <div class="row">
           <div class="col-12@sm">
-            <h1>Capitulo</h1>
+            <h1>{{$capitulo[0]->titulo}}</h1>
+            
           </div>
         </div>
       </div>
-  --}}
+  
       <div class="container">
         <div class="row">
           <div class="col-4@sm col-3@md">
@@ -386,43 +390,6 @@
 
 
 <script>
-//Login
-let pass = false;
-      $(function(){  
-            $('#login-btn').click(function(){
-                if($('#pass').val()){
-                    let search = $('#pass').val();
-                    $.ajax({
-                        url: "{{ route('contenido.loginConfirma') }}",
-                        type: 'POST',
-                        data: {search: search},
-                        success: function(response){
-                        console.log("f2");
-                              tasks = JSON.parse(response);
-                              console.log(tasks);
-
-                              if(tasks == 1){
-                                console.log("correcto" + tasks);
-                                pass = true;
-                                console.log("correcto");
-                                
-                              }else{
-                                console.log("incorrecto" + tasks);
-                                pass = false;
-                                console.log("incorre");
-                              } 
-                              console.log("respuesta");  
-                        }
-                    });
-                }else{
-                  console.log("2");
-                  $('.mensage-login-error').html("Escribe una palabra");   
-                }
-                console.log("fin");
-          });
-      });
-
-
 
 
     var capitulos = @json($capitulos);
@@ -459,8 +426,10 @@ let pass = false;
                     <a class="list-group-item list-group-item-action active text-light">Indice</a>`;
         
                 $.each(response, function (index, item) {
-                  
-                  dataHtml += `<button type="button" class="c`+item.id+` list-group-item list-group-item-action">Capitulo `+item.numero_orden+` : ` + item.titulo + `</button>`;
+                  var ruta = "{{ route('contenido.contenido2', 1) }}";  
+                  ruta = ruta.substr(0, ruta.length-1);
+
+                  dataHtml += `<button type="button" onclick="window.location.href='`+ruta+``+item.id+`'" class="c`+item.id+` list-group-item list-group-item-action">Capitulo `+item.numero_orden+` : ` + item.titulo + `  </button>`;
                 });
         
                 dataHtml += '';
@@ -474,5 +443,6 @@ let pass = false;
 
 
 </script>
+@endif
 
 @endsection

@@ -111,6 +111,9 @@ Route::resource('admin/users', 'AdminUserController');
 //Frontend
 //Rutas de Contenido 
 Route::get("/contenido/index/{libro_id}", "PruebaController@index")->name("contenido.contenido");
+Route::get("/contenido/libro/{capitulo_id}", "PruebaController@index2")->name("contenido.contenido2");
+Route::get("/contenido/login2", "PruebaController@login2")->name("contenido.login2");
+
     #Rutas Ajax
     Route::post("/contenido/libros", "PruebaController@libros")->name("contenido.libros");
     Route::get("/contenido/login/{libro_id}", "PruebaController@login")->name("contenido.login");
