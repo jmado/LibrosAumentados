@@ -23,7 +23,7 @@ class PruebaController extends Controller
     public function login2(Request $request){
         $password = $request->password;
         $login = "0";
-        if(Session::get("palabra") == $password){
+        //if(Session::get("palabra") == $password){
             $login = "1";
             $libro = Session::get('libro_id');
             Session::put("sesion", $libro);
@@ -31,7 +31,10 @@ class PruebaController extends Controller
             $capitulo_id = DB::select("SELECT id FROM capitulos ORDER BY id ASC LIMIT 1;");
             $capitulo_id = $capitulo_id[0]->id;
             return redirect()->route('contenido.contenido2', $capitulo_id); 
-        }
+        //}else{
+        //    $libro_id = Session::get('libro_id');
+        //    return redirect()->route('contenido.contenido', $libro_id);
+        //}
     }
     public function index2($capitulo_id){
         //Variables 
