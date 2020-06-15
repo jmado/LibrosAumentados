@@ -23,8 +23,7 @@
 								<tr>
 									<th>Capitulo ID</th>
 									<th>Titulo</th>
-									<th>Descripción</th>
-									<th>Ver</th>
+									<th>Contenido</th>
 									<th>Modificar</th>
 									<th>Borrar</th>
 								</tr>
@@ -35,9 +34,7 @@
 									<td>{{$pagina->capitulo_id}}</td>
 									<td>{{$pagina->numero_pagina}}</td>
 									<td>{{$pagina->texto}}</td>
-									<td>
-										<a href="{{route('pagina.show', $pagina->id)}}" class="ver-btn pv{{$pagina->id}}" id="pv{{$pagina->id}}"><i class="far fa-eye"></i> Ver</a>
-									</td>
+									
 									<td>
 										<a href="{{route('pagina.editAdmin', $pagina->id)}}" class="text-warning modificar-btn pm{{$pagina->id}}" id="pm{{$pagina->id}}"><i class="fas fa-pen-square"></i> Modificar</a>
 									</td>

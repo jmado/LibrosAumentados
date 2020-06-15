@@ -8,11 +8,7 @@
 <section class="text-center">
     <div class="container">
         <h1>Galerias</h1>
-            @if (isset($libro_id))
-                <p><a href="{{route('contenido.contenido', $libro_id)}}" class="btn btn-primary btn-lg" role="button">Ver Galerías</a></p> 
-            @else
-                <p><a href="{{route('galeria.all', $galeria[0]->capitulo_id)}}" class="btn btn-primary btn-lg" role="button">Ver Galerías</a></p>
-            @endif
+            
       </div>
 </section>
 

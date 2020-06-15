@@ -52,8 +52,13 @@
     <!-- SweetAllert -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-   
-    
+<!-- *********************** MODALES *********************************** -->
+<!-- Estilos basicos para el funcionamiento de las modales tingle-->
+<link href="{{ URL::asset('css/tingle.min.css') }}" rel="stylesheet">
+<!-- Modales tingle -->
+<script src="{{ URL::asset('js/tingle.min.js') }}"></script>
+<!-- *********************** MODALES *********************************** -->
+
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/style3d.css') }}" />
     <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}" />

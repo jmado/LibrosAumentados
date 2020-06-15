@@ -286,16 +286,53 @@
             <div class="picture-item__inner">
               <div class="aspect aspect--16x9">
                 <div class="aspect__inner bg-info">
-                <img src="{{URL::asset($imagen->imagen)}}"/>
+                <a onclick="i{{$imagen->id}}()">
+                  <img src="{{URL::asset($imagen->imagen)}}"/>
+                </a>
                 </div>
               </div>
               <div class="picture-item__details">
-                <figcaption class="picture-item__title"><a href="{{URL::asset($imagen->imagen)}}" target="_blank" rel="noopener">{{$imagen->titulo}} </a></figcaption>
+                <figcaption class="picture-item__title">
+                  <a onclick="i{{$imagen->id}}()" class="text-info">{{$imagen->titulo}} </a>
+                </figcaption>
                 <p class="picture-item__tags hidden@xs">Imagen</p>
               </div>
               <p class="picture-item__description">{{$imagen->descripcion}}</p>
             </div>
           </figure>
+<script>
+                                    function i{{$imagen->id}}(){
+                                        // instanciate new modal
+                                        var modal = new tingle.modal({
+                                            footer: false,
+                                            stickyFooter: false,
+                                            closeMethods: ['overlay', 'button', 'escape'],
+                                            closeLabel: "Close",
+                                            cssClass: ['custom-class-1', 'custom-class-2'],
+                                            onOpen: function() {
+                                                console.log('modal open');
+                                            },
+                                            onClose: function() {
+                                                console.log('modal closed');
+                                            },
+                                            beforeClose: function() {
+                                                // here's goes some logic
+                                                // e.g. save content before closing the modal
+                                                return true; // close the modal
+                                                return false; // nothing happens
+                                            }
+                                        });
+                                        // set content
+                modal.setContent(`
+                            <img src="{{URL::asset($imagen->imagen)}}" style="width:30%; display:block; margin:auto;">
+                            <p><label class="text-muted">{{$imagen->titulo}}</label></p>
+                            <p><label class="text-muted">{{$imagen->descripcion}}</label></p>
+                                `);
+                                        
+                                        // open modal
+                                        modal.open();
+                                    }
+</script>        
         @endforeach
         <!--Elementos audio-->
         @foreach($audios[0] as $audio)
@@ -303,16 +340,50 @@
             <div class="picture-item__inner">
               <div class="aspect aspect--16x9">
                 <div class="aspect__inner bg-info" style="display:flex; justify-content: center; align-items: center;">
-                <audio src="{{URL::asset($audio->archivo)}}" controls style="width:80%;"></audio>
+                
+                  <audio src="{{URL::asset($audio->archivo)}}" controls style="width:80%;"></audio>
+                
+                
                 </div>
               </div>
               <div class="picture-item__details">
-                <figcaption class="picture-item__title"><a target="_blank" rel="noopener" class="text-info">{{$audio->titulo}} </a></figcaption>
+                <figcaption class="picture-item__title">
+                  <a onclick="a{{$audio->id}}()" class="text-info">{{$audio->titulo}} </a>
+                </figcaption>
                 <p class="picture-item__tags hidden@xs">Audio</p>
               </div>
               <p class="picture-item__description">{{$audio->descripcion}}</p>
             </div>
           </figure>
+          <script>
+									function a{{$audio->id}}(){
+										// instanciate new modal
+										var modal = new tingle.modal({
+											footer: false,
+											stickyFooter: false,
+											closeMethods: ['overlay', 'button', 'escape'],
+											closeLabel: "Close",
+											cssClass: ['custom-class-1', 'custom-class-2'],
+											onOpen: function() {
+												console.log('modal open');
+											},
+											onClose: function() {
+												console.log('modal closed');
+											},
+											beforeClose: function() {
+												// here's goes some logic
+												// e.g. save content before closing the modal
+												return true; // close the modal
+												return false; // nothing happens
+											}
+										});
+										// set content
+										modal.setContent('<audio src="{{URL::asset($audio->archivo)}}" controls style="width:50%; display:block; margin:auto;"></audio><p><label class="text-muted">{{$audio->titulo}}</label></p><p><label class="text-muted">{{$audio->descripcion}}</label></p>');
+										
+										// open modal
+										modal.open();
+									}
+								</script>
         @endforeach
         <!--Elementos modelo 3D -->
         @foreach($modelos[0] as $modelo)
@@ -320,11 +391,15 @@
             <div class="picture-item__inner">
               <div class="aspect aspect--16x9">
                 <div class="aspect__inner bg-info">
-                <img src="{{ url('complementos/iconos/modelo.png') }}"/>
+                  <a href="{{route('modelo.show', $modelo->id)}}" target="_blank" rel="noopener">
+                    <img src="{{ url('complementos/iconos/modelo.png') }}"/>
+                  </a>
                 </div>
               </div>
               <div class="picture-item__details">
-                <figcaption class="picture-item__title"><a href="#" target="_blank" rel="noopener">{{$modelo->titulo}} </a></figcaption>
+                <figcaption class="picture-item__title">
+                  <a href="{{route('modelo.show', $modelo->id)}}" target="_blank" rel="noopener">{{$modelo->titulo}} </a>
+                </figcaption>
                 <p class="picture-item__tags hidden@xs">Modelo 3D</p>
               </div>
               <p class="picture-item__description">{{$modelo->descripcion}}</p>
@@ -337,11 +412,15 @@
             <div class="picture-item__inner">
               <div class="aspect aspect--16x9">
                 <div class="aspect__inner bg-info">
-                <img src="{{URL::asset($galeria->cubierta)}}"/>
+                  <a href="{{route('galeria.show', $galeria->id)}}" target="_blank" rel="noopener">
+                    <img src="{{URL::asset($galeria->cubierta)}}"/>
+                  </a>
                 </div>
               </div>
               <div class="picture-item__details">
-                <figcaption class="picture-item__title"><a href="#" target="_blank" rel="noopener">{{$galeria->titulo}} </a></figcaption>
+                <figcaption class="picture-item__title">
+                  <a href="{{route('galeria.show', $galeria->id)}}" target="_blank" rel="noopener">{{$galeria->titulo}} </a>
+                </figcaption>
                 <p class="picture-item__tags hidden@xs">Galeria</p>
               </div>
               <p class="picture-item__description">{{$galeria->descripcion}}</p>
@@ -354,17 +433,52 @@
             <div class="picture-item__inner">
               <div class="aspect aspect--16x9">
                 <div class="aspect__inner bg-info">
-                <img src="{{ url('complementos/iconos/video.png') }}"/>
+                <a onclick="v{{$video->id}}()">
+                  <img src="{{ url('complementos/iconos/video.png') }}"/>
+                </a>
+                
                 
                 </div>
               </div>
               <div class="picture-item__details">
-                <figcaption class="picture-item__title"><a href="{{URL::asset($imagen->imagen)}}" target="_blank" rel="noopener">{{$video->titulo}} </a></figcaption>
+                <figcaption class="picture-item__title">
+                  <a onclick="v{{$video->id}}()" class="text-info">{{$video->titulo}} </a>
+                </figcaption>
                 <p class="picture-item__tags hidden@xs">Video</p>
               </div>
               <p class="picture-item__description">{{$video->descripcion}}</p>
             </div>
           </figure>
+          <script>
+									function v{{$video->id}}(){
+										// instanciate new modal
+										var modal = new tingle.modal({
+											footer: false,
+											stickyFooter: false,
+											closeMethods: ['overlay', 'button', 'escape'],
+											closeLabel: "Close",
+											cssClass: ['custom-class-1', 'custom-class-2'],
+											onOpen: function() {
+												console.log('modal open');
+											},
+											onClose: function() {
+												console.log('modal closed');
+											},
+											beforeClose: function() {
+												// here's goes some logic
+												// e.g. save content before closing the modal
+												return true; // close the modal
+												return false; // nothing happens
+											}
+										});
+										// set content
+										
+										modal.setContent('<iframe src="https://player.vimeo.com/video/{{$video->video}}" width="100%" height="361" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe><p><label class="text-muted">{{$video->titulo}}</label></p><p><label class="text-muted">{{$video->descripcion}}</label></p>');
+										
+										// open modal
+										modal.open();
+									}
+					</script>
         @endforeach
         <!--Elementos otro -->
         @foreach($descargas[0] as $descarga)
@@ -372,16 +486,52 @@
             <div class="picture-item__inner">
               <div class="aspect aspect--16x9">
                 <div class="aspect__inner bg-info">
-                <img src="{{ url('complementos/iconos/descargas.png') }}"/>
+                  <a onclick="d{{$descarga->id}}()">
+                    <img src="{{ url('complementos/iconos/descargas.png') }}"/>
+                  </a>
+                
                 </div>
               </div>
               <div class="picture-item__details">
-                <figcaption class="picture-item__title"><a href="#" target="_blank" rel="noopener">{{$descarga->titulo}} </a></figcaption>
+                <figcaption class="picture-item__title">
+                  <a onclick="d{{$descarga->id}}()" class="text-info">{{$descarga->titulo}} </a>
+                  </figcaption>
                 <p class="picture-item__tags hidden@xs">Otros</p>
               </div>
               <p class="picture-item__description">{{$descarga->descripcion}}</p>
             </div>
           </figure>
+          <script>
+									function d{{$descarga->id}}(){
+										// instanciate new modal
+										var modal = new tingle.modal({
+											footer: false,
+											stickyFooter: false,
+											closeMethods: ['overlay', 'button', 'escape'],
+											closeLabel: "Close",
+											cssClass: ['custom-class-1', 'custom-class-2'],
+											onOpen: function() {
+												console.log('modal open');
+											},
+											onClose: function() {
+												console.log('modal closed');
+											},
+											beforeClose: function() {
+												// here's goes some logic
+												// e.g. save content before closing the modal
+												return true; // close the modal
+												return false; // nothing happens
+											}
+										});
+										// set content
+										var url = "{{ URL::asset("$descarga->archivo") }}";
+                    console.log(url);
+										modal.setContent('<iframe src='+url+' width="100%" height="361" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe><p><label class="text-muted">{{$descarga->titulo}}</label></p><p><label class="text-muted">{{$descarga->descripcion}}</label></p>');
+										
+										// open modal
+										modal.open();
+									}
+					</script>
         @endforeach
           <div class="col-1@sm col-1@xs my-sizer-element"></div>
         </div>

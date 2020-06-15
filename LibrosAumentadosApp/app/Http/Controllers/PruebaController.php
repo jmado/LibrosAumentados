@@ -54,12 +54,22 @@ class PruebaController extends Controller
         $galerias = array();
         $audios = array();
         $videos = array();
+            //$videoNumeros = array();
         $descargas = array();
         $modelos = array();
         array_push($imagenes, DB::select("select * from imagens where capitulo_id=:id", ["id"=>$capitulo_id]));
         array_push($galerias, DB::select("select * from galerias where capitulo_id=:id", ["id"=>$capitulo_id]));
         array_push($audios, DB::select("select * from audio where capitulo_id=:id", ["id"=>$capitulo_id]));
         array_push($videos, DB::select("select * from videos where capitulo_id=:id", ["id"=>$capitulo_id]));
+        /*
+            for($i=0; $i>count($videos); $i++){
+                $url = $video[i]->video;
+                dd($url);
+                $videoNumero = substr($url, 18);
+                array_push($videoNumeros, $videoNumero);
+            }
+            dd($videoNumeros);
+        */
         array_push($descargas, DB::select("select * from descargas where capitulo_id=:id", ["id"=>$capitulo_id]));
         array_push($modelos, DB::select("select * from modelo_3ds where capitulo_id=:id", ["id"=>$capitulo_id]));
         return view('capitulo.contenido', compact('libro', 'libros', 'capitulo', 'capitulos', 'imagenes','galerias','audios','videos','descargas','modelos'));

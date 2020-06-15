@@ -68,7 +68,9 @@ class VideosController extends Controller
         $datos = new Video;
         $datos->titulo = $request->titulo;
         $datos->descripcion = $request->descripcion;
-        $datos->video = $request->video;
+        $url = $request->video;
+        $videoNumero = substr($url, 18);
+        $datos->video = $videoNumero;
         $id =Session::get('capitulo_id');
         $datos->capitulo_id = $id;
         
@@ -95,10 +97,9 @@ class VideosController extends Controller
     public function show($id)
     {
         $datos = Video::findOrFail($id);
-        $url = $datos->video;
-        $videoNumero = substr($url, 18);
+        
         //dd($videoNumero);
-        return view('video.show', compact('datos', 'videoNumero'));
+        return view('video.show', compact('datos'));
     }
 
     /**
@@ -128,7 +129,14 @@ class VideosController extends Controller
         $datos->titulo = $request->titulo;
         $datos->descripcion = $request->descripcion;
         $datos->capitulo_id = Session::get('capitulo_id');
-        $datos->video = $request->video;
+        //$datos->video = $request->video;
+        if(isset($request->video) && ($request->video!=null)){
+            $url = $request->video;
+            $videoNumero = substr($url, 18);
+            $datos->video = $videoNumero;
+        }
+        
+
         $capitulo_id = $datos->capitulo_id;
         $datos->save();
         return redirect()->route('libro.videos', $capitulo_id);

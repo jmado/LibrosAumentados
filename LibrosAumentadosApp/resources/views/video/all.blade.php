@@ -36,9 +36,9 @@
 									<td>{{$video->titulo}}</td>
 									<td>{{$video->descripcion}}</td>
 									<td>
-									{{--
+									
 										<a onclick="v{{$video->id}}()" class="ver-btn vv{{$video->id}}" id="vv{{$video->id}}"><i class="far fa-eye"></i> Ver</a>
-									--}}
+									
 									</td>
 									<td>
 										<a href="{{route('video.editAdmin', $video->id)}}" class="text-warning modificar-btn vm{{$video->id}}" id="vm{{$video->id}}"><i class="fas fa-pen-square"></i> Modificar</a>
@@ -47,7 +47,7 @@
 										<a href="{{route('video.deleteAdmin', $video->id)}}" class="text-danger borrar-btn vb{{$video->id}}" id="vb{{$video->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
 									</td>
 								</tr>
-								{{--
+								
 								<script>
 									function v{{$video->id}}(){
 										// instanciate new modal
@@ -72,13 +72,13 @@
 										});
 										// set content
 										
-										modal.setContent('<iframe src="https://player.vimeo.com/video/124120234" width="100%" height="361" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe><p><label class="text-muted">{{$video->titulo}}</label></p><p><label class="text-muted">{{$video->descripcion}}</label></p>');
+										modal.setContent('<iframe src="https://player.vimeo.com/video/{{$video->video}}" width="100%" height="361" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe><p><label class="text-muted">{{$video->titulo}}</label></p><p><label class="text-muted">{{$video->descripcion}}</label></p>');
 										
 										// open modal
 										modal.open();
 									}
 								</script>
-								--}}
+								
 							@endforeach	
 							</tbody>
 						</table>
