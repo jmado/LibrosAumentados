@@ -556,7 +556,7 @@
               dataSource: capitulos,
               locator: 'items',
               //totalNumber: 50,
-              pageSize: 6,
+              pageSize: 5,
                     showPageNumbers: false,
                     showPrevious: true,
                     showNext: true,
