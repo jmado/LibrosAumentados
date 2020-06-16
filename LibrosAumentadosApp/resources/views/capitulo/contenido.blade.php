@@ -193,6 +193,7 @@
                 <p class="mensage-login-error"></p>
                   <form action="{{ route('contenido.login2') }}" method="GET" enctype='multipart/form-data'>
                       <input id="pass" type="text" name="password" class="login form-control"  placeholder="Palabra">
+                      <input  type="hidden" name="libro_id"  value="{{$libro[0]->id}}">
                       <button type="submint" class="login btn btn-info btn-block" id="login-btn">Acceder</button>
                   </form>
             </div>

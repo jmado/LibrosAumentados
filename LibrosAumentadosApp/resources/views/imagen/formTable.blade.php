@@ -73,6 +73,7 @@
                                             @else
                                             <!--NO hay capitulos a seleccionar -->
                                             <div class="form-group">
+                                            
                                                 <img src="{{URL::asset($libro->cubierta)}}" alt="Cubierta del libro" style="width: 190px; height: 300px;">   
                                             </div>
                                             <div class="form-group">

@@ -25,10 +25,10 @@ class PruebaController extends Controller
         $login = "0";
         //if(Session::get("palabra") == $password){
             $login = "1";
-            $libro = Session::get('libro_id');
+            $libro = $request->libro_id;
             Session::put("sesion", $libro);
 
-            $capitulo_id = DB::select("SELECT id FROM capitulos ORDER BY id ASC LIMIT 1;");
+            $capitulo_id = DB::select("SELECT id FROM capitulos where libro_id =:id ORDER BY id ASC LIMIT 1", ['id'=>$libro]);
             $capitulo_id = $capitulo_id[0]->id;
             return redirect()->route('contenido.contenido2', $capitulo_id); 
         //}else{
