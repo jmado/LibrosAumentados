@@ -14,13 +14,21 @@
                     <div class="row">
                         <div class="col-lg-12">
 
-                            @isset($datos)
+                        @isset($datos)
+                            @isset($libros)
                                 <form action="{{ route('pagina.updateAdmin', ['pagina' => $datos->id]) }}" method="POST" enctype='multipart/form-data'>
-                                @method("PUT")
+                                ua
                             @else
-                                <form action="{{ route('pagina.store') }}" method="POST" enctype="multipart/form-data">
-                            @endisset
-                                @csrf
+                                <form action="{{ route('pagina.update', ['pagina' => $datos->id]) }}" method="POST" enctype='multipart/form-data'>
+                                
+                            @endif
+                            
+                            @method("PUT")
+                        @else
+                            <form action="{{ route('pagina.store') }}" method="POST" enctype="multipart/form-data">
+                            
+                        @endisset
+                            @csrf
 
 
                                     <div class="row">
@@ -47,9 +55,13 @@
                                                     onChange: (html) => {
                                                         markup.innerHTML = "<br>";
                                                         markup.innerText += html;
+
+                                                        
+                                                        
+                                                        
                                                     }
                                                     });
-                                                    editor.content.innerHTML = '{!!$pagina->texto ?? ''!!}'
+                                                    editor.content.innerHTML = '{!!$datos->texto ?? ''!!}'
                                                 </script>
                                             </div>
                                         </div>

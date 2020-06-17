@@ -16,16 +16,16 @@
                             @isset($datos)
                                 @isset($libros)
                                     <form action="{{ route('galeria.updateAdmin', ['galeria' => $datos->id]) }}" method="POST" enctype='multipart/form-data'>
-                                    ua
+                                    
                                 @else
                                     <form action="{{ route('galeria.update', ['galerium' => $datos->id]) }}" method="POST" enctype='multipart/form-data'>
-                                    u
+                                    
                                 @endif
                                 
                                 @method("PUT")
                             @else
                                 <form action="{{ route('galeria.store') }}" method="POST" enctype="multipart/form-data">
-                                s
+                                
                             @endisset
                                 @csrf
 

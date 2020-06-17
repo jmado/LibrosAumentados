@@ -28,11 +28,10 @@ class PaginasController extends Controller
 
         $numero_orden = DB::select("select numero_orden, id from capitulos where id=:id", ['id'=>$id]);
 
-        $paginaList = Pagina::where('capitulo_id', '=', $id)->simplePaginate(3);
-
+        $datos = Imagen::where('capitulo_id', '=', $id)->simplePaginate(8);
         $id = $libro_id;
-        
-        return view('pagina.all', compact('paginaList', 'id', 'numero_orden'));
+            
+        return view('pagina.all', compact('libro', 'datos', 'libro_id'));
     }
     
     public function mostrarPaginaCapitulo($id_capitulo)
@@ -49,7 +48,7 @@ class PaginasController extends Controller
     public function create()
     {
         $capitulo = Capitulo::find(Session::get('capitulo_id'));
-        $libro = Libro::find($capitulo->id);
+        $libro = Libro::find($capitulo->libro_id);
         return view('pagina.formTable', compact('capitulo', 'libro'));
     }
     public function createAdmin()
@@ -75,16 +74,19 @@ class PaginasController extends Controller
         $pagina->texto = $r->texto;
 
         if(isset($request->capitulo_id) && $request->capitulo_id!=null){
+            dd("no");
             $pagina->capitulo_id = $request->capitulo_id;
             $pagina->save();
             $capitulo_id = $request->capitulo_id;
             $pagina->capitulo()->associate($capitulo_id);
             return redirect()->route('pagina.admin');
         }else{
+            
             $capitulo_id = Session::get('capitulo_id');
+            
             $pagina->capitulo_id = $capitulo_id;
             $pagina->save();
-            $pagina->capitulo()->associate($capitulo_id);
+            //$pagina->capitulo()->associate($capitulo_id);
             return redirect()->route('libro.paginas', $capitulo_id);
         }
                 
@@ -142,7 +144,7 @@ class PaginasController extends Controller
 
         $pag->save();
 
-        //return redirect()->route('capitulo.all', $pag->capitulo_id);
+        
         return redirect()->route('libro.pagias', $capitulo_id);
         
         
@@ -179,6 +181,7 @@ class PaginasController extends Controller
      */
     public function adminIndex($id)
     {
+       
         $libro_id = $consulta = DB::select("select libro_id from capitulos where id=:id", ['id'=>$id]);
         $libro_id = $libro_id[0]->libro_id;
         $libro = Libro::findOrFail($libro_id);
@@ -194,7 +197,7 @@ class PaginasController extends Controller
         $datos = DB::select('Select * from paginas where capitulo_id=:id', ['id'=>$id]);
 
         $id = $libro_id;
-        return view('pagina.paginaAll', compact('libro', 'capitulo', 'datos'));
+        return view('pagina.paginaAll', compact('libro', 'capitulo', 'datos', 'libro_id'));
     }
     public function admin()
     {

@@ -29,6 +29,7 @@
 								</tr>
 							</thead>
 							<tbody>
+							
 							@foreach ($paginas as $pagina)
 								<tr class="gradeA">
 									<td>{{$pagina->capitulo_id}}</td>

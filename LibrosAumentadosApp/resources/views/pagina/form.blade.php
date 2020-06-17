@@ -16,14 +16,24 @@
 
 
 <div class="container">
-    @isset($pagina)
-        <form id="formulario" action="{{ route('pagina.updateAdmin', ['pagina' => $pagina->id]) }}" method="POST" enctype="multipart/form-data" class="formulario">
-        @method("PUT")
-    @else
-        <form id="formulario" action="{{ route('pagina.store') }}" method="POST" enctype="multipart/form-data" class="formulario">
-    @endisset
-        @csrf
+        @isset($pagina)
+            @isset($libros)
+                <form action="{{ route('pagina.updateAdmin', ['pagina' => $pagina->id]) }}" method="POST" enctype='multipart/form-data'>
+                ua
+            @else
+                <form action="{{ route('pagina.update', ['pagina' => $pagina->id]) }}" method="POST" enctype='multipart/form-data'>
+                update
+            @endif
+            
+            @method("PUT")
+        @else
+            <form action="{{ route('pagina.store') }}" method="POST" enctype="multipart/form-data">
+            
+        @endisset
+            @csrf
 
+    
+            
         <div class="form-group">
             <label for="texto">Texto: </label>
            <textarea name="texto"  class="form-control" id="texto" hidden></textarea>
