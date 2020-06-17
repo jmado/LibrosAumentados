@@ -42,7 +42,7 @@ class DescargasController extends Controller
     public function create()
     {
         $capitulo = Capitulo::find(Session::get('capitulo_id'));
-        $libro = Libro::find($capitulo->id);
+        $libro = Libro::find($capitulo->libro_id);
         return view('descarga.formTable', compact('capitulo', 'libro'));
     }
     public function createAdmin()
