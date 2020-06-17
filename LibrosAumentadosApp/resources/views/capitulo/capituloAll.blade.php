@@ -71,7 +71,7 @@
                         </div>
                         <div class="row">
                             <div class="col col-sm-6 options">
-                                <a href="{{route('capitulo.edit', $libro->id)}}" class="btn btn-warning btn-lg btn-block btn-sm"><i class="fa fa-pencil"></i> Modificar</a>
+                                <a href="{{route('capitulo.edit', $capitulo->id)}}" class="btn btn-warning btn-lg btn-block btn-sm"><i class="fa fa-pencil"></i> Modificar</a>
                             </div>
                             <div class="col col-sm-6 options">
                                 <a href="{{route('capitulo.delete', $capitulo->id)}}" class="btn btn-danger btn-lg btn-block btn-sm"><i class="fa fa-minus"></i> Borrar</a>

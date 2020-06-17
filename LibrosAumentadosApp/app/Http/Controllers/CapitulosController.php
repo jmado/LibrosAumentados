@@ -105,6 +105,7 @@ class CapitulosController extends Controller
     public function edit($id)
     {
         $datos = Capitulo::find($id);
+        
         $libro = Libro::find($datos->libro_id);
         return view('capitulo.formTable', compact('datos', 'libro'));
     }
