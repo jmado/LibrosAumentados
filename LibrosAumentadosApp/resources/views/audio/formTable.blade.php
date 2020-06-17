@@ -16,15 +16,15 @@
                         @isset($datos)
                                 @isset($libros)
                                     <form action="{{ route('audio.updateAdmin', ['audio' => $datos->id]) }}" method="POST" enctype='multipart/form-data'>
-                                    ssss
+                                    
                                 @else
                                     <form action="{{ route('audio.update', ['audio' => $datos->id]) }}" method="POST" enctype='multipart/form-data'>
                                 @endif
-                                    dddd
+                                    
                                 @method("PUT")
                             @else
                                 <form action="{{ route('audio.store') }}" method="POST" enctype="multipart/form-data">
-                                fff
+                                
                             @endisset
                                 @csrf
 

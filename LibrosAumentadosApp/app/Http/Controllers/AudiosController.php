@@ -45,8 +45,13 @@ class AudiosController extends Controller
      */
     public function create()
     {
-        $capitulo_id = Session::get('capitulo_id');
-        return view('audio.formTable', compact('capitulo_id'));
+        //Capitulo
+        $capitulo = Capitulo::findOrFail(Session::get('capitulo_id'));
+        //libro
+        $libro = Libro::findOrFail($capitulo->libro_id);
+
+       
+        return view('audio.formTable', compact('capitulo','libro'));
     }
 
     /**

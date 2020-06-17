@@ -41,7 +41,7 @@
                                     </span>
                                 </div>
                                 <div class="text">
-                                    <span class="value">{{$capitulo->id}}</span>
+                                    <span class="value">{{$capitulo->numero_orden}}</span>
                                     <label class="text-muted">{{$capitulo->titulo}}</label>
                                 </div>
                             </div>
