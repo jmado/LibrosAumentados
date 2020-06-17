@@ -72,8 +72,9 @@ class ImagensController extends Controller
     {
         //Capitulo
         $capitulo = Capitulo::find(Session::get('capitulo_id'));
-        $libro = Libro::find($capitulo->id);
         
+        $libro = Libro::find($capitulo->libro_id);
+       
         //Listado de galerias existentes
         //$galerias = DB::select('select id, titulo from galerias where capitulo_id=:id',['id'=>$capitulo_id]);
 
