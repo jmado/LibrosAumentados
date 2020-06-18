@@ -49,7 +49,7 @@
                         
                         <div class="row">
                             <div class="col col-sm-6 options">
-                                <a onclick="window.history.back()" class="btn btn-primary btn-lg btn-block"><i class="fa fa-arrow-left"></i> Atras</a>
+                                <a href="{{ route('libro.capitulos', $libro->id) }}" class="btn btn-primary btn-lg btn-block"><i class="fa fa-arrow-left"></i> Atras</a>
                             </div>
                             <div class="col col-sm-6 options">
                                 <a href="{{ route('pagina.create') }}" class="btn btn-primary btn-lg btn-block"><i class="glyphicon glyphicon-plus"></i> Nuevo</a>

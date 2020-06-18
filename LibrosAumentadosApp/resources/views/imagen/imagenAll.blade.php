@@ -49,7 +49,7 @@
                         
                         <div class="row">
                             <div class="col col-sm-6 options">
-                                <a onclick="window.history.back()" class="btn btn-primary btn-lg btn-block"><i class="fa fa-arrow-left"></i> Atras</a>
+                                <a href="{{ route('libro.capitulos', $libro->id) }}" class="btn btn-primary btn-lg btn-block"><i class="fa fa-arrow-left"></i> Atras</a>
                             </div>
                             <div class="col col-sm-6 options">
                                 <a href="{{ route('imagen.create') }}" class="btn btn-primary btn-lg btn-block"><i class="glyphicon glyphicon-plus"></i> Nuevo</a>
@@ -81,13 +81,46 @@
                                 <a href="{{route('imagen.delete', $dato->id)}}" class="btn btn-danger btn-lg btn-block btn-sm"><i class="fa fa-minus"></i> Borrar</a>
                             </div>
                             <div class="col col-sm-12 options">
-                                <a href="{{URL::asset($dato->imagen)}}" class="btn btn-primary btn-lg btn-block btn-sm"><i class="fa fa-eye"></i> Ver</a>
+                                <a onclick="i{{$dato->id}}()" class="btn btn-primary btn-lg btn-block btn-sm"><i class="fa fa-eye"></i> Ver</a>
                             </div>
 
                         </div>
                         
                     </div>
                 </div>
+                <script>
+                                    function i{{$dato->id}}(){
+                                        // instanciate new modal
+                                        var modal = new tingle.modal({
+                                            footer: false,
+                                            stickyFooter: false,
+                                            closeMethods: ['overlay', 'button', 'escape'],
+                                            closeLabel: "Close",
+                                            cssClass: ['custom-class-1', 'custom-class-2'],
+                                            onOpen: function() {
+                                                console.log('modal open');
+                                            },
+                                            onClose: function() {
+                                                console.log('modal closed');
+                                            },
+                                            beforeClose: function() {
+                                                // here's goes some logic
+                                                // e.g. save content before closing the modal
+                                                return true; // close the modal
+                                                return false; // nothing happens
+                                            }
+                                        });
+                                        // set content
+                modal.setContent(`
+                            <img src="{{URL::asset($dato->imagen)}}" style="width:30%; display:block; margin:auto;">
+                            <p><label class="text-muted">{{$dato->titulo}}</label></p>
+                            <p><label class="text-muted">{{$dato->descripcion}}</label></p>
+                                `);
+                                        
+                                        // open modal
+                                        modal.open();
+                                    }
+                </script>    
                 @endforeach
             </div>
 
