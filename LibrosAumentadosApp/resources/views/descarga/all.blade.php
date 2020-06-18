@@ -42,10 +42,48 @@
 										<a href="{{route('descarga.editAdmin', $descarga->id)}}" class="text-warning modificar-btn dm{{$descarga->id}}" id="dm{{$descarga->id}}"><i class="fas fa-pen-square"></i> Modificar</a>
 									</td>
 									<td>
-										<a href="{{route('descarga.deleteAdmin', $descarga->id)}}" class="text-danger borrar-btn db{{$descarga->id}}" id="db{{$descarga->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
+										<a onclick="db{{$descarga->id}}()" class="text-danger borrar-btn db{{$descarga->id}}" id="db{{$descarga->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
 									</td>
 								</tr>
 								<script>
+									function db{{$descarga->id}}(){
+										// instanciate new modal
+										var modal = new tingle.modal({
+											footer: true,
+											stickyFooter: true,
+											closeMethods: ['overlay', 'button', 'escape'],
+											closeLabel: "Close",
+											cssClass: ['custom-class-1', 'custom-class-2'],
+											onOpen: function() {
+												console.log('modal open');
+											},
+											onClose: function() {
+												console.log('modal closed');
+											},
+											beforeClose: function() {
+												// here's goes some logic
+												// e.g. save content before closing the modal
+												return true; // close the modal
+												return false; // nothing happens
+											}
+										});
+										// set content
+                                        modal.setContent(`<p>¿Seguro que quieres borrar "{{$descarga->titulo}}"?</p>`);
+										// add a button
+                                        modal.addFooterBtn('Cancelar', 'tingle-btn tingle-btn--primary', function() {
+                                            // here goes some logic
+                                            modal.close();
+                                        });
+
+                                        // add another button
+                                        modal.addFooterBtn('Borrar', 'tingle-btn tingle-btn--danger', function() {
+                                            // here goes some logic
+                                            modal.close();
+                                            window.location.href="{{route('descarga.delete', $descarga->id)}}";
+                                        });
+										// open modal
+										modal.open();
+									}
 									function d{{$descarga->id}}(){
 										// instanciate new modal
 										var modal = new tingle.modal({
