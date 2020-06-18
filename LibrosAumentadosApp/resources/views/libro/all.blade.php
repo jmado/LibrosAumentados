@@ -19,7 +19,7 @@
                 <div class="search-libros">
                     <ul class="libros-php">
                       @forelse ($libroList as $l)
-                        <li>
+                        <li class="mb-2">
                           <a href="{{ route('contenido.contenido', $l->id) }}">
                             {{$l->titulo}}
                           </a>
@@ -31,22 +31,28 @@
                     
                 </div>
             </div>
+
+
+            <div class="col-md-9 badge-secondary">
+              <div class="row">
             @foreach ($libroList as $libro)   
-            <div class="col-md-3 badge-secondary">
-                <div class="elemento mb-4">
-                    <div class="elemento-header">
-                    <p>
-                        <a href="{{route('contenido.contenido', $libro->id)}}"><img src='{{ URL::asset("$libro->cubierta")}}' class="cubierta"></a>
-                    </p>
-                    </div>
-                    <div class="elemento-body">
-                        <h6>{{$libro->titulo}}</h6>
-                        <p>{{$libro->subtitulo}}</p>
-                        <p>Autor: {{$libro->autor}}</p>
-                    </div>
+                <div class="col-md-3">
+                        <div class="elemento mb-4">
+                            <div class="elemento-header">
+                              <p>
+                                  <a href="{{route('contenido.contenido', $libro->id)}}"><img src='{{ URL::asset("$libro->cubierta")}}' class="cubierta"></a>
+                              </p>
+                            </div>
+                            <div class="elemento-body">
+                                <h6>{{$libro->titulo}}</h6>
+                                <p>{{$libro->subtitulo}}</p>
+                                <p>Autor: {{$libro->autor}}</p>
+                            </div>
+                        </div>
                 </div>
-            </div>  
             @endforeach
+              </div>  
+            </div>
 
 
         </div>
