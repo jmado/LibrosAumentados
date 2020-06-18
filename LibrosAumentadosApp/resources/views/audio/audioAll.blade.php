@@ -84,7 +84,7 @@
                                 <a href="{{route('audio.edit', $dato->id)}}" class="btn btn-warning btn-lg btn-block btn-sm"><i class="fa fa-pencil"></i> Modificar</a>
                             </div>
                             <div class="col col-sm-6 options">
-                                <a href="{{route('audio.delete', $dato->id)}}" class="btn btn-danger btn-lg btn-block btn-sm"><i class="fa fa-minus"></i> Borrar</a>
+                                <a onclick="ab{{$dato->id}}()" class="btn btn-danger btn-lg btn-block btn-sm"><i class="fa fa-minus"></i> Borrar</a>
                             </div>
                             <div class="col col-sm-12 options">
                                 <a onclick="a{{$dato->id}}()" class="btn btn-primary btn-lg btn-block btn-sm"><i class="fa fa-eye"></i> Ver</a>
@@ -95,6 +95,44 @@
                     </div>
                 </div>
                 <script>
+                                function ab{{$dato->id}}(){
+                                        // instanciate new modal
+                                        var modal = new tingle.modal({
+                                            footer: true,
+                                            stickyFooter: true,
+                                            closeMethods: ['overlay', 'button', 'escape'],
+                                            closeLabel: "Close",
+                                            cssClass: ['custom-class-1', 'custom-class-2'],
+                                            onOpen: function() {
+                                                console.log('modal open');
+                                            },
+                                            onClose: function() {
+                                                console.log('modal closed');
+                                            },
+                                            beforeClose: function() {
+                                                // here's goes some logic
+                                                // e.g. save content before closing the modal
+                                                return true; // close the modal
+                                                return false; // nothing happens
+                                            }
+                                        });
+                                        // set content
+                                        modal.setContent(`<p>¿Seguro que quieres borrar "{{$dato->titulo}}"?</p>`);
+                                        // add a button
+                                        modal.addFooterBtn('Cancelar', 'tingle-btn tingle-btn--primary', function() {
+                                            // here goes some logic
+                                            modal.close();
+                                        });
+
+                                        // add another button
+                                        modal.addFooterBtn('Borrar', 'tingle-btn tingle-btn--danger', function() {
+                                            // here goes some logic
+                                            modal.close();
+                                            window.location.href="{{route('audio.delete', $dato->id)}}";
+                                        });
+                                        // open modal
+                                        modal.open();
+                                    }
 									function a{{$dato->id}}(){
 										// instanciate new modal
 										var modal = new tingle.modal({

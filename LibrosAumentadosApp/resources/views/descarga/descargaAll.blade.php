@@ -80,7 +80,7 @@
                                 <a href="{{route('descarga.edit', $dato->id)}}" class="btn btn-warning btn-lg btn-block btn-sm"><i class="fa fa-pencil"></i> Modificar</a>
                             </div>
                             <div class="col col-sm-6 options">
-                                <a href="{{route('descarga.delete', $dato->id)}}" class="btn btn-danger btn-lg btn-block btn-sm"><i class="fa fa-minus"></i> Borrar</a>
+                                <a onclick="db{{$dato->id}}()" class="btn btn-danger btn-lg btn-block btn-sm"><i class="fa fa-minus"></i> Borrar</a>
                             </div>
                             <div class="col col-sm-12 options">
                                 <a onclick="d{{$dato->id}}()" class="btn btn-primary btn-lg btn-block btn-sm"><i class="fa fa-eye"></i> Ver</a>
@@ -91,6 +91,44 @@
                     </div>
                 </div>
                 <script>
+                                    function db{{$dato->id}}(){
+										// instanciate new modal
+										var modal = new tingle.modal({
+											footer: true,
+											stickyFooter: true,
+											closeMethods: ['overlay', 'button', 'escape'],
+											closeLabel: "Close",
+											cssClass: ['custom-class-1', 'custom-class-2'],
+											onOpen: function() {
+												console.log('modal open');
+											},
+											onClose: function() {
+												console.log('modal closed');
+											},
+											beforeClose: function() {
+												// here's goes some logic
+												// e.g. save content before closing the modal
+												return true; // close the modal
+												return false; // nothing happens
+											}
+										});
+										// set content
+                                        modal.setContent(`<p>¿Seguro que quieres borrar "{{$dato->titulo}}"?</p>`);
+										// add a button
+                                        modal.addFooterBtn('Cancelar', 'tingle-btn tingle-btn--primary', function() {
+                                            // here goes some logic
+                                            modal.close();
+                                        });
+
+                                        // add another button
+                                        modal.addFooterBtn('Borrar', 'tingle-btn tingle-btn--danger', function() {
+                                            // here goes some logic
+                                            modal.close();
+                                            window.location.href="{{route('descarga.delete', $dato->id)}}";
+                                        });
+										// open modal
+										modal.open();
+									}
 									function d{{$dato->id}}(){
 										// instanciate new modal
 										var modal = new tingle.modal({
@@ -114,7 +152,7 @@
 										});
 										// set content
 										var url = "{{ URL::asset("$dato->archivo") }}";
-                    console.log(url);
+                    
 										modal.setContent('<iframe src='+url+' width="100%" height="361" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe><p><label class="text-muted">{{$dato->titulo}}</label></p><p><label class="text-muted">{{$dato->descripcion}}</label></p>');
 										
 										// open modal
