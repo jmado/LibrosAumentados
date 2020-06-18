@@ -49,7 +49,7 @@
                         
                         <div class="row">
                             <div class="col col-sm-6 options">
-                                <a onclick="window.history.back()" class="btn btn-primary btn-lg btn-block"><i class="fa fa-arrow-left"></i> Atras</a>
+                                <a href="{{ route('libro.capitulos', $libro->id) }}" class="btn btn-primary btn-lg btn-block"><i class="fa fa-arrow-left"></i> Atras</a>
                             </div>
                             <div class="col col-sm-6 options">
                                 <a href="{{ route('modelo.create') }}" class="btn btn-primary btn-lg btn-block"><i class="glyphicon glyphicon-plus"></i> Nuevo</a>
@@ -81,7 +81,7 @@
                                 <a href="{{route('modelo.delete', $dato->id)}}" class="btn btn-danger btn-lg btn-block btn-sm"><i class="fa fa-minus"></i> Borrar</a>
                             </div>
                             <div class="col col-sm-12 options">
-                                <a href="#" class="btn btn-primary btn-lg btn-block btn-sm"><i class="fa fa-eye"></i> Ver</a>
+                                <a href="{{route('modelo.show', $dato->id)}}" target="_blank" rel="noopener" class="btn btn-primary btn-lg btn-block btn-sm"><i class="fa fa-eye"></i> Ver</a>
                             </div>
 
                         </div>
