@@ -36,7 +36,7 @@
 									<td>{{$galeria->titulo}}</td>
 									<td>{{$galeria->descripcion}}</td>
 									<td>
-										<a href="{{route('galeria.showAdmin', $galeria->id)}}" class="ver-btn gv{{$galeria->id}}" id="gv{{$galeria->id}}"><i class="far fa-eye"></i> Ver</a>
+										<a href="{{route('galeria.show', $galeria->id)}}" target="_blank" rel="noopener" class="ver-btn gv{{$galeria->id}}" id="gv{{$galeria->id}}"><i class="far fa-eye"></i> Ver</a>
 									</td>
 									<td>
 										<a href="{{route('galeria.editAdmin', $galeria->id)}}" class="text-warning modificar-btn gm{{$galeria->id}}" id="gm{{$galeria->id}}"><i class="fas fa-pen-square"></i> Modificar</a>

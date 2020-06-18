@@ -36,7 +36,7 @@
 									<td>{{$descarga->titulo}}</td>
 									<td>{{$descarga->descripcion}}</td>
 									<td>
-										<a href="{{route('descarga.showAdmin', $descarga->id)}}" class="ver-btn dv{{$descarga->id}}" id="dv{{$descarga->id}}"><i class="far fa-eye"></i> Ver</a>
+										<a onclick="d{{$descarga->id}}()" class="ver-btn dv{{$descarga->id}}" id="dv{{$descarga->id}}"><i class="far fa-eye"></i> Ver</a>
 									</td>
 									<td>
 										<a href="{{route('descarga.editAdmin', $descarga->id)}}" class="text-warning modificar-btn dm{{$descarga->id}}" id="dm{{$descarga->id}}"><i class="fas fa-pen-square"></i> Modificar</a>
@@ -45,6 +45,37 @@
 										<a href="{{route('descarga.deleteAdmin', $descarga->id)}}" class="text-danger borrar-btn db{{$descarga->id}}" id="db{{$descarga->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
 									</td>
 								</tr>
+								<script>
+									function d{{$descarga->id}}(){
+										// instanciate new modal
+										var modal = new tingle.modal({
+											footer: false,
+											stickyFooter: false,
+											closeMethods: ['overlay', 'button', 'escape'],
+											closeLabel: "Close",
+											cssClass: ['custom-class-1', 'custom-class-2'],
+											onOpen: function() {
+												console.log('modal open');
+											},
+											onClose: function() {
+												console.log('modal closed');
+											},
+											beforeClose: function() {
+												// here's goes some logic
+												// e.g. save content before closing the modal
+												return true; // close the modal
+												return false; // nothing happens
+											}
+										});
+										// set content
+										var url = "{{ URL::asset("$descarga->archivo") }}";
+										console.log(url);
+										modal.setContent('<iframe src='+url+' width="100%" height="361" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe><p><label class="text-muted">{{$descarga->titulo}}</label></p><p><label class="text-muted">{{$descarga->descripcion}}</label></p>');
+										
+										// open modal
+										modal.open();
+									}
+								</script>
 							@endforeach	
 							</tbody>
 						</table>
