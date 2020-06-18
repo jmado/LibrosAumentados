@@ -165,7 +165,7 @@
 <div class="jumbotron">
   <div class="row">
     <!-- Libro -->
-        <div class="col col-12 col-lg-8">
+        <div class="col col-12 col-lg-7">
                     <!-- Informacion del libro -->
                       <div class="row">
                       <div class="imagen-libro col col-12 col-md-3">
@@ -187,62 +187,40 @@
         </div>
         <!--FIN Libro-->
         @if(isset($mensage_login))
-        <div class="col col-lg-3">
-            <div class="libro-login">
-                <p class="text-info">Escribe la palabra {{$mensage_login["palabra"]}} del párrafo {{$mensage_login["parrafo"]}} de la página {{$mensage_login["pagina"]}} del capítulo {{$mensage_login["capitulo"]}}</p>
-                <p class="mensage-login-error"></p>
-                  <form action="{{ route('contenido.login2') }}" method="GET" enctype='multipart/form-data'>
-                      <input id="pass" type="text" name="password" class="login form-control"  placeholder="Palabra">
-                      <input  type="hidden" name="libro_id"  value="{{$libro[0]->id}}">
-                      <button type="submint" class="login btn btn-info btn-block" id="login-btn">Acceder</button>
-                  </form>
+            <div class="col col-lg-4">
+                    <div class="libro-login">
+                        <p class="text-info">Escribe la palabra {{$mensage_login["palabra"]}} del párrafo {{$mensage_login["parrafo"]}} de la página {{$mensage_login["pagina"]}} del capítulo {{$mensage_login["capitulo"]}}</p>
+                        <p class="mensage-login-error"></p>
+                          <form action="{{ route('contenido.login2') }}" method="GET" enctype='multipart/form-data'>
+                              <input id="pass" type="text" name="password" class="login form-control"  placeholder="Palabra">
+                              <input  type="hidden" name="libro_id"  value="{{$libro[0]->id}}">
+                              <button type="submint" class="login btn btn-info btn-block" id="login-btn">Acceder</button>
+                          </form>
+                    </div>
             </div>
-        </div>
+        @endif
+        @if(isset($capitulos))
+            <div class="col col-lg-4">
+                    <div class="row row-indice">
+                          <div class="col col-12">
+                                  <div class="card">
+                                        <div class="card-header">
+                                            <p class="text-center"> Lista de capitulos</p>
+                                            <div id="pagination-demo"></div>
+                                        </div>
+                                        <!--<div class="card-body">
+                                            <div class="data-container"></div>
+                                        </div>-->
+                                  </div>   
+                          </div>
+                    </div>
+            </div>
         @endif
   </div>
 
   <hr class="my-4">
 
   @if(isset($capitulos))
-  <div class="row row-indice">
-        <div class="col col-12">
-                <div class="card">
-                      <div class="card-header">
-                          <p class="text-center"> Lista de capitulos</p>
-                          <div id="pagination-demo"></div>
-                      </div>
-                      <div class="card-body">
-                          <div class="data-container"></div>
-                      </div>
-                </div>   
-        </div>
-  </div>
-  @endif
-</div>
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-@if(isset($capitulos))
 <div class="container">
   
         <div class="row">
@@ -595,5 +573,32 @@
 
 </script>
 @endif
+ 
+  
+</div>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
 
 @endsection
