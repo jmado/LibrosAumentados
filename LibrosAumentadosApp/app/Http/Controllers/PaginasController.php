@@ -145,7 +145,7 @@ class PaginasController extends Controller
         $pag->save();
 
         
-        return redirect()->route('libro.pagias', $capitulo_id);
+        return redirect()->route('libro.paginas', $capitulo_id);
         
         
     }
