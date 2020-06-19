@@ -21,7 +21,7 @@
 						<table class="table table-striped table-bordered table-hover" id="dataTables-example">
 							<thead>
 								<tr>
-									<th>ID</th>
+									{{--<th>ID</th>--}}
 									<th>Titulo</th>
 									<th>Descripción</th>
 									<th>Autor</th>
@@ -34,7 +34,7 @@
 								@foreach ($libros as $libro)
 								
 								<tr class="gradeU">
-									<td>{{$libro->id}}</td>
+									{{--<td>{{$libro->id}}</td>--}}
 									<td>{{$libro->titulo}}</td>
 									<td>{{$libro->subtitulo}}</td>
 									<td>{{$libro->autor}}</td>
