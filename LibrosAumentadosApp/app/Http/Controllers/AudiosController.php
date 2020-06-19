@@ -234,7 +234,10 @@ class AudiosController extends Controller
     }
     public function admin()
     {
-        $audios = $consulta = DB::select("select * from audio");
+        $audios = $consulta = DB::select("
+        select capitulos.titulo as capitulo, audio.titulo, audio.descripcion, audio.archivo, audio.id 
+        from audio 
+        inner join capitulos on audio.capitulo_id = capitulos.id");
         return view('audio.all', compact('audios'));
     }
 /**
