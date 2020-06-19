@@ -202,7 +202,8 @@ class PaginasController extends Controller
     public function admin()
     {
         
-        $paginas = $consulta = DB::select("select capitulos.titulo as capitulo, paginas.numero_pagina, paginas.texto, paginas.id
+        $paginas = $consulta = DB::select("
+        select capitulos.titulo as capitulo, paginas.numero_pagina, paginas.texto, paginas.id
         from paginas
         inner join capitulos on paginas.capitulo_id = capitulos.id");
         

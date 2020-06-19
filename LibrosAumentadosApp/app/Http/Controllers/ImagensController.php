@@ -324,7 +324,7 @@ class ImagensController extends Controller
     }
     public function admin()
     {
-        $imagenes = $consulta = DB::select("select * from imagens");
+        $imagenes = $consulta = DB::select("select capitulos.titulo as capitulo, imagens.titulo, imagens.descripcion, imagens.imagen, imagens.id from imagens inner join capitulos on imagens.capitulo_id = capitulos.id");
         
         return view('imagen.all', compact('imagenes'));
     }
