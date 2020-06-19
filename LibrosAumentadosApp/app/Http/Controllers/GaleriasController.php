@@ -352,7 +352,9 @@ public function adminIndex($id)
     }
     public function admin()
     {
-        $galerias = $consulta = DB::select("select * from galerias");
+        $galerias = $consulta = DB::select("select capitulos.titulo as capitulo, galerias.titulo, galerias.descripcion, galerias.tipo, galerias.id
+        from galerias
+        inner join capitulos on galerias.capitulo_id = capitulos.id");
         
         return view('galeria.all', compact('galerias'));
     }
