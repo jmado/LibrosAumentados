@@ -66,7 +66,7 @@
 										}
 									});
 									// set content
-									modal.setContent(`<p>¿Seguro que quieres borrar "{{$pagina->titulo}}"?</p>`);
+									modal.setContent(`<p>¿Seguro que quieres borrar "{{$pagina->numero_pagina}}"?</p>`);
 									// add a button
 									modal.addFooterBtn('Cancelar', 'tingle-btn tingle-btn--primary', function() {
 										// here goes some logic
