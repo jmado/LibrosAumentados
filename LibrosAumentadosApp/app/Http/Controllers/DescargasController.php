@@ -245,7 +245,10 @@ class DescargasController extends Controller
     }
     public function admin()
     {
-        $descargas = $consulta = DB::select("select * from descargas");
+        $descargas = $consulta = DB::select("
+        select capitulos.titulo as capitulo, descargas.titulo, descargas.descripcion, descargas.archivo, descargas.id 
+        from descargas 
+        inner join capitulos on descargas.capitulo_id = capitulos.id");
         return view('descarga.all', compact('descargas'));
     }
 /**
