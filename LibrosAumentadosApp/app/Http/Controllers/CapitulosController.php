@@ -35,7 +35,11 @@ class CapitulosController extends Controller
     }
     public function admin()
     {
-        $capitulos = $consulta = DB::select("select * from capitulos");
+        $capitulos = DB::select("
+        select libros.titulo as libro, capitulos.numero_orden, capitulos.titulo, capitulos.id
+        from capitulos
+        inner join libros on capitulos.libro_id = libros.id
+        ");
         
         return view('capitulo.all', compact('capitulos'));
     }

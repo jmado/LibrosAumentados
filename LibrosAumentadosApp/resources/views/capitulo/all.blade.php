@@ -21,7 +21,7 @@
 						<table class="table table-striped table-bordered table-hover" id="dataTables-example">
 							<thead>
 								<tr>
-									<th>Libro ID</th>
+									<th>Libro</th>
 									<th>Número</th>
 									<th>Título</th>
 									<th>Modificar</th>
@@ -32,7 +32,7 @@
 							
 							@foreach ($capitulos as $capitulo)
 								<tr>
-									<td>{{$capitulo->libro_id}}</td>
+									<td>{{$capitulo->libro}}</td>
 									<td>{{$capitulo->numero_orden}}</td>
 									<td>{{$capitulo->titulo}}</td>
 									
