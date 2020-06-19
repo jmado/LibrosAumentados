@@ -210,7 +210,10 @@ class VideosController extends Controller
     }
     public function admin()
     {
-        $videos = $consulta = DB::select("select * from videos");
+        $videos = $consulta = DB::select("
+        select capitulos.titulo as capitulo, videos.titulo, videos.descripcion, videos.video, videos.id 
+        from videos 
+        inner join capitulos on videos.capitulo_id = capitulos.id");
         
         return view('video.all', compact('videos'));
     }

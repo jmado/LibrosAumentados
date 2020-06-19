@@ -362,7 +362,10 @@ class Modelo_3dController extends Controller
     }
     public function admin()
     {
-        $modelos = $consulta = DB::select("select * from modelo_3ds");
+        $modelos = $consulta = DB::select("
+        select capitulos.titulo as capitulo, modelo_3ds.titulo, modelo_3ds.descripcion, modelo_3ds.modelo_3d, modelo_3ds.id 
+        from modelo_3ds 
+        inner join capitulos on modelo_3ds.capitulo_id = capitulos.id");
         return view('modelo3d.all', compact('modelos'));
     }
 /**
