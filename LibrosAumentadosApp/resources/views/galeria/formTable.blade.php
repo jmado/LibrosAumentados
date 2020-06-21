@@ -13,12 +13,12 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12 text-center">
-                            @isset($datos)
+                            @isset($galeria)
                                 @isset($libros)
-                                    <form action="{{ route('galeria.updateAdmin', ['galeria' => $datos->id]) }}" method="POST" enctype='multipart/form-data'>
+                                    <form action="{{ route('galeria.updateAdmin', ['galeria' => $galeria->id]) }}" method="POST" enctype='multipart/form-data'>
                                     
                                 @else
-                                    <form action="{{ route('galeria.update', ['galerium' => $datos->id]) }}" method="POST" enctype='multipart/form-data'>
+                                    <form action="{{ route('galeria.update', ['galerium' => $galeria->id]) }}" method="POST" enctype='multipart/form-data'>
                                     
                                 @endif
                                 
@@ -66,11 +66,11 @@
                                             
                                             <div class="form-group">
                                                 <label for="title">Título:</label>
-                                                <input class="form-control" id="title" type="text" name="titulo"  value="{{$datos->titulo ?? ''}}" required>
+                                                <input class="form-control" id="title" type="text" name="titulo"  value="{{$galeria->titulo ?? ''}}" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="info">Descripción:</label>
-                                                <input id="info" type="text" name="descripcion" class="form-control" value="{{$datos->descripcion ?? ''}}" required>
+                                                <input id="info" type="text" name="descripcion" class="form-control" value="{{$galeria->descripcion ?? ''}}" required>
                                             </div>
                                             <div class="form-group">
                                             <p>Tipo de galeria</p>
@@ -117,6 +117,7 @@
                                                 @foreach ($imagenes as $imagen)
                                                     @isset($galeria)
                                                         @if($galeria->imagenes()->get()->contains($imagen->id))
+                                                        
                                                             <div class="custom-control custom-checkbox image-checkbox image-grid">
                                                                 <input type="checkbox" class="custom-control-input" id="i{{$imagen->id}}" value="{{$imagen->id}}" name="imagenes_id[]" checked>
                                                                 <label class="custom-control-label" for="i{{$imagen->id}}">
@@ -124,6 +125,7 @@
                                                                 </label>
                                                             </div>
                                                         @else
+                                                        
                                                             <div class="custom-control custom-checkbox image-checkbox image-grid">
                                                                 <input type="checkbox" class="custom-control-input" id="i{{$imagen->id}}" value="{{$imagen->id}}" name="imagenes_id[]">
                                                                 <label class="custom-control-label" for="i{{$imagen->id}}">
@@ -132,6 +134,7 @@
                                                             </div>
                                                         @endif
                                                     @else
+                                                    
                                                         <div class="custom-control custom-checkbox image-checkbox image-grid">
                                                             <input type="checkbox" class="custom-control-input" id="i{{$imagen->id}}" value="{{$imagen->id}}" name="imagenes_id[]">
                                                             <label class="custom-control-label" for="i{{$imagen->id}}">

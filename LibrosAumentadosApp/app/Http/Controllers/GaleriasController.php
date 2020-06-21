@@ -201,12 +201,15 @@ class GaleriasController extends Controller
      */
     public function edit($id)
     {
-        $datos = Galeria::findOrFail($id);
-        $capitulo = Capitulo::findOrFail($datos->capitulo_id);
+        $galeria = Galeria::findOrFail($id);
+              
+        //$datos = Galeria::findOrFail($id);
+        //dd($datos);  
+        $capitulo = Capitulo::findOrFail($galeria->capitulo_id);
         $libro = Libro::findOrFail($capitulo->libro_id);
-        $imagenes = DB::select('select id, imagen, titulo from imagens where capitulo_id=:id', ["id"=>$datos->capitulo_id]);
+        $imagenes = DB::select('select id, imagen, titulo from imagens where capitulo_id=:id', ["id"=>$galeria->capitulo_id]);
         
-        return view('galeria.formTable', compact('imagenes', 'capitulo', 'datos', 'libro'));
+        return view('galeria.formTable', compact('imagenes', 'capitulo', 'galeria', 'libro'));
     }
 
     /**
