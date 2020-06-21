@@ -19,10 +19,10 @@
         @isset($pagina)
             @isset($libros)
                 <form action="{{ route('pagina.updateAdmin', ['pagina' => $pagina->id]) }}" method="POST" enctype='multipart/form-data'>
-                ua
+                
             @else
                 <form action="{{ route('pagina.update', ['pagina' => $pagina->id]) }}" method="POST" enctype='multipart/form-data'>
-                update
+                
             @endif
             
             @method("PUT")

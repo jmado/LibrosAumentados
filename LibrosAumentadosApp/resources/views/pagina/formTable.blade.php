@@ -17,7 +17,7 @@
                         @isset($datos)
                             @isset($libros)
                                 <form action="{{ route('pagina.updateAdmin', ['pagina' => $datos->id]) }}" method="POST" enctype='multipart/form-data'>
-                                ua
+                                
                             @else
                                 <form action="{{ route('pagina.update', ['pagina' => $datos->id]) }}" method="POST" enctype='multipart/form-data'>
                                 

@@ -16,15 +16,15 @@
                         @isset($datos)
                                 @isset($libros)
                                     <form action="{{ route('video.updateAdmin', ['video' => $datos->id]) }}" method="POST" enctype='multipart/form-data'>
-                                    sssssssssssss
+                                    
                                 @else
                                     <form action="{{ route('video.update', ['video' => $datos->id]) }}" method="POST" enctype='multipart/form-data'>
                                 @endif
-                                dddddddddddddddd
+                                
                                 @method("PUT")
                             @else
                                 <form action="{{ route('video.store') }}" method="POST" enctype="multipart/form-data">
-                                ffffffffffffff
+                                
                             @endisset
                                 @csrf
 
@@ -42,8 +42,8 @@
                                             </div>
                                             <div class="form-group">
                                                 <div class="custom-file">
-                                                    <label class="custom-file-label" for="fichero">Seleccionar Video .mp4</label>
-                                                    <input type="file" name="video" class="custom-file-input" id="fichero" lang="es"> 
+                                                    <label class="custom-file-label" for="fichero">Inserte url del video</label>
+                                                    <input class="form-control" id="video" type="text" name="video"  value="{{$datos->video ?? ''}}" required>
                                                 </div>
                                             </div>
                                             
