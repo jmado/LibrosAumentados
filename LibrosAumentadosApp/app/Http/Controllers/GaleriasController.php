@@ -122,6 +122,13 @@ class GaleriasController extends Controller
     {
         //dd($request->tipo);
         //Creo una galeria
+        $this->validate($request, [
+            'titulo' => 'required|max:50',
+            'descripcion' => 'required|max:255',
+            'tipo' => 'required',
+            'imagenes_id' => 'required'
+        ]);
+
         $datos_galeria = new Galeria;
 
         $datos_galeria->titulo = $request->titulo;
