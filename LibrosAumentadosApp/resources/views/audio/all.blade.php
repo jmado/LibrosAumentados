@@ -36,13 +36,13 @@
 									<td>{{$audio->titulo}}</td>
 									<td>{{$audio->descripcion}}</td>
 									<td>
-										<a onclick="i{{$audio->id}}()" class="ver-btn av{{$audio->id}}" id="av{{$audio->id}}"><i class="far fa-eye"></i> Ver</a>
+										<a onclick="i{{$audio->id}}()" class="enlace ver-btn av{{$audio->id}}" id="av{{$audio->id}}"><i class="far fa-eye"></i> Ver</a>
 									</td>
 									<td>
 										<a href="{{route('audio.editAdmin', $audio->id)}}" class="text-warning modificar-btn am{{$audio->id}}" id="am{{$audio->id}}"><i class="fas fa-pen-square"></i> Modificar</a>
 									</td>
 									<td>
-										<a onclick="ab{{$audio->id}}()" class="text-danger borrar-btn ab{{$audio->id}}" id="ab{{$audio->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
+										<a onclick="ab{{$audio->id}}()" class="enlace text-danger borrar-btn ab{{$audio->id}}" id="ab{{$audio->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
 									</td>
 								</tr>
 								<script>

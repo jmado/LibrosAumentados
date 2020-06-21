@@ -272,7 +272,7 @@
               </div>
               <div class="picture-item__details">
                 <figcaption class="picture-item__title">
-                  <a onclick="i{{$imagen->id}}()" class="text-info">{{$imagen->titulo}} </a>
+                  <a onclick="i{{$imagen->id}}()" class="enlace text-info">{{$imagen->titulo}} </a>
                 </figcaption>
                 <p class="picture-item__tags hidden@xs">Imagen</p>
               </div>
@@ -327,7 +327,7 @@
               </div>
               <div class="picture-item__details">
                 <figcaption class="picture-item__title">
-                  <a onclick="a{{$audio->id}}()" class="text-info">{{$audio->titulo}} </a>
+                  <a onclick="a{{$audio->id}}()" class="enlace text-info">{{$audio->titulo}} </a>
                 </figcaption>
                 <p class="picture-item__tags hidden@xs">Audio</p>
               </div>
@@ -377,7 +377,7 @@
               </div>
               <div class="picture-item__details">
                 <figcaption class="picture-item__title">
-                  <a href="{{route('modelo.show', $modelo->id)}}" target="_blank" rel="noopener">{{$modelo->titulo}} </a>
+                  <a href="{{route('modelo.show', $modelo->id)}}" target="_blank" rel="noopener" class="enlace">{{$modelo->titulo}} </a>
                 </figcaption>
                 <p class="picture-item__tags hidden@xs">Modelo 3D</p>
               </div>
@@ -398,7 +398,7 @@
               </div>
               <div class="picture-item__details">
                 <figcaption class="picture-item__title">
-                  <a href="{{route('galeria.show', $galeria->id)}}" target="_blank" rel="noopener">{{$galeria->titulo}} </a>
+                  <a href="{{route('galeria.show', $galeria->id)}}" target="_blank" rel="noopener" class="enlace">{{$galeria->titulo}} </a>
                 </figcaption>
                 <p class="picture-item__tags hidden@xs">Galeria</p>
               </div>
@@ -421,7 +421,7 @@
               </div>
               <div class="picture-item__details">
                 <figcaption class="picture-item__title">
-                  <a onclick="v{{$video->id}}()" class="text-info">{{$video->titulo}} </a>
+                  <a onclick="v{{$video->id}}()" class="enlace text-info">{{$video->titulo}} </a>
                 </figcaption>
                 <p class="picture-item__tags hidden@xs">Video</p>
               </div>
@@ -473,7 +473,7 @@
               </div>
               <div class="picture-item__details">
                 <figcaption class="picture-item__title">
-                  <a onclick="d{{$descarga->id}}()" class="text-info">{{$descarga->titulo}} </a>
+                  <a onclick="d{{$descarga->id}}()" class="enlace text-info">{{$descarga->titulo}} </a>
                   </figcaption>
                 <p class="picture-item__tags hidden@xs">Otros</p>
               </div>

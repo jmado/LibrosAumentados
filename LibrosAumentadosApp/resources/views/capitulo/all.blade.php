@@ -37,10 +37,10 @@
 									<td>{{$capitulo->titulo}}</td>
 									
 									<td>
-										<a href="{{route('capitulo.editAdmin', $capitulo->id)}}" class="text-warning modificar-btn cm{{$capitulo->id}}" id="cm{{$capitulo->id}}"><i class="fas fa-pen-square"></i> Modificar</a>
+										<a href="{{route('capitulo.editAdmin', $capitulo->id)}}" class="enlace text-warning modificar-btn cm{{$capitulo->id}}" id="cm{{$capitulo->id}}"><i class="fas fa-pen-square"></i> Modificar</a>
 									</td>
 									<td>
-										<a href="{{route('capitulo.deleteAdmin', $capitulo->id)}}" class="text-danger borrar-btn cb{{$capitulo->id}}" id="cb{{$capitulo->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
+										<a href="{{route('capitulo.deleteAdmin', $capitulo->id)}}" class="enlace text-danger borrar-btn cb{{$capitulo->id}}" id="cb{{$capitulo->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
 									</td>
 								</tr>
 							@endforeach	

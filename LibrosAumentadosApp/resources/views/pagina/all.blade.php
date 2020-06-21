@@ -37,10 +37,10 @@
 									<td>{{$pagina->texto}}</td>
 									
 									<td>
-										<a href="{{route('pagina.editAdmin', $pagina->id)}}" class="text-warning modificar-btn pm{{$pagina->id}}" id="pm{{$pagina->id}}"><i class="fas fa-pen-square"></i> Modificar</a>
+										<a href="{{route('pagina.editAdmin', $pagina->id)}}" class="enlace text-warning modificar-btn pm{{$pagina->id}}" id="pm{{$pagina->id}}"><i class="fas fa-pen-square"></i> Modificar</a>
 									</td>
 									<td>
-										<a onclick="pb{{$pagina->id}}()" class="text-danger borrar-btn pb{{$pagina->id}}" id="pb{{$pagina->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
+										<a onclick="pb{{$pagina->id}}()" class="enlace text-danger borrar-btn pb{{$pagina->id}}" id="pb{{$pagina->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
 									</td>
 								</tr>
 								<script>

@@ -36,13 +36,13 @@
 									<td>{{$modelo->titulo}}</td>
 									<td>{{$modelo->descripcion}}</td>
 									<td>
-										<a href="{{route('modelo.show', $modelo->id)}}" target="_blank" class="ver-btn mv{{$modelo->id}}" id="mv{{$modelo->id}}"><i class="far fa-eye"></i> Ver</a>
+										<a href="{{route('modelo.show', $modelo->id)}}" target="_blank" class="enlace ver-btn mv{{$modelo->id}}" id="mv{{$modelo->id}}"><i class="far fa-eye"></i> Ver</a>
 									</td>
 									<td>
 										<a href="{{route('modelo.editAdmin', $modelo->id)}}" class="text-warning modificar-btn mm{{$modelo->id}}" id="mm{{$modelo->id}}"><i class="fas fa-pen-square"></i> Modificar</a>
 									</td>
 									<td>
-										<a onclick="mb{{$modelo->id}}()" class="text-danger borrar-btn mb{{$modelo->id}}" id="mb{{$modelo->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
+										<a onclick="mb{{$modelo->id}}()" class="enlace text-danger borrar-btn mb{{$modelo->id}}" id="mb{{$modelo->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
 									</td>
 								</tr>
 								<script>

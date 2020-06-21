@@ -82,6 +82,10 @@
         height: 45px;
         border-radius: 5px;
         }
+
+        .enlace{
+            cursor: pointer;
+        }
     </style>
 
 

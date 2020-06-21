@@ -36,13 +36,13 @@
 									<td>{{$descarga->titulo}}</td>
 									<td>{{$descarga->descripcion}}</td>
 									<td>
-										<a onclick="d{{$descarga->id}}()" class="ver-btn dv{{$descarga->id}}" id="dv{{$descarga->id}}"><i class="far fa-eye"></i> Ver</a>
+										<a onclick="d{{$descarga->id}}()" class="enlace ver-btn dv{{$descarga->id}}" id="dv{{$descarga->id}}"><i class="far fa-eye"></i> Ver</a>
 									</td>
 									<td>
 										<a href="{{route('descarga.editAdmin', $descarga->id)}}" class="text-warning modificar-btn dm{{$descarga->id}}" id="dm{{$descarga->id}}"><i class="fas fa-pen-square"></i> Modificar</a>
 									</td>
 									<td>
-										<a onclick="db{{$descarga->id}}()" class="text-danger borrar-btn db{{$descarga->id}}" id="db{{$descarga->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
+										<a onclick="db{{$descarga->id}}()" class="enlace text-danger borrar-btn db{{$descarga->id}}" id="db{{$descarga->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
 									</td>
 								</tr>
 								<script>

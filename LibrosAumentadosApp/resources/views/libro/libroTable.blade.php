@@ -39,15 +39,15 @@
 									<td>{{$libro->subtitulo}}</td>
 									<td>{{$libro->autor}}</td>
 									<td>
-										{{--<a href="{{route('libro.showAdmin', $libro->id)}}" class="ver-btn lv{{$libro->id}}" id="lv{{$libro->id}}"><i class="far fa-eye"></i> Ver</a>--}}
-										<a class="ver-btn lv{{$libro->id}}" id="lv{{$libro->id}}" onclick="l{{$libro->id}}()"><i class="far fa-eye"></i> Ver</a>
+										
+										<a class="enlace ver-btn lv{{$libro->id}}" id="lv{{$libro->id}}" onclick="l{{$libro->id}}()"><i class="far fa-eye"></i> Ver</a>
 										
 									</td>
 									<td>
 										<a href="{{route('libro.editAdmin', $libro->id)}}" class="text-warning modificar-btn lm{{$libro->id}}" id="lm{{$libro->id}}"><i class="fas fa-pen-square"></i> Modificar</a>
 									</td>
 									<td>
-										<a href="{{route('libro.destroy', $libro->id)}}" class="text-danger borrar-btn lb{{$libro->id}}" id="lb{{$libro->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
+										<a href="{{route('libro.destroy', $libro->id)}}" class="enlace text-danger borrar-btn lb{{$libro->id}}" id="lb{{$libro->id}}"><i class="fas fa-minus-square"></i> Borrar</a>
 									</td>
 								</tr>
 
