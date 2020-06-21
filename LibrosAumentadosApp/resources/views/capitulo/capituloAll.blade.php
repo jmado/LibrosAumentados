@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <!-- ... Titulo de la pagina ... -->
-                    <h1 class="page-header">Lista de capitulos</h1>
+                    <h1 class="page-header">Lista de capítulos</h1>
                     <!-- ... Buscador de elementos ... -->
                     
                 </div>
@@ -14,7 +14,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="{{route('libro.adminIndex')}}">Libros</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Capitulos</li>
+                  <li class="breadcrumb-item active" aria-current="page">Capítulos</li>
                 </ol>
               </nav>
             <!-- ... Descripcion general del libro ... -->
@@ -45,7 +45,7 @@
                         
                         <div class="row">
                             <div class="col col-sm-6 options">
-                                <a onclick="window.history.back()" class="btn btn-primary btn-lg btn-block"><i class="fa fa-arrow-left"></i> Atras</a>
+                                <a onclick="window.history.back()" class="btn btn-primary btn-lg btn-block"><i class="fa fa-arrow-left"></i> Atrás</a>
                             </div>
                             <div class="col col-sm-6 options">
                                 <a href="{{ route('capitulo.create') }}" class="btn btn-primary btn-lg btn-block"><i class="glyphicon glyphicon-plus"></i> Nuevo</a>
@@ -79,13 +79,13 @@
                             <div class="col col-sm-12 options">
                                 <div class="row">
                                     <div class="col col-sm-3">
-                                        <a href="{{ route('libro.paginas', $capitulo->id) }}" class="multimedia-icons"><i class="fa fa-pencil"></i> Paginas</a>
+                                        <a href="{{ route('libro.paginas', $capitulo->id) }}" class="multimedia-icons"><i class="fa fa-pencil"></i> Páginas</a>
                                     </div>
                                     <div class="col col-sm-3">
-                                        <a href="{{ route('libro.imagenes', $capitulo->id) }}" class="multimedia-icons"><i class="fa fa-pencil"></i> Imagenes</a>
+                                        <a href="{{ route('libro.imagenes', $capitulo->id) }}" class="multimedia-icons"><i class="fa fa-pencil"></i> Imágenes</a>
                                     </div>
                                     <div class="col col-sm-3">
-                                        <a href="{{ route('libro.galerias', $capitulo->id) }}" class="multimedia-icons"><i class="fa fa-pencil"></i> Galerias</a>
+                                        <a href="{{ route('libro.galerias', $capitulo->id) }}" class="multimedia-icons"><i class="fa fa-pencil"></i> Galerías</a>
                                     </div>
                                     <div class="col col-sm-3">
                                         <a href="{{ route('libro.audios', $capitulo->id) }}" class="multimedia-icons"><i class="fa fa-pencil"></i> Audios</a>

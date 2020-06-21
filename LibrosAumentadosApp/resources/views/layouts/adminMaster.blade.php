@@ -183,16 +183,16 @@
                                 <a href="{{route('libro.admin')}}">Libros</a>
                             </li>
                             <li>
-                                <a href="{{route('capitulo.admin')}}">Capitulos</a>
+                                <a href="{{route('capitulo.admin')}}">Capítulos</a>
                             </li>
                             <li>
-                                <a href="{{route('pagina.admin')}}">Paginas</a>
+                                <a href="{{route('pagina.admin')}}">Páginas</a>
                             </li>
                             <li>
-                                <a href="{{route('imagen.admin')}}">Imagenes</a>
+                                <a href="{{route('imagen.admin')}}">Imágenes</a>
                             </li>
                             <li>
-                                <a href="{{route('galeria.admin')}}">Galerias</a>
+                                <a href="{{route('galeria.admin')}}">Galerías</a>
                             </li>
                             <li>
                                 <a href="{{route('audio.admin')}}">Audios</a>

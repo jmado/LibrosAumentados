@@ -22,7 +22,7 @@
 							<thead>
 								<tr>
 									{{--<th>ID</th>--}}
-									<th>Titulo</th>
+									<th>Título</th>
 									<th>Descripción</th>
 									<th>Autor</th>
 									<th>Ver</th>

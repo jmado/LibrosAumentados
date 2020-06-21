@@ -7,7 +7,7 @@
 
 <section class="text-center">
     <div class="container">
-        <h1>Galerias</h1>
+        <h1>Galerías</h1>
             
       </div>
 </section>
@@ -23,7 +23,7 @@
             <div class="col-sm-12">
                 <div class="elemento-body">
 
-                    <p>Titulo: {{$galeria[0]->titulo}}</p>
+                    <p>Título: {{$galeria[0]->titulo}}</p>
                     <p>Descripción: {{$galeria[0]->descripcion}}</p>
                     <p>Tipo de galería: {{$galeria[0]->tipo}}</p>
 

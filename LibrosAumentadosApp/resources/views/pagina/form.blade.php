@@ -33,10 +33,10 @@
             @csrf
 
     
-            
+         {{dd($pagina->texto)}}   
         <div class="form-group">
             <label for="texto">Texto: </label>
-           <textarea name="texto"  class="form-control" id="texto" hidden></textarea>
+           <textarea name="texto"  class="form-control" id="texto" hidden>{{!!$pagina->texto ?? ''!!}}</textarea>
             <div id="editor" style="border: 1px solid black"></div>
             {{-- Editor de texto online --}}
             <div id="markup"></div>

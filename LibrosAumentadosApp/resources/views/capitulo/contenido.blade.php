@@ -205,7 +205,7 @@
                           <div class="col col-12">
                                   <div class="card">
                                         <div class="card-header">
-                                            <p class="text-center"> Lista de capitulos</p>
+                                            <p class="text-center"> Lista de capítulos</p>
                                             <div id="pagination-demo"></div>
                                         </div>
                                         <!--<div class="card-body">
@@ -246,8 +246,8 @@
               <p class="filter-label">Filta por:</p>
               <div class="btn-group filter-options">
                 <button class="btn btn--primary" data-group="audios">Audios</button>
-                <button class="btn btn--primary" data-group="galerias">Galerias</button>
-                <button class="btn btn--primary" data-group="imagenes">Imagenes</button>
+                <button class="btn btn--primary" data-group="galerias">Galerías</button>
+                <button class="btn btn--primary" data-group="imagenes">Imágenes</button>
                 <button class="btn btn--primary" data-group="modelos">Modelos 3D</button>
                 <button class="btn btn--primary" data-group="videos">Videos</button>
                 <button class="btn btn--primary" data-group="otros">Otros</button>
@@ -400,7 +400,7 @@
                 <figcaption class="picture-item__title">
                   <a href="{{route('galeria.show', $galeria->id)}}" target="_blank" rel="noopener" class="enlace">{{$galeria->titulo}} </a>
                 </figcaption>
-                <p class="picture-item__tags hidden@xs">Galeria</p>
+                <p class="picture-item__tags hidden@xs">Galería</p>
               </div>
               <p class="picture-item__description">{{$galeria->descripcion}}</p>
             </div>

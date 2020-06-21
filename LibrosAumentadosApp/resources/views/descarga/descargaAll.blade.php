@@ -14,7 +14,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="{{route('libro.adminIndex')}}">Libros</a></li>
-                  <li class="breadcrumb-item"><a href="{{ route('libro.capitulos', $libro->id) }}">Capitulos</a></li>
+                  <li class="breadcrumb-item"><a href="{{ route('libro.capitulos', $libro->id) }}">Capítulos</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Otros</li>
                 </ol>
               </nav>
@@ -50,7 +50,7 @@
                         
                         <div class="row">
                             <div class="col col-sm-6 options">
-                                <a href="{{ route('libro.capitulos', $libro->id) }}" class="btn btn-primary btn-lg btn-block"><i class="fa fa-arrow-left"></i> Atras</a>
+                                <a href="{{ route('libro.capitulos', $libro->id) }}" class="btn btn-primary btn-lg btn-block"><i class="fa fa-arrow-left"></i> Atrás</a>
                             </div>
                             <div class="col col-sm-6 options">
                                 <a href="{{ route('descarga.create') }}" class="btn btn-primary btn-lg btn-block"><i class="glyphicon glyphicon-plus"></i> Nuevo</a>

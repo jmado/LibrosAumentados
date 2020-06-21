@@ -59,7 +59,7 @@
                                             </div>
                                             --}}
                                             <div class="form-group">
-                                                <label>Capitulo</label>
+                                                <label>Capítulo</label>
                                                 <select name="capitulo_id" class="form-control">
                                                 @foreach($capitulos as $c)
                                                     @if(isset($capitulo) && ($c->id == $capitulo->id))

@@ -62,7 +62,7 @@
                                             </div>
                                             --}}
                                             <div class="form-group">
-                                                <label>Capitulo</label>
+                                                <label>Capítulo</label>
                                                 <select name="capitulo_id" class="form-control">
                                                 @foreach($capitulos as $c)
                                                     @if(isset($capitulo) && ($c->id == $capitulo->id))
@@ -79,7 +79,7 @@
                                                 <img src="{{URL::asset($libro->cubierta)}}" alt="Cubierta del libro" style="width: 190px; height: 300px;">   
                                             </div>
                                             <div class="form-group">
-                                                <p>Capitulo: {{$capitulo->titulo}}</p>
+                                                <p>Capítulo: {{$capitulo->titulo}}</p>
                                             </div>
                                             @endif
                                         </div>

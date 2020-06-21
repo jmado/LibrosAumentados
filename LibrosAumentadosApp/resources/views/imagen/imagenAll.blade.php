@@ -5,7 +5,7 @@
 <div class="row">
                 <div class="col-lg-12">
                     <!-- ... Titulo de la pagina ... -->
-                    <h1 class="page-header">Lista de imagenes</h1>
+                    <h1 class="page-header">Lista de imágenes</h1>
                     <!-- ... Buscador de elementos ... -->
                     
                 </div>
@@ -14,8 +14,8 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{route('libro.adminIndex')}}">Libros</a></li>
-                  <li class="breadcrumb-item"><a href="{{ route('libro.capitulos', $libro->id) }}">Capitulos</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Imagenes</li>
+                  <li class="breadcrumb-item"><a href="{{ route('libro.capitulos', $libro->id) }}">Capítulos</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Imágenes</li>
                 </ol>
               </nav>
             <!-- ... Descripcion general del libro ... -->
@@ -49,7 +49,7 @@
                         
                         <div class="row">
                             <div class="col col-sm-6 options">
-                                <a href="{{ route('libro.capitulos', $libro->id) }}" class="btn btn-primary btn-lg btn-block"><i class="fa fa-arrow-left"></i> Atras</a>
+                                <a href="{{ route('libro.capitulos', $libro->id) }}" class="btn btn-primary btn-lg btn-block"><i class="fa fa-arrow-left"></i> Atrás</a>
                             </div>
                             <div class="col col-sm-6 options">
                                 <a href="{{ route('imagen.create') }}" class="btn btn-primary btn-lg btn-block"><i class="glyphicon glyphicon-plus"></i> Nuevo</a>

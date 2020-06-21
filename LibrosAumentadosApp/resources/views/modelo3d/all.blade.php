@@ -21,8 +21,8 @@
 						<table class="table table-striped table-bordered table-hover" id="dataTables-example">
 						<thead>
 								<tr>
-									<th>Capitulo</th>
-									<th>Titulo</th>
+									<th>Capítulo</th>
+									<th>Título</th>
 									<th>Descripción</th>
 									<th>Ver</th>
 									<th>Modificar</th>

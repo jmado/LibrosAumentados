@@ -33,7 +33,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin/libros';
+    protected $redirectTo = '/admin/index';
 
     protected $redirectAfterLogout = '/libros'; 
 
