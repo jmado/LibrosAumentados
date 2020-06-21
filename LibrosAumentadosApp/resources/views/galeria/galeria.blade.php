@@ -54,14 +54,14 @@
                 @endforeach
             @endif
             <!-- Fin galeria-->
-                @if($galeria[0]->tipo == "normal")
+                 @if($galeria[0]->tipo == "normal") 
                     <span class="left" onclick="izquierda()"></span>
                     <span class="right" onclick="derecha()"></span>
-                @endif
+                 @endif 
             </div>
             
             <div class="thumbs">
-            @if($galeria[0]->tipo == "normal") 
+            {{-- @if($galeria[0]->tipo == "normal") --}}
                 @if (isset($libro_id))       
                     @foreach ($imagenes as $imagen)
                         @if($loop->first)
@@ -79,7 +79,9 @@
                         @endif
                     @endforeach
                 @endif
-            @else
+            {{-- @else --}}
+            @if($galeria[0]->tipo == "transparencia")
+            <br>
                 <div>
                 @if(count($imagenes)>2)
                     @foreach ($imagenes as $imagen)
